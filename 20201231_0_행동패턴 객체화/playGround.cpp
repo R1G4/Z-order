@@ -18,6 +18,7 @@ HRESULT playGround::init()
 	_SCH_rc = RectMake(100, 50, 50, 50);	//·ºÆ®Àö
 	_KDH_rc = RectMake(150, 50, 50, 50);	//·ºÆ®Àö
 	_KDK_rc = RectMake(200, 50, 50, 50);	//·ºÆ®Àö
+	_PJU_rc = RectMake(250, 50, 50, 50);	//·ºÆ®Àö
 	IMAGEMANAGER->addImage("»õ¹è°æ", "background.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("ÃÑ¾Ë", "bullet.bmp", 21, 21, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("battle", "battle.bmp", 1536, 79, 16, 1, true, RGB(255, 0, 255));
@@ -83,7 +84,12 @@ void playGround::render()
 	Rectangle(getMemDC(), _KDK_rc);
 	SelectObject(getMemDC(), oldbrush4);
 	DeleteObject(brush4);
-
+	HBRUSH brush5 = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH oldbrush5 = (HBRUSH)SelectObject(getMemDC(), brush5);
+	Rectangle(getMemDC(), _PJU_rc);
+	SelectObject(getMemDC(), oldbrush5);
+	DeleteObject(brush5);
+	
 	//================= ¾Æ·¡µµ °ÇµéÁö ¸¶¶ó ==============================
 	_backBuffer->render(getHDC());
 }
