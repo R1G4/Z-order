@@ -11,32 +11,35 @@ CameraManager::~CameraManager()
 
 POINT CameraManager::CameraMake(int CharacterX,int CharacterY,XY WantToBase,int backgroundW,int backgroundH)
 {
-	switch (WantToBase)
+	if (!_isLock)
 	{
-		POINT CPoint;
-	case X:
-		CPoint.x = CharacterX - WINSIZEX / 2;
-		CPoint.y = 0;
-		if (CPoint.x < 0)CPoint.x = 0;
-		if (CPoint.x > backgroundW - WINSIZEX)CPoint.x = backgroundW - WINSIZEX;		
-		return CPoint;
-		break;
-	case Y:
-		CPoint.x = 0;
-		CPoint.y = CharacterY - WINSIZEY / 2;
-		if (CPoint.y < 0)CPoint.y = 0;
-		if (CPoint.y > backgroundH - WINSIZEY)CPoint.y = backgroundH - WINSIZEY;
-		return CPoint;
-		break;
-	case BOTH:
-		CPoint.x = CharacterX - WINSIZEX / 2;
-		CPoint.y = CharacterY - WINSIZEY / 2;
-		if (CPoint.x < 0)CPoint.x = 0;
-		if (CPoint.x > backgroundW - WINSIZEX)CPoint.x = backgroundW - WINSIZEX;
-		if (CPoint.y < 0)CPoint.y = 0;
-		if (CPoint.y > backgroundH - WINSIZEY)CPoint.y = backgroundH - WINSIZEY;
-		return CPoint;
-		break;
+		switch (WantToBase)
+		{
+			POINT CPoint;
+		case X:
+			CPoint.x = CharacterX - WINSIZEX / 2;
+			CPoint.y = 0;
+			if (CPoint.x < 0)CPoint.x = 0;
+			if (CPoint.x > backgroundW - WINSIZEX)CPoint.x = backgroundW - WINSIZEX;
+			return CPoint;
+			break;
+		case Y:
+			CPoint.x = 0;
+			CPoint.y = CharacterY - WINSIZEY / 2;
+			if (CPoint.y < 0)CPoint.y = 0;
+			if (CPoint.y > backgroundH - WINSIZEY)CPoint.y = backgroundH - WINSIZEY;
+			return CPoint;
+			break;
+		case BOTH:
+			CPoint.x = CharacterX - WINSIZEX / 2;
+			CPoint.y = CharacterY - WINSIZEY / 2;
+			if (CPoint.x < 0)CPoint.x = 0;
+			if (CPoint.x > backgroundW - WINSIZEX)CPoint.x = backgroundW - WINSIZEX;
+			if (CPoint.y < 0)CPoint.y = 0;
+			if (CPoint.y > backgroundH - WINSIZEY)CPoint.y = backgroundH - WINSIZEY;
+			return CPoint;
+			break;
+		}
 	}
 }
 
@@ -168,6 +171,11 @@ void CameraManager::setTime(int time)
 {
 	_time = time;
 	_isShaking = true;
+}
+//카메라움직임 막을 용도. 카메라 메이크 앞에 if문을 걺으로써 카메라 움직임을 막을 수 있음.
+void CameraManager::isChainLock(bool ONOFF)
+{
+	_isLock = ONOFF;
 }
 //카메라에 따라 움직이는 미니맵?
 //void CameraManager::miniMapMake(POINT camera, int sizeX, int sizeY, image* characterImg, image* backImg)

@@ -23,6 +23,7 @@ private:
 	int _time=0;
 	int interval=0;
 	bool _isShaking = false;
+	bool _isLock;
 public:
 	CameraManager();
 	~CameraManager();
@@ -43,5 +44,7 @@ public:
 	void shaking(POINT *camera,int power );
 	//시간 설정. 특정 조건에서만 실행되도록 해야합니다 안그러면 무한히 흔들립니다
 	void setTime(int time);
+	void isChainLock(bool ONOFF);
+	bool getIsChainLock() { return _isLock; }
 };
 

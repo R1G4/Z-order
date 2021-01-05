@@ -4,9 +4,9 @@
 class playGround : public gameNode
 {
 private:
-	string _str;
-	int _test;
-
+	RECT rc;
+	POINT camera;
+	image* backGround;
 public:
 	playGround();
 	~playGround();

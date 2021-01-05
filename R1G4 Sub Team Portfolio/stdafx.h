@@ -53,7 +53,7 @@ using namespace TFIVE_UTIL;
 #define TXTDATA txtData::getSingleton()
 #define INIDATA iniDataManager::getSingleton()
 #define VIDEOMANAGER videoManager::getSingleton()
-#define CAMERAMANAGER cameraManager::getSingleton()
+#define CAMERAMANAGER CameraManager::getSingleton()
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p)=NULL;}}
