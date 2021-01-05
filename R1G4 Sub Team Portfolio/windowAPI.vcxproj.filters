@@ -31,9 +31,6 @@
     <Filter Include="2DGameFramework\Utils">
       <UniqueIdentifier>{c962e91d-abcd-4709-8f30-f32302d8f874}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\bullets">
-      <UniqueIdentifier>{ebf866d0-8632-4833-b93d-c284a3e2006f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2DGameFramework\progressBar">
       <UniqueIdentifier>{d7d3bb39-5a49-4aa5-bb12-7e2c752bf39e}</UniqueIdentifier>
     </Filter>
@@ -51,12 +48,6 @@
     </Filter>
     <Filter Include="2DGameFramework\button">
       <UniqueIdentifier>{3a0acedc-e823-40ff-b206-87b61c533603}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\ghostnGoblinScene">
-      <UniqueIdentifier>{d5c5c8e5-4e1a-4e00-b9b1-602051f06a97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="playGround\loading">
-      <UniqueIdentifier>{f7f0250c-30b5-4cff-b026-a8d03ee2b90b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +90,6 @@
     <ClInclude Include="imageManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="bullets.h">
-      <Filter>playGround\bullets</Filter>
-    </ClInclude>
     <ClInclude Include="progressBar.h">
       <Filter>2DGameFramework\progressBar</Filter>
     </ClInclude>
@@ -135,22 +123,13 @@
     <ClInclude Include="keyAniManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="knight.h">
-      <Filter>playGround\ghostnGoblinScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ghostScene.h">
-      <Filter>playGround\ghostnGoblinScene</Filter>
-    </ClInclude>
-    <ClInclude Include="jump.h">
-      <Filter>playGround\ghostnGoblinScene</Filter>
-    </ClInclude>
-    <ClInclude Include="inGameScene.h">
-      <Filter>playGround\loading</Filter>
-    </ClInclude>
-    <ClInclude Include="loadingScene.h">
-      <Filter>playGround\loading</Filter>
-    </ClInclude>
     <ClInclude Include="iniDataManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="videoManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
@@ -178,9 +157,6 @@
     </ClCompile>
     <ClCompile Include="imageManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="bullets.cpp">
-      <Filter>playGround\bullets</Filter>
     </ClCompile>
     <ClCompile Include="progressBar.cpp">
       <Filter>2DGameFramework\progressBar</Filter>
@@ -215,22 +191,13 @@
     <ClCompile Include="keyAniManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="knight.cpp">
-      <Filter>playGround\ghostnGoblinScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ghostScene.cpp">
-      <Filter>playGround\ghostnGoblinScene</Filter>
-    </ClCompile>
-    <ClCompile Include="jump.cpp">
-      <Filter>playGround\ghostnGoblinScene</Filter>
-    </ClCompile>
-    <ClCompile Include="loadingScene.cpp">
-      <Filter>playGround\loading</Filter>
-    </ClCompile>
-    <ClCompile Include="inGameScene.cpp">
-      <Filter>playGround\loading</Filter>
-    </ClCompile>
     <ClCompile Include="iniDataManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="videoManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>

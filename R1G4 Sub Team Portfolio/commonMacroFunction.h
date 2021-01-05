@@ -49,6 +49,19 @@ inline void Rectangle(HDC hdc, RECT& rc)
 {
 	Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
 }
+inline void Rectangle(HDC hdc, RECT& rc, POINT camera)
+{
+	Rectangle(hdc, rc.left - camera.x, rc.top - camera.y, rc.right - camera.x, rc.bottom - camera.y);
+}
+inline void RectangleMake(HDC hdc, int x, int y, int width, int height, POINT camera)
+{
+	Rectangle(hdc, x - camera.x, y - camera.y, (x - camera.x) + width, (y - camera.y) + height);
+}
+
+inline void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height, POINT camera)
+{
+	Rectangle(hdc, (x - camera.x) - (width / 2), (y - camera.y) - (height / 2), (x - camera.x) + (width / 2), (y - camera.y) + (height / 2));
+}
 
 //Ellipse
 inline void EllipseMake(HDC hdc, int x, int y, int width, int height)
@@ -65,4 +78,16 @@ inline void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 inline void Ellipse(HDC hdc, RECT& rc)
 {
 	Ellipse(hdc, rc.left, rc.top, rc.right, rc.bottom);
+}
+inline void Ellipse(HDC hdc, RECT& rc, POINT camera)
+{
+	Ellipse(hdc, rc.left - camera.x, rc.top - camera.y, rc.right - camera.x, rc.bottom - camera.y);
+}
+inline void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height, POINT camera)
+{
+	Ellipse(hdc, (x - camera.x) - (width / 2), (y - camera.y) - (height / 2), (x - camera.x) + (width / 2), (y - camera.y) + (height / 2));
+}
+inline void EllipseMake(HDC hdc, int x, int y, int width, int height, POINT camera)
+{
+	Ellipse(hdc, x - camera.x, y - camera.y, (x - camera.x) + width, (y - camera.y) + height);
 }

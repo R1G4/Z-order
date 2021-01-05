@@ -1,7 +1,5 @@
 #pragma once
 #include "gameNode.h"
-#include "inGameScene.h"
-#include "loadingScene.h"
 
 class playGround : public gameNode
 {

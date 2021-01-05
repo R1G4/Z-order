@@ -96,10 +96,23 @@ public:
 	void alphaRender(HDC hdc, BYTE alpha);
 	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha);
 	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha);
+	void alphaframeRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, BYTE alpha);
 
 	void aniRender(HDC hdc, int destX, int destY, animation* ani);
 
 	void loopRender(HDC hdc, const LPRECT drawArea, int offSetX, int offSetY);
+
+	//상대좌표 카메라 적용 render
+		//카메라와의 상대좌표를 통해 그리고 싶다면
+	void render(HDC hdc, int destX, int destY, POINT camera);
+	//카메라와 상대좌표를 통해 그리는 동적프레임
+	void frameRender(HDC hdc, int destX, int destY, POINT camera);
+	void frameRender(HDC hdc, int destX, int destY, POINT camera, int currentFrameX, int currentFrameY);
+	//카메라 알파 랜더
+	void alphaRender(HDC hdc, BYTE alpha,POINT camera);
+	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha, POINT camera);
+	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha, POINT camera);
+	void alphaframeRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, BYTE alpha, POINT camera);
 
 	inline HDC getMemDC() { return _imageInfo->hMemDC; }
 

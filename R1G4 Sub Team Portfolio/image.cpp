@@ -465,8 +465,51 @@ void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha)
 
 void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha)
 {
-	//여기는 여러분이 한 번 채워보세요~ *^^*
-	//한 번 공부해보라고~
+	_blendFunc.SourceConstantAlpha = alpha;
+	if (_trans)
+	{
+		BitBlt(_blendImage->hMemDC, sourX, sourY, sourWidth, sourHeight, hdc, destX, destY, SRCCOPY);
+		GdiTransparentBlt(_blendImage->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height,
+			_imageInfo->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height, _transColor);
+		AlphaBlend(hdc, destX, destY, sourWidth, sourHeight, _blendImage->hMemDC,
+			sourX, sourY, sourWidth, sourHeight, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, destX, destY, sourWidth, sourHeight,
+			_imageInfo->hMemDC, sourX, sourY, sourWidth, sourHeight, _blendFunc);
+	}
+
+}
+
+void image::alphaframeRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, BYTE alpha)
+{
+	_blendFunc.SourceConstantAlpha = alpha;
+	_imageInfo->currentFrameX = currentFrameX;
+	_imageInfo->currentFrameY = currentFrameY;
+	if (_trans)
+	{
+		BitBlt(_blendImage->hMemDC, _imageInfo->currentFrameX * _imageInfo->frameWidth, _imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, hdc, destX, destY, SRCCOPY);
+
+		GdiTransparentBlt(_blendImage->hMemDC, _imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight, _imageInfo->frameWidth, _imageInfo->frameHeight, _imageInfo->hMemDC,
+			_imageInfo->currentFrameX * _imageInfo->frameWidth, _imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, _transColor);
+
+		AlphaBlend(hdc, destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight, _blendImage->hMemDC,
+			currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, destX, destY, _imageInfo->frameWidth, _imageInfo->frameHeight, _imageInfo->hMemDC,
+			currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, _blendFunc);
+	}
+
 }
 
 //애니메이션 렌더용 함수
@@ -537,5 +580,209 @@ void image::loopRender(HDC hdc, const LPRECT drawArea, int offSetX, int offSetY)
 		}
 	}
 
+
+}
+
+void image::render(HDC hdc, int destX, int destY, POINT camera)
+{
+	if (_trans)
+	{
+		GdiTransparentBlt(
+			hdc,					//복사될 영역의  DC
+			destX - camera.x,					//복사될 좌표 X
+			destY - camera.y,					//복사될 좌표 Y
+			_imageInfo->width,		//복사될 크기 (가로)
+			_imageInfo->height,		//복사될 크기 (세로)
+			_imageInfo->hMemDC,		//복사해올 DC
+			0, 0,					//복사해올 좌표 X, Y
+			_imageInfo->width,		//복사할 가로크기
+			_imageInfo->height,		//복사할 세로크기
+			_transColor
+		);
+	}
+	else
+	{
+		//얘가 그것입니다 DC영역 간의 고속복사를 해주는 함수
+		BitBlt(hdc,					//복사할 DC
+			destX - camera.x,					//복사할 좌표 X (left)
+			destY - camera.y,					//복사할 좌표 Y (top)
+			_imageInfo->width,		//복사할 크기
+			_imageInfo->height,
+			_imageInfo->hMemDC,		//복사될 DC
+			0, 0,					//복사될 기준점 (left, top)
+			SRCCOPY);				//변형없이 복사할거임
+	}
+
+}
+
+void image::frameRender(HDC hdc, int destX, int destY, POINT camera)
+{
+	if (_trans)
+	{
+		GdiTransparentBlt(
+			hdc,						//복사될 영역의  DC
+			destX - camera.x,						//복사될 좌표 X
+			destY - camera.y,						//복사될 좌표 Y
+			_imageInfo->frameWidth,		//복사될 크기 (가로)
+			_imageInfo->frameHeight,	//복사될 크기 (세로)
+			_imageInfo->hMemDC,		//복사해올 DC
+			_imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth,		//복사할 가로크기
+			_imageInfo->frameHeight,	//복사할 세로크기
+			_transColor
+		);
+	}
+	else
+	{
+		//얘가 그것입니다 DC영역 간의 고속복사를 해주는 함수
+		BitBlt(hdc,						//복사할 DC
+			destX - camera.x,						//복사할 좌표 X (left)
+			destY - camera.y,						//복사할 좌표 Y (top)
+			_imageInfo->frameWidth,			//복사할 크기
+			_imageInfo->frameHeight,
+			_imageInfo->hMemDC,			//복사될 DC
+			_imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,	//복사될 기준점 (left, top)
+			SRCCOPY);					//변형없이 복사할거임
+	}
+
+}
+
+void image::frameRender(HDC hdc, int destX, int destY, POINT camera, int currentFrameX, int currentFrameY)
+{
+	_imageInfo->currentFrameX = currentFrameX;
+	_imageInfo->currentFrameY = currentFrameY;
+
+	if (_trans)
+	{
+		GdiTransparentBlt(
+			hdc,						//복사될 영역의  DC
+			destX - camera.x,						//복사될 좌표 X
+			destY - camera.y,						//복사될 좌표 Y
+			_imageInfo->frameWidth,		//복사될 크기 (가로)
+			_imageInfo->frameHeight,	//복사될 크기 (세로)
+			_imageInfo->hMemDC,			//복사해올 DC
+			_imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth,		//복사할 가로크기
+			_imageInfo->frameHeight,	//복사할 세로크기
+			_transColor
+		);
+	}
+	else
+	{
+		//얘가 그것입니다 DC영역 간의 고속복사를 해주는 함수
+		BitBlt(hdc,						//복사할 DC
+			destX - camera.x,						//복사할 좌표 X (left)
+			destY - camera.y,						//복사할 좌표 Y (top)
+			_imageInfo->frameWidth,			//복사할 크기
+			_imageInfo->frameHeight,
+			_imageInfo->hMemDC,			//복사될 DC
+			_imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,	//복사될 기준점 (left, top)
+			SRCCOPY);					//변형없이 복사할거임
+	}
+
+}
+
+void image::alphaRender(HDC hdc, BYTE alpha, POINT camera)
+{
+	//실제 이미지 소스에 알파블렌드를 적용 시켜주는 함수 BYTE == 투명도 0 ~ 255
+	_blendFunc.SourceConstantAlpha = alpha;
+
+	if (_trans)
+	{
+		BitBlt(_blendImage->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height,
+			hdc, _imageInfo->x-camera.x, _imageInfo->y-camera.y, SRCCOPY);
+
+		GdiTransparentBlt(_blendImage->hMemDC, 0, 0, _imageInfo->width,
+			_imageInfo->height, _imageInfo->hMemDC, 0, 0, _imageInfo->width,
+			_imageInfo->height, _transColor);
+
+		AlphaBlend(hdc, _imageInfo->x-camera.x, _imageInfo->y-camera.y, _imageInfo->width,
+			_imageInfo->height, _blendImage->hMemDC, 0, 0,
+			_imageInfo->width, _imageInfo->height, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, _imageInfo->x-camera.x, _imageInfo->y-camera.y, _imageInfo->width,
+			_imageInfo->height, _imageInfo->hMemDC, 0, 0,
+			_imageInfo->width, _imageInfo->height, _blendFunc);
+	}
+
+}
+
+void image::alphaRender(HDC hdc, int destX, int destY, BYTE alpha, POINT camera)
+{
+	_blendFunc.SourceConstantAlpha = alpha;
+
+	if (_trans)
+	{
+		BitBlt(_blendImage->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height,
+			hdc, destX-camera.x, destY-camera.y, SRCCOPY);
+
+		GdiTransparentBlt(_blendImage->hMemDC, 0, 0, _imageInfo->width,
+			_imageInfo->height, _imageInfo->hMemDC, 0, 0, _imageInfo->width,
+			_imageInfo->height, _transColor);
+
+		AlphaBlend(hdc, destX-camera.x, destY-camera.y, _imageInfo->width,
+			_imageInfo->height, _blendImage->hMemDC, 0, 0,
+			_imageInfo->width, _imageInfo->height, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, destX-camera.x, destY-camera.y, _imageInfo->width,
+			_imageInfo->height, _imageInfo->hMemDC, 0, 0,
+			_imageInfo->width, _imageInfo->height, _blendFunc);
+	}
+}
+
+void image::alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha, POINT camera)
+{
+	_blendFunc.SourceConstantAlpha = alpha;
+	if (_trans)
+	{
+		BitBlt(_blendImage->hMemDC, sourX, sourY, sourWidth, sourHeight, hdc, destX-camera.x, destY-camera.y, SRCCOPY);
+		GdiTransparentBlt(_blendImage->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height,
+			_imageInfo->hMemDC, 0, 0, _imageInfo->width, _imageInfo->height, _transColor);
+		AlphaBlend(hdc, destX-camera.x, destY-camera.y, sourWidth, sourHeight, _blendImage->hMemDC,
+			sourX, sourY, sourWidth, sourHeight, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, destX-camera.x, destY-camera.y, sourWidth, sourHeight,
+			_imageInfo->hMemDC, sourX, sourY, sourWidth, sourHeight, _blendFunc);
+	}
+
+}
+
+void image::alphaframeRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, BYTE alpha, POINT camera)
+{
+	_imageInfo->currentFrameX = currentFrameX;
+	_imageInfo->currentFrameY = currentFrameY;
+	_blendFunc.SourceConstantAlpha = alpha;
+
+	if (_trans)
+	{
+		BitBlt(_blendImage->hMemDC, 0, 0, _imageInfo->frameWidth, _imageInfo->frameHeight,
+			hdc, destX - camera.x, destY - camera.y, SRCCOPY);
+
+		GdiTransparentBlt(_blendImage->hMemDC, 0, 0, _imageInfo->frameWidth,
+			_imageInfo->frameHeight, _imageInfo->hMemDC, _imageInfo->currentFrameX * _imageInfo->frameWidth,
+			_imageInfo->currentFrameY * _imageInfo->frameHeight,
+			_imageInfo->frameWidth,
+			_imageInfo->frameHeight, _transColor);
+
+		AlphaBlend(hdc, destX - camera.x, destY - camera.y, _imageInfo->frameWidth,
+			_imageInfo->frameHeight, _blendImage->hMemDC, 0, 0,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, _blendFunc);
+	}
+	else
+	{
+		AlphaBlend(hdc, destX - camera.x, destY - camera.y, _imageInfo->frameWidth,
+			_imageInfo->frameHeight, _blendImage->hMemDC, 0, 0,
+			_imageInfo->frameWidth, _imageInfo->frameHeight, _blendFunc);
+	}
 
 }
