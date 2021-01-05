@@ -39,7 +39,7 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//================ 위에 건들지 마라 ==============================
-
+	IMAGEMANAGER->findImage("배경")->render(getMemDC());
 	TIMEMANAGER->render(getMemDC());
 	//================= 아래도 건들지 마라 ==============================
 	_backBuffer->render(getHDC());
