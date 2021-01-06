@@ -1,0 +1,62 @@
+﻿  stdafx.cpp
+  animation.cpp
+  bullets.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(40): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(60): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(131): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(147): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(214): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\bullets.cpp(226): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  button.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\button.cpp(19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  effect.cpp
+  effectManager.cpp
+  gameNode.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\gamenode.cpp(90): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\gamenode.cpp(91): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\gamenode.cpp(84): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\gamenode.cpp(83): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
+  ghostScene.cpp
+  image.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\image.cpp(76): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\image.cpp(131): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\image.cpp(184): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\image.cpp(422): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\image.cpp(428): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\image.cpp(434): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  imageManager.cpp
+  inGameScene.cpp
+  jump.cpp
+  keyAniManager.cpp
+  keyManager.cpp
+  knight.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\knight.cpp(13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\knight.cpp(149): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  loadingScene.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\loadingscene.cpp(57): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playGround.cpp
+  progressBar.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(6): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(7): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(15): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\progressbar.cpp(40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  sceneManager.cpp
+  soundManager.cpp
+  timeManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\timemanager.cpp(46): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\timemanager.cpp(49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\timemanager.cpp(52): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  timer.cpp
+  txtData.cpp
+  utils.cpp
+  winMain.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\winmain.cpp(89): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\20210104_0_로딩\txtdata.cpp(47): warning C4172: 지역 변수 또는 임시: str의 주소를 반환하고 있습니다.
+  windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\팀 포트 폴리오\Z-order\20210104_0_로딩\x64\Debug\windowAPI.exe
