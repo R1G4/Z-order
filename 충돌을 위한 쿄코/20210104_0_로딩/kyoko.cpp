@@ -8,18 +8,24 @@ HRESULT kyoko::init()
 
 	_image = IMAGEMANAGER->findImage("쿄코_일반");
 	_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
+	_shadow = IMAGEMANAGER->findImage("그림자");
 	_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
+
+	_z_count = 0;
 
 	_x = WINSIZEX / 2;
 	_y = WINSIZEY / 2;
 
 	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(),
 		_image->getFrameHeight());
-
+	_shadow_rc = RectMakeCenter((_image_rc.left + _image_rc.right) / 2, _image_rc.bottom, _shadow->getWidth(), _shadow->getHeight());
 
 	_jump = new jump;
 	_jump->init();
 	_kyokoMotion->start();
+
+	_isMoving = false;
+	_isAttack = false;
 
 	return S_OK;
 }
@@ -33,40 +39,31 @@ void kyoko::update()
 	moveMotion();
 	attackMotion();
 	jumpMotion();
-	
-	// 이동시 어느정도 이동할 것인가 - 쓰면 안될거같은 느낌 위치떄문에 꼬임
-	switch (_kyokoDirection)
-	{
-	case KYOKODIRECTION_RIGHT_WALK: case KYOKODIRECTION_RIGHT_JUMP_MOVE: 
-	case KYOKODIRECTION_RIGHT_JUMP_TOP_MOVE: case KYOKODIRECTION_RIGHT_JUMP_DOWN_MOVE:
-		_x += KYOKOSPEED;
-		break;
-	case KYOKODIRECTION_RIGHT_RUN:
-		_x += KYOKOSPEED * 2;
-		break;
 
-	case KYOKODIRECTION_LEFT_WALK: case KYOKODIRECTION_LEFT_JUMP_MOVE:
-	case KYOKODIRECTION_LEFT_JUMP_TOP_MOVE: case KYOKODIRECTION_LEFT_JUMP_DOWN_MOVE:
-		_x -= KYOKOSPEED;
-		break;
-	case KYOKODIRECTION_LEFT_RUN:
-		_x -= KYOKOSPEED * 2;
-		break;
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
+	{
+		_isAttack = false;
+		_z_count = 0;
 	}
 
 	// 이미지처리를 위한 렉트
 	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
 	// 충돌처리를 위한 렉트
 	_rc = RectMakeCenter(_x, _y, 40, _image->getFrameHeight() - 30);
+	// 그림자처리를 위한 렉트 (z-order)
+	_shadow_rc = RectMakeCenter((_image_rc.left + _image_rc.right) / 2, _image_rc.bottom, _shadow->getWidth(), _shadow->getHeight());
 	// 애니메이션 재생
 	KEYANIMANAGER->update();
 
 	// 점프업뎃
 	_jump->update();
+
 }
 
 void kyoko::render()
 {
+	_shadow->render(getMemDC(), _shadow_rc.left, _shadow_rc.top);
+
 	if (_image == IMAGEMANAGER->findImage("쿄코_강공격"))
 	{
 		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top -50 , _kyokoMotion);
@@ -74,9 +71,13 @@ void kyoko::render()
 	else
 		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top, _kyokoMotion);
 
+
 	// 충돌처리를 위한 렉트
-	if(KEYMANAGER->isToggleKey(VK_TAB))
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
 		Rectangle(getMemDC(), _rc);
+		Rectangle(getMemDC(), _shadow_rc);
+	}
 }
 
 // 오른쪽 일반 모션으로 콜백
@@ -160,6 +161,7 @@ void kyoko::addImage()
 	IMAGEMANAGER->addFrameImage("쿄코_피격1", "kyoko/attacked_1_1.bmp", 0, 0, 1200, 400, 4, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_피격2", "kyoko/attacked_2_1.bmp", 0, 0, 1200, 400, 4, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_죽음", "kyoko/dead_1.bmp", 0, 0, 6600, 400, 22, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("그림자", "kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
 }
 
 // 쿄코 행동 애니매이션
@@ -237,11 +239,11 @@ void kyoko::addMotionAni()
 	int arrLeftJumpDown[] = { 3 };
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftJumpDown", "쿄코_점프", arrLeftJumpDown, 1, 3, false, leftFire, this, 1);
 
-	int arrRightJumpDownMove[] = { 2 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightJumpDownMove", "쿄코_점프", arrRightJumpDownMove, 1, 3, false, rightJump, this, 1);
+	int arrRightJumpDownWalk[] = { 2 };
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightJumpDownWalk", "쿄코_점프", arrRightJumpDownWalk, 1, 3, false, rightJump, this, 1);
 
-	int arrLeftJumpDownMove[] = { 3 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftJumpDownMove", "쿄코_점프", arrLeftJumpDownMove, 1, 3, false, leftJump, this, 1);
+	int arrLeftJumpDownWalk[] = { 3 };
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftJumpDownWalk", "쿄코_점프", arrLeftJumpDownWalk, 1, 3, false, leftJump, this, 1);
 
 	int RightMahaKick[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 };
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightMahaKick", "쿄코_마하킥", RightMahaKick, 22, 12, false, rightFire, this, 1);
@@ -260,100 +262,213 @@ void kyoko::addMotionAni()
 // 이동 모션
 void kyoko::moveMotion()
 {
-	// 오른쪽 이동
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+	if (!_isAttack)
 	{
-		_image = IMAGEMANAGER->findImage("쿄코_걷기");
-		_kyokoDirection = KYOKODIRECTION_RIGHT_WALK;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightWalk");
-		_kyokoMotion->start();
-	}
-
-	// 오른쪽 멈추기
-	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-	{
-		_image = IMAGEMANAGER->findImage("쿄코_일반");
-		_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
-		_kyokoMotion->start();
-	}
-
-	
-	// 왼쪽 이동
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
-	{
-		_image = IMAGEMANAGER->findImage("쿄코_걷기");
-		_kyokoDirection = KYOKODIRECTION_LEFT_WALK;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftWalk");
-		_kyokoMotion->start();
-	}
-
-	// 왼쪽 멈추기
-	if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
-	{
-		_image = IMAGEMANAGER->findImage("쿄코_일반");
-		_kyokoDirection = KYOKODIRECTION_LEFT_IDLE;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
-		_kyokoMotion->start();
-	}
-
-	// 위키를 누를경우
-	if (KEYMANAGER->isOnceKeyDown(VK_UP))
-	{
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE)
+		// 오른쪽 이동
+		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 		{
 			_image = IMAGEMANAGER->findImage("쿄코_걷기");
 			_kyokoDirection = KYOKODIRECTION_RIGHT_WALK;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightWalk");
 			_kyokoMotion->start();
 		}
-		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
-		{
-			_image = IMAGEMANAGER->findImage("쿄코_걷기");
-			_kyokoDirection = KYOKODIRECTION_LEFT_WALK;
-			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftWalk");
-			_kyokoMotion->start();
-		}
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
-	{
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_WALK)
-		{
-			_y -= KYOKOSPEED;
-		}
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
-		{
-			_y -= KYOKOSPEED * 2;
-		}
-	}
 
-	// 아래키를 누를경우
-	if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
-	{
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE)
+		// 오른쪽 키 누르고 있을때 이동
+		if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
 		{
-			_image = IMAGEMANAGER->findImage("쿄코_걷기");
-			_kyokoDirection = KYOKODIRECTION_RIGHT_WALK;
-			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightWalk");
-			_kyokoMotion->start();
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK)
+			{
+				_x += KYOKOSPEED;
+				_isMoving = true;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
+			{
+				_x += KYOKOSPEED * 2;
+				_isMoving = true;
+			}
 		}
-		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
+
+		// 오른쪽 멈추기
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		{
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_일반");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
+				_kyokoMotion->start();
+			}
+			_isMoving = false;
+		}
+
+		// 왼쪽 이동
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 		{
 			_image = IMAGEMANAGER->findImage("쿄코_걷기");
 			_kyokoDirection = KYOKODIRECTION_LEFT_WALK;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftWalk");
 			_kyokoMotion->start();
 		}
-	}
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
-	{
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_WALK)
+
+		// 왼쪽 키 누르고 있을때 이동
+		if (KEYMANAGER->isStayKeyDown(VK_LEFT))
 		{
-			_y += KYOKOSPEED;
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
+				_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_WALK)
+			{
+				_x -= KYOKOSPEED;
+				_isMoving = true;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+			{
+				_x -= KYOKOSPEED * 2;
+				_isMoving = true;
+			}
 		}
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+
+		// 왼쪽 멈추기
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
 		{
-			_y += KYOKOSPEED * 2;
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_일반");
+				_kyokoDirection = KYOKODIRECTION_LEFT_IDLE;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
+				_kyokoMotion->start();
+			}
+			_isMoving = false;
+		}
+
+		// 점프관련 문제 관련없음
+		// 위키를 누를 경우
+		if (KEYMANAGER->isOnceKeyDown(VK_UP))
+		{
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_걷기");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_WALK;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightWalk");
+				_kyokoMotion->start();
+			}
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_걷기");
+				_kyokoDirection = KYOKODIRECTION_LEFT_WALK;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftWalk");
+				_kyokoMotion->start();
+			}
+		}
+		// 위쪽 키 누르고 있을때 이동
+		if (KEYMANAGER->isStayKeyDown(VK_UP))
+		{
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_WALK)
+			{
+				_y -= KYOKOSPEED;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+			{
+				_y -= KYOKOSPEED * 2;
+			}
+		}
+		// 위쪽 키 뗄때 멈춤
+		if (KEYMANAGER->isOnceKeyUp(VK_UP))
+		{
+			if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
+			{
+				if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
+				{
+					_image = IMAGEMANAGER->findImage("쿄코_일반");
+					_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
+					_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
+					_kyokoMotion->start();
+				}
+				_isMoving = false;
+			}
+			if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
+			{
+				if (_kyokoDirection == KYOKODIRECTION_LEFT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+				{
+					_image = IMAGEMANAGER->findImage("쿄코_일반");
+					_kyokoDirection = KYOKODIRECTION_LEFT_IDLE;
+					_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
+					_kyokoMotion->start();
+				}
+				_isMoving = false;
+			}
+		}
+		// 아래키를 누를 경우
+		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
+		{
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_걷기");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_WALK;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightWalk");
+				_kyokoMotion->start();
+			}
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_걷기");
+				_kyokoDirection = KYOKODIRECTION_LEFT_WALK;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftWalk");
+				_kyokoMotion->start();
+			}
+		}
+		// 아래쪽 키 누르고 있을때 이동
+		if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+		{
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_WALK)
+			{
+				_y += KYOKOSPEED;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+			{
+				_y += KYOKOSPEED * 2;
+			}
+		}
+		// 아래쪽 키 뗄때 멈춤
+		if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+		{
+			if (!KEYMANAGER->isStayKeyDown(VK_RIGHT))
+			{
+				if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
+				{
+					_image = IMAGEMANAGER->findImage("쿄코_일반");
+					_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
+					_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
+					_kyokoMotion->start();
+				}
+				_isMoving = false;
+			}
+
+			if (!KEYMANAGER->isStayKeyDown(VK_LEFT))
+			{
+				if (_kyokoDirection == KYOKODIRECTION_LEFT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+				{
+					_image = IMAGEMANAGER->findImage("쿄코_일반");
+					_kyokoDirection = KYOKODIRECTION_LEFT_IDLE;
+					_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
+					_kyokoMotion->start();
+				}
+				_isMoving = false;
+			}
 		}
 	}
 }
@@ -364,29 +479,78 @@ void kyoko::attackMotion()
 	// 평타
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
-		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE ||
-			_kyokoDirection == KYOKODIRECTION_RIGHT_WALK ||
-			_kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
+		_isAttack = true;
+		if (_z_count == 0)
 		{
-			_image = IMAGEMANAGER->findImage("쿄코_공격1");
-			_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_1;
-			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack1");
-			_kyokoMotion->start();
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_WALK ||
+				_kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_공격1");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_1;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack1");
+				_kyokoMotion->start();
+				_z_count = 1;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
+				_kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
+				_kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_공격1");
+				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_1;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack1");
+				_kyokoMotion->start();
+				_z_count = 1;
+			}
 		}
-		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
-			_kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
-			_kyokoDirection == KYOKODIRECTION_LEFT_RUN)
+		else if (_z_count == 1)
 		{
-			_image = IMAGEMANAGER->findImage("쿄코_공격1");
-			_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_1;
-			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack1");
-			_kyokoMotion->start();
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_1)
+			{
+				_kyokoMotion->stop();
+				_image = IMAGEMANAGER->findImage("쿄코_공격2");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_2;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack2");
+				_kyokoMotion->start();
+				_z_count = 2;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_1)
+			{
+				_kyokoMotion->stop();
+				_image = IMAGEMANAGER->findImage("쿄코_공격2");
+				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_2;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack2");
+				_kyokoMotion->start();
+				_z_count = 2;
+			}
+		}
+		else if (_z_count == 2)
+		{
+			if (_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_2)
+			{
+				_kyokoMotion->stop();
+				_image = IMAGEMANAGER->findImage("쿄코_공격3");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_3;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack3");
+				_kyokoMotion->start();
+				_z_count = 3;
+			}
+			if (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_2)
+			{
+				_kyokoMotion->stop();
+				_image = IMAGEMANAGER->findImage("쿄코_공격3");
+				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_3;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack3");
+				_kyokoMotion->start();
+				_z_count = 3;
+			}
 		}
 	}
 
 	// 강공격
 	if (KEYMANAGER->isOnceKeyDown('X'))
 	{
+		_isAttack = true;
 		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE ||
 			_kyokoDirection == KYOKODIRECTION_RIGHT_WALK ||
 			_kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
@@ -410,6 +574,7 @@ void kyoko::attackMotion()
 	// 마하킥(필살기)
 	if (KEYMANAGER->isOnceKeyDown('A'))
 	{
+		_isAttack = true;
 		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE ||
 			_kyokoDirection == KYOKODIRECTION_RIGHT_WALK ||
 			_kyokoDirection == KYOKODIRECTION_RIGHT_RUN)
@@ -437,8 +602,10 @@ void kyoko::jumpMotion()
 	// 점프
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
+		cout << "점프" << endl;
 		_jump->jumping(&_x, &_y, 8.0f, 0.4f);
 
+		// 일반상태 오른쪽 점프
 		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE)
 		{
 			_image = IMAGEMANAGER->findImage("쿄코_점프");
@@ -447,6 +614,7 @@ void kyoko::jumpMotion()
 			_kyokoMotion->start();
 		}
 
+		// 일반상태 왼쪽 점프
 		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
 		{
 			_image = IMAGEMANAGER->findImage("쿄코_점프");
@@ -455,18 +623,20 @@ void kyoko::jumpMotion()
 			_kyokoMotion->start();
 		}
 
+		// 걷기상태 오른쪽 점프
 		if (_kyokoDirection == KYOKODIRECTION_RIGHT_WALK)
 		{
 			_image = IMAGEMANAGER->findImage("쿄코_점프");
-			_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_MOVE;
+			_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_WALK;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightJump");
 			_kyokoMotion->start();
 		}
 
+		// 걷기상태 왼쪽 점프
 		if (_kyokoDirection == KYOKODIRECTION_LEFT_WALK)
 		{
 			_image = IMAGEMANAGER->findImage("쿄코_점프");
-			_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_MOVE;
+			_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_WALK;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftJump");
 			_kyokoMotion->start();
 		}
@@ -499,28 +669,89 @@ void kyoko::jumpMotion()
 	}
 
 	// 이동 점프일때 모션변경
-	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_MOVE && _jump->getJumpPower() <= 1 && _jump->getJumpPower() >= -1)
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_WALK && _jump->getJumpPower() <= 1 && _jump->getJumpPower() >= -1)
 	{
-		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_TOP_MOVE;
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_TOP_WALK;
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightJumpTop");
 		_kyokoMotion->start();
 	}
-	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_MOVE && _jump->getJumpPower() < -1)
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK && _jump->getJumpPower() < -1)
 	{
-		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_DOWN_MOVE;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightJumpDownMove");
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightJumpDownWalk");
 		_kyokoMotion->start();
 	}
-	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_MOVE && _jump->getJumpPower() <= 1 && _jump->getJumpPower() >= -1)
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_WALK && _jump->getJumpPower() <= 1 && _jump->getJumpPower() >= -1)
 	{
-		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_TOP_MOVE;
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_TOP_WALK;
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftJumpTop");
 		_kyokoMotion->start();
 	}
-	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_MOVE && _jump->getJumpPower() < -1)
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK && _jump->getJumpPower() < -1)
 	{
-		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_DOWN_MOVE;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftJumpDownMove");
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_DOWN_WALK;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftJumpDownWalk");
+		_kyokoMotion->start();
+	}
+
+	// 점프에서 움직이면 무브 상태로 변경
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP && _isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_WALK;
+	}
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP && _isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_TOP_WALK;
+	}
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN && _isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightJumpDownWalk");
+		_kyokoMotion->start();
+	}
+
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP && _isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_WALK;
+	}
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP && _isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_TOP_WALK;
+	}
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN && _isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_DOWN_WALK;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftJumpDownWalk");
+		_kyokoMotion->start();
+	}
+	
+	// 이동 점프에서 멈추면 그냥 점프 상태로 변경
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_WALK && !_isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP;
+	}	
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK && !_isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_TOP;
+	}	
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK && !_isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_RIGHT_JUMP_DOWN;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightJumpDown");
+		_kyokoMotion->start();
+	}
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_WALK && !_isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP;
+	}
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK && !_isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_TOP;
+	}
+	if (_kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_WALK && !_isMoving)
+	{
+		_kyokoDirection = KYOKODIRECTION_LEFT_JUMP_DOWN;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftJumpDown");
 		_kyokoMotion->start();
 	}
 }
