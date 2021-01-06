@@ -3,6 +3,8 @@
 
 void videoManager::startVideo(LPCSTR videoName)
 {
+	cout << timeCount<<endl;
+	currentVideo = videoName;
 	timeCount = 0;
 	_video = MCIWndCreate(_hWnd, NULL, MCIWNDF_NOPLAYBAR | WS_VISIBLE | WS_CHILD, videoName);
 	MoveWindow(_video, 0, 0, WINSIZEX, WINSIZEY, FALSE);
@@ -12,9 +14,11 @@ void videoManager::startVideo(LPCSTR videoName)
 
 void videoManager::endVideo()
 {
+
 	if (KEYMANAGER->isStayKeyDown(VK_RETURN))
 	{
-		timeCount++;
+		subtimeCount++;
+		if(subtimeCount%30==0)timeCount++;
 		if (timeCount > 100)
 		{
 			MCIWndClose(_video);
@@ -34,17 +38,34 @@ void videoManager::endVideo()
 	}
 }
 
-void videoManager::endVideo(string sceneName)
+void videoManager::endVideo(bool change)
+{
+	if (MCIWndGetLength(_video) <= MCIWndGetPosition(_video))
+	{
+		MCIWndPlayFrom(_video, 3000);
+	}
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		MCIWndClose(_video);
+		MCIWndDestroy(_video);
+		_video = 0;
+		isPlay = false;
+	}
+}
+
+void videoManager::endVideo(LPCSTR videoName)
 {
 	if (KEYMANAGER->isStayKeyDown(VK_RETURN))
 	{
-		timeCount++;
+		subtimeCount++;
+		if(subtimeCount%30==0)timeCount++;
 		if (timeCount > 100)
 		{
 			MCIWndClose(_video);
 			MCIWndDestroy(_video);
 			_video = 0;
 			isPlay = false;
+			startVideo(videoName);
 			return;
 		}
 	}
@@ -54,7 +75,8 @@ void videoManager::endVideo(string sceneName)
 		MCIWndDestroy(_video);
 		_video = 0;
 		isPlay = false;
-		SCENEMANAGER->changeScene(sceneName);
+		startVideo(videoName);
+		return;
 	}
 }
 

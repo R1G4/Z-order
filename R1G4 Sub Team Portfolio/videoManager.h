@@ -11,10 +11,14 @@ private:
 	HWND _video;
 	bool isPlay;
 	int timeCount;
+	int subtimeCount;
+	LPCSTR currentVideo;
 public:
 	void startVideo(LPCSTR videoName);
 	void endVideo();
-	void endVideo(string sceneName);
+	void endVideo(bool change);
+	void endVideo(LPCSTR videoName);
 	bool checkPlay();
+	LPCSTR getCurrenVideo() { return currentVideo; }
 };
 

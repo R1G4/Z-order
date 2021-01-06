@@ -12,10 +12,10 @@ playGround::~playGround()
 
 HRESULT playGround::init()
 {
-	gameNode::init(true);
-	rc = RectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 50, 50);
-	backGround = IMAGEMANAGER->addImage("배경", "image/backGround.bmp", 2880, 1800, true, RGB(255, 0, 255));
-	//camera = CAMERAMANAGER->CameraMake(rc.left, rc.top, BOTH,backGround);
+	SCENEMANAGER->addScene("시작화면", new StartScene);
+	SCENEMANAGER->addScene("세이브로드", new saveLoad);
+	SCENEMANAGER->changeScene("시작화면");
+	
 	return S_OK;
 }
 
@@ -29,7 +29,7 @@ void playGround::release()
 void playGround::update()
 {
 	gameNode::update();
-
+	SCENEMANAGER->update();
 
 
 }
@@ -39,9 +39,9 @@ void playGround::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//================ 위에 건들지 마라 ==============================
-	IMAGEMANAGER->findImage("배경")->render(getMemDC());
-	TIMEMANAGER->render(getMemDC());
+	SCENEMANAGER->render();
+	//TIMEMANAGER->render(getMemDC());
 	//================= 아래도 건들지 마라 ==============================
-	_backBuffer->render(getHDC());
+	if(!VIDEOMANAGER->checkPlay())_backBuffer->render(getHDC());
 }
 

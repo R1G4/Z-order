@@ -113,6 +113,8 @@ public:
 	void alphaRender(HDC hdc, int destX, int destY, BYTE alpha, POINT camera);
 	void alphaRender(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight, BYTE alpha, POINT camera);
 	void alphaframeRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY, BYTE alpha, POINT camera);
+	//카메라 애니 랜더
+	void aniRender(HDC hdc, int destX, int destY, animation* ani,POINT camera);
 
 	inline HDC getMemDC() { return _imageInfo->hMemDC; }
 

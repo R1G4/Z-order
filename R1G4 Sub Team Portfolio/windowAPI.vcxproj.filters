@@ -49,6 +49,9 @@
     <Filter Include="2DGameFramework\button">
       <UniqueIdentifier>{3a0acedc-e823-40ff-b206-87b61c533603}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\Stage&amp;Scene">
+      <UniqueIdentifier>{a5751594-a5c0-4583-953c-b492c8015f40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -132,6 +135,15 @@
     <ClInclude Include="CameraManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="zOrder.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="saveLoad.h">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -199,6 +211,15 @@
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="zOrder.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="saveLoad.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
