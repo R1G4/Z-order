@@ -1,0 +1,10 @@
+punch 1,2,3-공격
+footstep 1,2,3-달릴 때
+gethit_knockdown-맞아서 다운될때
+jump-점프시
+land-착지시
+death_pitfall-사망시
+DD2_knee-마하킥
+jump_punch-강공격
+
+사운드이펙트는 이렇게 구분하면 될 듯 에너미 쪽은 펀치랑 달릴 때 다운될 때를 쓰면될 거 같음

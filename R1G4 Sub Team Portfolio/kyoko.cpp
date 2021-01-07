@@ -3,7 +3,7 @@
 
 HRESULT kyoko::init()
 {
-	addImage();
+	//addImage();
 	addMotionAni();
 
 	_image = IMAGEMANAGER->findImage("ÄìÄÚ_ÀÏ¹Ý");
@@ -31,8 +31,8 @@ HRESULT kyoko::init()
 	_maha_count = 362;
 
 	
-	_x = 600;
-	_y = 750;
+	_x = WINSIZEX/2;
+	_y = WINSIZEY/2;
 
 	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(),
 		_image->getFrameHeight());

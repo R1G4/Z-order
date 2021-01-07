@@ -18,9 +18,9 @@ HRESULT loadingScene::init()
 	_back = IMAGEMANAGER->addImage("검정", "image/loading/loadingBack.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	_background = IMAGEMANAGER->addFrameImage("로딩배경", "image/loading/로딩.bmp", 1395, 220, 5, 1, true, RGB(255, 0, 255));
 
-	_loadingBar = new progressBar;
-	_loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
-	_loadingBar->setGauge(0, 0);
+	//_loadingBar = new progressBar;
+	//_loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
+	//_loadingBar->setGauge(0, 0);
 
 	//쓰레드를 사용해보자
 	CreateThread(
@@ -53,8 +53,8 @@ void loadingScene::update()
 	_loading->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
 
 
-	_loadingBar->update();
-	_loadingBar->setGauge(_currentCount, LOADINGMAX);
+	//_loadingBar->update();
+	//_loadingBar->setGauge(_currentCount, LOADINGMAX);
 
 	//로딩이 다 되면
 	if (_currentCount == LOADINGMAX)

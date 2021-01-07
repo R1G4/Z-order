@@ -209,7 +209,7 @@ void saveLoad::key()
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		SOUNDMANAGER->stop("saveLoad");
-		SCENEMANAGER->changeScene("스테이지1");
+		SCENEMANAGER->changeScene("로딩씬");
 	}
 }
 

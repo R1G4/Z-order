@@ -153,7 +153,7 @@
     <ClInclude Include="loadingScene.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\팀포폴사본\R1G4 Sub Team Portfolio\jump.h">
+    <ClInclude Include="jump.h">
       <Filter>playGround</Filter>
     </ClInclude>
   </ItemGroup>
@@ -242,7 +242,7 @@
     <ClCompile Include="loadingScene.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\팀포폴사본\R1G4 Sub Team Portfolio\jump.cpp">
+    <ClCompile Include="jump.cpp">
       <Filter>playGround</Filter>
     </ClCompile>
   </ItemGroup>

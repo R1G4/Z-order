@@ -4,8 +4,8 @@
 HRESULT tempStage::init()
 {
 	SOUNDMANAGER->play("MainStage",0.8);
-	stage1 = IMAGEMANAGER->findImage("stage1");
-	stage1Pic = IMAGEMANAGER->findImage("stage1Pic");
+	stage1 = IMAGEMANAGER->findImage("Stage1");
+	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
 	_player = new kyoko;
 	_player->init();
 	return S_OK;
@@ -13,7 +13,7 @@ HRESULT tempStage::init()
 
 void tempStage::release()
 {
-	_player->release();
+
 }
 
 void tempStage::update()
@@ -25,6 +25,12 @@ void tempStage::update()
 void tempStage::render()
 {
 	stage1->render(getMemDC(), 0, 0, camera);
-	stage1Pic->render(getMemDC(), 0, 0, camera);
+	
+
+
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		stage1Pic->render(getMemDC(), 0, 0, camera);
+	}
 	_player->render(camera);
 }

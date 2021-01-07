@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\팀포폴사본\R1G4 Sub Team Portfolio\jump.h" />
     <ClInclude Include="animation.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="CameraManager.h" />
@@ -158,6 +157,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="iniDataManager.h" />
+    <ClInclude Include="jump.h" />
     <ClInclude Include="keyAniManager.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="kyoko.h" />
@@ -183,7 +183,6 @@
     <ClInclude Include="zOrder.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\팀포폴사본\R1G4 Sub Team Portfolio\jump.cpp" />
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
@@ -193,6 +192,7 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="iniDataManager.cpp" />
+    <ClCompile Include="jump.cpp" />
     <ClCompile Include="keyAniManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="kyoko.cpp" />
