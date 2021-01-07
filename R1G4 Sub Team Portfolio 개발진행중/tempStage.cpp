@@ -11,6 +11,9 @@ HRESULT tempStage::init()
 	_em = new enemyManager;
 	_em->init();
 	_em->setKyokoMemory(_player);
+
+	_door_rc = RectMake(1380, 400, 300, 130);
+
 	return S_OK;
 }
 
@@ -24,6 +27,8 @@ void tempStage::update()
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH,stage1);
 	_em->update();
+
+	changeMap();
 }
 
 void tempStage::render()
@@ -35,7 +40,20 @@ void tempStage::render()
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage1Pic->render(getMemDC(), 0, 0, camera);
+		Rectangle(getMemDC(), _door_rc, camera);
 	}
 	_player->render(camera);
 	_em->render(camera);
+
+
+}
+
+void tempStage::changeMap()
+{
+	RECT temp;
+	if (IntersectRect(&temp, &_door_rc, &_player->getRect()))
+	{
+		SCENEMANAGER->changeScene("보스스테이지");
+		SOUNDMANAGER->stop("MainStage");
+	}
 }

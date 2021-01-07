@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="BossStage.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="commonMacroFunction.h" />
@@ -188,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="effect.cpp" />

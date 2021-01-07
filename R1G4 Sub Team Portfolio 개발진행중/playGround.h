@@ -4,6 +4,8 @@
 #include "saveLoad.h"
 #include "tempStage.h"
 #include "loadingScene.h"
+#include "BossStage.h"
+
 class playGround : public gameNode
 {
 private:
