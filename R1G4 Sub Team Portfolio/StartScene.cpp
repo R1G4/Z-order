@@ -37,12 +37,15 @@ void StartScene::update()
 			VIDEOMANAGER->endVideo(true);
 			SOUNDMANAGER->stop("introToStart");
 			SCENEMANAGER->changeScene("세이브로드");
+			SOUNDMANAGER->play("saveLoad");
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
 			PostQuitMessage(0);
 		}
 	}
+	
+	
 }
 
 void StartScene::render()

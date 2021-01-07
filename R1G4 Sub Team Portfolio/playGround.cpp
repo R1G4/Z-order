@@ -32,7 +32,7 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
-
+	
 
 }
 
@@ -42,6 +42,7 @@ void playGround::render()
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//================ 위에 건들지 마라 ==============================
 	SCENEMANAGER->render();
+	
 	TIMEMANAGER->render(getMemDC());
 	//================= 아래도 건들지 마라 ==============================
 	if(!VIDEOMANAGER->checkPlay())_backBuffer->render(getHDC());

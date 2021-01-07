@@ -1,11 +1,14 @@
 #pragma once
 #include "gameNode.h"
+
+
 class StartScene :
 	public gameNode
 {
 private:
 	LPCSTR openingVideo;
 	LPCSTR startVideo;
+	
 public:
 	StartScene();
 	~StartScene();

@@ -12,7 +12,7 @@ saveLoad::~saveLoad()
 HRESULT saveLoad::init()
 {
 	addimage();
-
+	selecttab();
 	for (int i = 0; i < 3; i++)
 	{
 		tab[0].select = true;
@@ -72,13 +72,13 @@ void saveLoad::render()
 	tab[0].img->render(getMemDC(), tab[0].rc.left, tab[0].rc.top);
 	tab[1].img->render(getMemDC(), tab[1].rc.left, tab[1].rc.top);
 	tab[2].img->render(getMemDC(), tab[2].rc.left, tab[2].rc.top);
-	if (KEYMANAGER->isToggleKey(VK_TAB))
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			Rectangle(getMemDC(), tab[i].rc);
-		}
-	}
+	//if (KEYMANAGER->isToggleKey(VK_TAB))
+	//{
+	//	for (int i = 0; i < 3; i++)
+	//	{
+	//		Rectangle(getMemDC(), tab[i].rc);
+	//	}
+	//}
 	for (int i = 0; i < 3; i++)
 	{
 		//저장이 됐다? -> "New Game"에서 "리버시티 고등학교"로 키값을 바꿔줌

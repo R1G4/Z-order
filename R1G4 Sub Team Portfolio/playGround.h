@@ -8,6 +8,8 @@ private:
 	RECT rc;
 	POINT camera;
 	image* backGround;
+	
+
 public:
 	playGround();
 	~playGround();
