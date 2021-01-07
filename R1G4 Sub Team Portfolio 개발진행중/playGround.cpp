@@ -15,7 +15,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	addScene();
 	addSound();
-	SCENEMANAGER->changeScene("옵션확인용");
+	SCENEMANAGER->changeScene("로딩씬");
 
 	return S_OK;
 }

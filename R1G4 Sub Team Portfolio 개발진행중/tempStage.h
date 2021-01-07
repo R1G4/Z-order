@@ -22,5 +22,6 @@ public:
 
 	// ∏ ¿Ãµø
 	void changeMap();
+	void pixelCollision();
 };
 
