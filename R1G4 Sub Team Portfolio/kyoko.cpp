@@ -3,7 +3,6 @@
 
 HRESULT kyoko::init()
 {
-	//addImage();
 	addMotionAni();
 
 	_image = IMAGEMANAGER->findImage("쿄코_일반");
@@ -32,11 +31,11 @@ HRESULT kyoko::init()
 
 	
 	_x = WINSIZEX/2;
-	_y = WINSIZEY/2;
+	_y = WINSIZEY/2 + 100;
 
-	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(),
-		_image->getFrameHeight());
-	_shadow_rc = RectMakeCenter((_image_rc.left + _image_rc.right) / 2, _image_rc.bottom, _shadow->getWidth(), _shadow->getHeight());
+	_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
+	_image_rc = RectMakeCenter((_shadow_rc.left + _shadow_rc.right) / 2, _shadow_rc.top - 100, 
+		_image->getFrameWidth(), _image->getFrameHeight());
 	_m_gauge_rc = RectMake(_mahaGauge->getX(), _mahaGauge->getY(), _maha_count, _mahaGauge->getHeight());
 
 	_jump = new jump;
@@ -60,11 +59,11 @@ void kyoko::update()
 	jumpMotion();
 
 	// 이미지처리를 위한 렉트
-	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
+	_image_rc = RectMakeCenter((_shadow_rc.left + _shadow_rc.right) / 2, _shadow_rc.top - 80, _image->getFrameWidth(), _image->getFrameHeight());
 	// 충돌처리를 위한 렉트
-	_rc = RectMakeCenter(_x, _y, 40, _image->getFrameHeight() - 30);
+	_rc = RectMakeCenter((_shadow_rc.left + _shadow_rc.right) / 2, _shadow_rc.top - 80, 40, _image->getFrameHeight() - 40);
 	// 그림자처리를 위한 렉트 (z-order)
-	_shadow_rc = RectMakeCenter((_image_rc.left + _image_rc.right) / 2, _image_rc.bottom, _shadow->getWidth(), _shadow->getHeight());
+	_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
 	// 애니메이션 재생
 	KEYANIMANAGER->update();
 
@@ -207,28 +206,6 @@ void kyoko::leftMoveJump(void * obj)
 	k->setKyokoMotion(KEYANIMANAGER->findAnimation("kyokoLeftRun"));
 	k->getKyokoMotion()->start();
 }
-
-// 쿄코 이미지 삽입
-//void kyoko::addImage()
-//{
-//	IMAGEMANAGER->addFrameImage("쿄코_일반", "kyoko/idle_1.bmp", 0, 0, 3600, 400, 12, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_걷기", "kyoko/walk_1.bmp", 0, 0, 3600, 400, 12, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_달리기", "kyoko/run_1.bmp", 0, 0, 4800, 400, 16, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_점프", "kyoko/jump_1.bmp", 0, 0, 900, 400, 3, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_공격1", "kyoko/attack_1_1.bmp", 0, 0, 1800, 400, 6, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_공격2", "kyoko/attack_2_1.bmp", 0, 0, 2100, 400, 7, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_공격3", "kyoko/attack_3_3.bmp", 0, 0, 2700, 400, 9, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_강공격", "kyoko/attack_strong_2.bmp", 0, 0, 3000, 600, 10, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_마하킥", "kyoko/mahaKick_2.bmp", 0, 0, 6600, 400, 22, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_피격1", "kyoko/attacked_1_1.bmp", 0, 0, 1200, 400, 4, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_피격2", "kyoko/attacked_2_1.bmp", 0, 0, 1200, 400, 4, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addFrameImage("쿄코_죽음", "kyoko/dead_1.bmp", 0, 0, 6600, 400, 22, 2, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addImage("그림자", "kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
-//
-//	IMAGEMANAGER->addImage("HPUI", "kyoko/UI/hp_ui.bmp", 600, 200, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addImage("HPBar", "kyoko/UI/hpbar.bmp", 26, 24, true, RGB(255, 0, 255));
-//	IMAGEMANAGER->addImage("MahaGauge", "kyoko/UI/mahagauge_1.bmp", 362, 18, true, RGB(255, 0, 255));
-//}
 
 // 쿄코 행동 애니매이션
 void kyoko::addMotionAni()

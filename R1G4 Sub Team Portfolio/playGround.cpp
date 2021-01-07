@@ -31,10 +31,7 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
-	
-
 }
-
 
 void playGround::render()
 {
