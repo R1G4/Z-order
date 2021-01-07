@@ -3,7 +3,7 @@
 
 HRESULT ghostScene::init()
 {
-	_background = IMAGEMANAGER->addImage("배경", "0.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	_background = IMAGEMANAGER->addImage("배경", "0.bmp", 2991, 1000, true, RGB(255, 0, 255));
 
 	_kyoko = new kyoko;
 	_kyoko->init();
@@ -18,12 +18,13 @@ void ghostScene::release()
 
 void ghostScene::update()
 {
+	_camera = CAMERAMANAGER->CameraMake(_kyoko->getRect().left, _kyoko->getRect().top, BOTH, _background);
 	_kyoko->update();
 
 }
 
 void ghostScene::render()
 {
-	_background->render(getMemDC());
-	_kyoko->render();
+	_background->render(getMemDC(), 0, 0, _camera);
+	_kyoko->render(_camera);
 }

@@ -5,6 +5,7 @@
 class ghostScene : public gameNode
 {
 private:
+	POINT _camera;
 	image* _background;
 	kyoko* _kyoko;
 

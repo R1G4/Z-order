@@ -2,7 +2,7 @@
 #include "gameNode.h"
 #include "jump.h"
 
-#define KYOKOSPEED 2.5f
+#define KYOKOSPEED 5.0f
 
 enum KYOKODIRECTION
 {
@@ -28,6 +28,12 @@ enum KYOKODIRECTION
 	KYOKODIRECTION_RIGHT_DEAD,				KYOKODIRECTION_LEFT_DEAD
 };
 
+struct HPBAR : public gameNode
+{
+	int num;
+	image* image;
+};
+
 class kyoko : public gameNode
 {
 private:
@@ -35,21 +41,31 @@ private:
 
 	image* _image;
 	image* _shadow;
+	image* _hpUI;
+	image* _mahaGauge;
+
+	vector<HPBAR*> _hp;
+	vector<HPBAR*>::iterator _ihp;
 
 	int _z_count;				// 연속 공격 카운트
 	int _r_count;				// 달리기용 카운트
+	int _maha_count;			// 마하킥 게이지카운트
 	float _x, _y;
 	
 	RECT _rc;					// 충돌용 렉트
 	RECT _image_rc;				// 랜딩용 렉트
 	RECT _shadow_rc;			// 그림자용 렉트 (z-order)
+	RECT _m_gauge_rc;			// 마하킥 게이지 렉트
 	
+	RECT _black_rc[2];
+
 	animation* _kyokoMotion;
 
 	jump* _jump;
 
 	bool _isMoving;				// 이동용 bool
 	bool _isAttack;				// 공격용 bool
+	bool _isMahaKick;			// 게이지 채우기용 bool
 	bool _isRunning;			// 달리기용 bool
 public:
 	kyoko() {};
@@ -59,6 +75,7 @@ public:
 	void release();
 	void update();
 	void render();
+	void render(POINT camera);
 
 	static void rightFire(void* obj);
 	static void leftFire(void* obj);
@@ -79,5 +96,7 @@ public:
 
 	animation* getKyokoMotion() { return _kyokoMotion; }
 	void setKyokoMotion(animation* ani) { _kyokoMotion = ani; }
+
+	RECT getRect() { return _rc; }
 };
 

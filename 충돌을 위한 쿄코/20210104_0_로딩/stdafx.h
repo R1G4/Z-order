@@ -22,6 +22,7 @@
 #include "sceneManager.h"
 #include "soundManager.h"
 #include "keyAniManager.h"
+#include "CameraManager.h"
 #include "utils.h"
 #include "txtData.h"
 
@@ -48,6 +49,7 @@ using namespace TFIVE_UTIL;
 #define SOUNDMANAGER soundManager::getSingleton()
 #define KEYANIMANAGER keyAniManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
+#define CAMERAMANAGER CameraManager::getSingleton()
 
 
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}

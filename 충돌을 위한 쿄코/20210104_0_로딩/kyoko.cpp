@@ -9,17 +9,35 @@ HRESULT kyoko::init()
 	_image = IMAGEMANAGER->findImage("쿄코_일반");
 	_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
 	_shadow = IMAGEMANAGER->findImage("그림자");
+	_hpUI = IMAGEMANAGER->findImage("HPUI");
+	_mahaGauge = IMAGEMANAGER->findImage("MahaGauge");
+
+	_black_rc[0] = RectMake(0, 0, WINSIZEX, 82);
+	_black_rc[1] = RectMake(0, WINSIZEY - 82, WINSIZEX, 82);
+
+	for (int i = 0; i < 24; i++)
+	{
+		HPBAR* hp1;
+		hp1 = new HPBAR;
+		hp1->image = IMAGEMANAGER->findImage("HPBar");
+		hp1->num = i;
+		_hp.push_back(hp1);
+	}
+
 	_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
 
 	_r_count = 0;
-	_z_count = 0;
+	_z_count = 0; 
+	_maha_count = 362;
 
-	_x = WINSIZEX / 2;
-	_y = WINSIZEY / 2;
+	
+	_x = 600;
+	_y = 750;
 
 	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(),
 		_image->getFrameHeight());
 	_shadow_rc = RectMakeCenter((_image_rc.left + _image_rc.right) / 2, _image_rc.bottom, _shadow->getWidth(), _shadow->getHeight());
+	_m_gauge_rc = RectMake(_mahaGauge->getX(), _mahaGauge->getY(), _maha_count, _mahaGauge->getHeight());
 
 	_jump = new jump;
 	_jump->init();
@@ -40,12 +58,6 @@ void kyoko::update()
 	moveMotion();
 	attackMotion();
 	jumpMotion();
-
-	if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
-	{
-		_isAttack = false;
-		_z_count = 0;
-	}
 
 	// 이미지처리를 위한 렉트
 	_image_rc = RectMakeCenter(_x, _y, _image->getFrameWidth(), _image->getFrameHeight());
@@ -72,12 +84,61 @@ void kyoko::render()
 	else
 		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top, _kyokoMotion);
 
+	HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+	Rectangle(getMemDC(), _black_rc[0]);
+	Rectangle(getMemDC(), _black_rc[1]);
+	SelectObject(getMemDC(), oldBrush);
+	DeleteObject(brush);
 
-	// 충돌처리를 위한 렉트
+	_hpUI->render(getMemDC(), 0, 0);
+	_mahaGauge->render(getMemDC(), 189, 88);
+
+	for (_ihp = _hp.begin(); _ihp != _hp.end(); ++_ihp)
+	{
+		(*_ihp)->image->render(getMemDC(), 190 + (*_ihp)->num * 27, 56);
+	}
+
+	// 충돌처리를 위한 렉트(디버깅)
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		Rectangle(getMemDC(), _rc);
 		Rectangle(getMemDC(), _shadow_rc);
+	}
+}
+
+void kyoko::render(POINT camera)
+{
+	_shadow->render(getMemDC(), _shadow_rc.left, _shadow_rc.top, camera);
+
+	if (_image == IMAGEMANAGER->findImage("쿄코_강공격"))
+	{
+		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top - 50, _kyokoMotion, camera);
+	}
+	else
+		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top, _kyokoMotion, camera);
+
+
+	HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+	Rectangle(getMemDC(), _black_rc[0]);
+	Rectangle(getMemDC(), _black_rc[1]);
+	SelectObject(getMemDC(), oldBrush);
+	DeleteObject(brush);
+
+	_hpUI->render(getMemDC(), 0, 0);
+	_mahaGauge->render(getMemDC(), 189, 88, 0,0,_maha_count, 18);
+
+	for (_ihp = _hp.begin(); _ihp != _hp.end(); ++_ihp)
+	{
+		(*_ihp)->image->render(getMemDC(), 189 + (*_ihp)->num * 16, 56);
+	}
+
+	// 충돌처리를 위한 렉트
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		Rectangle(getMemDC(), _rc, camera);
+		Rectangle(getMemDC(), _shadow_rc, camera);
 	}
 }
 
@@ -163,6 +224,10 @@ void kyoko::addImage()
 	IMAGEMANAGER->addFrameImage("쿄코_피격2", "kyoko/attacked_2_1.bmp", 0, 0, 1200, 400, 4, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_죽음", "kyoko/dead_1.bmp", 0, 0, 6600, 400, 22, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("그림자", "kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("HPUI", "kyoko/UI/hp_ui.bmp", 600, 200, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("HPBar", "kyoko/UI/hpbar.bmp", 26, 24, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MahaGauge", "kyoko/UI/mahagauge_1.bmp", 362, 18, true, RGB(255, 0, 255));
 }
 
 // 쿄코 행동 애니매이션
@@ -411,14 +476,14 @@ void kyoko::moveMotion()
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_WALK)
 			{
-				_y -= KYOKOSPEED;
+				_y -= KYOKOSPEED / 2;
 			}
 			if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_RUN ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_RUN ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_RUN ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_RUN)
 			{
-				_y -= KYOKOSPEED * 2;
+				_y -= KYOKOSPEED;
 			}
 		}
 		// 위쪽 키 뗄때 멈춤
@@ -477,14 +542,14 @@ void kyoko::moveMotion()
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_WALK ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_WALK)
 			{
-				_y += KYOKOSPEED;
+				_y += KYOKOSPEED / 2;
 			}
 			if (_kyokoDirection == KYOKODIRECTION_RIGHT_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_RUN ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_RUN ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_TOP_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_TOP_RUN ||
 				_kyokoDirection == KYOKODIRECTION_RIGHT_JUMP_DOWN_RUN || _kyokoDirection == KYOKODIRECTION_LEFT_JUMP_DOWN_RUN)
 			{
-				_y += KYOKOSPEED * 2;
+				_y += KYOKOSPEED;
 			}
 		}
 		// 아래쪽 키 뗄때 멈춤
@@ -619,8 +684,8 @@ void kyoko::attackMotion()
 		}
 	}
 
-	// 마하킥(필살기)
-	if (KEYMANAGER->isOnceKeyDown('A'))
+	// 마하킥(필살기) - _maha_count가 일정량 이상 없으면 사용불가
+	if (KEYMANAGER->isOnceKeyDown('A') && _maha_count > 120)
 	{
 		_isAttack = true;
 		if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE ||
@@ -631,6 +696,8 @@ void kyoko::attackMotion()
 			_kyokoDirection = KYOKODIRECTION_RIGHT_MAHAKICK;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightMahaKick");
 			_kyokoMotion->start();
+			_maha_count = _maha_count - 150;
+			_isMahaKick = true;
 		}
 		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
 			_kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
@@ -640,8 +707,24 @@ void kyoko::attackMotion()
 			_kyokoDirection = KYOKODIRECTION_LEFT_MAHAKICK;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftMahaKick");
 			_kyokoMotion->start();
+			_maha_count = _maha_count - 150;
+			_isMahaKick = true;
 		}
 	}
+
+	// 공격후 idle상태로 갈때 연속공격 카운트를 0으로
+	if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
+	{
+		_isAttack = false; 
+		_isMahaKick = false;
+		_z_count = 0;
+	}
+
+	// 필살기 게이지 채우기 (+예외처리)
+	if (_maha_count <= 0)
+		_maha_count = 0;
+	if (!_isMahaKick && _maha_count <= 361)
+		_maha_count++;
 }
 
 // 점프 모션
