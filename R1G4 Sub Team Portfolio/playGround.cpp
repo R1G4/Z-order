@@ -15,7 +15,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	SCENEMANAGER->addScene("시작화면", new StartScene);
 	SCENEMANAGER->addScene("세이브로드", new saveLoad);
-	SCENEMANAGER->changeScene("시작화면");
+	SCENEMANAGER->changeScene("세이브로드");
 	
 	return S_OK;
 }
