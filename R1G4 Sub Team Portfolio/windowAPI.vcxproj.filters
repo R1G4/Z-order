@@ -144,6 +144,18 @@
     <ClInclude Include="saveLoad.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
+    <ClInclude Include="tempStage.h">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="kyoko.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
+    <ClInclude Include="loadingScene.h">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\팀포폴사본\R1G4 Sub Team Portfolio\jump.h">
+      <Filter>playGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -220,6 +232,18 @@
     </ClCompile>
     <ClCompile Include="saveLoad.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="tempStage.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="kyoko.cpp">
+      <Filter>playGround</Filter>
+    </ClCompile>
+    <ClCompile Include="loadingScene.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\팀포폴사본\R1G4 Sub Team Portfolio\jump.cpp">
+      <Filter>playGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

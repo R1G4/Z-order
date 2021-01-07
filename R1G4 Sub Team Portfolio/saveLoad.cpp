@@ -113,28 +113,28 @@ void saveLoad::render()
 
 void saveLoad::addimage()
 {
-	IMAGEMANAGER->addImage("배경", "savescene/세이브창.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("배경", "image/savescene/세이브창.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 
 	//비선택
-	IMAGEMANAGER->addImage("A_off", "savescene/파일A_off.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("B_off", "savescene/파일B_off.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("C_off", "savescene/파일C_off.bmp", 485, 199, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("A_off", "image/savescene/파일A_off.bmp", 485, 199, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("B_off", "image/savescene/파일B_off.bmp", 485, 199, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("C_off", "image/savescene/파일C_off.bmp", 485, 199, true, RGB(255, 0, 255));
 
 	//선택
-	IMAGEMANAGER->addImage("A_on", "savescene/파일A_on.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("B_on", "savescene/파일B_on.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("C_on", "savescene/파일C_on.bmp", 485, 199, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("A_on", "image/savescene/파일A_on.bmp", 485, 199, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("B_on", "image/savescene/파일B_on.bmp", 485, 199, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("C_on", "image/savescene/파일C_on.bmp", 485, 199, true, RGB(255, 0, 255));
 
 	//스테이지 맵 아이콘
 	//비선택
-	IMAGEMANAGER->addImage("1_off", "savescene/맵/stage1_off.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("2_off", "savescene/맵/stage2_off.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("3_off", "savescene/맵/stage3_off.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("1_off", "image/savescene/맵/stage1_off.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("2_off", "image/savescene/맵/stage2_off.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("3_off", "image/savescene/맵/stage3_off.bmp", 114, 130, true, RGB(255, 0, 255));
 
 	//선택
-	IMAGEMANAGER->addImage("1_on", "savescene/맵/stage1_on.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("2_on", "savescene/맵/stage2_on.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("3_on", "savescene/맵/stage3_on.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("1_on", "image/savescene/맵/stage1_on.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("2_on", "image/savescene/맵/stage2_on.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("3_on", "image/savescene/맵/stage3_on.bmp", 114, 130, true, RGB(255, 0, 255));
 }
 
 void saveLoad::selecttab()
@@ -205,6 +205,11 @@ void saveLoad::key()
 	if (KEYMANAGER->isOnceKeyDown(VK_UP))
 	{
 		count--;
+	}
+	if (KEYMANAGER->isOnceKeyDown('Z'))
+	{
+		SOUNDMANAGER->stop("saveLoad");
+		SCENEMANAGER->changeScene("스테이지1");
 	}
 }
 

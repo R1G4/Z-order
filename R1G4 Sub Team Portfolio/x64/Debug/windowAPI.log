@@ -1,2 +1,24 @@
-﻿  StartScene.cpp
-  windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\R1G4 Sub Team Portfolio\x64\Debug\windowAPI.exe
+﻿  jump.cpp
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio\animation.h(13): error C2011: 'animation': 'class' 형식 재정의
+  c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\keyanimanager.h(5): note: 'animation' 선언을 참조하십시오.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio\image.h(5): error C2011: 'image': 'class' 형식 재정의
+  c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\keyanimanager.h(4): note: 'image' 선언을 참조하십시오.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio\gamenode.h(24): error C2027: 정의되지 않은 형식 'image'을(를) 사용했습니다.
+  c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\keyanimanager.h(4): note: 'image' 선언을 참조하십시오.
+  kyoko.cpp
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\kyoko.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'jump.h': No such file or directory
+  loadingScene.cpp
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\loadingscene.cpp(57): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  playGround.cpp
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\kyoko.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'jump.h': No such file or directory
+  saveLoad.cpp
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\saveload.cpp(51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\saveload.cpp(92): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\saveload.cpp(92): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\saveload.cpp(105): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\saveload.cpp(105): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  tempStage.cpp
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\kyoko.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'jump.h': No such file or directory
+  winMain.cpp
+c:\users\huny0\onedrive\바탕 화면\teampt\z-order\r1g4 sub team portfolio\kyoko.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'jump.h': No such file or directory
+  코드를 생성하고 있습니다...
