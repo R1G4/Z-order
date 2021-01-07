@@ -1,0 +1,11 @@
+﻿  kyoko.cpp
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.h(110): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.h(111): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(39): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(41): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(42): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(69): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(71): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\기러기\r1g4 sub team portfolio 개발진행중\kyoko.cpp(73): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\기러기\R1G4 Sub Team Portfolio 개발진행중\x64\Debug\windowAPI.exe
