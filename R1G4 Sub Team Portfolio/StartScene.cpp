@@ -26,6 +26,9 @@ void StartScene::release()
 
 void StartScene::update()
 {
+	//SOUNDMANAGER->play("introToStart", 0.8f);
+	if(!SOUNDMANAGER->isPlaySound("introToStart"))	SOUNDMANAGER->play("introToStart", 0.8f);
+	
 	if(VIDEOMANAGER->getCurrenVideo()!=startVideo)VIDEOMANAGER->endVideo(startVideo);
 	else
 	{
@@ -33,6 +36,7 @@ void StartScene::update()
 		{
 			VIDEOMANAGER->endVideo(true);
 			SCENEMANAGER->changeScene("세이브로드");
+			SOUNDMANAGER->stop("introToStart");
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))
 		{

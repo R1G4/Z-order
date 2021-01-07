@@ -3,7 +3,6 @@
 
 void videoManager::startVideo(LPCSTR videoName)
 {
-	cout << timeCount<<endl;
 	currentVideo = videoName;
 	timeCount = 0;
 	_video = MCIWndCreate(_hWnd, NULL, MCIWNDF_NOPLAYBAR | WS_VISIBLE | WS_CHILD, videoName);
@@ -17,8 +16,7 @@ void videoManager::endVideo()
 
 	if (KEYMANAGER->isStayKeyDown(VK_RETURN))
 	{
-		subtimeCount++;
-		if(subtimeCount%30==0)timeCount++;
+		timeCount++;
 		if (timeCount > 100)
 		{
 			MCIWndClose(_video);
@@ -52,8 +50,7 @@ void videoManager::endVideo(LPCSTR videoName)
 	{
 		cout << timeCount;
 		
-		subtimeCount++;
-		if(subtimeCount%30==0)timeCount++;
+		timeCount++;
 		if (timeCount > 100)
 		{
 			MCIWndClose(_video);

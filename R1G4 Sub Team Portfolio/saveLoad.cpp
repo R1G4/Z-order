@@ -12,8 +12,7 @@ saveLoad::~saveLoad()
 HRESULT saveLoad::init()
 {
 	_background = IMAGEMANAGER->addImage("배경", "savescene/세이브창.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
-
-	
+	SOUNDMANAGER->play("saveLoad", 0.8);
 
 	return S_OK;
 }

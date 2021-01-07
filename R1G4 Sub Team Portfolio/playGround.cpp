@@ -13,9 +13,10 @@ playGround::~playGround()
 HRESULT playGround::init()
 {
 	gameNode::init(true);
+	addSound();
 	SCENEMANAGER->addScene("시작화면", new StartScene);
 	SCENEMANAGER->addScene("세이브로드", new saveLoad);
-	SCENEMANAGER->changeScene("세이브로드");
+	SCENEMANAGER->changeScene("시작화면");
 	
 	return S_OK;
 }
@@ -44,5 +45,11 @@ void playGround::render()
 	TIMEMANAGER->render(getMemDC());
 	//================= 아래도 건들지 마라 ==============================
 	if(!VIDEOMANAGER->checkPlay())_backBuffer->render(getHDC());
+}
+
+void playGround::addSound()
+{
+	SOUNDMANAGER->addSound("introToStart", "sound/River City Girls OST - WereThe River City Girls ( With Lyrics).mp3", true, true);
+	SOUNDMANAGER->addSound("saveLoad", "sound/River City Girls OST - File Select Theme.mp3", true, true);
 }
 
