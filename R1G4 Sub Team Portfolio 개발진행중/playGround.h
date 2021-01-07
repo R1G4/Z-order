@@ -5,6 +5,7 @@
 #include "tempStage.h"
 #include "loadingScene.h"
 #include "BossStage.h"
+#include "opTion.h"
 
 class playGround : public gameNode
 {
@@ -12,7 +13,7 @@ private:
 	RECT rc;
 	POINT camera;
 	image* backGround;
-	
+
 
 public:
 	playGround();

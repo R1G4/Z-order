@@ -166,6 +166,7 @@
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="kyoko.h" />
     <ClInclude Include="loadingScene.h" />
+    <ClInclude Include="opTion.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="kyoko.cpp" />
     <ClCompile Include="loadingScene.cpp" />
+    <ClCompile Include="opTion.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="saveLoad.cpp" />
