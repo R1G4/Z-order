@@ -1,3 +1,2 @@
-﻿  saveLoad.cpp
-c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio\saveload.cpp(15): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-  windowAPI.vcxproj -> C:\Users\huny0\OneDrive\바탕 화면\팀포폴사본\R1G4 Sub Team Portfolio\x64\Debug\windowAPI.exe
+﻿  StartScene.cpp
+  windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\팀 포트 폴리오\Z-order\R1G4 Sub Team Portfolio\x64\Debug\windowAPI.exe

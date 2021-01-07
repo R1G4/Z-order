@@ -35,8 +35,8 @@ void StartScene::update()
 		if (KEYMANAGER->isOnceKeyDown('Z'))
 		{
 			VIDEOMANAGER->endVideo(true);
-			SCENEMANAGER->changeScene("세이브로드");
 			SOUNDMANAGER->stop("introToStart");
+			SCENEMANAGER->changeScene("세이브로드");
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
