@@ -3,7 +3,7 @@
 
 HRESULT tempStage::init()
 {
-	SOUNDMANAGER->play("MainStage",0.8);
+	SOUNDMANAGER->play("MainStage", 0.8);
 	stage1 = IMAGEMANAGER->findImage("Stage1");
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
 	_player = new kyoko;
@@ -24,8 +24,9 @@ void tempStage::release()
 
 void tempStage::update()
 {
+	pixelCollision();
 	_player->update();
-	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH,stage1);
+	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 	_em->update();
 
 	changeMap();
@@ -34,7 +35,7 @@ void tempStage::update()
 void tempStage::render()
 {
 	stage1->render(getMemDC(), 0, 0, camera);
-	
+
 
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
@@ -56,4 +57,27 @@ void tempStage::changeMap()
 		SCENEMANAGER->changeScene("보스스테이지");
 		SOUNDMANAGER->stop("MainStage");
 	}
+}
+
+void tempStage::pixelCollision()
+{
+
+
+	for (int i = _player->getShadow().top - 10; i < _player->getShadow().top; i++)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), _player->getShadow().left, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+
+		if (!(r == 255 && g == 0 && b == 255))
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, i + _player->getShadow().bottom - _player->getShadow().top - 5);
+
+			break;
+		}
+
+	}
+
+
 }

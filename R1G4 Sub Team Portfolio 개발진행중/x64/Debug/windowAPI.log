@@ -1,4 +1,4 @@
-﻿  opTion.cpp
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio 개발진행중\option.cpp(51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio 개발진행중\option.cpp(63): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  playGround.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio 개발진행중\kyoko.h(105): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio 개발진행중\kyoko.h(106): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\팀 포트 폴리오\Z-order\R1G4 Sub Team Portfolio 개발진행중\x64\Debug\windowAPI.exe

@@ -26,15 +26,15 @@ HRESULT kyoko::init()
 	_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
 
 	_r_count = 0;
-	_z_count = 0; 
+	_z_count = 0;
 	_maha_count = 362;
 
-	
-	_x = WINSIZEX/2;
-	_y = WINSIZEY/2 + 100;
+
+	_x = WINSIZEX / 2;
+	_y = WINSIZEY / 2 + 200;
 
 	_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
-	_image_rc = RectMakeCenter((_shadow_rc.left + _shadow_rc.right) / 2, _shadow_rc.top - 100, 
+	_image_rc = RectMakeCenter((_shadow_rc.left + _shadow_rc.right) / 2, _shadow_rc.top - 100,
 		_image->getFrameWidth(), _image->getFrameHeight());
 	_m_gauge_rc = RectMake(_mahaGauge->getX(), _mahaGauge->getY(), _maha_count, _mahaGauge->getHeight());
 
@@ -54,6 +54,7 @@ void kyoko::release()
 
 void kyoko::update()
 {
+
 	moveMotion();
 	attackMotion();
 	jumpMotion();
@@ -78,7 +79,7 @@ void kyoko::render()
 
 	if (_image == IMAGEMANAGER->findImage("쿄코_강공격"))
 	{
-		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top -50 , _kyokoMotion);
+		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top - 50, _kyokoMotion);
 	}
 	else
 		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top, _kyokoMotion);
@@ -126,7 +127,7 @@ void kyoko::render(POINT camera)
 	DeleteObject(brush);
 
 	_hpUI->render(getMemDC(), 0, 0);
-	_mahaGauge->render(getMemDC(), 189, 88, 0,0,_maha_count, 18);
+	_mahaGauge->render(getMemDC(), 189, 88, 0, 0, _maha_count, 18);
 
 	for (_ihp = _hp.begin(); _ihp != _hp.end(); ++_ihp)
 	{
@@ -331,7 +332,7 @@ void kyoko::moveMotion()
 				_image = IMAGEMANAGER->findImage("쿄코_걷기");
 				_kyokoDirection = KYOKODIRECTION_RIGHT_WALK;
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightWalk");
-				_kyokoMotion->start(); 
+				_kyokoMotion->start();
 				_isRunning = true;
 			}
 		}
@@ -489,7 +490,7 @@ void kyoko::moveMotion()
 				_isMoving = false;
 			}
 		}
-	
+
 		// 아래키를 누를 경우
 		if (KEYMANAGER->isOnceKeyDown(VK_DOWN))
 		{
@@ -692,7 +693,7 @@ void kyoko::attackMotion()
 	// 공격후 idle상태로 갈때 연속공격 카운트를 0으로
 	if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE)
 	{
-		_isAttack = false; 
+		_isAttack = false;
 		_isMahaKick = false;
 		_z_count = 0;
 	}
@@ -939,3 +940,5 @@ void kyoko::jumpMotion()
 		_kyokoMotion->start();
 	}
 }
+
+
