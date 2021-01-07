@@ -177,9 +177,6 @@
     <ClInclude Include="BossStage.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
-    <ClInclude Include="opTion.h">
-      <Filter>playGround\Stage&amp;Scene</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -282,9 +279,6 @@
       <Filter>playGround\kyoko</Filter>
     </ClCompile>
     <ClCompile Include="BossStage.cpp">
-      <Filter>playGround\Stage&amp;Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="opTion.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
   </ItemGroup>

@@ -59,7 +59,7 @@ void loadingScene::update()
 	//로딩이 다 되면
 	if (_currentCount == LOADINGMAX)
 	{
-		SCENEMANAGER->changeScene("스테이지1");
+		SCENEMANAGER->changeScene("보스스테이지");
 	}
 }
 

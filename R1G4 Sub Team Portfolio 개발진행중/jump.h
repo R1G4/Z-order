@@ -6,6 +6,7 @@ class jump : public gameNode
 private:
 	float _jumpPower;
 	float _gravity;
+	float _speed;
 
 	float* _x;
 	float* _y;
@@ -14,6 +15,7 @@ private:
 	float _startY;
 
 	bool _isJumping;
+
 
 public:
 	jump() {};
@@ -30,5 +32,7 @@ public:
 	float getStartX() { return _startX; }
 	float getStartY() { return _startY; }
 	float getJumpPower() { return _jumpPower; }
+
+	void setJumpSpeed(float speed) { _speed = speed; }
 };
 

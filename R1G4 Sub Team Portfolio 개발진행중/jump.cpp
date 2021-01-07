@@ -19,6 +19,8 @@ void jump::update()
 	*_y -= _jumpPower;
 	_jumpPower -= _gravity;
 
+	if (KEYMANAGER->isStayKeyDown(VK_UP)) _startY -= _speed;
+	if (KEYMANAGER->isStayKeyDown(VK_DOWN)) _startY += _speed;
 	//현재 위치가 처음 뛴 위치보다 커진다면 (더 내려가려고 하면)
 	if (_startY <= *_y)
 	{

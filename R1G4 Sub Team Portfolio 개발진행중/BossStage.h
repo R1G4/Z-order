@@ -7,6 +7,8 @@ class BossStage : public gameNode
 {
 
 private:
+	RECT _door_rc;
+
 	POINT camera;
 	kyoko* _player;
 	image* stage1;
@@ -17,5 +19,8 @@ public:
 	void release();
 	void update();
 	void render();
+
+	// ∏ ¿Ãµø
+	void changeMap();
 };
 
