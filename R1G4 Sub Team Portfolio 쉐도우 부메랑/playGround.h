@@ -3,8 +3,10 @@
 #include "StartScene.h"
 #include "saveLoad.h"
 #include "tempStage.h"
-#include "loadingScene.h"
+#include "stage2.h"
 #include "BossStage.h"
+#include "loadingScene.h"
+
 
 class playGround : public gameNode
 {
@@ -12,7 +14,7 @@ private:
 	RECT rc;
 	POINT camera;
 	image* backGround;
-	
+
 
 public:
 	playGround();

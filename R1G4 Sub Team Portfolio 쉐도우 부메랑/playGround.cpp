@@ -16,7 +16,7 @@ HRESULT playGround::init()
 	addScene();
 	addSound();
 	SCENEMANAGER->changeScene("로딩씬");
-	
+
 	return S_OK;
 }
 
@@ -24,7 +24,7 @@ HRESULT playGround::init()
 void playGround::release()
 {
 	gameNode::release();
-	
+
 }
 
 void playGround::update()
@@ -38,10 +38,10 @@ void playGround::render()
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//================ 위에 건들지 마라 ==============================
 	SCENEMANAGER->render();
-	
+
 	TIMEMANAGER->render(getMemDC());
 	//================= 아래도 건들지 마라 ==============================
-	if(!VIDEOMANAGER->checkPlay())_backBuffer->render(getHDC());
+	if (!VIDEOMANAGER->checkPlay())_backBuffer->render(getHDC());
 }
 
 void playGround::addScene()
@@ -50,7 +50,9 @@ void playGround::addScene()
 	SCENEMANAGER->addScene("세이브로드", new saveLoad);
 	SCENEMANAGER->addScene("로딩씬", new loadingScene);
 	SCENEMANAGER->addScene("스테이지1", new tempStage);
+	SCENEMANAGER->addScene("스테이지2", new stage2);
 	SCENEMANAGER->addScene("보스스테이지", new BossStage);
+
 }
 
 void playGround::addSound()
