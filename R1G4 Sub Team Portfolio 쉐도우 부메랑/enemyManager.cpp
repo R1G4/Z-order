@@ -33,17 +33,17 @@ void enemyManager::update()
 
 void enemyManager::setEnemy()
 {
-	enemy* _en;
+	/*enemy* _en;
 	_en = new schoolGirl;
 	_en->init(1800, 500);
-	_vEnemy.push_back(_en);
-	/*for (int i = 1; i < 2; i++)
+	_vEnemy.push_back(_en);*/
+	for (int i = 1; i < 4; i++)
 	{
 		enemy* _en;
 		_en = new schoolGirl;
-		_en->init(i * 600, i * 600);
+		_en->init(i * 200+200, i * 100+300);
 		_vEnemy.push_back(_en);
-	}*/
+	}
 }
 
 void enemyManager::render()

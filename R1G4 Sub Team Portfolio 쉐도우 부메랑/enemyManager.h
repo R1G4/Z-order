@@ -26,7 +26,7 @@ public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
-	void setEnemy();
+	virtual void setEnemy();	//임시로 에너미 생성
 	virtual void render();
 	virtual void render(POINT camera);
 	void setKyokoMemory(kyoko* kyoko) { _kyoko = kyoko; }
