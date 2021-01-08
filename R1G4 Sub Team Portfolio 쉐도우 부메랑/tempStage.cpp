@@ -59,11 +59,8 @@ void tempStage::render()
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage1Pic->render(getMemDC(), 0, 0, camera);
-		//Rectangle(getMemDC(), _door_rc, camera);
-		for (int i = 0; i < 8; i++)
-		{
-			Rectangle(getMemDC(), chair[i].rc, camera);
-		}
+		Rectangle(getMemDC(), _door_rc, camera);
+
 	}
 	_player->render(camera);
 		_em->render(camera);
@@ -73,12 +70,13 @@ void tempStage::render()
 
 void tempStage::changeMap()
 {
-	//RECT temp;
-	//if (IntersectRect(&temp, &_door_rc, &_player->getRect()))
-	//{
-	//	SCENEMANAGER->changeScene("보스스테이지");
-	//	SOUNDMANAGER->stop("MainStage");
-	//}
+	RECT temp;
+	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()))
+	{
+		delete(_player);
+		SCENEMANAGER->changeScene("스테이지2");
+		SOUNDMANAGER->stop("MainStage");
+	}
 }
 
 void tempStage::pixelCollision()
@@ -124,7 +122,7 @@ void tempStage::pixelCollision()
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
+		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
 		{
 			_player->setKyokoPoint(i + (_player->getShadow().right - _player->getShadow().left) / 2 + 10, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
@@ -141,7 +139,7 @@ void tempStage::pixelCollision()
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
+		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
 		{
 			_player->setKyokoPoint(i - (_player->getShadow().right - _player->getShadow().left) / 2 - 10, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);

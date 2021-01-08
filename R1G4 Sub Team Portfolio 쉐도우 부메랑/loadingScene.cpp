@@ -66,7 +66,7 @@ void loadingScene::update()
 void loadingScene::render()
 {
 	//그림파일 이미지 경로를 텍스트로 보여줘도 되고
-	
+
 	_back->render(getMemDC());
 	_background->aniRender(getMemDC(), WINSIZEX - 279, WINSIZEY - 220, _loading);
 
@@ -83,11 +83,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	loadingScene* loadingHelper = (loadingScene*)lpParameter;
 
 	//메인 스테이지 BGM추가
-	SOUNDMANAGER->addSound("MainStage", "sound/BGM/River City Girls OST - Detention.mp3",true,true);
+	SOUNDMANAGER->addSound("MainStage", "sound/BGM/River City Girls OST - Detention.mp3", true, true);
 	SOUNDMANAGER->addSound("BossSound", "sound/BGM/River City Girls OST - Boss Misuzu.mp3", true, true);
 	//메인 스테이지 맵추가
 	IMAGEMANAGER->addImage("Stage1", "image/map/0.bmp", 2154, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1Pic", "image/map/0Pic.bmp", 2154, 884, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Stage2", "image/map/1.bmp", 3494, 884, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Stage2Pic", "image/map/1Pic.bmp", 3494, 884, false, RGB(255, 0, 255));
 
 	//보스 스테이지 맵추가
 	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 1830, 884, true, RGB(255, 0, 255));
@@ -127,6 +129,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 	//오브젝트 이미지 추가
 	IMAGEMANAGER->addImage("chair", "image/object/chair.bmp", 179, 169, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("좌기둥", "image/object/Lgidoong.bmp", 153, 720, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("우기둥", "image/object/Rgidoong.bmp", 153, 720, true, RGB(255, 0, 255));
 
 
 	//UI IMAGE
