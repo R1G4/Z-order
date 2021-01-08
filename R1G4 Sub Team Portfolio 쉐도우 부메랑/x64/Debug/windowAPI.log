@@ -1,9 +1,1 @@
-﻿  tempStage.cpp
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\kyoko.h(112): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\kyoko.h(113): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\tempstage.cpp(6): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\tempstage.cpp(95): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\tempstage.cpp(112): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\tempstage.cpp(128): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio 쉐도우 부메랑\tempstage.cpp(145): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  windowAPI.vcxproj -> C:\Users\zzang\OneDrive\바탕 화면\포폴\Z-order\R1G4 Sub Team Portfolio 쉐도우 부메랑\x64\Debug\windowAPI.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(314,5): error MSB6003: 지정한 작업 실행 파일 "CL.exe"을(를) 실행할 수 없습니다. 'C:\USERS\CLXLZ\ONEDRIVE\바탕 화면\팀 포트 폴리오\Z-ORDER\R1G4 SUB TEAM PORTFOLIO 쉐도우 부메랑\X64\DEBUG\WINDOWAPI.PCH' 파일은 다른 프로세스에서 사용 중이므로 프로세스에서 액세스할 수 없습니다.
