@@ -72,6 +72,7 @@ private:
 	bool _isAttack;				// 공격용 bool
 	bool _isMahaKick;			// 게이지 채우기용 bool
 	bool _isRunning;			// 달리기용 bool
+	bool _isCollision;			// 픽셀충돌용 bool
 public:
 	kyoko() {};
 	~kyoko() {};
@@ -105,6 +106,7 @@ public:
 	void setKyokoMotion(animation* ani) { _kyokoMotion = ani; }
 	RECT getShadow() { return _shadow_rc; }
 	RECT getRect() { return _rc; }
+	RECT getImageRect() { return _image_rc; }
 	POINT getKyokoPoint() {
 		POINT _point;
 		_point.x = _x;
@@ -116,5 +118,7 @@ public:
 		_x = x;
 		_y = y;
 	}
+
+	void setNoSpeed(bool isCollision) { _isCollision = isCollision; }
 };
 

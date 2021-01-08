@@ -3,7 +3,7 @@
 
 HRESULT tempStage::init()
 {
-	SOUNDMANAGER->play("MainStage", 0.8);
+	SOUNDMANAGER->play("MainStage", 0.1);
 	stage1 = IMAGEMANAGER->findImage("Stage1");
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
 	_player = new kyoko;
@@ -94,6 +94,7 @@ void tempStage::pixelCollision()
 		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x, i + _player->getShadow().bottom - _player->getShadow().top - 10);
+			_player->setNoSpeed(true);
 			break;
 		}
 
@@ -110,6 +111,7 @@ void tempStage::pixelCollision()
 		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x, i - _player->getShadow().bottom + _player->getShadow().top + 10);
+			_player->setNoSpeed(true);
 			break;
 		}
 	}
@@ -125,6 +127,7 @@ void tempStage::pixelCollision()
 		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
 		{
 			_player->setKyokoPoint(i + (_player->getShadow().right - _player->getShadow().left) / 2 + 10, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
 			break;
 		}
 
@@ -141,6 +144,7 @@ void tempStage::pixelCollision()
 		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
 		{
 			_player->setKyokoPoint(i - (_player->getShadow().right - _player->getShadow().left) / 2 - 10, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
 			break;
 		}
 
