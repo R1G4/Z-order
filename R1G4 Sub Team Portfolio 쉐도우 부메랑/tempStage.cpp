@@ -8,9 +8,9 @@ HRESULT tempStage::init()
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
 	_player = new kyoko;
 	_player->init();
-	_em = new enemyManager;
-	_em->init();
-	_em->setKyokoMemory(_player);
+	//_em = new enemyManager;
+	//_em->init();
+	//_em->setKyokoMemory(_player);
 
 	//의자 렉트
 	chair[0].rc = RectMake(WINSIZEX / 2 - 222, WINSIZEY / 2 + 135, 100, 100);
@@ -42,7 +42,7 @@ void tempStage::update()
 	pixelCollision();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
-	_em->update();
+	//_em->update();
 
 	changeMap();
 }
@@ -63,7 +63,7 @@ void tempStage::render()
 
 	}
 	_player->render(camera);
-		_em->render(camera);
+	//	_em->render(camera);
 
 
 }

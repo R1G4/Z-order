@@ -1,4 +1,0 @@
-﻿  enemyManager.cpp
-c:\users\zzang\onedrive\바탕 화면\포폴 에너미\kyoko.h(80): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴 에너미\kyoko.h(81): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  windowAPI.vcxproj -> C:\Users\zzang\OneDrive\바탕 화면\포폴 에너미\x64\Debug\windowAPI.exe

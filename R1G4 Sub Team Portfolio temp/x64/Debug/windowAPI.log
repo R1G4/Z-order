@@ -1,8 +1,0 @@
-﻿  schoolGirl.cpp
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio temp\kyoko.h(103): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio temp\kyoko.h(104): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio temp\schoolgirl.cpp(35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio temp\schoolgirl.cpp(75): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio temp\schoolgirl.cpp(106): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\zzang\onedrive\바탕 화면\포폴\z-order\r1g4 sub team portfolio temp\schoolgirl.cpp(317): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  windowAPI.vcxproj -> C:\Users\zzang\OneDrive\바탕 화면\포폴\Z-order\R1G4 Sub Team Portfolio temp\x64\Debug\windowAPI.exe
