@@ -43,6 +43,7 @@ void tempStage::update()
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 	//_em->update();
+	KEYANIMANAGER->update();
 
 	changeMap();
 }

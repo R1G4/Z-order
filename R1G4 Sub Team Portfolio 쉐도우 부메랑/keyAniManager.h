@@ -13,7 +13,7 @@ private:
 	typedef map<string, arrAnimationbuffer>::iterator	iterAnimations;
 	typedef vector<map<string, arrAnimationbuffer>> arrTotalAni;
 	typedef vector<map<string, arrAnimationbuffer>>::iterator iterarrTotalAni;
-
+	int count;
 private:
 	arrTotalAni _vTotalAni;
 	int buffer=0;

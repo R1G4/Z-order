@@ -89,7 +89,6 @@ void kyoko::update()
 	// 그림자처리를 위한 렉트 (z-order)
 	_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
 	// 애니메이션 재생
-	KEYANIMANAGER->update();
 
 	// 점프업뎃
 	_jump->update();
