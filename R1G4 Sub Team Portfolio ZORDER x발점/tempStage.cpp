@@ -88,71 +88,63 @@ void tempStage::changeMap()
 
 void tempStage::pixelCollision()
 {
-	//아래에서 위로 박을때
-	for (int i = _player->getShadow().top; i <= _player->getShadow().top; i++)
+	//픽셀 콜리쟌 상 하
+	for (int i = _player->getShadow().left; i <= _player->getShadow().right; i++)
 	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), _player->getShadow().left, i);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
+		//상
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), i, _player->getShadow().top);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//하
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), i, _player->getShadow().bottom);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
 
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
+		if ((r1 == 255 && g1 == 0 && b1 == 0) || (r1 == 0 && g1 == 255 && b1 == 0))
 		{
-			_player->setKyokoPoint(_player->getKyokoPoint().x, i + _player->getShadow().bottom - _player->getShadow().top - 10);
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 1);
 			_player->setNoSpeed(true);
 			break;
 		}
 
-	}
-
-	//위에서 아래로 박을떄
-	for (int i = _player->getShadow().bottom; i >= _player->getShadow().bottom; i--)
-	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), _player->getShadow().left, i);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
+		if ((r2 == 255 && g2 == 0 && b2 == 0) || (r2 == 0 && g2 == 255 && b2 == 0))
 		{
-			_player->setKyokoPoint(_player->getKyokoPoint().x, i - _player->getShadow().bottom + _player->getShadow().top + 10);
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 1);
 			_player->setNoSpeed(true);
 			break;
 		}
 	}
 
-	//오른쪽에서 왼쪽으로 박을때
-	for (int i = _player->getShadow().left; i <= _player->getShadow().left; i++)
+	//픽셀 콜리쟌 좌 우
+	for (int i = _player->getShadow().top; i <= _player->getShadow().bottom; i++)
 	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), i, (_player->getShadow().bottom + _player->getShadow().top) / 2);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
+		//좌
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), _player->getShadow().left, i);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//우
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), _player->getShadow().right, i);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
 
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
+		if ((r1 == 255 && g1 == 0 && b1 == 0) || (r1 == 0 && g1 == 255 && b1 == 0))
 		{
-			_player->setKyokoPoint(i + (_player->getShadow().right - _player->getShadow().left) / 2 + 10, _player->getKyokoPoint().y);
+			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
 			break;
 		}
 
-	}
-
-	//왼쪽에서 오른쪽으로 박을때
-	for (int i = _player->getShadow().right; i >= _player->getShadow().right; i--)
-	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), i, (_player->getShadow().bottom + _player->getShadow().top) / 2);
-		int r = GetRValue(color);
-		int g = GetGValue(color);
-		int b = GetBValue(color);
-
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
+		if ((r2 == 255 && g2 == 0 && b2 == 0) || (r2 == 0 && g2 == 255 && b2 == 0))
 		{
-			_player->setKyokoPoint(i - (_player->getShadow().right - _player->getShadow().left) / 2 - 10, _player->getKyokoPoint().y);
+			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
 			break;
 		}
-
 	}
+
 
 }
