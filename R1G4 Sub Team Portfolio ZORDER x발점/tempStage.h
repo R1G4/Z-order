@@ -24,6 +24,8 @@ private:
 	image* stage1;
 	image* stage1Pic;
 	enemyManager* _em;
+	vector<int> _vZorder;
+	char _str[128];
 public:
 	HRESULT init();
 	void release();
@@ -33,5 +35,7 @@ public:
 	// ∏ ¿Ãµø
 	void changeMap();
 	void pixelCollision();
+	void zOrder();
+	void quickSort(int a, int b);
 };
 

@@ -29,7 +29,7 @@ void enemyAttack::release()
 void enemyAttack::update()
 {
 	_attackDelay--;
-	_comboTimer--;
+	_comboTimer--;	
 
 	//콤보공격 가능 타이머가 0이하로 떨어지면 저장해준 공격 상태 변경
 	if (_comboTimer <= 0)
@@ -47,12 +47,12 @@ int enemyAttack::selectedAttack(int attack)
 		if (_attackState == ATTACK || _attackState == NONE || _attackState == COMBO_ATTACK_3)
 		{
 			//0에서 부터 3 미만의 난수를 생성
-			int random = RND->getFromIntTo(0, 3);
+			int random = RND->getFromIntTo(0,3);
 			//0에서 부터 1까지는 ATTACK 3은 콤보공격
 			_attackState = random <= 1 ? ATTACK : COMBO_ATTACK_1;
-			if (_attackState == ATTACK)
+			if(_attackState == ATTACK)
 				_attackDelay = RND->getFromIntTo(100, 140);
-			else
+			else 
 				_attackDelay = RND->getFromIntTo(70, 100);
 		}
 		else if (_attackState == COMBO_ATTACK_1 && _comboTimer > 0)
