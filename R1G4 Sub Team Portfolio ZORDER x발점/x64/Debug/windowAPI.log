@@ -1,9 +1,2 @@
-﻿  tempStage.cpp
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\kyoko.h(112): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\kyoko.h(113): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\tempstage.cpp(6): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\tempstage.cpp(107): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\tempstage.cpp(114): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\tempstage.cpp(136): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\r1g4 sub team portfolio zorder x발점\tempstage.cpp(143): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\팀 포트 폴리오\Z-order\R1G4 Sub Team Portfolio ZORDER x발점\x64\Debug\windowAPI.exe
+﻿  loadingScene.cpp
+  windowAPI.vcxproj -> C:\Users\1\Desktop\쿄코\R1G4 Sub Team Portfolio ZORDER x발점\x64\Debug\windowAPI.exe
