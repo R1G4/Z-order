@@ -180,6 +180,15 @@
     <ClInclude Include="stage2.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
+    <ClInclude Include="MT.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="cheerLeader.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="schoolBoy.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -286,6 +295,15 @@
     </ClCompile>
     <ClCompile Include="stage2.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MT.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="cheerLeader.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="schoolBoy.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

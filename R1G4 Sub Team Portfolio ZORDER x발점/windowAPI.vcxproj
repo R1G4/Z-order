@@ -151,6 +151,7 @@
     <ClInclude Include="BossStage.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="cheerLeader.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
@@ -166,12 +167,14 @@
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="kyoko.h" />
     <ClInclude Include="loadingScene.h" />
+    <ClInclude Include="MT.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="saveLoad.h" />
     <ClInclude Include="sceneManager.h" />
+    <ClInclude Include="schoolBoy.h" />
     <ClInclude Include="schoolGirl.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
@@ -193,6 +196,7 @@
     <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="cheerLeader.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="enemy.cpp" />
@@ -207,10 +211,12 @@
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="kyoko.cpp" />
     <ClCompile Include="loadingScene.cpp" />
+    <ClCompile Include="MT.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="saveLoad.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="schoolBoy.cpp" />
     <ClCompile Include="schoolGirl.cpp" />
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage2.cpp" />
