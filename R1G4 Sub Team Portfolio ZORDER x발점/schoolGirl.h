@@ -21,7 +21,4 @@ public:
 
 	//특정 에너미 도발 후 정상 패턴으로 복귀 체크
 	static void ActionCheck(void * obj);
-
-	//일단 안씀
-	static void RunningCheck(void * obj);
 };

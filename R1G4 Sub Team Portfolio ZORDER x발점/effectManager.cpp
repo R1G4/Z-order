@@ -61,6 +61,24 @@ void effectManager::update()
 	}
 }
 
+void effectManager::render(POINT camera)
+{
+	iterTotalEffect vIter;
+	iterEffect mIter;
+
+	for (vIter = _vTotalEffects.begin(); vIter != _vTotalEffects.end(); ++vIter)
+	{
+		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
+		{
+			iterEffects vArrIter;
+			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
+			{
+				(*vArrIter)->render(camera);
+			}
+		}
+	}
+}
+
 void effectManager::render()
 {
 	iterTotalEffect vIter;

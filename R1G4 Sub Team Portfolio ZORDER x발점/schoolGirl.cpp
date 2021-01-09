@@ -18,40 +18,9 @@ HRESULT schoolGirl::init(float x, float y, STATE state, DIRECTION direction)
 	//에너미 공용 초기화
 	enemy::init(x, y, state, direction);
 
-	//애니메이션 적용
-	switch (_state)
-	{
-	case schoolGirl::IDLE:
-		switch (_direction)
-		{
-		case schoolGirl::LEFT:
-			_isAction = true;
-			_motion = aniLeftIdle;
-			break;
-		case schoolGirl::RIGHT:
-			_isAction = true;
-			_motion = aniRightIdle;
-			break;
-		}
-		break;
-
-	case schoolGirl::TAUNT:
-		switch (_direction)
-		{
-		case schoolGirl::LEFT:
-			_isAction = false;
-			_motion = aniLeftTaunt;
-			break;
-		case schoolGirl::RIGHT:
-			_isAction = false;
-			_motion = aniRightTaunt;
-			break;
-		}
-		break;
-	}
-
 	//해당 에너미 스피드
 	_speed = 1.8f;
+
 	return S_OK;
 }
 
@@ -61,6 +30,8 @@ void schoolGirl::release()
 
 void schoolGirl::update()
 {
+	enemy::update();
+
 	_enemyAttack->update();
 
 	//에너미 상태 설정
@@ -233,6 +204,7 @@ void schoolGirl::render(POINT camera)
 		RECT temp = RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100);
 		 Rectangle(getMemDC(), temp, camera);
 	}*/
+	enemy::render(camera);
 
 	switch (_state)
 	{
@@ -286,11 +258,21 @@ void schoolGirl::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 400 && _isAction)
+	if (distance < 525 && _isAction)
 	{
-		//충돌 해제
-		//_isCollision = false;
+		//거리안에 존재 할 시 느낌표를 보여준다.
+		if (!_isFollow)
+		{
+			//접근하고자 하는 방향에 가까운 위치를 파라메타로 보낸다.
+			if (_kyoko->getKyokoPoint().x > _x)
+				enemy::effectPoint(RIGHT);
+			else
+				enemy::effectPoint(LEFT);
+		}
+
+		//추적을 시작한다.
 		_isFollow = true;
+
 		RECT temp;
 		//플레이어와 에너미 충돌 시
 		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100), &_enemyRc))
@@ -459,7 +441,7 @@ void schoolGirl::state()
 
 				//탐색 으로 전환
 				_state = WALK;
-				_direction = (DIRECTION)RND->getFromIntTo(LEFT, RIGHT);
+				_direction = (DIRECTION)RND->getFromIntTo(LEFT, RIGHT + 1);
 				_enemyImg = imgWalk;
 				switch (_direction)
 				{
@@ -491,7 +473,6 @@ void schoolGirl::state()
 					_motion->stop();
 				}
 			}
-
 			break;
 		}
 	}
@@ -575,9 +556,4 @@ void schoolGirl::ActionCheck(void* obj)
 {
 	schoolGirl* k = (schoolGirl*)obj;
 	k->_isAction = true;
-}
-
-void schoolGirl::RunningCheck(void* obj)
-{
-	schoolGirl* k = (schoolGirl*)obj;
 }

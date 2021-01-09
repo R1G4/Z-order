@@ -1,6 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "enemyAttack.h"
+#include "effect.h"
 
 class kyoko;
 class enemy : public gameNode
@@ -30,7 +31,6 @@ public:
 		RIGHT
 	};
 protected:
-
 	kyoko* _kyoko;
 	float _x, _y;			//에너미 좌표
 	float _angle;			//에너미 이동 각도
@@ -49,7 +49,7 @@ protected:
 	int _questTimer;		//탐색 및 휴식 난수
 	int _questMin;			//최소 탐색 간격 난수
 	bool _isCollision;
-	enemyAttack* _enemyAttack;	//에너미 공격 클래스
+	enemyAttack* _enemyAttack;	//에너미 공격 패턴 클래스
 
 		//에너미 이미지
 	image* imgIdle;
@@ -97,6 +97,9 @@ protected:
 	animation* aniRightDazed;
 	animation* aniRightJump;
 	animation* aniRightTaunt;
+
+private:
+
 public:
 	enemy();
 	~enemy();
@@ -108,30 +111,38 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-	void pointAction();
-	void sternAction();
+	void effectPoint(DIRECTION direction);
+	void effectStun();
 	virtual void render(POINT camera);
 
 	//그 외 일단 추가한 겟터 셋터
+
+	//이미지
 	image* getImage() { return _enemyImg; }
 	void setImage(image* img) { _enemyImg = img; }
 
+	//렉트
 	RECT getRect() { return _rc; }
 	RECT getEnemyRect() { return _enemyRc; }
 	RECT getShadowRc() { return _shadowRc; }
 
+	//방향
 	DIRECTION getDirection() { return _direction; }
 	void setDirection(DIRECTION direction) { _direction = direction; }
 
+	//상태
 	STATE getState() { return _state; }
 	void setState(STATE state) { _state = state; }
 
+	//애니메이션
 	animation* getMotion() { return _motion; }
 	void setMotion(animation* motion) { _motion = motion; }
 
+	//충돌여부
 	bool getCollision() { return _isCollision; }
 	void setCollision(bool isCollision) { _isCollision = isCollision; }
 
+	//좌표
 	POINT getEnemyPoint()
 	{
 		POINT _point;
@@ -139,7 +150,6 @@ public:
 		_point.y = _y;
 		return _point;
 	}
-
 	void setEnemyPoint(float x, float y)
 	{
 		_x = x;

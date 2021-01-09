@@ -46,6 +46,13 @@ void effect::update()
 	if (!_effectAnimation->isPlay()) killEffect();
 }
 
+void effect::render(POINT camera)
+{
+	if (!_isRunning) return;
+
+	_effectImage->aniRender(getMemDC(), _x, _y, _effectAnimation, camera);
+}
+
 void effect::render()
 {
 	if (!_isRunning) return;

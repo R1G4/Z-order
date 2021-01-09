@@ -12,9 +12,6 @@ enemy::~enemy()
 
 HRESULT enemy::init(float x, float y, STATE state, DIRECTION direction)
 {
-	//이미지 초기화
-	_enemyImg = imgTaunt;
-
 	//에너미 상태 초기화
 	_direction = direction;
 	_state = state;
@@ -24,6 +21,45 @@ HRESULT enemy::init(float x, float y, STATE state, DIRECTION direction)
 	_y = y;
 	_angle = 0;
 
+	//이미지 및 애니메이션 적용
+	switch (_state)
+	{
+	case enemy::IDLE:
+
+		_enemyImg = imgIdle;
+		switch (_direction)
+		{
+		case enemy::LEFT:
+			_isAction = true;
+			_motion = aniLeftIdle;
+			break;
+		case enemy::RIGHT:
+			_isAction = true;
+			_motion = aniRightIdle;
+			break;
+		}
+
+		break;
+	case enemy::TAUNT:
+		_enemyImg = imgTaunt;
+		switch (_direction)
+		{
+		case enemy::LEFT:
+			_isAction = false;
+			_motion = aniLeftTaunt;
+			break;
+		case enemy::RIGHT:
+			_isAction = false;
+			_motion = aniRightTaunt;
+			break;
+		}
+		break;
+	}
+
+	//애니메이션 실행
+	_motion->start();
+
+	//충돌용 렉트 초기화
 	_rc = RectMakeCenter(_x, _y, 40, 200);
 	//에너미 렉트 초기화
 	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
@@ -51,22 +87,33 @@ void enemy::release()
 
 void enemy::update()
 {
+
 }
 
 void enemy::render()
 {
 }
 
-void enemy::pointAction()
+void enemy::effectPoint(DIRECTION direction)
 {
-	//느낌표 추가
+	switch (direction)
+	{
+	case enemy::LEFT:
+		EFFECTMANAGER->play("Enemy_Point", _x - 55, _enemyRc.top - 55);
+		break;
+	case enemy::RIGHT:
+		EFFECTMANAGER->play("Enemy_Point", _x + 55, _enemyRc.top - 55);
+		break;
+	}
+
 }
 
-void enemy::sternAction()
+void enemy::effectStun()
 {
 	//스턴효과 추가
 }
 
 void enemy::render(POINT camera)
 {
+	EFFECTMANAGER->render(camera);
 }

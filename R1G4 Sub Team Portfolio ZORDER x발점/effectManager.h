@@ -28,6 +28,7 @@ public:
 	HRESULT init();
 	void release();
 	void update();
+	void render(POINT camera);
 	void render();
 
 	void addEffect(string effectName, const char* imageName, int imageWidth, int imageHeight,

@@ -18,40 +18,9 @@ HRESULT cheerLeader::init(float x, float y, STATE state, DIRECTION direction)
 	//에너미 공용 초기화
 	enemy::init(x, y, state, direction);
 
-	//애니메이션 적용
-	switch (_state)
-	{
-	case cheerLeader::IDLE:
-		switch (_direction)
-		{
-		case cheerLeader::LEFT:
-			_isAction = true;
-			_motion = aniLeftIdle;
-			break;
-		case cheerLeader::RIGHT:
-			_isAction = true;
-			_motion = aniRightIdle;
-			break;
-		}
-
-		break;
-	case cheerLeader::TAUNT:
-		switch (_direction)
-		{
-		case cheerLeader::LEFT:
-			_isAction = false;
-			_motion = aniLeftTaunt;
-			break;
-		case cheerLeader::RIGHT:
-			_isAction = false;
-			_motion = aniRightTaunt;
-			break;
-		}
-		break;
-	}
-
 	//해당 에너미 스피드
 	_speed = 1.8f;
+
 	return S_OK;
 }
 
@@ -223,6 +192,8 @@ void cheerLeader::addFrame()
 
 void cheerLeader::render(POINT camera)
 {
+	enemy::render(camera);
+
 	switch (_state)
 	{
 	case cheerLeader::DOWNUP: case cheerLeader::KNOCKDOWN:
@@ -281,9 +252,22 @@ void cheerLeader::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
+
 	if (distance < 525 && _isAction)
 	{
+		//거리안에 존재 할 시 느낌표를 보여준다.
+		if (!_isFollow)
+		{
+			//접근하고자 하는 방향에 가까운 위치를 파라메타로 보낸다.
+			if (_kyoko->getKyokoPoint().x > _x)
+				enemy::effectPoint(RIGHT);
+			else
+				enemy::effectPoint(LEFT);
+		}
+
+		//추적을 시작한다.
 		_isFollow = true;
+
 		RECT temp;
 		//플레이어와 에너미 충돌 시
 		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 40), &_enemyRc))
@@ -386,6 +370,12 @@ void cheerLeader::state()
 			return;
 		}
 
+		switch (_state)
+		{
+		case enemy::ATTACK: case enemy::COMBO_ATTACK_1: case enemy::COMBO_ATTACK_2: case enemy::COMBO_ATTACK_3:
+			_state = IDLE;
+			break;
+		}
 		//플레이어의 위치가 에너미 보다 오른쪽에 있을 경우
 		if (_kyoko->getKyokoPoint().x > _x)
 		{
@@ -566,9 +556,4 @@ void cheerLeader::ActionCheck(void* obj)
 {
 	cheerLeader* k = (cheerLeader*)obj;
 	k->_isAction = true;
-}
-
-void cheerLeader::RunningCheck(void* obj)
-{
-	cheerLeader* k = (cheerLeader*)obj;
 }

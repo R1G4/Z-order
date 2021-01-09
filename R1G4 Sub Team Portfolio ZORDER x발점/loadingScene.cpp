@@ -111,6 +111,9 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("그림자", "image/kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
 
 	//에너미 이미지 추가
+	EFFECTMANAGER->addEffect("Enemy_Point", "image/enemy/Effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("Enemy_Stern", "image/enemy/Effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
+
 	IMAGEMANAGER->addImage("Boy_Shadow", "image/enemy/SchoolBoy/Boy_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Boy_Idle", "image/enemy/SchoolBoy/Boy_Idle.bmp", 0, 0, 1200, 400, 8, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Boy_Walk", "image/enemy/SchoolBoy/Boy_Walk.bmp", 0, 0, 1460, 400, 12, 2, true, RGB(255, 0, 255));
