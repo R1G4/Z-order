@@ -22,6 +22,11 @@ HRESULT tempStage::init()
 	chair[6].rc = RectMake(WINSIZEX / 2 + 150, WINSIZEY / 2 + 304, 100, 100);
 	chair[7].rc = RectMake(WINSIZEX / 2 + 427, WINSIZEY / 2 + 304, 100, 100);
 
+	//Z 구분용렉트
+	tempRcU.rc = RectMake(WINSIZEX / 2 - 157, WINSIZEY / 2 + 238, 100, 10);
+	tempRcD.rc = RectMake(WINSIZEX / 2 - 326, WINSIZEY / 2 + 405, 100, 10);
+
+
 	for (int i = 0; i < 8; i++)
 	{
 		chair[i].img = IMAGEMANAGER->findImage("chair");
@@ -39,7 +44,7 @@ void tempStage::release()
 
 void tempStage::update()
 {
-	//pixelCollision();
+	pixelCollision();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 	//_em->update();
@@ -54,12 +59,15 @@ void tempStage::render()
 	for (int i = 0; i < 8; i++)
 	{
 		chair[i].img->render(getMemDC(), chair[i].rc.left, chair[i].rc.top, camera);
+
 	}
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage1Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), _door_rc, camera);
 
+		Rectangle(getMemDC(), tempRcU.rc, camera);
+		Rectangle(getMemDC(), tempRcD.rc, camera);
 	}
 	_player->render(camera);
 	//	_em->render(camera);
@@ -121,7 +129,7 @@ void tempStage::pixelCollision()
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
+		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
 		{
 			_player->setKyokoPoint(i + (_player->getShadow().right - _player->getShadow().left) / 2 + 10, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
@@ -138,7 +146,7 @@ void tempStage::pixelCollision()
 		int g = GetGValue(color);
 		int b = GetBValue(color);
 
-		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
+		if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0))
 		{
 			_player->setKyokoPoint(i - (_player->getShadow().right - _player->getShadow().left) / 2 - 10, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);

@@ -16,6 +16,8 @@ class tempStage :
 private:
 	RECT _door_rc;
 
+	tagChair tempRcU;
+	tagChair tempRcD;
 	tagChair chair[8];
 	POINT camera;
 	kyoko* _player;
