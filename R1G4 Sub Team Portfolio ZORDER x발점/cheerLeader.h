@@ -9,7 +9,7 @@ public:
 	cheerLeader();
 	~cheerLeader();
 
-	virtual HRESULT init(float x, float y, STATE state = IDLE, DIRECTION direction = (DIRECTION)RND->getFromIntTo(0, 2));
+	virtual HRESULT init(float x, float y, STATE , DIRECTION direction);
 	virtual void release();
 	virtual void update();
 	virtual void render(POINT camera);

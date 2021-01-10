@@ -8,10 +8,11 @@ enemyManager::~enemyManager()
 {
 }
 
-HRESULT enemyManager::init()
+HRESULT enemyManager::init(int stageNum)
 {
-	//추후 에너미매니저가 아닌 다른곳으로 옮겨야함
-	setEnemytempState();
+	spawnInterval = 0;
+	_nowStage = (STAGE_ENEMY)stageNum;
+	setEnemy();
 	return S_OK;
 }
 
@@ -30,72 +31,132 @@ void enemyManager::update()
 		(*_viEnemy)->setKyokoAddressLink(_kyoko);
 		(*_viEnemy)->update();
 	}
+
+	spawn();
 }
 
-void enemyManager::setEnemytempState()
+void enemyManager::spawn()
 {
-	//테스트, x,y지정하여 막 뿌려도 됨
-
-	//임시로 생성중
-	enemy* _en1;
-	_en1 = new schoolGirl;
-	//좌표x, 좌표y, 초기 상태 , 초기 방향( 0 == Left, 1= Right)
-	//init(float x, float y, STATE state = IDLE, DIRECTION direction = (DIRECTION)RND->getFromIntTo(0, 2));
-	_en1->init(350, 500);
-	_vEnemy.push_back(_en1);
-
-	enemy* _en2;
-	_en2 = new schoolBoy;
-	_en2->init(1700, 550, enemy::TAUNT, enemy::LEFT);
-	_vEnemy.push_back(_en2);
-
-	enemy* _en3;
-	_en3 = new schoolBoy;
-	_en3->init(1700, 600, enemy::IDLE);
-	_vEnemy.push_back(_en3);
-
-	enemy* _en4;
-	_en4 = new MT;
-	_en4->init(1700, 650, enemy::TAUNT);
-	_vEnemy.push_back(_en4);
-
-	enemy* _en5;
-	_en5 = new cheerLeader;
-	_en5->init(1600, 600, enemy::TAUNT);
-	_vEnemy.push_back(_en5);
+	//에너미 스폰
+	switch (_nowStage)
+	{
+	case enemyManager::STAGE_1:
+		//현재 존재하는 에너미 갯수가 6개 미만 일경우
+		if (_vEnemy.size() < 6)
+		{
+			//스폰 간격을 체크해서 하기
+			spawnInterval++;
+			if (spawnInterval > 750)
+			{
+				//에너미 추가
+				addEnemy();
+				spawnInterval = 0;
+			}
+		}
+		break;
+	case enemyManager::STAGE_2:
+		//현재 존재하는 에너미 갯수가 6개 미만 일경우
+		if (_vEnemy.size() < 7)
+		{
+			//스폰 간격을 체크해서 하기
+			spawnInterval++;
+			if (spawnInterval > 750)
+			{
+				//에너미 추가
+				addEnemy();
+				spawnInterval = 0;
+			}
+		}
+		break;
+	}
 }
 
-void enemyManager::setEnemyState2()
+void enemyManager::setEnemy()
 {
-	//테스트, x,y지정하여 막 뿌려도 됨
+	switch (_nowStage)
+	{
+		//(float x, float y, STATE state = IDLE, DIRECTION direction = (DIRECTION)RND->getFromIntTo(0, 2));
+	case enemyManager::STAGE_1:
+		_vEnemy.push_back(setSchoolGirl(1700, 550, enemy::TAUNT, enemy::LEFT));
+		_vEnemy.push_back(setSchoolGirl(1700, 700, enemy::IDLE));
+		_vEnemy.push_back(setSchoolBoy(1600, 600, enemy::TAUNT, enemy::LEFT));
+		_vEnemy.push_back(setSchoolBoy(1750, 750, enemy::IDLE));
+		break;
+	case enemyManager::STAGE_2:
+		_vEnemy.push_back(setSchoolGirl(1200, 800, enemy::TAUNT, enemy::LEFT));
+		_vEnemy.push_back(setSchoolBoy(1300, 500, enemy::TAUNT, enemy::LEFT));
+		_vEnemy.push_back(setMT(340, 400, enemy::TAUNT, enemy::RIGHT));
+		_vEnemy.push_back(setCheerLeader(2200, 600, enemy::IDLE));
+		_vEnemy.push_back(setCheerLeader(2500, 800, enemy::IDLE));
+		break;
+	}
+}
 
-	//임시로 생성중
-	enemy* _en1;
-	_en1 = new schoolGirl;
-	//좌표x, 좌표y, 초기 상태 , 초기 방향( 0 == Left, 1= Right)
-	//init(float x, float y, STATE state = IDLE, DIRECTION direction = (DIRECTION)RND->getFromIntTo(0, 2));
-	_en1->init(300, 500, enemy::IDLE, enemy::LEFT);
-	_vEnemy.push_back(_en1);
+void enemyManager::addEnemy()
+{
+	switch (_nowStage)
+	{
+	case enemyManager::STAGE_1:
+		switch ((ENEMY_KINDS)RND->getFromIntTo(ENEMY_GIRL, ENEMY_BOY + 1))
+		{
+		case enemyManager::ENEMY_GIRL:
+			_vEnemy.push_back(setSchoolGirl(1550, 450, enemy::IDLE));
+			break;
+		case enemyManager::ENEMY_BOY:
+			_vEnemy.push_back(setSchoolBoy(1550, 450, enemy::IDLE));
+			break;
+		}
+		break;
+	case enemyManager::STAGE_2:
+		switch ((ENEMY_KINDS)RND->getFromIntTo(ENEMY_GIRL, ENEMY_CHEERLEADER + 1))
+		{
+		case enemyManager::ENEMY_GIRL:
+			_vEnemy.push_back(setSchoolGirl(1080, 390, enemy::IDLE));
+			break;
+		case enemyManager::ENEMY_BOY:
+			_vEnemy.push_back(setSchoolBoy(1080, 390, enemy::IDLE));
+			break;
+		case enemyManager::ENEMY_MT:
+			_vEnemy.push_back(setMT(1080, 390, enemy::IDLE));
+			break;
+		case enemyManager::ENEMY_CHEERLEADER:
+			_vEnemy.push_back(setCheerLeader(1080, 390, enemy::IDLE));
+			break;
+		}
+		break;
+	}
+}
 
-	enemy* _en2;
-	_en2 = new schoolBoy;
-	_en2->init(1700, 550, enemy::IDLE, enemy::LEFT);
-	_vEnemy.push_back(_en2);
+enemy* enemyManager::setSchoolGirl(float x, float y, enemy::STATE state, enemy::DIRECTION direction)
+{
+	enemy* _en;
+	_en = new schoolGirl;
+	_en->init(x, y, state, direction);
+	return _en;
+}
 
-	enemy* _en3;
-	_en3 = new schoolBoy;
-	_en3->init(1700, 600, enemy::IDLE);
-	_vEnemy.push_back(_en3);
+enemy* enemyManager::setSchoolBoy(float x, float y, enemy::STATE state, enemy::DIRECTION direction)
+{
+	enemy* _en;
+	_en = new schoolBoy;
+	_en->init(x, y, state, direction);
+	return _en;
+}
 
-	enemy* _en4;
-	_en4 = new MT;
-	_en4->init(1700, 650);
-	_vEnemy.push_back(_en4);
+enemy* enemyManager::setMT(float x, float y, enemy::STATE state, enemy::DIRECTION direction)
+{
+	enemy* _en;
+	_en = new MT;
+	_en->init(x, y, state, direction);
+	return _en;
+}
 
-	enemy* _en5;
-	_en5 = new cheerLeader;
-	_en5->init(1600, 600, enemy::TAUNT);
-	_vEnemy.push_back(_en5);
+enemy* enemyManager::setCheerLeader(float x, float y, enemy::STATE state, enemy::DIRECTION direction)
+{
+	enemy* _en;
+	_en = new cheerLeader;
+	_en->init(x, y, state, direction);
+	return _en;
 }
 
 void enemyManager::render()

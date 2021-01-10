@@ -9,7 +9,7 @@ HRESULT tempStage::init()
 	_player = new kyoko;
 	_player->init();
 	_em = new enemyManager;
-	_em->init();
+	_em->init(1);
 	_em->setKyokoMemory(_player);
 
 	//의자 렉트
@@ -55,7 +55,7 @@ void tempStage::update()
 	_em->update();
 	KEYANIMANAGER->update();
 	EFFECTMANAGER->update();
-	//changeMap();
+	changeMap();
 
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getAttackRect(), &chair[1].rc) && _player->getIsAttack())
@@ -110,6 +110,7 @@ void tempStage::changeMap()
 	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()))
 	{
 		delete(_player);
+		delete(_em);
 		SCENEMANAGER->changeScene("스테이지2");
 		SOUNDMANAGER->stop("MainStage");
 	}
@@ -220,7 +221,6 @@ void tempStage::pixelCollision()
 	}
 
 	//에너미 충돌
-	//위의 방식대로 했는데 에너미가 열심히 비벼서 뚫고 지나가기에 일단 그전에 코드를 적용하여 작성하였음
 	for (int i = 0; i < _em->getVEnemy().size(); i++)
 	{
 		bool isCollision = false;

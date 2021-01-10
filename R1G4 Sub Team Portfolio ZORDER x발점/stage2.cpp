@@ -7,6 +7,9 @@ HRESULT stage2::init()
 	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
 	_player = new kyoko;
 	_player->init();
+	_em = new enemyManager;
+	_em->init(2);
+	_em->setKyokoMemory(_player);
 
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
@@ -34,8 +37,10 @@ void stage2::update()
 	UI->update();
 
 	KEYANIMANAGER->update();
+	EFFECTMANAGER->update();
 	//pixelCollision();
 	_player->update();
+	_em->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage2);
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getRect(), &Lobj.rc))
@@ -52,8 +57,8 @@ void stage2::update()
 void stage2::render()
 {
 	stage2->render(getMemDC(), 0, 0, camera);
-
 	_player->render(camera);
+	_em->render(camera);
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha,camera);
 	Robj.img->alphaRender(getMemDC(), Robj.x, Robj.y,alpha, camera);
 	if (KEYMANAGER->isToggleKey(VK_TAB))
