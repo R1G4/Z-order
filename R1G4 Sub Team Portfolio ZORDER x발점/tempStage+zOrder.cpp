@@ -16,33 +16,55 @@ void tempStage::zOrder()
 	//정렬
 	quickSort(0, _vZorder.size() - 1);
 
-
-
-	//랜더
-	for (int i = 0; i < _vZorder.size() ; ++i)
+	if (_player->getIsJump() && _isDesk)
 	{
-		if (_player->getShadow().bottom == _vZorder[i])
+		//랜더
+		for (int i = 0; i < _vZorder.size(); ++i)
 		{
-			_player->render(camera);
-		}
-		for (int j= 0; j < 8; j++)
-		{
-			if (chair[j].rc.bottom == _vZorder[i])
+			for (int j = 0; j < 8; j++)
 			{
-				chair[j].img->render(getMemDC(), chair[j].rc.left, chair[j].rc.top, camera);
+				if (chair[j].rc.bottom == _vZorder[i])
+				{
+					chair[j].img->render(getMemDC(), chair[j].rc.left, chair[j].rc.top, camera);
+				}
+			}
+			for (int k = 0; k < _em->getVEnemy().size(); ++k)
+			{
+				if (_em->getVEnemy()[k]->getShadowRc().bottom == _vZorder[i])
+				{
+					_em->getVEnemy()[k]->render(camera);
+				}
 			}
 		}
-		for (int k = 0; k < _em->getVEnemy().size(); ++k)
+		_player->render(camera);
+	}
+	else
+	{
+		//랜더
+		for (int i = 0; i < _vZorder.size(); ++i)
 		{
-			if (_em->getVEnemy()[k]->getShadowRc().bottom == _vZorder[i])
+			if (_player->getShadow().bottom == _vZorder[i])
 			{
-				//_em->render(camera);
-				_em->getVEnemy()[k]->render(camera);
+				_player->render(camera);
+			}
+			for (int j = 0; j < 8; j++)
+			{
+				if (chair[j].rc.bottom == _vZorder[i])
+				{
+					chair[j].img->render(getMemDC(), chair[j].rc.left, chair[j].rc.top, camera);
+				}
+			}
+			for (int k = 0; k < _em->getVEnemy().size(); ++k)
+			{
+				if (_em->getVEnemy()[k]->getShadowRc().bottom == _vZorder[i])
+				{
+					_em->getVEnemy()[k]->render(camera);
+				}
 			}
 		}
 	}
-
 	_vZorder.clear();
+
 }
 void tempStage::quickSort(int a, int b)
 {

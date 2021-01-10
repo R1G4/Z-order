@@ -57,21 +57,21 @@ void tempStage::render()
 {
 	stage1->render(getMemDC(), 0, 0, camera);
 
-	//
-	//if (KEYMANAGER->isToggleKey(VK_TAB))
-	//{
-	//	stage1Pic->render(getMemDC(), 0, 0, camera);
-	//	Rectangle(getMemDC(), _door_rc, camera);
 
-	//	Rectangle(getMemDC(), tempRcU.rc, camera);
-	//	Rectangle(getMemDC(), tempRcD.rc, camera);
-	//}
-	//_player->render(camera);
-	//_em->render(camera);
-	//for (int i = 0; i < 8; i++)
-	//{
-	//	chair[i].img->render(getMemDC(), chair[i].rc.left, chair[i].rc.top, camera);
-	//}
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		stage1Pic->render(getMemDC(), 0, 0, camera);
+		Rectangle(getMemDC(), _door_rc, camera);
+
+		Rectangle(getMemDC(), tempRcU.rc, camera);
+		Rectangle(getMemDC(), tempRcD.rc, camera);
+	}
+	_player->render(camera);
+	_em->render(camera);
+	for (int i = 0; i < 8; i++)
+	{
+		chair[i].img->render(getMemDC(), chair[i].rc.left, chair[i].rc.top, camera);
+	}
 	zOrder();
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -81,7 +81,7 @@ void tempStage::render()
 		Rectangle(getMemDC(), tempRcU.rc, camera);
 		Rectangle(getMemDC(), tempRcD.rc, camera);
 	}
-	//ZORDER->render(camera);
+
 }
 
 void tempStage::changeMap()
@@ -111,18 +111,50 @@ void tempStage::pixelCollision()
 		int g2 = GetGValue(color2);
 		int b2 = GetBValue(color2);
 
-		if ((r1 == 255 && g1 == 0 && b1 == 0) || (r1 == 0 && g1 == 255 && b1 == 0))
+		if (r1 == 255 && g1 == 0 && b1 == 0)
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 1);
 			_player->setNoSpeed(true);
+
 			break;
 		}
+		if ((r1 == 0 && g1 == 255 && b1 == 0) && !_player->getIsJump())
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 1);
+			_player->setNoSpeed(true);
+			_isDesk = true;
+			break;
+		}
+		else _isDesk = false;
 
-		if ((r2 == 255 && g2 == 0 && b2 == 0) || (r2 == 0 && g2 == 255 && b2 == 0))
+		if (r1 == 255 && g1 == 255 && b1 == 0)
+		{
+			if (_player->getShadow().top <= _player->getRect().bottom)
+			{
+
+			}
+		}
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 1);
 			_player->setNoSpeed(true);
 			break;
+		}
+		if ((r2 == 0 && g2 == 255 && b2 == 0) && !_player->getIsJump())
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 1);
+			_player->setNoSpeed(true);
+			_isDesk = true;
+			break;
+		}
+		else _isDesk = false;
+		if (r2 == 255 && g2 == 255 && b2 == 0)
+		{
+			if (_player->getShadow().top <= _player->getRect().bottom)
+			{
+
+			}
 		}
 	}
 
@@ -146,7 +178,7 @@ void tempStage::pixelCollision()
 			_player->setNoSpeed(true);
 			break;
 		}
-		if ((r1 == 0 && g1 == 255 && b1 == 0))
+		if ((r1 == 0 && g1 == 255 && b1 == 0) && !_player->getIsJump())
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
@@ -159,7 +191,7 @@ void tempStage::pixelCollision()
 			_player->setNoSpeed(true);
 			break;
 		}
-		if (r2 == 0 && g2 == 255 && b2 == 0)
+		if ((r2 == 0 && g2 == 255 && b2 == 0) && !_player->getIsJump())
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);

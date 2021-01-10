@@ -1215,7 +1215,7 @@ void kyoko::jumpMotion()
 				_kyokoMotion->start();
 			}
 
-			_jump->jumping(&_i_x, &_i_y, 12.0f, 0.5f);
+			_jump->jumping(&_i_x, &_i_y, 20.0f, 1.0f);
 			_shadow_jump->jumping(&_x, &_y, 0.0f, 0.0f);
 		}
 	}
