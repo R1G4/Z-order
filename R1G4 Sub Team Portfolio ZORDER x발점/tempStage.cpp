@@ -56,6 +56,12 @@ void tempStage::update()
 	KEYANIMANAGER->update();
 	EFFECTMANAGER->update();
 	//changeMap();
+
+	RECT temp;
+	if (IntersectRect(&temp, &_player->getAttackRect(), &chair[1].rc) && _player->getIsAttack())
+	{
+		cout << "Å¸°Ý" << endl;
+	}
 }
 
 void tempStage::render()
@@ -84,7 +90,15 @@ void tempStage::render()
 		Rectangle(getMemDC(), _door_rc, camera);
 		for (int i = 0; i < 8; i++) { Rectangle(getMemDC(), chair[i].rc, camera); }
 		Rectangle(getMemDC(), tempRcU.rc, camera);
-		Rectangle(getMemDC(), tempRcD.rc, camera);
+		Rectangle(getMemDC(), tempRcD.rc, camera);		
+		Rectangle(getMemDC(), _player->getDebugRect(), camera);
+		Rectangle(getMemDC(), _player->getDebugShadow(), camera);
+
+		HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+		Rectangle(getMemDC(), _player->getDebugAttack(), camera);
+		SelectObject(getMemDC(), oldBrush);
+		DeleteObject(brush);
 	}
 	UI->render();
 

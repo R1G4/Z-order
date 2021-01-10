@@ -62,6 +62,7 @@ private:
 	RECT _rc;					// 충돌용 렉트
 	RECT _image_rc;				// 랜딩용 렉트
 	RECT _shadow_rc;			// 그림자용 렉트 (z-order)
+	RECT _attack_rc;			// 공격용 렉트
 	RECT _m_gauge_rc;			// 마하킥 게이지 렉트
 
 	RECT _black_rc[2];
@@ -108,9 +109,12 @@ public:
 
 	animation* getKyokoMotion() { return _kyokoMotion; }
 	void setKyokoMotion(animation* ani) { _kyokoMotion = ani; }
+
 	RECT getShadow() { return _shadow_rc; }
 	RECT getRect() { return _rc; }
 	RECT getImageRect() { return _image_rc; }
+	RECT getAttackRect() { return _attack_rc; }
+
 	POINT getKyokoPoint() {
 		POINT _point;
 		_point.x = _x;
@@ -124,7 +128,14 @@ public:
 	}
 
 	BOOL getIsJump() { return _isJump; }
+	BOOL getIsAttack() { return _isAttack; }
+
+	RECT& getDebugShadow() { return _shadow_rc; }
+	RECT& getDebugRect() { return _rc; }
+	RECT& getDebugAttack() { return _attack_rc; }
+
 	int getMaha() { return _maha_count; }
+
 	void setNoSpeed(bool isCollision) { _isCollision = isCollision; }
 };
 
