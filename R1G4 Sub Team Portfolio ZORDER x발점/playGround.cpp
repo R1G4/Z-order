@@ -15,7 +15,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	addScene();
 	addSound();
-	SCENEMANAGER->changeScene("·Îµù¾À");
+	SCENEMANAGER->changeScene("·Îµù¾À",0);
 
 	return S_OK;
 }

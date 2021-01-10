@@ -17,6 +17,9 @@ HRESULT stage2::init()
 	Robj.y = 82;
 	Robj.img = IMAGEMANAGER->findImage("¿ì±âµÕ");
 	Robj.rc = RectMake(Robj.x, Robj.y, 100, Robj.img->getHeight());
+	UI = new UIManager;
+	UI->setKyokoMemory(_player);
+	UI->init();
 
 	alpha = 255;
 	return S_OK;
@@ -28,6 +31,8 @@ void stage2::release()
 
 void stage2::update()
 {
+	UI->update();
+
 	KEYANIMANAGER->update();
 	//pixelCollision();
 	_player->update();
@@ -57,6 +62,7 @@ void stage2::render()
 		Rectangle(getMemDC(), Lobj.rc, camera);
 		Rectangle(getMemDC(), Robj.rc, camera);
 	}
+	UI->render();
 
 }
 

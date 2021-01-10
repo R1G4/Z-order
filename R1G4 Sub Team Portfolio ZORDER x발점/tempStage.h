@@ -2,7 +2,7 @@
 #include "gameNode.h"
 #include "kyoko.h"
 #include "enemyManager.h"
-
+#include "UIManager.h"
 struct tagChair
 {
 	RECT rc;
@@ -15,7 +15,7 @@ class tempStage :
 {
 private:
 	RECT _door_rc;
-
+	UIManager* UI;
 	tagChair tempRcU;
 	tagChair tempRcD;
 	tagChair chair[8];

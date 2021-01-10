@@ -26,6 +26,9 @@ HRESULT tempStage::init()
 	tempRcU.rc = RectMake(WINSIZEX / 2 - 157, WINSIZEY / 2 + 238, 100, 10);
 	tempRcD.rc = RectMake(WINSIZEX / 2 - 326, WINSIZEY / 2 + 405, 100, 10);
 
+	UI = new UIManager;
+	UI->setKyokoMemory(_player);
+	UI->init();
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -44,6 +47,8 @@ void tempStage::release()
 
 void tempStage::update()
 {
+	UI->update();
+
 	pixelCollision();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
@@ -81,6 +86,7 @@ void tempStage::render()
 		Rectangle(getMemDC(), tempRcU.rc, camera);
 		Rectangle(getMemDC(), tempRcD.rc, camera);
 	}
+	UI->render();
 
 }
 

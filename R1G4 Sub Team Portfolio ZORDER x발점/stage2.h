@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "kyoko.h"
-
+#include"UIManager.h"
 struct tagObj
 {
 	RECT rc;
@@ -13,7 +13,7 @@ class stage2 : public gameNode
 {
 
 private:
-
+	UIManager* UI;
 	POINT camera;
 	tagObj Lobj;
 	tagObj Robj;

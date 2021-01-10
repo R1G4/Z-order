@@ -27,6 +27,7 @@
 #include "txtData.h"
 #include "CameraManager.h"
 #include "videoManager.h"
+#include "StatusManager.h"
 using namespace std;
 using namespace TFIVE_UTIL;
 
@@ -53,6 +54,7 @@ using namespace TFIVE_UTIL;
 #define INIDATA iniDataManager::getSingleton()
 #define VIDEOMANAGER videoManager::getSingleton()
 #define CAMERAMANAGER CameraManager::getSingleton()
+#define STATUSMANAGER StatusManager::getSingleton()
 #define SAFE_DELETE(p) {if(p) {delete(p); (p)=NULL;}}
 #define SAFE_RELEASE(p) {if(p) {(p)->release(); (p)=NULL;}}
 

@@ -8,21 +8,6 @@ HRESULT kyoko::init()
 	_image = IMAGEMANAGER->findImage("쿄코_일반");
 	_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
 	_shadow = IMAGEMANAGER->findImage("그림자");
-	_hpUI = IMAGEMANAGER->findImage("HPUI");
-	_mahaGauge = IMAGEMANAGER->findImage("MahaGauge");
-
-	_black_rc[0] = RectMake(0, 0, WINSIZEX, 82);
-	_black_rc[1] = RectMake(0, WINSIZEY - 82, WINSIZEX, 82);
-
-	for (int i = 0; i < 24; i++)
-	{
-		HPBAR* hp1;
-		hp1 = new HPBAR;
-		hp1->image = IMAGEMANAGER->findImage("HPBar");
-		hp1->num = i;
-		_hp.push_back(hp1);
-	}
-
 	_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
 
 	_r_count = 0;
@@ -36,7 +21,6 @@ HRESULT kyoko::init()
 	_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
 	_image_rc = RectMakeCenter((_shadow_rc.left + _shadow_rc.right) / 2, _shadow_rc.top - 100,
 		_image->getFrameWidth(), _image->getFrameHeight());
-	_m_gauge_rc = RectMake(_mahaGauge->getX(), _mahaGauge->getY(), _maha_count, _mahaGauge->getHeight());
 
 	_i_x = (_shadow_rc.left + _shadow_rc.right) / 2;
 	_i_y = _shadow_rc.top - 80;
@@ -106,22 +90,6 @@ void kyoko::render()
 	}
 	else
 		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top, _kyokoMotion);
-
-	HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
-	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
-	Rectangle(getMemDC(), _black_rc[0]);
-	Rectangle(getMemDC(), _black_rc[1]);
-	SelectObject(getMemDC(), oldBrush);
-	DeleteObject(brush);
-
-	_hpUI->render(getMemDC(), 0, 0);
-	_mahaGauge->render(getMemDC(), 189, 88);
-
-	for (_ihp = _hp.begin(); _ihp != _hp.end(); ++_ihp)
-	{
-		(*_ihp)->image->render(getMemDC(), 190 + (*_ihp)->num * 27, 56);
-	}
-
 	// 충돌처리를 위한 렉트(디버깅)
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -140,22 +108,6 @@ void kyoko::render(POINT camera)
 	}
 	else
 		_image->aniRender(getMemDC(), _image_rc.left, _image_rc.top, _kyokoMotion, camera);
-
-
-	HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
-	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
-	Rectangle(getMemDC(), _black_rc[0]);
-	Rectangle(getMemDC(), _black_rc[1]);
-	SelectObject(getMemDC(), oldBrush);
-	DeleteObject(brush);
-
-	_hpUI->render(getMemDC(), 0, 0);
-	_mahaGauge->render(getMemDC(), 189, 88, 0, 0, _maha_count, 18);
-
-	for (_ihp = _hp.begin(); _ihp != _hp.end(); ++_ihp)
-	{
-		(*_ihp)->image->render(getMemDC(), 189 + (*_ihp)->num * 16, 56);
-	}
 
 	// 충돌처리를 위한 렉트
 	if (KEYMANAGER->isToggleKey(VK_TAB))

@@ -43,6 +43,37 @@ HRESULT loadingScene::init()
 	return S_OK;
 }
 
+HRESULT loadingScene::init(int SceneNum)
+{
+	nextScene = SceneNum;
+	_back = IMAGEMANAGER->addImage("검정", "image/loading/loadingBack.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	_background = IMAGEMANAGER->addFrameImage("로딩배경", "image/loading/로딩.bmp", 1395, 220, 5, 1, true, RGB(255, 0, 255));
+
+	//_loadingBar = new progressBar;
+	//_loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
+	//_loadingBar->setGauge(0, 0);
+
+	//쓰레드를 사용해보자
+	CreateThread(
+		NULL,				//스레드의 보안속성(자식윈도우가 존재할때)
+		NULL,				//스레드의 스택크기(NULL로 두면 메인쓰레드 크기와 동일)
+		threadFunction,		//스레드 사용할 함수 명
+		this,				//스레드 매개변수(this로 두면 본 클래스)
+		NULL,				//스레드의 특성(기다릴지, 바로 실행(NULL이면 요게 해당))
+		NULL				//스레드 생성 후 스레드의 ID 넘겨줌 보통은 NULL로 둔다
+	);
+
+	_loading = new animation;
+	_loading->init(_background->getWidth(), _background->getHeight(),
+		_background->getFrameWidth(), _background->getFrameHeight());
+	_loading->setDefPlayFrame(false, true);
+	_loading->setFPS(1);
+
+	_loading->start();
+
+	return S_OK;
+}
+
 void loadingScene::release()
 {
 	SAFE_DELETE(_loadingBar);
@@ -59,7 +90,20 @@ void loadingScene::update()
 	//로딩이 다 되면
 	if (_currentCount == LOADINGMAX)
 	{
-		SCENEMANAGER->changeScene("스테이지1");
+		switch (nextScene)
+		{
+		case 0:
+			STATUSMANAGER->setHp(24);
+			STATUSMANAGER->setHpBar("HPBar");
+			SCENEMANAGER->changeScene("스테이지1");
+			break;
+		case 1:
+			SCENEMANAGER->changeScene("보스스테이지");
+			break;
+		case 2:
+			SCENEMANAGER->changeScene("타이틀");
+			break;
+		}
 	}
 }
 

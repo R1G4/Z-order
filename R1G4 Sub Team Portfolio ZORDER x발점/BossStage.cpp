@@ -10,6 +10,9 @@ HRESULT BossStage::init()
 	_player->init();
 
 	_door_rc = RectMake(100, 450, 180, 200);
+	UI = new UIManager;
+	UI->setKyokoMemory(_player);
+	UI->init();
 
 	return S_OK;
 }
@@ -23,6 +26,7 @@ void BossStage::update()
 	KEYANIMANAGER->update();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
+	UI->update();
 
 	changeMap();
 }
@@ -37,6 +41,8 @@ void BossStage::render()
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
 	_player->render(camera);
+	UI->render();
+
 }
 
 void BossStage::changeMap()

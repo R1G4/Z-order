@@ -124,7 +124,7 @@ public:
 	}
 
 	BOOL getIsJump() { return _isJump; }
-
+	int getMaha() { return _maha_count; }
 	void setNoSpeed(bool isCollision) { _isCollision = isCollision; }
 };
 
