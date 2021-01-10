@@ -13,14 +13,14 @@ HRESULT tempStage::init()
 	_em->setKyokoMemory(_player);
 
 	//의자 렉트
-	chair[0].rc = RectMake(WINSIZEX / 2 - 222, WINSIZEY / 2 + 135, 100, 200);
-	chair[1].rc = RectMake(WINSIZEX / 2 + 42, WINSIZEY / 2 + 128, 100, 200);
-	chair[2].rc = RectMake(WINSIZEX / 2 + 322, WINSIZEY / 2 + 135, 100,200);
-	chair[3].rc = RectMake(WINSIZEX / 2 + 597, WINSIZEY / 2 + 135, 100,200);
-	chair[4].rc = RectMake(WINSIZEX / 2 - 396, WINSIZEY / 2 + 304, 100, 200);
-	chair[5].rc = RectMake(WINSIZEX / 2 - 127, WINSIZEY / 2 + 304, 100, 200);
-	chair[6].rc = RectMake(WINSIZEX / 2 + 150, WINSIZEY / 2 + 304, 100,200);
-	chair[7].rc = RectMake(WINSIZEX / 2 + 427, WINSIZEY / 2 + 304, 100,200);
+	chair[0].rc = RectMake(WINSIZEX / 2 - 222, WINSIZEY / 2 + 135, 100, 170);
+	chair[1].rc = RectMake(WINSIZEX / 2 + 42, WINSIZEY / 2 + 135, 100, 170);
+	chair[2].rc = RectMake(WINSIZEX / 2 + 322, WINSIZEY / 2 + 135, 100, 170);
+	chair[3].rc = RectMake(WINSIZEX / 2 + 597, WINSIZEY / 2 + 135, 100, 170);
+	chair[4].rc = RectMake(WINSIZEX / 2 - 396, WINSIZEY / 2 + 304, 100, 170);
+	chair[5].rc = RectMake(WINSIZEX / 2 - 127, WINSIZEY / 2 + 304, 100, 170);
+	chair[6].rc = RectMake(WINSIZEX / 2 + 150, WINSIZEY / 2 + 304, 100, 170);
+	chair[7].rc = RectMake(WINSIZEX / 2 + 427, WINSIZEY / 2 + 304, 100, 170);
 
 	//Z 구분용렉트
 	tempRcU.rc = RectMake(WINSIZEX / 2 - 157, WINSIZEY / 2 + 238, 100, 10);
@@ -140,14 +140,26 @@ void tempStage::pixelCollision()
 		int g2 = GetGValue(color2);
 		int b2 = GetBValue(color2);
 
-		if ((r1 == 255 && g1 == 0 && b1 == 0) || (r1 == 0 && g1 == 255 && b1 == 0))
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+		if ((r1 == 0 && g1 == 255 && b1 == 0))
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
 			break;
 		}
 
-		if ((r2 == 255 && g2 == 0 && b2 == 0) || (r2 == 0 && g2 == 255 && b2 == 0))
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+		if (r2 == 0 && g2 == 255 && b2 == 0)
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
 			_player->setNoSpeed(true);
