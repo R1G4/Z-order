@@ -45,6 +45,9 @@ public:
 	void stop(string keyName);
 	void pause(string keyName);
 	void resume(string keyName);
+	void setVolume(float volume);
+	void setPoint(string keyName, float portion);
+	float getPortion(string keyName);
 
 	//È£¿Á½ÃÀÌ ¸ô¶ó¼­ ¸¸µé¾îµÒ
 	bool isPlaySound(string keyName);
