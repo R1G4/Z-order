@@ -2,7 +2,7 @@
 #include "soundManager.h"
 
 soundManager::soundManager()
-	: _system(nullptr), 
+	: _system(nullptr),
 	_channel(nullptr),
 	_sound(nullptr)
 {
