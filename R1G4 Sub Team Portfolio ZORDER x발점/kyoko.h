@@ -55,6 +55,8 @@ private:
 	int _z_count;				// 연속 공격 카운트
 	int _r_count;				// 달리기용 카운트
 	int _maha_count;			// 마하킥 게이지카운트
+	int _frame_count;			// 계산용
+
 	float _x, _y;				// 그림자 위치
 	float _i_x, _i_y;			// 이미지 위치
 	float _speed;
@@ -78,6 +80,7 @@ private:
 	bool _isMahaKick;			// 게이지 채우기용 bool
 	bool _isRunning;			// 달리기용 bool
 	bool _isCollision;			// 픽셀충돌용 bool
+	bool _isNextAttack;			// 다음공격용 bool
 public:
 	kyoko() {};
 	~kyoko() {};

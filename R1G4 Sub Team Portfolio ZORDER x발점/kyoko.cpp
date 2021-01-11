@@ -211,22 +211,22 @@ void kyoko::addMotionAni()
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftRun", "쿄코_달리기", leftRun, 16, 15, true, 1);
 
 	int arrRightAttack_1[] = { 0,1,2,3,4,5 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttack1", "쿄코_공격1", arrRightAttack_1, 6, 10, false, rightFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttack1", "쿄코_공격1", arrRightAttack_1, 6, 15, false, rightFire, this, 1);
 
 	int arrLeftAttack_1[] = { 11,10,9,8,7,6 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack1", "쿄코_공격1", arrLeftAttack_1, 6, 10, false, leftFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack1", "쿄코_공격1", arrLeftAttack_1, 6, 15, false, leftFire, this, 1);
 
 	int arrRightAttack_2[] = { 0,1,2,3,4,5,6 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttack2", "쿄코_공격2", arrRightAttack_2, 7, 10, false, rightFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttack2", "쿄코_공격2", arrRightAttack_2, 7, 15, false, rightFire, this, 1);
 
 	int arrLeftAttack_2[] = { 13,12,11,10,9,8,7 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack2", "쿄코_공격2", arrLeftAttack_2, 7, 10, false, leftFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack2", "쿄코_공격2", arrLeftAttack_2, 7, 15, false, leftFire, this, 1);
 
 	int arrRightAttack_3[] = { 0,1,2,3,4,5,6,7,8 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttack3", "쿄코_공격3", arrRightAttack_3, 9, 10, false, rightFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttack3", "쿄코_공격3", arrRightAttack_3, 9, 15, false, rightFire, this, 1);
 
 	int arrLeftAttack_3[] = { 17,16,15,14,13,12,11,10,9 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack3", "쿄코_공격3", arrLeftAttack_3, 9, 10, false, leftFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack3", "쿄코_공격3", arrLeftAttack_3, 9, 15, false, leftFire, this, 1);
 
 	int arrRightAttack_dash[] = { 0,1,2,3,4,5,6,7 };
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttackDash", "쿄코_대쉬공격", arrRightAttack_dash, 8, 15, false, rightFire, this, 1);
@@ -862,10 +862,6 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack1");
 				_kyokoMotion->start();
 
-				// 타격 범위
-				_attack_rc.right = _rc.right + 100;
-				_attack_rc.bottom = _rc.bottom;
-
 				_z_count = 1;
 			}
 			if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
@@ -875,11 +871,6 @@ void kyoko::attackMotion()
 				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_1;
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack1");
 				_kyokoMotion->start();
-
-				// 타격 범위
-				_attack_rc.left = _rc.left - 100;
-				_attack_rc.right = _rc.right;
-				_attack_rc.bottom = _rc.bottom;
 
 				_z_count = 1;
 			}
@@ -898,7 +889,6 @@ void kyoko::attackMotion()
 
 				_z_count = 0;
 			}
-
 			if (_kyokoDirection == KYOKODIRECTION_LEFT_RUN)
 			{
 				_image = IMAGEMANAGER->findImage("쿄코_대쉬공격");
@@ -1021,68 +1011,21 @@ void kyoko::attackMotion()
 		}
 		else if (_z_count == 1)
 		{
+			_frame_count = 0;
 			// 일반 공격에서 연속공격
 			if (_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_1)
-			{
-				_kyokoMotion->stop();
-				_image = IMAGEMANAGER->findImage("쿄코_공격2");
-				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_2;
-				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack2");
-				_kyokoMotion->start();
-
-				// 타격 범위
-				_attack_rc.right = _rc.right + 100;
-				_attack_rc.bottom = _rc.bottom;
-
-				_z_count = 2;
-			}
+				_isNextAttack = true;
 			if (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_1)
-			{
-				_kyokoMotion->stop();
-				_image = IMAGEMANAGER->findImage("쿄코_공격2");
-				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_2;
-				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack2");
-				_kyokoMotion->start();
-
-				// 타격 범위
-				_attack_rc.left = _rc.left - 100;
-				_attack_rc.right = _rc.right;
-				_attack_rc.bottom = _rc.bottom;
-
-				_z_count = 2;
-			}
+				_isNextAttack = true;
 		}
 		else if (_z_count == 2)
 		{
+			_frame_count = 0;
+			// 일반 공격에서 연속공격
 			if (_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_2)
-			{
-				_kyokoMotion->stop();
-				_image = IMAGEMANAGER->findImage("쿄코_공격3");
-				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_3;
-				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack3");
-				_kyokoMotion->start();
-
-				// 타격 범위
-				_attack_rc.right = _rc.right + 100;
-				_attack_rc.bottom = _rc.bottom;
-
-				_z_count = 3;
-			}
+				_isNextAttack = true;
 			if (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_2)
-			{
-				_kyokoMotion->stop();
-				_image = IMAGEMANAGER->findImage("쿄코_공격3");
-				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_3;
-				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack3");
-				_kyokoMotion->start();
-
-				// 타격 범위
-				_attack_rc.left = _rc.left - 100;
-				_attack_rc.right = _rc.right;
-				_attack_rc.bottom = _rc.bottom;
-
-				_z_count = 3;
-			}
+				_isNextAttack = true;
 		}
 	}
 
@@ -1098,11 +1041,6 @@ void kyoko::attackMotion()
 			_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_STRONG;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack_s");
 			_kyokoMotion->start();
-
-			// 타격 범위
-			_attack_rc.right = _rc.right + 100;
-			_attack_rc.bottom = _rc.bottom;
-
 		}
 		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
 			_kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
@@ -1112,12 +1050,6 @@ void kyoko::attackMotion()
 			_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_STRONG;
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack_s");
 			_kyokoMotion->start();
-
-			// 타격 범위
-			_attack_rc.left = _rc.left - 100;
-			_attack_rc.right = _rc.right;
-			_attack_rc.bottom = _rc.bottom;
-
 		}
 	}
 
@@ -1149,6 +1081,196 @@ void kyoko::attackMotion()
 		}
 	}
 
+	// 일반공격1 렉트 조정
+	if (_kyokoMotion->getNowPlayIndex() == 2 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_1)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "일반공격1" << endl;
+
+			// 타격 범위
+			_attack_rc.right = _rc.right + 100;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+	if (_kyokoMotion->getNowPlayIndex() == 2 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_1)
+	{	
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "일반공격1" << endl;
+
+			// 타격 범위
+			_attack_rc.left = _rc.left - 100;
+			_attack_rc.right = _rc.right;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+
+	// 일반공격2 렉트 조정
+	if (_kyokoMotion->getNowPlayIndex() == 3 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_2)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "일반공격2" << endl;
+
+			// 타격 범위
+			_attack_rc.right = _rc.right + 100;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+	if (_kyokoMotion->getNowPlayIndex() == 3 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_2)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "일반공격2" << endl;
+
+			// 타격 범위
+			_attack_rc.left = _rc.left - 100;
+			_attack_rc.right = _rc.right;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+
+	// 일반공격3 렉트 조정
+	if (_kyokoMotion->getNowPlayIndex() == 3 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_3)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "일반공격3" << endl;
+
+			// 타격 범위
+			_attack_rc.right = _rc.right + 100;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+	if (_kyokoMotion->getNowPlayIndex() == 3 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_3)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "일반공격3" << endl;
+
+			// 타격 범위
+			_attack_rc.left = _rc.left - 100;
+			_attack_rc.right = _rc.right;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+
+	// 강공격 렉트 조정
+	if (_kyokoMotion->getNowPlayIndex() == 5 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_STRONG)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "강공격" << endl;
+
+			// 타격 범위
+			_attack_rc.right = _rc.right + 100;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+	if (_kyokoMotion->getNowPlayIndex() == 5 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_STRONG)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "강공격" << endl;
+
+			// 타격 범위
+			_attack_rc.left = _rc.left - 100;
+			_attack_rc.right = _rc.right;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+
+	// 마하킥 렉트 조정
+	if ((_kyokoMotion->getNowPlayIndex() == 4 || _kyokoMotion->getNowPlayIndex() == 9 || _kyokoMotion->getNowPlayIndex() == 15) && 
+		_kyokoDirection == KYOKODIRECTION_RIGHT_MAHAKICK)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "강공격" << endl;
+
+			// 타격 범위
+			_attack_rc.right = _rc.right + 100;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+	if ((_kyokoMotion->getNowPlayIndex() == 4 || _kyokoMotion->getNowPlayIndex() == 9 || _kyokoMotion->getNowPlayIndex() == 15) &&
+		_kyokoDirection == KYOKODIRECTION_LEFT_MAHAKICK)
+	{
+		_frame_count++;
+		if (_frame_count >= 3)
+		{
+			_frame_count = 0;
+			cout << "강공격" << endl;
+
+			// 타격 범위
+			_attack_rc.left = _rc.left - 100;
+			_attack_rc.right = _rc.right;
+			_attack_rc.bottom = _rc.bottom;
+		}
+	}
+
+	// 자연스러운 연속공격을 위한 조건
+	if (_kyokoMotion->getNowPlayIndex() == 5 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_1 && _isNextAttack)
+	{
+		_kyokoMotion->stop();
+		_image = IMAGEMANAGER->findImage("쿄코_공격2");
+		_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_2;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack2");
+		_kyokoMotion->start();
+		_z_count = 2;
+		_isNextAttack = false;
+	}
+	if (_kyokoMotion->getNowPlayIndex() == 5 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_1 && _isNextAttack)
+	{
+		_kyokoMotion->stop();
+		_image = IMAGEMANAGER->findImage("쿄코_공격2");
+		_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_2;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack2");
+		_kyokoMotion->start();
+		_z_count = 2;
+		_isNextAttack = false;
+	}
+
+	if (_kyokoMotion->getNowPlayIndex() == 6 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACK_2 && _isNextAttack)
+	{
+		_kyokoMotion->stop();
+		_image = IMAGEMANAGER->findImage("쿄코_공격3");
+		_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACK_3;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack3");
+		_kyokoMotion->start();
+		_z_count = 3;
+		_isNextAttack = false;
+	}
+	if (_kyokoMotion->getNowPlayIndex() == 6 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACK_2 && _isNextAttack)
+	{
+		_kyokoMotion->stop();
+		_image = IMAGEMANAGER->findImage("쿄코_공격3");
+		_kyokoDirection = KYOKODIRECTION_LEFT_ATTACK_3;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack3");
+		_kyokoMotion->start();
+		_z_count = 3;
+		_isNextAttack = false;
+	}
+	
 	// 공격후 idle상태로 갈때 연속공격 카운트를 0으로
 	if (_kyokoDirection == KYOKODIRECTION_RIGHT_IDLE || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
 		_kyokoDirection == KYOKODIRECTION_RIGHT_WALK || _kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
@@ -1157,6 +1279,7 @@ void kyoko::attackMotion()
 		_isAttack = false;
 		_isMahaKick = false;
 		_z_count = 0;
+		_frame_count = 0;
 	}
 
 	// 필살기 게이지 채우기 (+예외처리)
