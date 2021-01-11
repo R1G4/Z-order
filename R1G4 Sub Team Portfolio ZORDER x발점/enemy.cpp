@@ -105,13 +105,21 @@ void enemy::effectPoint(DIRECTION direction)
 		EFFECTMANAGER->play("Enemy_Point", _x + 55, _enemyRc.top - 55);
 		break;
 	}
-
 }
 
-void enemy::effectStun()
+void enemy::effectStun(DIRECTION direction)
 {
-	//스턴효과 추가
+	switch (direction)
+	{
+	case enemy::LEFT:
+		EFFECTMANAGER->play("Enemy_Stun", _x - 55, _enemyRc.top - 55);
+		break;
+	case enemy::RIGHT:
+		EFFECTMANAGER->play("Enemy_Stun", _x + 55, _enemyRc.top - 55);
+		break;
+	}
 }
+
 
 void enemy::render(POINT camera)
 {

@@ -31,6 +31,18 @@ public:
 		RIGHT
 	};
 protected:
+	struct attackInfo
+	{
+		int startIndex;
+		int endIndex;
+		float plusY;
+		float width;
+		float height;
+		int damage;
+		bool isTouch;
+	};
+	map<STATE, attackInfo> _mAttackInfo;
+	multimap<STATE, attackInfo> _mmAttackInfo;
 	kyoko* _kyoko;
 	float _x, _y;			//에너미 좌표
 	float _angle;			//에너미 이동 각도
@@ -39,6 +51,7 @@ protected:
 	RECT _rc;				//충돌용 렉트
 	RECT _enemyRc;			//에너미 렉트
 	RECT _shadowRc;			//그림자 렉트
+	RECT _attackRc;			//공격용 렉트
 	animation* _motion;		//선택된 애니메이션
 	DIRECTION _direction;	//에너미 방향
 	STATE _state;			//에너미 상태
@@ -46,9 +59,9 @@ protected:
 	bool _isAttack;			//공격 구분
 	bool _isRunning;		//달리기 구분
 	bool _isFollow;			//추적 구분
+	bool _isCollision;
 	int _questTimer;		//탐색 및 휴식 난수
 	int _questMin;			//최소 탐색 간격 난수
-	bool _isCollision;
 	enemyAttack* _enemyAttack;	//에너미 공격 패턴 클래스
 
 		//에너미 이미지
@@ -112,7 +125,7 @@ public:
 	virtual void update();
 	virtual void render();
 	void effectPoint(DIRECTION direction);
-	void effectStun();
+	void effectStun(DIRECTION direction);;
 	virtual void render(POINT camera);
 
 	//그 외 일단 추가한 겟터 셋터
@@ -125,6 +138,12 @@ public:
 	RECT getRect() { return _rc; }
 	RECT getEnemyRect() { return _enemyRc; }
 	RECT getShadowRc() { return _shadowRc; }
+
+	//디버그용 렉트
+	RECT& getDebugRect() { return _rc; }
+	RECT& getDebugEnemyRect() { return _enemyRc; }
+	RECT& getDebugShadowRc() { return _shadowRc; }
+	RECT& getDebugAttackRc() { return _attackRc; }
 
 	//방향
 	DIRECTION getDirection() { return _direction; }

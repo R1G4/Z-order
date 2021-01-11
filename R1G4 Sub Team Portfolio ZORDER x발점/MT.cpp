@@ -21,6 +21,8 @@ HRESULT MT::init(float x, float y, STATE state, DIRECTION direction)
 	//해당 에너미 스피드
 	_speed = 1.8f;
 
+	setAttackInfo();
+
 	return S_OK;
 }
 
@@ -28,8 +30,51 @@ void MT::release()
 {
 }
 
+void MT::setAttackInfo()
+{
+	attackInfo attackTemp;
+	attackTemp.damage = 1;
+	attackTemp.isTouch = false;
+
+	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
+
+	//일반공격1
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 5;
+	attackTemp.plusY = 30;
+	attackTemp.width = 70;
+	attackTemp.height = 40;
+	_mAttackInfo.insert(make_pair(ATTACK, attackTemp));
+
+	//콤보 1
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 5;
+	attackTemp.plusY = 30;
+	attackTemp.width = 70;
+	attackTemp.height = 40;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_1, attackTemp));
+
+	//콤보2
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 4;
+	attackTemp.plusY = 80;
+	attackTemp.width = 70;
+	attackTemp.height = 50;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_2, attackTemp));
+
+	//콤보3
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 8;
+	attackTemp.plusY = 50;
+	attackTemp.width = 70;
+	attackTemp.height = 80;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_3, attackTemp));
+}
+
 void MT::update()
 {
+	setAttackRect(_state, _direction);
+
 	_enemyAttack->update();
 
 	//에너미 상태 설정
@@ -38,9 +83,8 @@ void MT::update()
 	//에너미 이동
 	move();
 
-	//KEYANIMANAGER->update();
-
 	//에너미 및 그림자 렉트 수정
+	_rc = RectMakeCenter(_x, _y + 10, 40, 152);
 	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
 	_shadowRc = RectMakeCenter((_enemyRc.left + _enemyRc.right) / 2, _enemyRc.bottom, _shadowImg->getWidth(), _shadowImg->getHeight());
 }
@@ -220,6 +264,44 @@ void MT::render(POINT camera)
 	default:
 		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top, 150, camera);
 		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top, _motion, camera);
+		break;
+	}
+
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		Rectangle(getMemDC(), _shadowRc, camera);
+		Rectangle(getMemDC(), _rc, camera);
+		Rectangle(getMemDC(), _enemyRc, camera);
+	}
+}
+
+void MT::setAttackRect(STATE state, DIRECTION direction)
+{
+	int index;
+	switch (state)
+	{
+	case enemy::ATTACK:
+	case enemy::COMBO_ATTACK_1:
+	case enemy::COMBO_ATTACK_2:
+	case enemy::COMBO_ATTACK_3:
+		attackInfo attackinfo = _mAttackInfo.find(state)->second;
+		index = (int)_motion->getIndex();
+		if (attackinfo.startIndex <= index && attackinfo.endIndex >= index)
+		{
+			switch (direction)
+			{
+			case LEFT:
+
+				_attackRc = RectMake(_rc.left - attackinfo.width, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
+				break;
+			case RIGHT:
+				_attackRc = RectMake(_rc.right, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
+				break;
+			}
+		}
+		break;
+	default:
+		_attackRc = RectMake(_x, _y, 0, 0);
 		break;
 	}
 }
@@ -494,18 +576,10 @@ void MT::move()
 			switch (_direction)
 			{
 			case MT::LEFT:
-				//왼쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x - _speed < _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x -= _speed;
+				_x -= _speed;
 				break;
 			case MT::RIGHT:
-				//오른쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x + _speed > WINSIZEX - _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x += _speed;
+				_x += _speed;
 
 				break;
 			}
@@ -525,18 +599,10 @@ void MT::move()
 			switch (_direction)
 			{
 			case MT::LEFT:
-				//왼쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x - 2 * _speed < _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x -= 2 * _speed;
+				_x -= 2 * _speed;
 				break;
 			case MT::RIGHT:
-				//오른쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x + 2 * _speed > WINSIZEX - _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x += 2 * _speed;
+				_x += 2 * _speed;
 
 				break;
 			}

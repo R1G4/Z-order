@@ -94,6 +94,23 @@ void tempStage::render()
 		Rectangle(getMemDC(), _player->getDebugRect(), camera);
 		Rectangle(getMemDC(), _player->getDebugShadow(), camera);
 
+		for (int i = 0; i < _em->getVEnemy().size(); i++)
+		{
+			//	Rectangle(getMemDC(), _em->getVEnemy()[i]->getDebugEnemyRect(), camera);
+			enemy* enemy = _em->getVEnemy()[i];
+			//충돌용
+			Rectangle(getMemDC(), enemy->getDebugRect(), camera);
+			//그림자
+			Rectangle(getMemDC(), enemy->getDebugShadowRc(), camera);
+			//공격
+			HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
+			HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+			Rectangle(getMemDC(), enemy->getDebugAttackRc(), camera);
+			SelectObject(getMemDC(), oldBrush);
+			DeleteObject(brush);
+
+		}
+
 		HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
 		Rectangle(getMemDC(), _player->getDebugAttack(), camera);

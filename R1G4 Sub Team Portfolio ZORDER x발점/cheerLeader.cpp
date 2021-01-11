@@ -19,7 +19,9 @@ HRESULT cheerLeader::init(float x, float y, STATE state, DIRECTION direction)
 	enemy::init(x, y, state, direction);
 
 	//해당 에너미 스피드
-	_speed = 1.8f;
+	_speed = 2.1f;
+
+	setAttackInfo();
 
 	return S_OK;
 }
@@ -28,8 +30,51 @@ void cheerLeader::release()
 {
 }
 
+void cheerLeader::setAttackInfo()
+{
+	attackInfo attackTemp;
+	attackTemp.damage = 1;
+	attackTemp.isTouch = false;
+
+	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
+
+	//일반공격1
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 5;
+	attackTemp.plusY = 40;
+	attackTemp.width = 70;
+	attackTemp.height = 30;
+	_mAttackInfo.insert(make_pair(ATTACK, attackTemp));
+
+	//콤보 1
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 5;
+	attackTemp.plusY = 50;
+	attackTemp.width = 70;
+	attackTemp.height = 30;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_1, attackTemp));
+
+	//콤보2
+	attackTemp.startIndex = 2;
+	attackTemp.endIndex = 3;
+	attackTemp.plusY = 40;
+	attackTemp.width = 70;
+	attackTemp.height = 40;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_2, attackTemp));
+
+	//콤보3
+	attackTemp.startIndex = 7;
+	attackTemp.endIndex = 9;
+	attackTemp.plusY = 0;
+	attackTemp.width = 60;
+	attackTemp.height = 100;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_3, attackTemp));
+}
+
 void cheerLeader::update()
 {
+	setAttackRect(_state, _direction);
+
 	_enemyAttack->update();
 
 	//에너미 상태 설정
@@ -38,9 +83,8 @@ void cheerLeader::update()
 	//에너미 이동
 	move();
 
-	//KEYANIMANAGER->update();
-
 	//에너미 및 그림자 렉트 수정
+	_rc = RectMakeCenter(_x, _y + 10, 40, 152);
 	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
 	_shadowRc = RectMakeCenter((_enemyRc.left + _enemyRc.right) / 2, _enemyRc.bottom, _shadowImg->getWidth(), _shadowImg->getHeight());
 }
@@ -222,6 +266,43 @@ void cheerLeader::render(POINT camera)
 		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top, _motion, camera);
 		break;
 	}
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		Rectangle(getMemDC(), _shadowRc, camera);
+		Rectangle(getMemDC(), _rc, camera);
+		Rectangle(getMemDC(), _enemyRc, camera);
+	}
+}
+
+void cheerLeader::setAttackRect(STATE state, DIRECTION direction)
+{
+	int index;
+	switch (state)
+	{
+	case enemy::ATTACK:
+	case enemy::COMBO_ATTACK_1:
+	case enemy::COMBO_ATTACK_2:
+	case enemy::COMBO_ATTACK_3:
+		attackInfo attackinfo = _mAttackInfo.find(state)->second;
+		index = (int)_motion->getIndex();
+		if (attackinfo.startIndex <= index && attackinfo.endIndex >= index)
+		{
+			switch (direction)
+			{
+			case LEFT:
+
+				_attackRc = RectMake(_rc.left - attackinfo.width, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
+				break;
+			case RIGHT:
+				_attackRc = RectMake(_rc.right, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
+				break;
+			}
+		}
+		break;
+	default:
+		_attackRc = RectMake(_x, _y, 0, 0);
+		break;
+	}
 }
 
 void cheerLeader::state()
@@ -252,7 +333,6 @@ void cheerLeader::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-
 	if (distance < 525 && _isAction)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
@@ -270,7 +350,7 @@ void cheerLeader::state()
 
 		RECT temp;
 		//플레이어와 에너미 충돌 시
-		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 40), &_enemyRc))
+		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100), &_enemyRc))
 		{
 			switch (_state)
 			{
@@ -370,12 +450,6 @@ void cheerLeader::state()
 			return;
 		}
 
-		switch (_state)
-		{
-		case enemy::ATTACK: case enemy::COMBO_ATTACK_1: case enemy::COMBO_ATTACK_2: case enemy::COMBO_ATTACK_3:
-			_state = IDLE;
-			break;
-		}
 		//플레이어의 위치가 에너미 보다 오른쪽에 있을 경우
 		if (_kyoko->getKyokoPoint().x > _x)
 		{
@@ -431,6 +505,7 @@ void cheerLeader::state()
 		switch (_state)
 		{
 		case cheerLeader::IDLE:
+
 			//탐색 타이머가 줄어든다.
 			_questTimer--;
 			//탐색 타이머가 최소 탐색 시간만큼 도달 할 경우
@@ -501,18 +576,10 @@ void cheerLeader::move()
 			switch (_direction)
 			{
 			case cheerLeader::LEFT:
-				//왼쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x - _speed < _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x -= _speed;
+				_x -= _speed;
 				break;
 			case cheerLeader::RIGHT:
-				//오른쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x + _speed > WINSIZEX - _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x += _speed;
+				_x += _speed;
 
 				break;
 			}
@@ -532,18 +599,10 @@ void cheerLeader::move()
 			switch (_direction)
 			{
 			case cheerLeader::LEFT:
-				//왼쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x - 2.1 * _speed < _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x -= 2.1 * _speed;
+				_x -= 2.1 * _speed;
 				break;
 			case cheerLeader::RIGHT:
-				//오른쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x + 2.1 * _speed > WINSIZEX - _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x += 2.1 * _speed;
+				_x += 2.1 * _speed;
 
 				break;
 			}
