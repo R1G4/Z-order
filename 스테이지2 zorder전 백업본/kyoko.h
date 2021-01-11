@@ -81,6 +81,11 @@ private:
 	bool _isRunning;			// 달리기용 bool
 	bool _isCollision;			// 픽셀충돌용 bool
 	bool _isNextAttack;			// 다음공격용 bool
+	bool _isAttacked;			// 피격구분용 bool
+	bool _isStartMotionAttaced;	// 피격구분용 bool2
+	bool _isRight;				// 피격구분용 bool3
+	bool _isDead;				// 사망구분용 bool
+	bool _isStartMotionDead;	// 사망구분용 bool2
 public:
 	kyoko() {};
 	~kyoko() {};
@@ -103,6 +108,8 @@ public:
 	void moveMotion();
 	void attackMotion();
 	void jumpMotion();
+	void attackedMotion();
+	void gameOverMotion();
 
 	KYOKODIRECTION getKyokoDirection() { return _kyokoDirection; }
 	void setKyokoDirection(KYOKODIRECTION direction) { _kyokoDirection = direction; }
@@ -140,5 +147,9 @@ public:
 	int getMaha() { return _maha_count; }
 
 	void setNoSpeed(bool isCollision) { _isCollision = isCollision; }
+
+	void setHit(bool isAttacked) { _isAttacked = isAttacked; }
+	BOOL getHit() { return _isAttacked; }
+	void setHitRight(bool isRight) { _isRight = isRight; }
 };
 

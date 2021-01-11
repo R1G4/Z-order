@@ -37,6 +37,12 @@ HRESULT kyoko::init()
 	_isAttack = false;
 	_isJump = false;
 	_isCollision = false;
+	_isStartMotionAttaced = false;
+	_isRunning = false;
+	_isNextAttack = false;
+	_isAttacked = false;
+	_isDead = false;				
+	_isStartMotionDead = false;
 
 	return S_OK;
 }
@@ -47,41 +53,54 @@ void kyoko::release()
 
 void kyoko::update()
 {
-	moveMotion();
-
-	// 공격모션이 들어가기전에 리셋?
-	_attack_rc = RectMake(_rc.left, _rc.top, 0, 0);
-	attackMotion();
-	jumpMotion();
-
-	// 이미지처리를 위한 렉트
-
-	if (!_isJump)
+	if (!_isDead)
 	{
-		_i_x = (_shadow_rc.left + _shadow_rc.right) / 2;
-		_i_y = _shadow_rc.top - 80;
-		_image_rc = RectMakeCenter(_i_x, _i_y, _image->getFrameWidth(), _image->getFrameHeight());
+		if (!_isAttacked)
+		{
+			moveMotion();
+			_attack_rc = RectMake(_rc.left, _rc.top, 0, 0);	// 공격모션이 들어가기전에 리셋
+			attackMotion();
+			jumpMotion();
+		}
+		attackedMotion();
+
+		// 이미지처리를 위한 렉트
+		if (!_isJump)
+		{
+			_i_x = (_shadow_rc.left + _shadow_rc.right) / 2;
+			_i_y = _shadow_rc.top - 80;
+			_image_rc = RectMakeCenter(_i_x, _i_y, _image->getFrameWidth(), _image->getFrameHeight());
+		}
+		else
+			_image_rc = RectMakeCenter(_i_x, _i_y, _image->getFrameWidth(), _image->getFrameHeight());
+
+		// 충돌처리를 위한 렉트
+		if (!_isJump)
+		{
+			_i_x = (_shadow_rc.left + _shadow_rc.right) / 2;
+			_i_y = _shadow_rc.top - 80;
+			_rc = RectMakeCenter(_i_x, _i_y, 60, _image->getFrameHeight() - 40);
+		}
+		else
+			_rc = RectMakeCenter(_i_x, _i_y, 60, _image->getFrameHeight() - 40);
+
+		// 그림자처리를 위한 렉트 (z-order)
+		_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
+
+		// 점프업뎃
+		_jump->update();
+		_shadow_jump->update();
+
+		// 체력이 다 닳으면 사망
+		if (STATUSMANAGER->getHp() <= 0)
+			_isDead = true;
+
 	}
 	else
-		_image_rc = RectMakeCenter(_i_x, _i_y, _image->getFrameWidth(), _image->getFrameHeight());
-	// 충돌처리를 위한 렉트
-	if (!_isJump)
 	{
-		_i_x = (_shadow_rc.left + _shadow_rc.right) / 2;
-		_i_y = _shadow_rc.top - 80;
-		_rc = RectMakeCenter(_i_x, _i_y, 40, _image->getFrameHeight() - 40);
+		gameOverMotion();
+		cout << "ㅎㅇ?";
 	}
-	else
-		_rc = RectMakeCenter(_i_x, _i_y, 40, _image->getFrameHeight() - 40);
-
-	// 그림자처리를 위한 렉트 (z-order)
-	_shadow_rc = RectMakeCenter(_x, _y, _shadow->getWidth(), _shadow->getHeight());
-	// 애니메이션 재생
-	//KEYANIMANAGER->update();
-
-	// 점프업뎃
-	_jump->update();
-	_shadow_jump->update();
 }
 
 void kyoko::render()
@@ -119,7 +138,12 @@ void kyoko::render(POINT camera)
 	{
 		Rectangle(getMemDC(), _rc, camera);
 		Rectangle(getMemDC(), _shadow_rc, camera);
+
+		HBRUSH brush2 = CreateSolidBrush(RGB(0, 0, 0));
+		HBRUSH oldBrush2 = (HBRUSH)SelectObject(getMemDC(), brush2);
 		Rectangle(getMemDC(), _attack_rc, camera);
+		SelectObject(getMemDC(), oldBrush2);
+		DeleteObject(brush2);
 	}
 }
 
@@ -295,11 +319,10 @@ void kyoko::addMotionAni()
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftMahaKick", "쿄코_마하킥", LeftMahaKick, 22, 12, false, leftFire, this, 1);
 
 	int RightDead[] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightDead", "쿄코_죽음", RightMahaKick, 22, 10, false, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightDead", "쿄코_죽음", RightDead, 22, 10, false, 1);
 
-	int LeftDead[] = { 43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,22 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftDead", "쿄코_죽음", LeftMahaKick, 22, 10, false, 1);
-
+	int LeftDead[] = { 43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22 };
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftDead", "쿄코_죽음", LeftDead, 22, 10, false, 1);
 }
 
 // 이동 모션
@@ -1718,5 +1741,69 @@ void kyoko::jumpMotion()
 		_kyokoDirection != KYOKODIRECTION_RIGHT_ATTACK_JUMP_RUN && _kyokoDirection != KYOKODIRECTION_LEFT_ATTACK_JUMP_RUN)
 	{
 		_isJump = false;
+	}
+}
+
+// 피격 모션
+void kyoko::attackedMotion()
+{	
+	// 피격시 행동제한을 걸고 피격모션 재생
+	if (_isAttacked && !_isStartMotionAttaced)
+	{
+		STATUSMANAGER->damaged(1);
+		// 왼쪽에서 맞으면
+		if (!_isRight && STATUSMANAGER->getHp() > 0)
+		{
+			_isStartMotionAttaced = true;
+			_image = IMAGEMANAGER->findImage("쿄코_피격1");
+			_kyokoDirection = KYOKODIRECTION_LEFT_ATTACKED_1;
+			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttacked1");
+			_kyokoMotion->start();
+		}
+		if (_isRight && STATUSMANAGER->getHp() > 0)
+		{
+			_isStartMotionAttaced = true;
+			_image = IMAGEMANAGER->findImage("쿄코_피격1");
+			_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACKED_1;
+			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttacked1");
+			_kyokoMotion->start();
+		}
+	}
+
+	// 피격모션이 끝까지 가면 일반상태로 리셋
+	if (_kyokoMotion->getNowPlayIndex() >= 3 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1)
+	{
+		_kyokoMotion->stop();
+		_image = IMAGEMANAGER->findImage("쿄코_일반");
+		_kyokoDirection = KYOKODIRECTION_LEFT_IDLE;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
+		_kyokoMotion->start();
+
+		_isStartMotionAttaced = false;
+		_isAttacked = false;
+	}
+	if (_kyokoMotion->getNowPlayIndex() >= 3 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1)
+	{
+		_kyokoMotion->stop();
+		_image = IMAGEMANAGER->findImage("쿄코_일반");
+		_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
+		_kyokoMotion->start();
+
+		_isStartMotionAttaced = false;
+		_isAttacked = false;
+	}
+}
+
+// 사망 모션
+void kyoko::gameOverMotion()
+{
+	if (!_isStartMotionDead)
+	{
+		_isStartMotionDead = true;
+		_image = IMAGEMANAGER->findImage("쿄코_죽음");
+		_kyokoDirection = KYOKODIRECTION_LEFT_DEAD;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftDead");
+		_kyokoMotion->start();
 	}
 }

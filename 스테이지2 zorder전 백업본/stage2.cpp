@@ -37,9 +37,9 @@ void stage2::update()
 	EFFECTMANAGER->update();
 	KEYANIMANAGER->update();
 	pixelCollision();
+	AttackCollision();
 	_player->update();
 	_em->update();
-	cout << _player->getRect().left;
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage2);
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getRect(), &Lobj.rc))
@@ -62,6 +62,22 @@ void stage2::render()
 		stage2Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), Lobj.rc, camera);
 		Rectangle(getMemDC(), Robj.rc, camera);
+
+		for (int i = 0; i < _em->getVEnemy().size(); i++)
+		{
+			enemy* enemy = _em->getVEnemy()[i];
+			//충돌용
+			Rectangle(getMemDC(), enemy->getDebugRect(), camera);
+			//그림자
+			Rectangle(getMemDC(), enemy->getDebugShadowRc(), camera);
+			//공격
+			HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
+			HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+			Rectangle(getMemDC(), enemy->getDebugAttackRc(), camera);
+			SelectObject(getMemDC(), oldBrush);
+			DeleteObject(brush);
+
+		}
 	}
 	zOrder();
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
@@ -137,5 +153,30 @@ void stage2::pixelCollision()
 			break;
 		}
 
+	}
+}
+
+
+void stage2::AttackCollision()
+{
+	RECT _temp;
+
+	if (!_player->getHit())
+	{
+		for (int i = 0; i < _em->getVEnemy().size(); i++)
+		{
+			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
+			if (IntersectRect(&_temp, &_player->getRect(), &_em->getVEnemy()[i]->getDebugAttackRc()))
+			{
+				cout << "아야" << endl;
+				_player->setHit(true);
+				// 적이 플레이어보다 왼쪽에 있으면 왼쪽 타격이 나오게 오른쪽에 있으면 오른쪽 타격이 나오게
+				if (_em->getVEnemy()[i]->getRect().left <= _player->getRect().left)
+					_player->setHitRight(false);
+				else 
+					_player->setHitRight(true);
+
+			}
+		}
 	}
 }

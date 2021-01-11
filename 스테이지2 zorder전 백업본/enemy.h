@@ -137,6 +137,7 @@ public:
 	RECT getRect() { return _rc; }
 	RECT getEnemyRect() { return _enemyRc; }
 	RECT getShadowRc() { return _shadowRc; }
+	RECT getAttackRc() { return _attackRc; }
 
 	//디버그용 렉트
 	RECT& getDebugRect() { return _rc; }

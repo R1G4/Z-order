@@ -15,10 +15,15 @@ void StatusManager::setHpBar(string strkey)
 
 void StatusManager::damaged(int damage)
 {
-	HP -= damage;
-	for (int i = 0; i < damage; i++)
+	if (HP < 0)HP = 0;
+	if (HP > 0)
 	{
-		_vHPBar.pop_back();
+		for (int i = 0; i < damage; i++)
+		{
+			HP -= 1;
+			if (HP < 0)break;
+			else _vHPBar.pop_back();
+		}
 	}
 }
 

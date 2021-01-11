@@ -83,7 +83,7 @@ void enemyManager::setEnemy()
 		_vEnemy.push_back(setSchoolBoy(1750, 750, enemy::IDLE));
 		break;
 	case enemyManager::STAGE_2:
-		_vEnemy.push_back(setSchoolGirl(1200, 800, enemy::TAUNT, enemy::LEFT));
+		_vEnemy.push_back(setSchoolGirl(900, 600, enemy::TAUNT, enemy::LEFT));
 		_vEnemy.push_back(setSchoolBoy(1300, 500, enemy::TAUNT, enemy::LEFT));
 		_vEnemy.push_back(setMT(340, 400, enemy::TAUNT, enemy::RIGHT));
 		_vEnemy.push_back(setCheerLeader(2200, 600, enemy::IDLE));

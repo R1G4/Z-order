@@ -267,7 +267,7 @@ void schoolGirl::render(POINT camera)
 	{
 		Rectangle(getMemDC(), _shadowRc, camera);
 		Rectangle(getMemDC(), _rc, camera);
-		Rectangle(getMemDC(), _enemyRc, camera);
+		//Rectangle(getMemDC(), _enemyRc, camera);
 	}
 }
 

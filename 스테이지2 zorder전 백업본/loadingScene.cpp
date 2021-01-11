@@ -95,7 +95,7 @@ void loadingScene::update()
 		case 0:
 			STATUSMANAGER->setHp(24);
 			STATUSMANAGER->setHpBar("HPBar");
-			SCENEMANAGER->changeScene("스테이지1");
+			SCENEMANAGER->changeScene("스테이지2");
 			break;
 		case 1:
 			SCENEMANAGER->changeScene("보스스테이지");

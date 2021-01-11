@@ -34,5 +34,7 @@ public:
 	void zOrder();
 	// 픽셀 충돌
 	void pixelCollision();
+	// 렉트 충돌
+	void AttackCollision();
 };
 
