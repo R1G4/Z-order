@@ -51,7 +51,7 @@ void tempStage::release()
 void tempStage::update()
 {
 	UI->update();
-	
+
 	SOUNDMANAGER->setVolume(_opt->getVolume());
 	pixelCollision();
 	_player->update();
@@ -65,7 +65,7 @@ void tempStage::update()
 
 void tempStage::render()
 {
-	
+
 	stage1->render(getMemDC(), 0, 0, camera);
 
 
@@ -89,13 +89,13 @@ void tempStage::render()
 		Rectangle(getMemDC(), _door_rc, camera);
 		for (int i = 0; i < 8; i++) { Rectangle(getMemDC(), chair[i].rc, camera); }
 		Rectangle(getMemDC(), tempRcU.rc, camera);
-		Rectangle(getMemDC(), tempRcD.rc, camera);		
+		Rectangle(getMemDC(), tempRcD.rc, camera);
 		Rectangle(getMemDC(), _player->getDebugRect(), camera);
 		Rectangle(getMemDC(), _player->getDebugShadow(), camera);
 
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
-			
+
 			enemy* enemy = _em->getVEnemy()[i];
 			//Ãæµ¹¿ë
 			Rectangle(getMemDC(), enemy->getDebugRect(), camera);
@@ -157,12 +157,26 @@ void tempStage::pixelCollision()
 
 			break;
 		}
+		if (r1 == 0 && g1 == 255 && b1 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 1);
+			_player->setNoSpeed(true);
+
+			break;
+		}
 
 
-		if (r2 == 255 && g2 == 0 && b2 == 0)
+		if (r2 == 0 && g2 == 255 && b2 == 0)
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 1);
 			_player->setNoSpeed(true);
+			break;
+		}
+		if (r2 == 0 && g2 == 255 && b2 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 1);
+			_player->setNoSpeed(true);
+
 			break;
 		}
 
@@ -229,7 +243,7 @@ void tempStage::pixelCollision()
 	}
 	for (int i = _player->getShadow().left + 20; i <= _player->getShadow().right - 20; ++i)
 	{
-		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(),i, (_player->getShadow().top + _player->getShadow().bottom) / 2);
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), i, (_player->getShadow().top + _player->getShadow().bottom) / 2);
 		int r = GetRValue(color);
 		int g = GetGValue(color);
 		int b = GetBValue(color);
