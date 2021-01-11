@@ -58,6 +58,9 @@
     <Filter Include="playGround\kyoko">
       <UniqueIdentifier>{769f8b73-71dd-4f6e-a458-88841242c9fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\UI">
+      <UniqueIdentifier>{d8515e58-4150-47f5-bb0a-ad74a5918c11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -141,9 +144,6 @@
     <ClInclude Include="CameraManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="zOrder.h">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="StartScene.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
@@ -180,14 +180,23 @@
     <ClInclude Include="stage2.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
-    <ClInclude Include="MT.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
     <ClInclude Include="schoolBoy.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
     <ClInclude Include="cheerLeader.h">
       <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="MT.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>playGround\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusManager.h">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="opTion.h">
+      <Filter>playGround\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +266,6 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="zOrder.cpp">
-      <Filter>2DGameFramework\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="StartScene.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
@@ -296,14 +302,29 @@
     <ClCompile Include="stage2.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
+    <ClCompile Include="tempStage+zOrder.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="schoolBoy.cpp">
+      <Filter>playGround\enemy</Filter>
+    </ClCompile>
     <ClCompile Include="cheerLeader.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
     <ClCompile Include="MT.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="schoolBoy.cpp">
-      <Filter>playGround\enemy</Filter>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>playGround\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusManager.cpp">
+      <Filter>2DGameFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="stage2+zOrder.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="opTion.cpp">
+      <Filter>playGround\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

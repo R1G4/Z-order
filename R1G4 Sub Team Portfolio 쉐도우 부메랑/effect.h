@@ -21,6 +21,7 @@ public:
 	virtual HRESULT init(image* effectImage, int frameW, int frameH, int fps, float elapsedTime);
 	virtual void release();
 	virtual void update();
+	virtual void render(POINT camera);
 	virtual void render();
 
 	void startEffect(int x, int y);

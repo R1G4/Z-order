@@ -22,6 +22,10 @@ enum KYOKODIRECTION
 	KYOKODIRECTION_RIGHT_ATTACK_1,			KYOKODIRECTION_LEFT_ATTACK_1,
 	KYOKODIRECTION_RIGHT_ATTACK_2,			KYOKODIRECTION_LEFT_ATTACK_2,
 	KYOKODIRECTION_RIGHT_ATTACK_3,			KYOKODIRECTION_LEFT_ATTACK_3,
+	KYOKODIRECTION_RIGHT_ATTACK_DASH,		KYOKODIRECTION_LEFT_ATTACK_DASH,
+	KYOKODIRECTION_RIGHT_ATTACK_JUMP,		KYOKODIRECTION_LEFT_ATTACK_JUMP,
+	KYOKODIRECTION_RIGHT_ATTACK_JUMP_WALK,	KYOKODIRECTION_LEFT_ATTACK_JUMP_WALK,
+	KYOKODIRECTION_RIGHT_ATTACK_JUMP_RUN,	KYOKODIRECTION_LEFT_ATTACK_JUMP_RUN,
 	KYOKODIRECTION_RIGHT_ATTACK_STRONG,		KYOKODIRECTION_LEFT_ATTACK_STRONG,
 	KYOKODIRECTION_RIGHT_MAHAKICK,			KYOKODIRECTION_LEFT_MAHAKICK,
 	KYOKODIRECTION_RIGHT_ATTACKED_1,		KYOKODIRECTION_LEFT_ATTACKED_1,
@@ -51,15 +55,18 @@ private:
 	int _z_count;				// 연속 공격 카운트
 	int _r_count;				// 달리기용 카운트
 	int _maha_count;			// 마하킥 게이지카운트
+	int _frame_count;			// 계산용
+
 	float _x, _y;				// 그림자 위치
 	float _i_x, _i_y;			// 이미지 위치
 	float _speed;
-	
+
 	RECT _rc;					// 충돌용 렉트
 	RECT _image_rc;				// 랜딩용 렉트
 	RECT _shadow_rc;			// 그림자용 렉트 (z-order)
+	RECT _attack_rc;			// 공격용 렉트
 	RECT _m_gauge_rc;			// 마하킥 게이지 렉트
-	
+
 	RECT _black_rc[2];
 
 	animation* _kyokoMotion;
@@ -73,6 +80,7 @@ private:
 	bool _isMahaKick;			// 게이지 채우기용 bool
 	bool _isRunning;			// 달리기용 bool
 	bool _isCollision;			// 픽셀충돌용 bool
+	bool _isNextAttack;			// 다음공격용 bool
 public:
 	kyoko() {};
 	~kyoko() {};
@@ -104,9 +112,12 @@ public:
 
 	animation* getKyokoMotion() { return _kyokoMotion; }
 	void setKyokoMotion(animation* ani) { _kyokoMotion = ani; }
+
 	RECT getShadow() { return _shadow_rc; }
 	RECT getRect() { return _rc; }
 	RECT getImageRect() { return _image_rc; }
+	RECT getAttackRect() { return _attack_rc; }
+
 	POINT getKyokoPoint() {
 		POINT _point;
 		_point.x = _x;
@@ -118,6 +129,15 @@ public:
 		_x = x;
 		_y = y;
 	}
+
+	BOOL getIsJump() { return _isJump; }
+	BOOL getIsAttack() { return _isAttack; }
+
+	RECT& getDebugShadow() { return _shadow_rc; }
+	RECT& getDebugRect() { return _rc; }
+	RECT& getDebugAttack() { return _attack_rc; }
+
+	int getMaha() { return _maha_count; }
 
 	void setNoSpeed(bool isCollision) { _isCollision = isCollision; }
 };

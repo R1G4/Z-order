@@ -13,7 +13,10 @@ class opTion :
 {
 private:
 	tagMenu menu;
+	tagMenu conball;
+	tagMenu volumebar;
 	float movepower;
+	float volume;
 	bool up, down;
 public:
 	opTion();
@@ -22,5 +25,8 @@ public:
 	void release();
 	void update();
 	void render();
+	void volumeCon();
+
+	float getVolume() { return volume; }
 };
 

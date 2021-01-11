@@ -10,74 +10,20 @@ schoolGirl::~schoolGirl()
 {
 }
 
-HRESULT schoolGirl::init(float x, float y, bool isTaunt = false, int direction = RND->getFromIntTo(0, 2))
+HRESULT schoolGirl::init(float x, float y, STATE state, DIRECTION direction)
 {
 	//이미지 및 애니메이션 초기화
 	addFrame();
 
-	//이미지 초기화
-	_enemyImg = imgTaunt;
+	//에너미 공용 초기화
+	enemy::init(x, y, state, direction);
 
-	//에너미 상태 초기화
-	_direction = (DIRECTION)direction;
-	_state = isTaunt == true ? TAUNT : IDLE;
+	//해당 에너미 스피드
+	_speed = 2.0f;
 
-	//좌표 초기화
-	_x = x;
-	_y = y;
-	_speed = 1.8f;
-	_angle = 0;
+	//공격 위치 및 데미지 초기화
+	setAttackInfo();
 
-	//애니메이션 적용
-	switch (_state)
-	{
-	case schoolGirl::IDLE:
-		switch (_direction)
-		{
-		case schoolGirl::LEFT:
-			_isAction = true;
-			_motion = aniLeftIdle;
-			break;
-		case schoolGirl::RIGHT:
-			_isAction = true;
-			_motion = aniRightIdle;
-			break;
-		}
-
-		break;
-	case schoolGirl::TAUNT:
-		switch (_direction)
-		{
-		case schoolGirl::LEFT:
-			_isAction = false;
-			_motion = aniLeftTaunt;
-			break;
-		case schoolGirl::RIGHT:
-			_isAction = false;
-			_motion = aniRightTaunt;
-			break;
-		}
-		break;
-	}
-	_motion->start();
-
-	//에너미 렉트 초기화
-	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
-	//그림자 렉트 초기화
-	_shadowRc = RectMakeCenter((_enemyRc.left + _enemyRc.right) / 2, _enemyRc.bottom, _shadowImg->getWidth(), _shadowImg->getHeight());
-
-	_isAttack = false;
-	_isFollow = false;
-	_isRunning = true;
-
-	//추적 관련 초기회
-	_questTimer = RND->getFromIntTo(170, 230);
-	_questMin = RND->getFromIntTo(50, 150);
-
-
-	//에너미 공격 생성 및 초기화
-	_enemyAttack = new enemyAttack;
-	_enemyAttack->init();
 	return S_OK;
 }
 
@@ -85,8 +31,53 @@ void schoolGirl::release()
 {
 }
 
+void schoolGirl::setAttackInfo()
+{
+	attackInfo attackTemp;
+	attackTemp.damage = 1;
+	attackTemp.isTouch = false;
+
+	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
+
+	//일반공격1
+	attackTemp.startIndex = 1;
+	attackTemp.endIndex = 3;
+	attackTemp.plusY = 26;
+	attackTemp.width = 70;
+	attackTemp.height = 50;
+	_mAttackInfo.insert(make_pair(ATTACK, attackTemp));
+
+	//콤보 1
+	attackTemp.startIndex = 2;
+	attackTemp.endIndex = 4;
+	attackTemp.plusY = 40;
+	attackTemp.width = 66;
+	attackTemp.height = 60;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_1, attackTemp));
+
+	//콤보2
+	attackTemp.startIndex = 2;
+	attackTemp.endIndex = 5;
+	attackTemp.plusY = 10;
+	attackTemp.width = 90;
+	attackTemp.height = 70;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_2, attackTemp));
+
+	//콤보3
+	attackTemp.startIndex = 3;
+	attackTemp.endIndex = 7;
+	attackTemp.plusY = 20;
+	attackTemp.width = 90;
+	attackTemp.height = 80;
+	_mAttackInfo.insert(make_pair(COMBO_ATTACK_3, attackTemp));
+}
+
 void schoolGirl::update()
 {
+	enemy::update();
+
+	setAttackRect(_state, _direction);
+
 	_enemyAttack->update();
 
 	//에너미 상태 설정
@@ -95,9 +86,8 @@ void schoolGirl::update()
 	//에너미 이동
 	move();
 
-	KEYANIMANAGER->update();
-
 	//에너미 및 그림자 렉트 수정
+	_rc = RectMakeCenter(_x, _y + 10, 40, 152);
 	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
 	_shadowRc = RectMakeCenter((_enemyRc.left + _enemyRc.right) / 2, _enemyRc.bottom, _shadowImg->getWidth(), _shadowImg->getHeight());
 }
@@ -258,6 +248,9 @@ void schoolGirl::render(POINT camera)
 		RECT temp = RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100);
 		 Rectangle(getMemDC(), temp, camera);
 	}*/
+
+	enemy::render(camera);
+
 	switch (_state)
 	{
 	case schoolGirl::IDLE: case schoolGirl::ATTACK:  case schoolGirl::COMBO_ATTACK_1:
@@ -273,12 +266,49 @@ void schoolGirl::render(POINT camera)
 		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top, _motion, camera);
 		break;
 	}
+
+	if (KEYMANAGER->isToggleKey(VK_TAB))
+	{
+		Rectangle(getMemDC(), _shadowRc, camera);
+		Rectangle(getMemDC(), _rc, camera);
+		Rectangle(getMemDC(), _enemyRc, camera);
+	}
+}
+
+void schoolGirl::setAttackRect(STATE state, DIRECTION direction)
+{
+	int index;
+	switch (state)
+	{
+	case enemy::ATTACK:
+	case enemy::COMBO_ATTACK_1:
+	case enemy::COMBO_ATTACK_2:
+	case enemy::COMBO_ATTACK_3:
+		attackInfo attackinfo = _mAttackInfo.find(state)->second;
+		index = (int)_motion->getIndex();
+		if (attackinfo.startIndex <= index && attackinfo.endIndex >= index)
+		{
+			switch (direction)
+			{
+			case LEFT:
+
+				_attackRc = RectMake(_rc.left - attackinfo.width, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
+				break;
+			case RIGHT:
+				_attackRc = RectMake(_rc.right, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
+				break;
+			}
+		}
+		break;
+	default:
+		_attackRc = RectMake(_x, _y, 0, 0);
+		break;
+	}
 }
 
 void schoolGirl::state()
 {
 	_motion->frameUpdate(TIMEMANAGER->getElapsedTime());
-
 	//애니메이션이 멈춘 경우 IDLE로 전환
 	if (!_motion->isPlay())
 	{
@@ -303,12 +333,26 @@ void schoolGirl::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 525 && _isAction)
+	if (distance < 550 && _isAction && _motion->isPlay())
 	{
+		//거리안에 존재 할 시 느낌표를 보여준다.
+		if (!_isFollow)
+		{
+			//접근하고자 하는 방향에 가까운 위치를 파라메타로 보낸다.
+			if (_kyoko->getKyokoPoint().x > _x)
+				enemy::effectPoint(RIGHT);
+			else
+				enemy::effectPoint(LEFT);
+		}
+
+		//추적을 시작한다.
 		_isFollow = true;
+
 		RECT temp;
 		//플레이어와 에너미 충돌 시
-		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100), &_enemyRc))
+		if (IntersectRect(&temp,
+			&RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100),
+			&RectMakeCenter(_x, _y, 200, _enemyImg->getFrameHeight())))	//에너미 넓이 고정으로 생성
 		{
 			switch (_state)
 			{
@@ -330,18 +374,16 @@ void schoolGirl::state()
 				if (_isAttack)
 				{
 					_isAttack = false;
-
+					_enemyImg = imgAttack;
 					switch (_direction)
 					{
 					case schoolGirl::LEFT:
-						_enemyImg = imgAttack;
 						_motion = aniLeftAttack;
 						_motion->start();
 						break;
 					case schoolGirl::RIGHT:
-						_enemyImg = imgAttack;
 						_motion = aniRightAttack;
-						_motion->start();
+						_motion->start();;
 						break;
 					}
 				}
@@ -412,7 +454,8 @@ void schoolGirl::state()
 		if (_kyoko->getKyokoPoint().x > _x)
 		{
 			//두 거리가 멀다면 달린다
-			if (((_direction != RIGHT && _state != RUN) || (_direction == LEFT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
+			if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != RIGHT && _state != RUN) || (_direction == LEFT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
 			{
 				_motion->stop();
 				_direction = RIGHT;
@@ -422,7 +465,8 @@ void schoolGirl::state()
 				_motion->start();
 			}
 			//두 거리가 가깝다면 걷는다
-			else if (((_direction != RIGHT && _state != WALK) || (_direction == LEFT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
+			else if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != RIGHT && _state != WALK) || (_direction == LEFT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
 			{
 				_motion->stop();
 				_direction = RIGHT;
@@ -436,7 +480,8 @@ void schoolGirl::state()
 		else if (_kyoko->getKyokoPoint().x <= _x)
 		{
 			//두 거리가 멀다면 달린다
-			if (((_direction != LEFT && _state != RUN) || (_direction == RIGHT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
+			if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != LEFT && _state != RUN) || (_direction == RIGHT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
 			{
 				_motion->stop();
 				_direction = LEFT;
@@ -446,7 +491,8 @@ void schoolGirl::state()
 				_motion->start();
 			}
 			//두 거리가 가깝다면 걷는다
-			else if (((_direction != LEFT && _state != WALK) || (_direction == RIGHT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
+			else if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != LEFT && _state != WALK) || (_direction == RIGHT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
 			{
 				_motion->stop();
 				_direction = LEFT;
@@ -463,6 +509,7 @@ void schoolGirl::state()
 		switch (_state)
 		{
 		case schoolGirl::IDLE:
+
 			//탐색 타이머가 줄어든다.
 			_questTimer--;
 			//탐색 타이머가 최소 탐색 시간만큼 도달 할 경우
@@ -512,6 +559,10 @@ void schoolGirl::state()
 
 void schoolGirl::move()
 {
+	//충동했다면 이동을 제한한다.
+	if (_isCollision)
+		return;
+
 	//플레이어와 에너미의 각도 계산
 	_angle = getAngle(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
 	int temp;
@@ -530,18 +581,10 @@ void schoolGirl::move()
 			switch (_direction)
 			{
 			case schoolGirl::LEFT:
-				//왼쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x - _speed < _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x -= _speed;
+				_x -= _speed;
 				break;
 			case schoolGirl::RIGHT:
-				//오른쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x + _speed > WINSIZEX - _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x += _speed;
+				_x += _speed;
 
 				break;
 			}
@@ -560,18 +603,10 @@ void schoolGirl::move()
 			switch (_direction)
 			{
 			case schoolGirl::LEFT:
-				//왼쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x - 2 * _speed < _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x -= 2 * _speed;
+				_x -= 2 * _speed;
 				break;
 			case schoolGirl::RIGHT:
-				//오른쪽 벽에 닿을 경우 휴식상태로 전환
-				if (_x + 2 * _speed > WINSIZEX - _enemyImg->getWidth() / (_enemyImg->getMaxFrameX() + 1) / 2)
-					_motion->stop();
-				else
-					_x += 2 * _speed;
+				_x += 2 * _speed;
 
 				break;
 			}
@@ -584,9 +619,4 @@ void schoolGirl::ActionCheck(void* obj)
 {
 	schoolGirl* k = (schoolGirl*)obj;
 	k->_isAction = true;
-}
-
-void schoolGirl::RunningCheck(void* obj)
-{
-	schoolGirl* k = (schoolGirl*)obj;
 }

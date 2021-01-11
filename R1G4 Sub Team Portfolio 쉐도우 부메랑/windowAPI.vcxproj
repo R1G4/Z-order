@@ -168,6 +168,7 @@
     <ClInclude Include="kyoko.h" />
     <ClInclude Include="loadingScene.h" />
     <ClInclude Include="MT.h" />
+    <ClInclude Include="opTion.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
     <ClInclude Include="randomFunction.h" />
@@ -180,16 +181,17 @@
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage2.h" />
     <ClInclude Include="StartScene.h" />
+    <ClInclude Include="StatusManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tempStage.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="txtData.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="videoManager.h" />
     <ClInclude Include="windowAPI.h" />
-    <ClInclude Include="zOrder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
@@ -212,6 +214,7 @@
     <ClCompile Include="kyoko.cpp" />
     <ClCompile Include="loadingScene.cpp" />
     <ClCompile Include="MT.cpp" />
+    <ClCompile Include="opTion.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />
     <ClCompile Include="saveLoad.cpp" />
@@ -219,22 +222,25 @@
     <ClCompile Include="schoolBoy.cpp" />
     <ClCompile Include="schoolGirl.cpp" />
     <ClCompile Include="soundManager.cpp" />
+    <ClCompile Include="stage2+zOrder.cpp" />
     <ClCompile Include="stage2.cpp" />
     <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="StatusManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="tempStage+zOrder.cpp" />
     <ClCompile Include="tempStage.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="txtData.cpp" />
+    <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="videoManager.cpp" />
     <ClCompile Include="winMain.cpp" />
-    <ClCompile Include="zOrder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc" />

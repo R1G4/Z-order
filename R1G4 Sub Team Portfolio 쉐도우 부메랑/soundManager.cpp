@@ -2,7 +2,7 @@
 #include "soundManager.h"
 
 soundManager::soundManager()
-	: _system(nullptr), 
+	: _system(nullptr),
 	_channel(nullptr),
 	_sound(nullptr)
 {
@@ -140,6 +140,59 @@ void soundManager::resume(string keyName)
 			break;
 		}
 	}
+}
+
+void soundManager::setVolume(float volume)
+{ // 일괄적으로 셋볼륨하는 함수.. 이거 맞나..
+	arrSoundsIter iter = _mTotalSounds.begin();
+
+	int count = 0;
+
+	for (iter; iter != _mTotalSounds.end(); ++iter, count++)
+	{
+		_channel[count]->setVolume(volume);
+	}
+}
+
+void soundManager::setPoint(string keyName, float portion)
+{ // 항상 아리가또 하는 마음으로
+
+	arrSoundsIter iter = _mTotalSounds.begin();
+
+	int count = 0;
+	unsigned int length;
+
+	for (iter; iter != _mTotalSounds.end(); ++iter, count++)
+	{
+		if (keyName == iter->first)
+		{
+			_sound[count]->getLength(&length, FMOD_TIMEUNIT_MS);
+			_channel[count]->setPosition(length*portion, FMOD_TIMEUNIT_MS);
+			break;
+		}
+	}
+}
+
+float soundManager::getPortion(string keyName)
+{ // 융호형 감사합니다
+	arrSoundsIter iter = _mTotalSounds.begin();
+
+	int count = 0;
+	unsigned int getPos;
+	unsigned int length;
+	float portion;
+
+	for (iter; iter != _mTotalSounds.end(); ++iter, count++)
+	{
+		if (keyName == iter->first)
+		{
+			_channel[count]->getPosition(&getPos, FMOD_TIMEUNIT_MS);
+			_sound[count]->getLength(&length, FMOD_TIMEUNIT_MS);
+			portion = (float)getPos / (float)length;
+			break;
+		}
+	}
+	return portion;
 }
 
 bool soundManager::isPlaySound(string keyName)

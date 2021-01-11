@@ -29,6 +29,7 @@ public:
 	void addZorder(HDC hdc, image* img, animation* ani, ObjectType type, int x, int z, float jumpPower, int frameX, int frameY);
 	void addZorder(HDC hdc, image* img, ObjectType type, int x, int z, float jumpPower, int frameX, int frameY);
 	void addZorder(HDC hdc, image* img, ObjectType type, int x, int z, float jumpPower);
+	void addZorder(HDC hdc,  ObjectType type, int x, int z);
 	void quickSort(int a, int b);
 	void swap(OrderObject obj1, OrderObject obj2);
 };

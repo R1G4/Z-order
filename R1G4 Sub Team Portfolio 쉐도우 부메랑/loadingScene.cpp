@@ -43,6 +43,37 @@ HRESULT loadingScene::init()
 	return S_OK;
 }
 
+HRESULT loadingScene::init(int SceneNum)
+{
+	nextScene = SceneNum;
+	_back = IMAGEMANAGER->addImage("검정", "image/loading/loadingBack.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	_background = IMAGEMANAGER->addFrameImage("로딩배경", "image/loading/로딩.bmp", 1395, 220, 5, 1, true, RGB(255, 0, 255));
+
+	//_loadingBar = new progressBar;
+	//_loadingBar->init(0, WINSIZEY - 50, WINSIZEX, 50);
+	//_loadingBar->setGauge(0, 0);
+
+	//쓰레드를 사용해보자
+	CreateThread(
+		NULL,				//스레드의 보안속성(자식윈도우가 존재할때)
+		NULL,				//스레드의 스택크기(NULL로 두면 메인쓰레드 크기와 동일)
+		threadFunction,		//스레드 사용할 함수 명
+		this,				//스레드 매개변수(this로 두면 본 클래스)
+		NULL,				//스레드의 특성(기다릴지, 바로 실행(NULL이면 요게 해당))
+		NULL				//스레드 생성 후 스레드의 ID 넘겨줌 보통은 NULL로 둔다
+	);
+
+	_loading = new animation;
+	_loading->init(_background->getWidth(), _background->getHeight(),
+		_background->getFrameWidth(), _background->getFrameHeight());
+	_loading->setDefPlayFrame(false, true);
+	_loading->setFPS(1);
+
+	_loading->start();
+
+	return S_OK;
+}
+
 void loadingScene::release()
 {
 	SAFE_DELETE(_loadingBar);
@@ -59,7 +90,20 @@ void loadingScene::update()
 	//로딩이 다 되면
 	if (_currentCount == LOADINGMAX)
 	{
-		SCENEMANAGER->changeScene("스테이지1");
+		switch (nextScene)
+		{
+		case 0:
+			STATUSMANAGER->setHp(24);
+			STATUSMANAGER->setHpBar("HPBar");
+			SCENEMANAGER->changeScene("스테이지1");
+			break;
+		case 1:
+			SCENEMANAGER->changeScene("보스스테이지");
+			break;
+		case 2:
+			SCENEMANAGER->changeScene("타이틀");
+			break;
+		}
 	}
 }
 
@@ -80,26 +124,20 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	//이미지매니저나, 사운드 매니저 써서
 	//add 해주면 된다.
 
-
 	loadingScene* loadingHelper = (loadingScene*)lpParameter;
-
 
 	//메인 스테이지 BGM추가
 	SOUNDMANAGER->addSound("MainStage", "sound/BGM/River City Girls OST - Detention.mp3", true, true);
 	SOUNDMANAGER->addSound("BossSound", "sound/BGM/River City Girls OST - Boss Misuzu.mp3", true, true);
-
-
 	//메인 스테이지 맵추가
 	IMAGEMANAGER->addImage("Stage1", "image/map/0.bmp", 2154, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1Pic", "image/map/0Pic.bmp", 2154, 884, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage2", "image/map/1.bmp", 3494, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage2Pic", "image/map/1Pic.bmp", 3494, 884, false, RGB(255, 0, 255));
 
-
 	//보스 스테이지 맵추가
 	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 1830, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("StageBossPic", "image/map/bossPic.bmp", 1830, 884, false, RGB(255, 0, 255));
-
 
 	//쿄코 이미지 추가
 	IMAGEMANAGER->addFrameImage("쿄코_일반", "image/kyoko/idle_1.bmp", 0, 0, 3600, 400, 12, 2, true, RGB(255, 0, 255));
@@ -109,6 +147,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("쿄코_공격1", "image/kyoko/attack_1_1.bmp", 0, 0, 1800, 400, 6, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_공격2", "image/kyoko/attack_2_1.bmp", 0, 0, 2100, 400, 7, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_공격3", "image/kyoko/attack_3_3.bmp", 0, 0, 2700, 400, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("쿄코_대쉬공격", "image/kyoko/attack_dash.bmp", 0, 0, 2400, 400, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("쿄코_점프공격", "image/kyoko/attack_jump.bmp", 0, 0, 900, 400, 3, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_강공격", "image/kyoko/attack_strong_2.bmp", 0, 0, 3000, 600, 10, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_마하킥", "image/kyoko/mahaKick_2.bmp", 0, 0, 6600, 400, 22, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("쿄코_피격1", "image/kyoko/attacked_1_1.bmp", 0, 0, 1200, 400, 4, 2, true, RGB(255, 0, 255));
@@ -116,24 +156,72 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("쿄코_죽음", "image/kyoko/dead_1.bmp", 0, 0, 6600, 400, 22, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("그림자", "image/kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
 
-
 	//에너미 이미지 추가
-	IMAGEMANAGER->addImage("Girl_Shadow", "image/SchoolGirl size200/SchoolGirl_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Idle", "image/SchoolGirl size200/Girl_Idle.bmp", 0, 0, 1320, 400, 10, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Walk", "image/SchoolGirl size200/Girl_Walk.bmp", 0, 0, 1394, 400, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Run", "image/SchoolGirl size200/Girl_Run.bmp", 0, 0, 1780, 400, 10, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Block", "image/SchoolGirl size200/Girl_Block.bmp", 0, 0, 460, 400, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Attack", "image/SchoolGirl size200/Girl_Attack.bmp", 0, 0, 1934, 420, 8, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_ComboAttack1", "image/SchoolGirl size200/Girl_ComboAttack1.bmp", 0, 0, 1505, 430, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_ComboAttack2", "image/SchoolGirl size200/Girl_ComboAttack2.bmp", 0, 0, 1470, 440, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_ComboAttack3", "image/SchoolGirl size200/Girl_ComboAttack3.bmp", 0, 0, 2700, 450, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Hit", "image/SchoolGirl size200/Girl_Hit.bmp", 0, 0, 1626, 400, 9, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Downup", "image/SchoolGirl size200/Girl_Downup.bmp", 0, 0, 7013, 380, 27, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Dazed", "image/SchoolGirl size200/Girl_Dazed.bmp", 0, 0, 656, 410, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Jump", "image/SchoolGirl size200/Girl_Jump.bmp", 0, 0, 432, 400, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Knockdown", "image/SchoolGirl size200/Girl_Knockdown.bmp", 0, 0, 4361, 380, 17, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Girl_Taunt", "image/SchoolGirl size200/Girl_Taunt.bmp", 0, 0, 4015, 420, 26, 2, true, RGB(255, 0, 255));
+	EFFECTMANAGER->addEffect("Enemy_Point", "image/enemy/Effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("Enemy_Stern", "image/enemy/Effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
 
+	IMAGEMANAGER->addImage("Boy_Shadow", "image/enemy/SchoolBoy/Boy_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Idle", "image/enemy/SchoolBoy/Boy_Idle.bmp", 0, 0, 1200, 400, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Walk", "image/enemy/SchoolBoy/Boy_Walk.bmp", 0, 0, 1460, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Run", "image/enemy/SchoolBoy/Boy_Run.bmp", 0, 0, 1876, 400, 10, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Block", "image/enemy/SchoolBoy/Boy_Block.bmp", 0, 0, 420, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Attack", "image/enemy/SchoolBoy/Boy_Attack.bmp", 0, 0, 1598, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_ComboAttack1", "image/enemy/SchoolBoy/Boy_ComboAttack1.bmp", 0, 0, 1892, 540, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_ComboAttack2", "image/enemy/SchoolBoy/Boy_ComboAttack2.bmp", 0, 0, 766, 460, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_ComboAttack3", "image/enemy/SchoolBoy/Boy_ComboAttack3.bmp", 0, 0, 1830, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Hit", "image/enemy/SchoolBoy/Boy_Hit.bmp", 0, 0, 1536, 400, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Downup", "image/enemy/SchoolBoy/Boy_Downup.bmp", 0, 0, 7027, 400, 27, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Dazed", "image/enemy/SchoolBoy/Boy_Dazed.bmp", 0, 0, 620, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Jump", "image/enemy/SchoolBoy/Boy_Jump.bmp", 0, 0, 468, 480, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Knockdown", "image/enemy/SchoolBoy/Boy_Knockdown.bmp", 0, 0, 4945, 400, 19, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Taunt", "image/enemy/SchoolBoy/Boy_Taunt.bmp", 0, 0, 1704, 420, 11, 2, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("Girl_Shadow", "image/enemy/SchoolGirl/Girl_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Idle", "image/enemy/SchoolGirl/Girl_Idle.bmp", 0, 0, 1320, 400, 10, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Walk", "image/enemy/SchoolGirl/Girl_Walk.bmp", 0, 0, 1394, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Run", "image/enemy/SchoolGirl/Girl_Run.bmp", 0, 0, 1780, 400, 10, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Block", "image/enemy/SchoolGirl/Girl_Block.bmp", 0, 0, 460, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Attack", "image/enemy/SchoolGirl/Girl_Attack.bmp", 0, 0, 1934, 420, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_ComboAttack1", "image/enemy/SchoolGirl/Girl_ComboAttack1.bmp", 0, 0, 1505, 430, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_ComboAttack2", "image/enemy/SchoolGirl/Girl_ComboAttack2.bmp", 0, 0, 1470, 440, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_ComboAttack3", "image/enemy/SchoolGirl/Girl_ComboAttack3.bmp", 0, 0, 2700, 450, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Hit", "image/enemy/SchoolGirl/Girl_Hit.bmp", 0, 0, 1626, 400, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Downup", "image/enemy/SchoolGirl/Girl_Downup.bmp", 0, 0, 7013, 380, 27, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Knockdown", "image/enemy/SchoolGirl/Girl_Knockdown.bmp", 0, 0, 4361, 380, 17, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Dazed", "image/enemy/SchoolGirl/Girl_Dazed.bmp", 0, 0, 656, 410, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Jump", "image/enemy/SchoolGirl/Girl_Jump.bmp", 0, 0, 432, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Girl_Taunt", "image/enemy/SchoolGirl/Girl_Taunt.bmp", 0, 0, 4015, 420, 26, 2, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("MT_Shadow", "image/enemy/MT/MT_Shadow.bmp", 112, 33, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Idle", "image/enemy/MT/MT_Idle.bmp", 0, 0, 1634, 400, 10, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Walk", "image/enemy/MT/MT_Walk.bmp", 0, 0, 1984, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Run", "image/enemy/MT/MT_Run.bmp", 0, 0, 1933, 400, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Block", "image/enemy/MT/MT_Block.bmp", 0, 0, 486, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Attack", "image/enemy/MT/MT_Attack.bmp", 0, 0, 1992, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_ComboAttack1", "image/enemy/MT/MT_ComboAttack1.bmp", 0, 0, 1992, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_ComboAttack2", "image/enemy/MT/MT_ComboAttack2.bmp", 0, 0, 2216, 430, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_ComboAttack3", "image/enemy/MT/MT_ComboAttack3.bmp", 0, 0, 4068, 450, 14, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Hit", "image/enemy/MT/MT_Hit.bmp", 0, 0, 523, 380, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Downup", "image/enemy/MT/MT_Downup.bmp", 0, 0, 8919, 440, 31, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Dazed", "image/enemy/MT/MT_Dazed.bmp", 0, 0, 618, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Jump", "image/enemy/MT/MT_Jump.bmp", 0, 0, 612, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Knockdown", "image/enemy/MT/MT_Knockdown.bmp", 0, 0, 8056, 440, 28, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Taunt", "image/enemy/MT/MT_Taunt.bmp", 0, 0, 558, 400, 4, 2, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("CheerLeader_Shadow", "image/enemy/CheerLeader/CheerLeader_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Idle", "image/enemy/CheerLeader/CheerLeader_Idle.bmp", 0, 0, 2133, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Walk", "image/enemy/CheerLeader/CheerLeader_Walk.bmp", 0, 0, 2499, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Run", "image/enemy/CheerLeader/CheerLeader_Run.bmp", 0, 0, 1291, 300, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Block", "image/enemy/CheerLeader/CheerLeader_Block.bmp", 0, 0, 457, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Attack", "image/enemy/CheerLeader/CheerLeader_Attack.bmp", 0, 0, 1138, 400, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack1", "image/enemy/CheerLeader/CheerLeader_ComboAttack1.bmp", 0, 0, 1138, 400, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack2", "image/enemy/CheerLeader/CheerLeader_ComboAttack2.bmp", 0, 0, 1715, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack3", "image/enemy/CheerLeader/CheerLeader_ComboAttack3.bmp", 0, 0, 6577, 600, 22, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Hit", "image/enemy/CheerLeader/CheerLeader_Hit.bmp", 0, 0, 1445, 400, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Downup", "image/enemy/CheerLeader/CheerLeader_Downup.bmp", 0, 0, 8265, 400, 28, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Dazed", "image/enemy/CheerLeader/CheerLeader_Dazed.bmp", 0, 0, 554, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Jump", "image/enemy/CheerLeader/CheerLeader_Jump.bmp", 0, 0, 776, 500, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Knockdown", "image/enemy/CheerLeader/CheerLeader_Knockdown.bmp", 0, 0, 6482, 400, 22, 2, true, RGB(255, 0, 255));
 
 	//오브젝트 이미지 추가
 	IMAGEMANAGER->addImage("chair", "image/object/chair.bmp", 179, 169, true, RGB(255, 0, 255));
@@ -141,46 +229,10 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("우기둥", "image/object/Rgidoong.bmp", 153, 720, true, RGB(255, 0, 255));
 
 
-	//아이템 이미지 추가
-	IMAGEMANAGER->addImage("사과", "image/item/apple.bmp", 58, 60, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("붕어빵", "image/item/boonger.bmp", 67, 60, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("버거", "image/item/burger.bmp", 72, 60, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("민트", "image/item/mint.bmp", 58, 60, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("새우", "image/item/shrimp.bmp", 57, 60, true, RGB(255, 0, 255));
-
-
-	//옵션 창 들어가면 뜨는 핸드폰
-	IMAGEMANAGER->addImage("메뉴", "image/menu/phone.bmp", 287, 500, true, RGB(255, 0, 255));
-
-
 	//UI IMAGE
 	IMAGEMANAGER->addImage("HPUI", "image/kyoko/UI/hp_ui.bmp", 600, 200, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("HPBar", "image/kyoko/UI/hpbar.bmp", 26, 24, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("MahaGauge", "image/kyoko/UI/mahagauge_1.bmp", 362, 18, true, RGB(255, 0, 255));
-
-	//세이브, 로드창 UI
-	IMAGEMANAGER->addImage("배경", "image/savescene/세이브창.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
-
-	//비선택
-	IMAGEMANAGER->addImage("A_off", "image/savescene/파일A_off.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("B_off", "image/savescene/파일B_off.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("C_off", "image/savescene/파일C_off.bmp", 485, 199, true, RGB(255, 0, 255));
-
-	//선택
-	IMAGEMANAGER->addImage("A_on", "image/savescene/파일A_on.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("B_on", "image/savescene/파일B_on.bmp", 485, 199, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("C_on", "image/savescene/파일C_on.bmp", 485, 199, true, RGB(255, 0, 255));
-
-	//스테이지 맵 아이콘
-	//비선택
-	IMAGEMANAGER->addImage("1_off", "image/savescene/맵/stage1_off.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("2_off", "image/savescene/맵/stage2_off.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("3_off", "image/savescene/맵/stage3_off.bmp", 114, 130, true, RGB(255, 0, 255));
-
-	//선택
-	IMAGEMANAGER->addImage("1_on", "image/savescene/맵/stage1_on.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("2_on", "image/savescene/맵/stage2_on.bmp", 114, 130, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("3_on", "image/savescene/맵/stage3_on.bmp", 114, 130, true, RGB(255, 0, 255));
 
 
 	while (loadingHelper->_currentCount != LOADINGMAX)

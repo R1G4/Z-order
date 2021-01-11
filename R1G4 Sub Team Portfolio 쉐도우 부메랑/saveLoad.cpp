@@ -79,6 +79,8 @@ void saveLoad::render()
 	//		Rectangle(getMemDC(), tab[i].rc);
 	//	}
 	//}
+
+	SetBkMode(getMemDC(), TRANSPARENT);
 	for (int i = 0; i < 3; i++)
 	{
 		//저장이 됐다? -> "New Game"에서 "리버시티 고등학교"로 키값을 바꿔줌
@@ -209,7 +211,7 @@ void saveLoad::key()
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
 		SOUNDMANAGER->stop("saveLoad");
-		SCENEMANAGER->changeScene("로딩씬");
+		SCENEMANAGER->changeScene("로딩씬",0);
 	}
 }
 

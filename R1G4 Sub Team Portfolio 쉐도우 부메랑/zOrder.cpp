@@ -79,13 +79,13 @@ void zOrder::quickSort(int a,int b)
 	int right = b;
 	while (left <= right)
 	{
-		while (vZpoint[left].z < pivot)left++;
-		while (vZpoint[right].z > pivot)right--;
+		while (vZpoint[left].z < pivot)++left;
+		while (vZpoint[right].z > pivot)--right;
 		if (left <= right)
 		{
 			swap(vZpoint[left], vZpoint[right]);
-			left++; 
-			right--;
+			++left; 
+			--right;
 		}
 	}
 	quickSort(a, right);
@@ -126,7 +126,11 @@ void zOrder::render(POINT camera)
 
 	for (int i = 0; i < vZpoint.size(); ++i)
 	{
-		if (vZpoint[i].obType == OBJECT)
+		if (vZpoint[i].img == nullptr)
+		{
+			continue;
+		}
+		else if (vZpoint[i].obType == OBJECT)
 		{
 			vZpoint[i].img->alphaRender(vZpoint[i].hdc, vZpoint[i].x - vZpoint[i].img->getWidth() / 2, vZpoint[i].z - vZpoint[i].img->getHeight() - vZpoint[i].jumpPower, 100,camera);
 			continue;
@@ -145,4 +149,5 @@ void zOrder::render(POINT camera)
 			vZpoint[i].img->render(vZpoint[i].hdc, vZpoint[i].x - vZpoint[i].img->getWidth() / 2, vZpoint[i].z - vZpoint[i].img->getHeight() / 2 - vZpoint[i].jumpPower, camera);
 		}
 	}
+	vZpoint.clear();
 }

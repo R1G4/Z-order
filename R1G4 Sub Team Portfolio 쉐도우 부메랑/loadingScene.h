@@ -12,7 +12,7 @@ private:
 	image* _background;
 	image* _back;
 	animation* _loading;
-
+	int nextScene;
 
 public:
 	loadingScene();
@@ -21,6 +21,7 @@ public:
 	int _currentCount;
 
 	HRESULT init();
+	HRESULT init(int SceneNum);
 	void release();
 	void update();
 	void render();

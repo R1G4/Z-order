@@ -42,6 +42,16 @@ HRESULT gameNode::init(bool managerInit)
 	return S_OK;
 }
 
+HRESULT gameNode::init(int num)
+{
+	_hdc = GetDC(_hWnd);
+	_managerInit = false;
+
+
+
+	return S_OK;
+}
+
 void gameNode::release()
 {
 	if (_managerInit)
