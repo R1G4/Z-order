@@ -9,7 +9,7 @@ HRESULT tempStage::init()
 	_player = new kyoko;
 	_player->init();
 	_em = new enemyManager;
-	_em->init();
+	_em->init(1);
 	_em->setKyokoMemory(_player);
 
 	//의자 렉트
