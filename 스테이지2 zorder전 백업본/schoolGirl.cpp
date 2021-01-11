@@ -40,32 +40,28 @@ void schoolGirl::setAttackInfo()
 	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
 
 	//일반공격1
-	attackTemp.startIndex = 1;
-	attackTemp.endIndex = 3;
+	attackTemp.index = 2;;
 	attackTemp.plusY = 26;
 	attackTemp.width = 70;
 	attackTemp.height = 50;
 	_mAttackInfo.insert(make_pair(ATTACK, attackTemp));
 
 	//콤보 1
-	attackTemp.startIndex = 2;
-	attackTemp.endIndex = 4;
+	attackTemp.index = 2;
 	attackTemp.plusY = 40;
 	attackTemp.width = 66;
 	attackTemp.height = 60;
 	_mAttackInfo.insert(make_pair(COMBO_ATTACK_1, attackTemp));
 
 	//콤보2
-	attackTemp.startIndex = 2;
-	attackTemp.endIndex = 5;
+	attackTemp.index = 3;
 	attackTemp.plusY = 10;
 	attackTemp.width = 90;
 	attackTemp.height = 70;
 	_mAttackInfo.insert(make_pair(COMBO_ATTACK_2, attackTemp));
 
 	//콤보3
-	attackTemp.startIndex = 3;
-	attackTemp.endIndex = 7;
+	attackTemp.index = 3;
 	attackTemp.plusY = 20;
 	attackTemp.width = 90;
 	attackTemp.height = 80;
@@ -286,7 +282,7 @@ void schoolGirl::setAttackRect(STATE state, DIRECTION direction)
 	case enemy::COMBO_ATTACK_3:
 		attackInfo attackinfo = _mAttackInfo.find(state)->second;
 		index = (int)_motion->getIndex();
-		if (attackinfo.startIndex <= index && attackinfo.endIndex >= index)
+		if (attackinfo.index == index)
 		{
 			switch (direction)
 			{
@@ -299,6 +295,8 @@ void schoolGirl::setAttackRect(STATE state, DIRECTION direction)
 				break;
 			}
 		}
+		else
+			_attackRc = RectMake(_x, _y, 0, 0);
 		break;
 	default:
 		_attackRc = RectMake(_x, _y, 0, 0);

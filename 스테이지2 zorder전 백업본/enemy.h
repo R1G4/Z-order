@@ -33,8 +33,7 @@ public:
 protected:
 	struct attackInfo
 	{
-		int startIndex;
-		int endIndex;
+		int index;
 		float plusY;
 		float width;
 		float height;

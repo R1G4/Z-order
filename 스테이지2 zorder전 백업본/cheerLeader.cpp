@@ -40,32 +40,28 @@ void cheerLeader::setAttackInfo()
 	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
 
 	//일반공격1
-	attackTemp.startIndex = 3;
-	attackTemp.endIndex = 5;
+	attackTemp.index = 3;
 	attackTemp.plusY = 40;
 	attackTemp.width = 70;
 	attackTemp.height = 30;
 	_mAttackInfo.insert(make_pair(ATTACK, attackTemp));
 
 	//콤보 1
-	attackTemp.startIndex = 3;
-	attackTemp.endIndex = 5;
+	attackTemp.index = 3;
 	attackTemp.plusY = 50;
 	attackTemp.width = 70;
 	attackTemp.height = 30;
 	_mAttackInfo.insert(make_pair(COMBO_ATTACK_1, attackTemp));
 
 	//콤보2
-	attackTemp.startIndex = 2;
-	attackTemp.endIndex = 3;
+	attackTemp.index = 3;
 	attackTemp.plusY = 40;
 	attackTemp.width = 70;
 	attackTemp.height = 40;
 	_mAttackInfo.insert(make_pair(COMBO_ATTACK_2, attackTemp));
 
 	//콤보3
-	attackTemp.startIndex = 7;
-	attackTemp.endIndex = 9;
+	attackTemp.index = 7;
 	attackTemp.plusY = 0;
 	attackTemp.width = 60;
 	attackTemp.height = 100;
@@ -288,7 +284,7 @@ void cheerLeader::setAttackRect(STATE state, DIRECTION direction)
 	case enemy::COMBO_ATTACK_3:
 		attackInfo attackinfo = _mAttackInfo.find(state)->second;
 		index = (int)_motion->getIndex();
-		if (attackinfo.startIndex <= index && attackinfo.endIndex >= index)
+		if (attackinfo.index == index)
 		{
 			switch (direction)
 			{
@@ -301,6 +297,8 @@ void cheerLeader::setAttackRect(STATE state, DIRECTION direction)
 				break;
 			}
 		}
+		else
+			_attackRc = RectMake(_x, _y, 0, 0);
 		break;
 	default:
 		_attackRc = RectMake(_x, _y, 0, 0);
