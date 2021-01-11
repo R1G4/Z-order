@@ -1,0 +1,3 @@
+﻿  stdafx.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\스테이지2 zorder전 백업본\statusmanager.h(16): error C2011: 'soundManager': 'class' 형식 재정의
+  c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\스테이지2 zorder전 백업본\soundmanager.h(16): note: 'soundManager' 선언을 참조하십시오.
