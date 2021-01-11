@@ -220,6 +220,7 @@
     <ClCompile Include="schoolBoy.cpp" />
     <ClCompile Include="schoolGirl.cpp" />
     <ClCompile Include="soundManager.cpp" />
+    <ClCompile Include="stage2+zOrder.cpp" />
     <ClCompile Include="stage2.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="StatusManager.cpp" />

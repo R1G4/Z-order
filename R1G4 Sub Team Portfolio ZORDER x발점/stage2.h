@@ -2,8 +2,6 @@
 #include "gameNode.h"
 #include "kyoko.h"
 #include"UIManager.h"
-#include"enemyManager.h"
-
 struct tagObj
 {
 	RECT rc;
@@ -21,7 +19,6 @@ private:
 	tagObj Robj;
 	image* stage2;
 	image* stage2Pic;
-	enemyManager* _em;
 	kyoko* _player;
 	int alpha;
 public:
@@ -29,7 +26,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
+	void zOrder();
 	// ÇÈ¼¿ Ãæµ¹
 	void pixelCollision();
 };

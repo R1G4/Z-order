@@ -317,6 +317,9 @@
     <ClCompile Include="StatusManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="stage2+zOrder.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc">

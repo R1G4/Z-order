@@ -1,0 +1,31 @@
+﻿  tempStage.cpp
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\kyoko.h(115): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\kyoko.h(116): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\kyoko.h(124): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\kyoko.h(125): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\enemy.h(149): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\enemy.h(150): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(6): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(63): error C3867: 'std::vector<enemy *,std::allocator<_Ty>>::size': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+          with
+          [
+              _Ty=enemy *
+          ]
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(63): error C2446: '<': 'int'에서 'unsigned __int64 (__cdecl std::vector<enemy *,std::allocator<_Ty>>::* )(void) noexcept const'(으)로 변환되지 않았습니다.
+          with
+          [
+              _Ty=enemy *
+          ]
+  c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(63): note: 정수 계열 값에서 멤버 포인터 값으로의 변환이 없습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(147): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(154): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(171): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(177): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(208): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(214): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(221): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(227): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(381): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(398): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(414): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴사본\r1g4 sub team portfolio zorder x발점\tempstage.cpp(431): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.

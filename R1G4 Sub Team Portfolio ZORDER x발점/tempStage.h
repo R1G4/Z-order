@@ -27,6 +27,8 @@ private:
 	vector<int> _vZorder;
 	char _str[128];
 	bool _isDesk;
+	bool _isChainLock;
+	RECT stageLock;
 public:
 	HRESULT init();
 	void release();
