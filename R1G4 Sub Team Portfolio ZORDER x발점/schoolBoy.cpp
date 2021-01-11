@@ -19,7 +19,7 @@ HRESULT schoolBoy::init(float x, float y, STATE state, DIRECTION direction)
 	enemy::init(x, y, state, direction);
 
 	//해당 에너미 스피드
-	_speed = 1.8f;
+	_speed = 2.0f;
 
 	setAttackInfo();
 	return S_OK;
@@ -332,7 +332,7 @@ void schoolBoy::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 525 && _isAction)
+	if (distance < 550 && _isAction)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)
@@ -349,7 +349,9 @@ void schoolBoy::state()
 
 		RECT temp;
 		//플레이어와 에너미 충돌 시
-		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 40), &_enemyRc))
+		if (IntersectRect(&temp,
+			&RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100),
+			&RectMakeCenter(_x, _y, 200, _enemyImg->getFrameHeight())))	//에너미 넓이 고정으로 생성
 		{
 			switch (_state)
 			{
@@ -453,7 +455,8 @@ void schoolBoy::state()
 		if (_kyoko->getKyokoPoint().x > _x)
 		{
 			//두 거리가 멀다면 달린다
-			if (((_direction != RIGHT && _state != RUN) || (_direction == LEFT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
+			if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != RIGHT && _state != RUN) || (_direction == LEFT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
 			{
 				_motion->stop();
 				_direction = RIGHT;
@@ -463,7 +466,8 @@ void schoolBoy::state()
 				_motion->start();
 			}
 			//두 거리가 가깝다면 걷는다
-			else if (((_direction != RIGHT && _state != WALK) || (_direction == LEFT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
+			else if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != RIGHT && _state != WALK) || (_direction == LEFT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
 			{
 				_motion->stop();
 				_direction = RIGHT;
@@ -477,7 +481,8 @@ void schoolBoy::state()
 		else if (_kyoko->getKyokoPoint().x <= _x)
 		{
 			//두 거리가 멀다면 달린다
-			if (((_direction != LEFT && _state != RUN) || (_direction == RIGHT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
+			if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != LEFT && _state != RUN) || (_direction == RIGHT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
 			{
 				_motion->stop();
 				_direction = LEFT;
@@ -487,7 +492,8 @@ void schoolBoy::state()
 				_motion->start();
 			}
 			//두 거리가 가깝다면 걷는다
-			else if (((_direction != LEFT && _state != WALK) || (_direction == RIGHT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
+			else if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != LEFT && _state != WALK) || (_direction == RIGHT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
 			{
 				_motion->stop();
 				_direction = LEFT;

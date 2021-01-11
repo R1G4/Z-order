@@ -19,8 +19,9 @@ HRESULT cheerLeader::init(float x, float y, STATE state, DIRECTION direction)
 	enemy::init(x, y, state, direction);
 
 	//해당 에너미 스피드
-	_speed = 2.1f;
+	_speed = 2.2f;
 
+	//공격 위치 및 데미지 초기화
 	setAttackInfo();
 
 	return S_OK;
@@ -73,6 +74,8 @@ void cheerLeader::setAttackInfo()
 
 void cheerLeader::update()
 {
+	enemy::update();
+
 	setAttackRect(_state, _direction);
 
 	_enemyAttack->update();
@@ -119,11 +122,11 @@ void cheerLeader::addFrame()
 	aniRightWalk = new animation;
 	aniRightWalk->init(imgWalk->getWidth(), imgWalk->getHeight(), imgWalk->getFrameWidth(), imgWalk->getFrameHeight());
 	aniRightWalk->setPlayFrame(0, imgWalk->getMaxFrameX(), false, true);
-	aniRightWalk->setFPS(10);
+	aniRightWalk->setFPS(5);
 	aniLeftWalk = new animation;
 	aniLeftWalk->init(imgWalk->getWidth(), imgWalk->getHeight(), imgWalk->getFrameWidth(), imgWalk->getFrameHeight());
 	aniLeftWalk->setPlayFrame(imgWalk->getMaxFrameX() * 2 + 1, imgWalk->getMaxFrameX() + 1, false, true);
-	aniLeftWalk->setFPS(10);
+	aniLeftWalk->setFPS(5);
 
 	aniRightRun = new animation;
 	aniRightRun->init(imgRun->getWidth(), imgRun->getHeight(), imgRun->getFrameWidth(), imgRun->getFrameHeight());
@@ -308,7 +311,6 @@ void cheerLeader::setAttackRect(STATE state, DIRECTION direction)
 void cheerLeader::state()
 {
 	_motion->frameUpdate(TIMEMANAGER->getElapsedTime());
-
 	//애니메이션이 멈춘 경우 IDLE로 전환
 	if (!_motion->isPlay())
 	{
@@ -333,7 +335,7 @@ void cheerLeader::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 525 && _isAction)
+	if (distance < 550 && _isAction && _motion->isPlay())
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)
@@ -350,7 +352,9 @@ void cheerLeader::state()
 
 		RECT temp;
 		//플레이어와 에너미 충돌 시
-		if (IntersectRect(&temp, &RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100), &_enemyRc))
+		if (IntersectRect(&temp,
+			&RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100),
+			&RectMakeCenter(_x, _y, 200, _enemyImg->getFrameHeight())))	//에너미 넓이 고정으로 생성
 		{
 			switch (_state)
 			{
@@ -372,18 +376,16 @@ void cheerLeader::state()
 				if (_isAttack)
 				{
 					_isAttack = false;
-
+					_enemyImg = imgAttack;
 					switch (_direction)
 					{
 					case cheerLeader::LEFT:
-						_enemyImg = imgAttack;
 						_motion = aniLeftAttack;
 						_motion->start();
 						break;
 					case cheerLeader::RIGHT:
-						_enemyImg = imgAttack;
 						_motion = aniRightAttack;
-						_motion->start();
+						_motion->start();;
 						break;
 					}
 				}
@@ -393,6 +395,7 @@ void cheerLeader::state()
 				if (_isAttack)
 				{
 					_isAttack = false;
+					//setAttackRect(_state, _direction);
 					_enemyImg = imgCombo_attack_1;
 					switch (_direction)
 					{
@@ -412,6 +415,7 @@ void cheerLeader::state()
 				if (_isAttack)
 				{
 					_isAttack = false;
+					//setAttackRect(_state, _direction);
 					_enemyImg = imgCombo_attack_2;
 					switch (_direction)
 					{
@@ -431,6 +435,7 @@ void cheerLeader::state()
 				if (_isAttack)
 				{
 					_isAttack = false;
+					//setAttackRect(_state, _direction);
 					_enemyImg = imgCombo_attack_3;
 					switch (_direction)
 					{
@@ -448,13 +453,26 @@ void cheerLeader::state()
 			}
 			//에너미는 이동 할 필요 없으니 아래 코드는 스킵
 			return;
-		}
-
+		}/*
+		else
+		{
+			switch (_state)
+			{
+			case enemy::BLOCK:
+			case enemy::ATTACK:
+			case enemy::COMBO_ATTACK_1:
+			case enemy::COMBO_ATTACK_2:
+			case enemy::COMBO_ATTACK_3:
+				_motion->stop();
+				break;
+			}
+		}*/
 		//플레이어의 위치가 에너미 보다 오른쪽에 있을 경우
 		if (_kyoko->getKyokoPoint().x > _x)
 		{
 			//두 거리가 멀다면 달린다
-			if (((_direction != RIGHT && _state != RUN) || (_direction == LEFT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
+			if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != RIGHT && _state != RUN) || (_direction == LEFT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
 			{
 				_motion->stop();
 				_direction = RIGHT;
@@ -464,7 +482,8 @@ void cheerLeader::state()
 				_motion->start();
 			}
 			//두 거리가 가깝다면 걷는다
-			else if (((_direction != RIGHT && _state != WALK) || (_direction == LEFT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
+			else if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != RIGHT && _state != WALK) || (_direction == LEFT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
 			{
 				_motion->stop();
 				_direction = RIGHT;
@@ -478,7 +497,8 @@ void cheerLeader::state()
 		else if (_kyoko->getKyokoPoint().x <= _x)
 		{
 			//두 거리가 멀다면 달린다
-			if (((_direction != LEFT && _state != RUN) || (_direction == RIGHT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
+			if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != LEFT && _state != RUN) || (_direction == RIGHT && _state == RUN) || (_direction == LEFT && _state == WALK) || (_direction == RIGHT && _state == WALK) || _state == IDLE) && distance > 250)
 			{
 				_motion->stop();
 				_direction = LEFT;
@@ -488,7 +508,8 @@ void cheerLeader::state()
 				_motion->start();
 			}
 			//두 거리가 가깝다면 걷는다
-			else if (((_direction != LEFT && _state != WALK) || (_direction == RIGHT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
+			else if (_state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_2 || _state == ATTACK || _state == COMBO_ATTACK_1 || _state == COMBO_ATTACK_3 ||
+				((_direction != LEFT && _state != WALK) || (_direction == RIGHT && _state == WALK) || (_direction == LEFT && _state == RUN) || (_direction == RIGHT && _state == RUN) || _state == IDLE) && distance <= 250)
 			{
 				_motion->stop();
 				_direction = LEFT;
@@ -558,9 +579,10 @@ void cheerLeader::move()
 	//충동했다면 이동을 제한한다.
 	if (_isCollision)
 		return;
+
 	//플레이어와 에너미의 각도 계산
 	_angle = getAngle(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-
+	int temp;
 	switch (_state)
 	{
 	case cheerLeader::WALK:
@@ -583,7 +605,6 @@ void cheerLeader::move()
 
 				break;
 			}
-
 		}
 		break;
 	case cheerLeader::RUN:
