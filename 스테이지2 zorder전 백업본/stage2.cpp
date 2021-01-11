@@ -8,9 +8,8 @@ HRESULT stage2::init()
 	_player = new kyoko;
 	_player->init();
 	_em = new enemyManager;
-	_em->init(2);
 	_em->setKyokoMemory(_player);
-
+	_em->init(2);
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
 	Lobj.img = IMAGEMANAGER->findImage("좌기둥");
@@ -35,12 +34,12 @@ void stage2::release()
 void stage2::update()
 {
 	UI->update();
-
-	KEYANIMANAGER->update();
 	EFFECTMANAGER->update();
-	//pixelCollision();
+	KEYANIMANAGER->update();
+	pixelCollision();
 	_player->update();
 	_em->update();
+	cout << _player->getRect().left;
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage2);
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getRect(), &Lobj.rc))
@@ -57,33 +56,16 @@ void stage2::update()
 void stage2::render()
 {
 	stage2->render(getMemDC(), 0, 0, camera);
-	_player->render(camera);
-	_em->render(camera);
-	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha,camera);
-	Robj.img->alphaRender(getMemDC(), Robj.x, Robj.y,alpha, camera);
+
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage2Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), Lobj.rc, camera);
 		Rectangle(getMemDC(), Robj.rc, camera);
-
-		for (int i = 0; i < _em->getVEnemy().size(); i++)
-		{
-			//	Rectangle(getMemDC(), _em->getVEnemy()[i]->getDebugEnemyRect(), camera);
-			enemy* enemy = _em->getVEnemy()[i];
-			//충돌용
-			Rectangle(getMemDC(), enemy->getDebugRect(), camera);
-			//그림자
-			Rectangle(getMemDC(), enemy->getDebugShadowRc(), camera);
-			//공격
-			HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
-			HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
-			Rectangle(getMemDC(), enemy->getDebugAttackRc(), camera);
-			SelectObject(getMemDC(), oldBrush);
-			DeleteObject(brush);
-
-		}
 	}
+	zOrder();
+	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
+	Robj.img->alphaRender(getMemDC(), Robj.x, Robj.y, alpha, camera);
 	UI->render();
 
 }

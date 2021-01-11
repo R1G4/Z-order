@@ -57,11 +57,6 @@ void tempStage::update()
 	EFFECTMANAGER->update();
 	changeMap();
 
-	//RECT temp;
-	//if (IntersectRect(&temp, &_player->getAttackRect(), &chair[1].rc) && _player->getIsAttack())
-	//{
-	//	cout << "타격" << endl;
-	//}
 }
 
 void tempStage::render()
@@ -83,7 +78,6 @@ void tempStage::render()
 	{
 		chair[i].img->render(getMemDC(), chair[i].rc.left, chair[i].rc.top, camera);
 	}
-	zOrder();
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage1Pic->render(getMemDC(), 0, 0, camera);
@@ -96,7 +90,7 @@ void tempStage::render()
 
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
-			//	Rectangle(getMemDC(), _em->getVEnemy()[i]->getDebugEnemyRect(), camera);
+			
 			enemy* enemy = _em->getVEnemy()[i];
 			//충돌용
 			Rectangle(getMemDC(), enemy->getDebugRect(), camera);
@@ -117,6 +111,8 @@ void tempStage::render()
 		SelectObject(getMemDC(), oldBrush);
 		DeleteObject(brush);
 	}
+	zOrder();
+
 	UI->render();
 
 }
@@ -156,22 +152,7 @@ void tempStage::pixelCollision()
 
 			break;
 		}
-		if ((r1 == 0 && g1 == 255 && b1 == 0) && !_player->getIsJump())
-		{
-			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 1);
-			_player->setNoSpeed(true);
-			_isDesk = true;
-			break;
-		}
-		else _isDesk = false;
 
-		if (r1 == 255 && g1 == 255 && b1 == 0)
-		{
-			if (_player->getShadow().top <= _player->getRect().bottom)
-			{
-
-			}
-		}
 
 		if (r2 == 255 && g2 == 0 && b2 == 0)
 		{
@@ -179,21 +160,7 @@ void tempStage::pixelCollision()
 			_player->setNoSpeed(true);
 			break;
 		}
-		if ((r2 == 0 && g2 == 255 && b2 == 0) && !_player->getIsJump())
-		{
-			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 1);
-			_player->setNoSpeed(true);
-			_isDesk = true;
-			break;
-		}
-		else _isDesk = false;
-		if (r2 == 255 && g2 == 255 && b2 == 0)
-		{
-			if (_player->getShadow().top <= _player->getRect().bottom)
-			{
 
-			}
-		}
 	}
 
 	//픽셀 콜리쟌 좌 우
@@ -236,6 +203,39 @@ void tempStage::pixelCollision()
 			break;
 		}
 	}
+
+	//으자
+	for (int i = _player->getShadow().top + 20; i <= _player->getShadow().bottom + 5; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(), (_player->getShadow().right + _player->getShadow().left) / 2, i);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		if ((_player->getKyokoDirection() == KYOKODIRECTION_RIGHT_JUMP || _player->getKyokoDirection() == (KYOKODIRECTION_LEFT_JUMP))
+			&& (r == 0 && g == 255 && b == 0))
+		{
+			if (!_isDesk) {
+				_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 50);
+				_isDesk = true;
+				break;
+			}
+		}
+		else if (!(r == 255 && g == 255 && b == 0) && _player->getIsJump())_isDesk = false;
+	}
+	for (int i = _player->getShadow().left + 20; i <= _player->getShadow().right - 20; ++i)
+	{
+		COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage1Pic")->getMemDC(),i, (_player->getShadow().top + _player->getShadow().bottom) / 2);
+		int r = GetRValue(color);
+		int g = GetGValue(color);
+		int b = GetBValue(color);
+		if (((r == 255 && g == 255 && b == 0)) && _player->getIsJump())
+		{
+			_isDesk = true;
+		}
+		else if (!(r == 255 && g == 255 && b == 0) && _player->getIsJump())_isDesk = false;
+	}
+
+
 
 	//에너미 충돌
 	for (int i = 0; i < _em->getVEnemy().size(); i++)

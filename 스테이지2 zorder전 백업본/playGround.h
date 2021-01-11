@@ -6,7 +6,7 @@
 #include "stage2.h"
 #include "BossStage.h"
 #include "loadingScene.h"
-
+#include "opTion.h"
 
 class playGround : public gameNode
 {

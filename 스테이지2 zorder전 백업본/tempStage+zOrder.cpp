@@ -16,7 +16,7 @@ void tempStage::zOrder()
 	//정렬
 	quickSort(0, _vZorder.size() - 1);
 
-	if (_player->getIsJump() && _isDesk)
+	if (/*_player->getIsJump() && */_isDesk)
 	{
 		//랜더
 		for (int i = 0; i < _vZorder.size(); ++i)
