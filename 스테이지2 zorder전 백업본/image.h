@@ -102,6 +102,8 @@ public:
 
 	void loopRender(HDC hdc, const LPRECT drawArea, int offSetX, int offSetY);
 
+	void alphaAniRender(HDC hdc, int destX, int destY, animation * ani, BYTE alpha, POINT camera);
+
 	//상대좌표 카메라 적용 render
 		//카메라와의 상대좌표를 통해 그리고 싶다면
 	void render(HDC hdc, int destX, int destY, POINT camera);

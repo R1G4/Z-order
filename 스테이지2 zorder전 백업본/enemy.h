@@ -22,7 +22,9 @@ public:
 		KNOCKDOWN,
 		DAZED,
 		JUMP,
-		TAUNT
+		TAUNT,
+		DEAD,
+		REMOVE
 	};
 
 	enum DIRECTION
@@ -37,14 +39,9 @@ protected:
 		float plusY;
 		float width;
 		float height;
-		int damage;
-		bool isTouch;
 	};
 	map<STATE, attackInfo> _mAttackInfo;
-	multimap<STATE, attackInfo> _mmAttackInfo;
 	kyoko* _kyoko;
-	float _x, _y;			//에너미 좌표
-	float _angle;			//에너미 이동 각도
 	image* _enemyImg;		//에너미 이미지
 	image* _shadowImg;		//그림자 이미지
 	RECT _rc;				//충돌용 렉트
@@ -54,6 +51,8 @@ protected:
 	animation* _motion;		//선택된 애니메이션
 	DIRECTION _direction;	//에너미 방향
 	STATE _state;			//에너미 상태
+	float _x, _y;			//에너미 좌표
+	float _angle;			//에너미 이동 각도
 	bool _isAction;			//특정 에너미 도발 종료 후 패턴 시작
 	bool _isAttack;			//공격 구분
 	bool _isRunning;		//달리기 구분
@@ -61,6 +60,9 @@ protected:
 	bool _isCollision;
 	int _questTimer;		//탐색 및 휴식 난수
 	int _questMin;			//최소 탐색 간격 난수
+	int _hp;
+	int _alphaInterval;		//투명도 간격
+	int _alphaValue;		//투명도
 	enemyAttack* _enemyAttack;	//에너미 공격 패턴 클래스
 
 		//에너미 이미지
@@ -123,9 +125,27 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-	void effectPoint(DIRECTION direction);
-	void effectStun(DIRECTION direction);;
 	virtual void render(POINT camera);
+
+	bool block(DIRECTION _direction);
+
+	//에너미 머리 위에 느낌표 보여주기
+	void effectPoint(DIRECTION direction);
+
+	//에너미 머리 위에 스턴 상태 보여주기
+	void effectStun(DIRECTION direction);;
+
+	//에너미 피격 상태일때
+	void hit(DIRECTION _direction);
+
+	//에너미 피격으로 다운 상태일때
+	void downup(DIRECTION _direction);
+	
+	//에너미 넉다운 상태일때
+	void knockdown(DIRECTION _direction);
+
+	//에너미 제거되기 직전 투명도 조절
+	void setAlpha();
 
 	//그 외 일단 추가한 겟터 셋터
 
@@ -137,7 +157,6 @@ public:
 	RECT getRect() { return _rc; }
 	RECT getEnemyRect() { return _enemyRc; }
 	RECT getShadowRc() { return _shadowRc; }
-	RECT getAttackRc() { return _attackRc; }
 
 	//디버그용 렉트
 	RECT& getDebugRect() { return _rc; }
@@ -161,6 +180,9 @@ public:
 	bool getCollision() { return _isCollision; }
 	void setCollision(bool isCollision) { _isCollision = isCollision; }
 
+	image* getImgDazed() { return imgDazed; }
+	animation* getAniLeftDazed() { return aniLeftDazed; }
+	animation* getAniRightDazed() { return aniRightDazed; }
 	//좌표
 	POINT getEnemyPoint()
 	{

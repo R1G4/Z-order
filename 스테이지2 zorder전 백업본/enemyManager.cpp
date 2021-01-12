@@ -24,13 +24,33 @@ void enemyManager::release()
 	}
 }
 
+//해당 enemy 객체 제거
+void enemyManager::removeEnemy(int i)
+{
+	SAFE_DELETE(_vEnemy[i]);
+	_vEnemy.erase(_vEnemy.begin() + i);
+}
+
 void enemyManager::update()
 {
-	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
+	for (int i = 0; i < _vEnemy.size(); i++)
 	{
-		(*_viEnemy)->setKyokoAddressLink(_kyoko);
-		(*_viEnemy)->update();
+		//객체가 존재하지 않을 경우 예외
+		if (!_vEnemy[i]) continue;
+
+		//객체의 상태가 REMOVE라면 제거
+		if(_vEnemy[i]->getState() == enemy::REMOVE)
+			removeEnemy(i);
+
+		_vEnemy[i]->setKyokoAddressLink(_kyoko);
+		_vEnemy[i]->update();
 	}
+
+	//for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
+	//{
+	//	(*_viEnemy)->setKyokoAddressLink(_kyoko);
+	//	(*_viEnemy)->update();
+	//}
 
 	spawn();
 }
@@ -78,16 +98,16 @@ void enemyManager::setEnemy()
 		//(float x, float y, STATE state = IDLE, DIRECTION direction = (DIRECTION)RND->getFromIntTo(0, 2));
 	case enemyManager::STAGE_1:
 		_vEnemy.push_back(setSchoolGirl(1700, 550, enemy::TAUNT, enemy::LEFT));
-		_vEnemy.push_back(setSchoolGirl(1700, 700, enemy::IDLE));
+		_vEnemy.push_back(setSchoolGirl(1650, 525, enemy::IDLE));
 		_vEnemy.push_back(setSchoolBoy(1600, 600, enemy::TAUNT, enemy::LEFT));
-		_vEnemy.push_back(setSchoolBoy(1750, 750, enemy::IDLE));
+		_vEnemy.push_back(setSchoolBoy(1800, 600, enemy::IDLE));
 		break;
 	case enemyManager::STAGE_2:
-		_vEnemy.push_back(setSchoolGirl(900, 600, enemy::TAUNT, enemy::LEFT));
+		_vEnemy.push_back(setSchoolGirl(1700, 500, enemy::TAUNT, enemy::LEFT));
 		_vEnemy.push_back(setSchoolBoy(1300, 500, enemy::TAUNT, enemy::LEFT));
-		_vEnemy.push_back(setMT(340, 400, enemy::TAUNT, enemy::RIGHT));
-		_vEnemy.push_back(setCheerLeader(2200, 600, enemy::IDLE));
-		_vEnemy.push_back(setCheerLeader(2500, 800, enemy::IDLE));
+		_vEnemy.push_back(setMT(370, 400, enemy::TAUNT, enemy::RIGHT));
+		_vEnemy.push_back(setCheerLeader(2400, 500, enemy::IDLE));
+		_vEnemy.push_back(setCheerLeader(2800, 500, enemy::IDLE));
 		break;
 	}
 }
@@ -111,16 +131,16 @@ void enemyManager::addEnemy()
 		switch ((ENEMY_KINDS)RND->getFromIntTo(ENEMY_GIRL, ENEMY_CHEERLEADER + 1))
 		{
 		case enemyManager::ENEMY_GIRL:
-			_vEnemy.push_back(setSchoolGirl(1080, 390, enemy::IDLE));
+			_vEnemy.push_back(setSchoolGirl(1080, 450, enemy::IDLE));
 			break;
 		case enemyManager::ENEMY_BOY:
-			_vEnemy.push_back(setSchoolBoy(1080, 390, enemy::IDLE));
+			_vEnemy.push_back(setSchoolBoy(1080, 450, enemy::IDLE));
 			break;
 		case enemyManager::ENEMY_MT:
-			_vEnemy.push_back(setMT(1080, 390, enemy::IDLE));
+			_vEnemy.push_back(setMT(1080, 450, enemy::IDLE));
 			break;
 		case enemyManager::ENEMY_CHEERLEADER:
-			_vEnemy.push_back(setCheerLeader(1080, 390, enemy::IDLE));
+			_vEnemy.push_back(setCheerLeader(1080, 450, enemy::IDLE));
 			break;
 		}
 		break;

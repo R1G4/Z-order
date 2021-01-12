@@ -38,6 +38,7 @@ public:
 	virtual HRESULT init(int stageNum);
 
 	virtual void release();
+	void removeEnemy(int i);
 	virtual void update();
 
 ;	void spawn();

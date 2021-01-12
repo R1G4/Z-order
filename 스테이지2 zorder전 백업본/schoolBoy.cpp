@@ -32,8 +32,6 @@ void schoolBoy::release()
 void schoolBoy::setAttackInfo()
 {
 	attackInfo attackTemp;
-	attackTemp.damage = 1;
-	attackTemp.isTouch = false;
 
 	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
 
@@ -68,6 +66,8 @@ void schoolBoy::setAttackInfo()
 
 void schoolBoy::update()
 {
+	enemy::update();
+
 	setAttackRect(_state, _direction);
 
 	_enemyAttack->update();
@@ -185,30 +185,30 @@ void schoolBoy::addFrame()
 
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
-	aniRightDownup->setPlayFrame(0, 26, false, false);
+	aniRightDownup->setPlayFrame(0, 26, false, false, leftStun, this);
 	aniRightDownup->setFPS(10);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
-	aniLeftDownup->setPlayFrame(53, 27, false, false);
+	aniLeftDownup->setPlayFrame(53, 27, false, false, leftStun, this);
 	aniLeftDownup->setFPS(10);
 
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
-	aniRightKnockdown->setPlayFrame(0, 18, false, false);
+	aniRightKnockdown->setPlayFrame(0, 18, false, false, setDead, this);
 	aniRightKnockdown->setFPS(10);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
-	aniLeftKnockdown->setPlayFrame(37, 19, false, false);
+	aniLeftKnockdown->setPlayFrame(37, 19, false, false, setDead, this);
 	aniLeftKnockdown->setFPS(10);
 
 	aniRightDazed = new animation;
 	aniRightDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniRightDazed->setPlayFrame(0, 3, false, false);
-	aniRightDazed->setFPS(10);
+	aniRightDazed->setFPS(5);
 	aniLeftDazed = new animation;
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(7, 4, false, false);
-	aniLeftDazed->setFPS(10);
+	aniLeftDazed->setFPS(5);
 
 	aniRightJump = new animation;
 	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
@@ -221,11 +221,11 @@ void schoolBoy::addFrame()
 
 	aniRightTaunt = new animation;
 	aniRightTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
-	aniRightTaunt->setPlayFrame(0, 10, false, false, ActionCheck, this);
+	aniRightTaunt->setPlayFrame(0, 10, false, false, actionCheck, this);
 	aniRightTaunt->setFPS(7);
 	aniLeftTaunt = new animation;
 	aniLeftTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
-	aniLeftTaunt->setPlayFrame(21, 11, false, false, ActionCheck, this);
+	aniLeftTaunt->setPlayFrame(21, 11, false, false, actionCheck, this);
 	aniLeftTaunt->setFPS(7);
 }
 
@@ -234,6 +234,9 @@ void schoolBoy::render(POINT camera)
 	enemy::render(camera);
 	switch (_state)
 	{
+	case schoolBoy::DEAD:
+		_enemyImg->alphaAniRender(getMemDC(), _enemyRc.left, _enemyRc.top, _motion, _alphaValue, camera);
+		break;
 	case schoolBoy::COMBO_ATTACK_1:
 		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top - 32, 150, camera);
 		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top - 32, _motion, camera);
@@ -265,7 +268,12 @@ void schoolBoy::render(POINT camera)
 	{
 		Rectangle(getMemDC(), _shadowRc, camera);
 		Rectangle(getMemDC(), _rc, camera);
-		Rectangle(getMemDC(), _enemyRc, camera);
+
+		HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+		Rectangle(getMemDC(), _attackRc, camera);
+		SelectObject(getMemDC(), oldBrush);
+		DeleteObject(brush);
 	}
 }
 
@@ -307,7 +315,7 @@ void schoolBoy::state()
 	_motion->frameUpdate(TIMEMANAGER->getElapsedTime());
 
 	//애니메이션이 멈춘 경우 IDLE로 전환
-	if (!_motion->isPlay())
+	if (!_motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_direction)
 		{
@@ -330,7 +338,7 @@ void schoolBoy::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 550 && _isAction)
+	if (distance < 550 && _isAction && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)
@@ -503,7 +511,7 @@ void schoolBoy::state()
 		}
 	}
 	//추적 거리가 닿지 않을 경우 패턴 구현
-	else
+	else if (_state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_state)
 		{
@@ -613,8 +621,44 @@ void schoolBoy::move()
 	}
 }
 
-void schoolBoy::ActionCheck(void* obj)
+void schoolBoy::actionCheck(void* obj)
 {
 	schoolBoy* k = (schoolBoy*)obj;
 	k->_isAction = true;
+}
+
+void schoolBoy::leftStun(void* obj)
+{
+	schoolBoy* k = (schoolBoy*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(LEFT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniLeftDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(LEFT);
+	}
+}
+
+void schoolBoy::rightStun(void* obj)
+{
+	schoolBoy* k = (schoolBoy*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(RIGHT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniRightDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(RIGHT);
+	}
+}
+
+void schoolBoy::setDead(void* obj)
+{
+	schoolBoy* k = (schoolBoy*)obj;
+	k->setState(DEAD);
 }
