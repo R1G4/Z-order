@@ -39,8 +39,11 @@ void enemyManager::update()
 		if (!_vEnemy[i]) continue;
 
 		//객체의 상태가 REMOVE라면 제거
-		if(_vEnemy[i]->getState() == enemy::REMOVE)
+		if (_vEnemy[i]->getState() == enemy::REMOVE)
+		{
 			removeEnemy(i);
+			i = 0;
+		}
 
 		_vEnemy[i]->setKyokoAddressLink(_kyoko);
 		_vEnemy[i]->update();
@@ -73,6 +76,7 @@ void enemyManager::spawn()
 				spawnInterval = 0;
 			}
 		}
+		else spawnInterval = 0;
 		break;
 	case enemyManager::STAGE_2:
 		//현재 존재하는 에너미 갯수가 6개 미만 일경우
@@ -87,6 +91,7 @@ void enemyManager::spawn()
 				spawnInterval = 0;
 			}
 		}
+		else spawnInterval = 0;
 		break;
 	}
 }

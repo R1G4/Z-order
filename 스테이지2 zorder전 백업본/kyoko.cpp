@@ -62,7 +62,8 @@ void kyoko::update()
 			attackMotion();
 			jumpMotion();
 		}
-		attackedMotion();
+		else
+			attackedMotion();
 
 		// 이미지처리를 위한 렉트
 		if (!_isJump)
@@ -91,6 +92,9 @@ void kyoko::update()
 		_jump->update();
 		_shadow_jump->update();
 
+		if (KEYMANAGER->isOnceKeyDown(VK_F2))
+			STATUSMANAGER->heal(10,"HPBar");
+
 		// 체력이 다 닳으면 사망
 		if (STATUSMANAGER->getHp() <= 0)
 			_isDead = true;
@@ -99,8 +103,9 @@ void kyoko::update()
 	else
 	{
 		gameOverMotion();
-		cout << "ㅎㅇ?";
 	}
+
+
 }
 
 void kyoko::render()
@@ -271,16 +276,16 @@ void kyoko::addMotionAni()
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttack_s", "쿄코_강공격", arrLeftAttack_strong, 10, 10, false, leftFire, this, 1);
 
 	int arrRightAttacked_1[] = { 0,1,2,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttacked1", "쿄코_피격1", arrRightAttacked_1, 4, 7, false, rightFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttacked1", "쿄코_피격1", arrRightAttacked_1, 4, 7, this, 1);
 
 	int arrLeftAttacked_1[] = { 7,6,5,4 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttacked1", "쿄코_피격1", arrLeftAttacked_1, 4, 7, false, leftFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttacked1", "쿄코_피격1", arrLeftAttacked_1, 4, 7, this, 1);
 
 	int arrRightAttacked_2[] = { 0,1,2,3 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttacked2", "쿄코_피격2", arrRightAttacked_2, 4, 7, false, rightFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightAttacked2", "쿄코_피격2", arrRightAttacked_2, 4, 7, this, 1);
 
 	int arrLeftAttacked_2[] = { 7,6,5,4 };
-	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttacked2", "쿄코_피격2", arrLeftAttacked_2, 4, 7, false, leftFire, this, 1);
+	KEYANIMANAGER->addArrayFrameAnimation("kyokoLeftAttacked2", "쿄코_피격2", arrLeftAttacked_2, 4, 7, this, 1);
 
 	int arrRightJump[] = { 0 };
 	KEYANIMANAGER->addArrayFrameAnimation("kyokoRightJump", "쿄코_점프", arrRightJump, 1, 2, false, 1);
@@ -1754,6 +1759,13 @@ void kyoko::attackedMotion()
 		// 왼쪽에서 맞으면
 		if (!_isRight && STATUSMANAGER->getHp() > 0)
 		{
+			_kyokoMotion->stop();
+
+			_isAttack = false;
+			_isRunning = false;
+			_isJump = false;
+			_isMoving = false;
+
 			_isStartMotionAttaced = true;
 			_image = IMAGEMANAGER->findImage("쿄코_피격1");
 			_kyokoDirection = KYOKODIRECTION_LEFT_ATTACKED_1;
@@ -1762,6 +1774,13 @@ void kyoko::attackedMotion()
 		}
 		if (_isRight && STATUSMANAGER->getHp() > 0)
 		{
+			_kyokoMotion->stop();
+
+			_isAttack = false;
+			_isRunning = false;
+			_isJump = false;
+			_isMoving = false;
+
 			_isStartMotionAttaced = true;
 			_image = IMAGEMANAGER->findImage("쿄코_피격1");
 			_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACKED_1;
@@ -1770,28 +1789,31 @@ void kyoko::attackedMotion()
 		}
 	}
 
+	if(_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1)
+		cout << _kyokoMotion->getNowPlayIndex() << endl;
+
 	// 피격모션이 끝까지 가면 일반상태로 리셋
-	if (_kyokoMotion->getNowPlayIndex() >= 3 && _kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1)
+	if (_kyokoMotion->getNowPlayIndex() >= 3 && (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE))
 	{
+		_isStartMotionAttaced = false;
+		_isAttacked = false;
+
 		_kyokoMotion->stop();
 		_image = IMAGEMANAGER->findImage("쿄코_일반");
 		_kyokoDirection = KYOKODIRECTION_LEFT_IDLE;
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
 		_kyokoMotion->start();
-
+	}
+	if (_kyokoMotion->getNowPlayIndex() >= 3 && (_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE))
+	{
 		_isStartMotionAttaced = false;
 		_isAttacked = false;
-	}
-	if (_kyokoMotion->getNowPlayIndex() >= 3 && _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1)
-	{
+
 		_kyokoMotion->stop();
 		_image = IMAGEMANAGER->findImage("쿄코_일반");
 		_kyokoDirection = KYOKODIRECTION_RIGHT_IDLE;
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
 		_kyokoMotion->start();
-
-		_isStartMotionAttaced = false;
-		_isAttacked = false;
 	}
 }
 
@@ -1802,8 +1824,8 @@ void kyoko::gameOverMotion()
 	{
 		_isStartMotionDead = true;
 		_image = IMAGEMANAGER->findImage("쿄코_죽음");
-		_kyokoDirection = KYOKODIRECTION_LEFT_DEAD;
-		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftDead");
+		_kyokoDirection = KYOKODIRECTION_RIGHT_DEAD;
+		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightDead");
 		_kyokoMotion->start();
 	}
 }
