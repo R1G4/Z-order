@@ -12,6 +12,7 @@ private:
 	vector<HPBar*> _vHPBar;
 	vector<HPBar*>::iterator _viHPBar;
 public:
+	void release();
 	void setHpBar(string strkey);
 	int getHp() { return HP; }
 	void setHp(int Hp) { HP = Hp; }

@@ -15,7 +15,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	addScene();
 	addSound();
-	SCENEMANAGER->changeScene("로딩씬",0);
+	SCENEMANAGER->changeScene("세이브로드");
 
 	return S_OK;
 }
@@ -50,10 +50,9 @@ void playGround::addScene()
 	SCENEMANAGER->addScene("시작화면", new StartScene);
 	SCENEMANAGER->addScene("세이브로드", new saveLoad);
 	SCENEMANAGER->addScene("로딩씬", new loadingScene);
-	SCENEMANAGER->addScene("스테이지1", new tempStage);
-	SCENEMANAGER->addScene("스테이지2", new stage2);
-	SCENEMANAGER->addScene("보스스테이지", new BossStage);
-	SCENEMANAGER->addScene("메뉴", new opTion);
+	SCENEMANAGER->addScene("Stage1", new tempStage);
+	SCENEMANAGER->addScene("Stage2", new stage2);
+	SCENEMANAGER->addScene("BossStage", new BossStage);
 }
 
 void playGround::addSound()

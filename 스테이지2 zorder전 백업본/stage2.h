@@ -3,6 +3,7 @@
 #include "kyoko.h"
 #include"UIManager.h"
 #include "enemyManager.h"
+#include "opTion.h"
 struct tagObj
 {
 	RECT rc;
@@ -24,9 +25,11 @@ private:
 	enemyManager* _em;
 	int alpha;
 	vector<int> _vZorder2;
-
+	opTion* _opt;
+	int saveSlot;
 public:
 	virtual HRESULT init();
+	HRESULT init(int slot);
 	virtual void release();
 	virtual void update();
 	virtual void render();

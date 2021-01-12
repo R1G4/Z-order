@@ -3,6 +3,7 @@
 #include "kyoko.h"
 #include "enemyManager.h"
 #include "UIManager.h"
+#include "opTion.h"
 struct tagChair
 {
 	RECT rc;
@@ -27,8 +28,11 @@ private:
 	vector<int> _vZorder;
 	char _str[128];
 	bool _isDesk;
+	int saveSlot;
+	opTion* _opt;
 public:
 	HRESULT init();
+	HRESULT init(int slot);
 	void release();
 	void update();
 	void render();

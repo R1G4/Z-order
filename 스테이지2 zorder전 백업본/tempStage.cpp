@@ -40,6 +40,53 @@ HRESULT tempStage::init()
 	return S_OK;
 }
 
+HRESULT tempStage::init(int slot)
+{
+	saveSlot = slot;
+	_opt = new opTion;
+	_opt->init();
+	_opt->setStageName(1);
+	_opt->setSlot(saveSlot);
+
+	SOUNDMANAGER->play("MainStage", _opt->getVolume());
+	stage1 = IMAGEMANAGER->findImage("Stage1");
+	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
+	_player = new kyoko;
+	_player->init();
+	_em = new enemyManager;
+	_em->init(1);
+	_em->setKyokoMemory(_player);
+
+	_opt->setKyokoAddressLink(_player);
+	_opt->setEnemyAddressLink(_em);
+	//의자 렉트
+	chair[0].rc = RectMake(WINSIZEX / 2 - 222, WINSIZEY / 2 + 135, 100, 170);
+	chair[1].rc = RectMake(WINSIZEX / 2 + 42, WINSIZEY / 2 + 135, 100, 170);
+	chair[2].rc = RectMake(WINSIZEX / 2 + 322, WINSIZEY / 2 + 135, 100, 170);
+	chair[3].rc = RectMake(WINSIZEX / 2 + 597, WINSIZEY / 2 + 135, 100, 170);
+	chair[4].rc = RectMake(WINSIZEX / 2 - 396, WINSIZEY / 2 + 304, 100, 170);
+	chair[5].rc = RectMake(WINSIZEX / 2 - 127, WINSIZEY / 2 + 304, 100, 170);
+	chair[6].rc = RectMake(WINSIZEX / 2 + 150, WINSIZEY / 2 + 304, 100, 170);
+	chair[7].rc = RectMake(WINSIZEX / 2 + 427, WINSIZEY / 2 + 304, 100, 170);
+
+	//Z 구분용렉트
+	tempRcU.rc = RectMake(WINSIZEX / 2 - 157, WINSIZEY / 2 + 238, 100, 10);
+	tempRcD.rc = RectMake(WINSIZEX / 2 - 326, WINSIZEY / 2 + 405, 100, 10);
+
+	UI = new UIManager;
+	UI->setKyokoMemory(_player);
+	UI->init();
+
+	for (int i = 0; i < 8; i++)
+	{
+		chair[i].img = IMAGEMANAGER->findImage("chair");
+	}
+
+	_door_rc = RectMake(1380, 400, 300, 130);
+
+	return S_OK;
+}
+
 void tempStage::release()
 {
 
@@ -48,7 +95,7 @@ void tempStage::release()
 void tempStage::update()
 {
 	UI->update();
-
+	_opt->update();
 	pixelCollision();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
@@ -62,7 +109,6 @@ void tempStage::update()
 void tempStage::render()
 {
 	stage1->render(getMemDC(), 0, 0, camera);
-
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -114,17 +160,18 @@ void tempStage::render()
 	zOrder();
 
 	UI->render();
+	_opt->render();
 
 }
 
 void tempStage::changeMap()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()))
+	if (IntersectRect(&temp, &_door_rc, &_player->getShadow())&&KEYMANAGER->isStayKeyDown('Z'))
 	{
 		delete(_player);
 		delete(_em);
-		SCENEMANAGER->changeScene("스테이지2");
+		SCENEMANAGER->changeScene("Stage2",saveSlot);
 		SOUNDMANAGER->stop("MainStage");
 	}
 }

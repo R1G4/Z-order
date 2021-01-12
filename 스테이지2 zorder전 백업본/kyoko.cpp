@@ -1756,6 +1756,7 @@ void kyoko::attackedMotion()
 	if (_isAttacked && !_isStartMotionAttaced)
 	{
 		STATUSMANAGER->damaged(1);
+		cout << STATUSMANAGER->getHp();
 		// 왼쪽에서 맞으면
 		if (!_isRight && STATUSMANAGER->getHp() > 0)
 		{
@@ -1788,9 +1789,6 @@ void kyoko::attackedMotion()
 			_kyokoMotion->start();
 		}
 	}
-
-	if(_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1)
-		cout << _kyokoMotion->getNowPlayIndex() << endl;
 
 	// 피격모션이 끝까지 가면 일반상태로 리셋
 	if (_kyokoMotion->getNowPlayIndex() >= 3 && (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE))

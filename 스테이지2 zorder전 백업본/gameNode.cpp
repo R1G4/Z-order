@@ -42,7 +42,17 @@ HRESULT gameNode::init(bool managerInit)
 	return S_OK;
 }
 
-HRESULT gameNode::init(int num)
+HRESULT gameNode::init(int num, int num2)
+{
+	_hdc = GetDC(_hWnd);
+	_managerInit = false;
+
+
+
+	return S_OK;
+}
+
+HRESULT gameNode::init(int slot)
 {
 	_hdc = GetDC(_hWnd);
 	_managerInit = false;

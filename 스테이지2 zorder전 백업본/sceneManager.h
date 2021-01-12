@@ -27,7 +27,8 @@ public:
 
 	//¾À º¯°æ ÇÔ¼ö
 	HRESULT changeScene(string sceneName);
-	HRESULT changeScene(string sceneName, int sceneNum);
+	HRESULT changeScene(string sceneName, int slot);
+	HRESULT changeScene(string sceneName, int sceneNum,int savedata);
 	sceneManager() {};
 	~sceneManager() {};
 };

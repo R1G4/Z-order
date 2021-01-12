@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "StatusManager.h"
 
+void StatusManager::release()
+{
+	_vHPBar.clear();
+	HP = 0;
+}
+
 void StatusManager::setHpBar(string strkey)
 {
 	for (int i = 0; i < HP; i++)

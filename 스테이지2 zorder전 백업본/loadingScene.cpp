@@ -42,10 +42,10 @@ HRESULT loadingScene::init()
 
 	return S_OK;
 }
-
-HRESULT loadingScene::init(int SceneNum)
+HRESULT loadingScene::init(int SceneNum, int slot)
 {
 	nextScene = SceneNum;
+	saveSlot = slot;
 	_back = IMAGEMANAGER->addImage("검정", "image/loading/loadingBack.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	_background = IMAGEMANAGER->addFrameImage("로딩배경", "image/loading/로딩.bmp", 1395, 220, 5, 1, true, RGB(255, 0, 255));
 
@@ -90,23 +90,32 @@ void loadingScene::update()
 	//로딩이 다 되면
 	if (_currentCount == LOADINGMAX)
 	{
-		switch (nextScene)
+		if (_currentCount == LOADINGMAX)
 		{
-		case 0:
-			STATUSMANAGER->setHp(24);
+			cout << nextScene;
 			STATUSMANAGER->setHpBar("HPBar");
-			SCENEMANAGER->changeScene("스테이지2");
-			break;
-		case 1:
-			SCENEMANAGER->changeScene("보스스테이지");
-			break;
-		case 2:
-			SCENEMANAGER->changeScene("타이틀");
-			break;
+			switch (nextScene)
+			{
+			case 0:
+				SCENEMANAGER->changeScene("세이브로드");
+				break;
+			case 1:
+				SCENEMANAGER->changeScene("Stage1", saveSlot);
+				break;
+			case 2:
+				SCENEMANAGER->changeScene("Stage2", saveSlot);
+				break;
+			case 3:
+				SCENEMANAGER->changeScene("Stage3", saveSlot);
+				break;
+			case 4:
+				SCENEMANAGER->changeScene("BossStage");
+				break;
+
+			}
 		}
 	}
 }
-
 void loadingScene::render()
 {
 	//그림파일 이미지 경로를 텍스트로 보여줘도 되고
@@ -158,7 +167,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 
 	//에너미 이미지 추가
 	EFFECTMANAGER->addEffect("Enemy_Point", "image/enemy/Effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
-	EFFECTMANAGER->addEffect("Enemy_Stern", "image/enemy/Effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("Enemy_Stun", "image/enemy/Effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
 
 	IMAGEMANAGER->addImage("Boy_Shadow", "image/enemy/SchoolBoy/Boy_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Boy_Idle", "image/enemy/SchoolBoy/Boy_Idle.bmp", 0, 0, 1200, 400, 8, 2, true, RGB(255, 0, 255));

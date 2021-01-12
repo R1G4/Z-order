@@ -8,6 +8,8 @@ struct tagTab
 	float x, y;
 	bool select;
 	bool move;
+	int stageNum;
+	int HP;
 };
 
 class saveLoad :
@@ -19,6 +21,7 @@ private:
 
 	int intb;
 	int count;
+	int saveSlot;
 public:
 	saveLoad();
 	~saveLoad();

@@ -196,7 +196,7 @@
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
     <ClInclude Include="opTion.h">
-      <Filter>playGround\Stage&amp;Scene</Filter>
+      <Filter>playGround\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -324,7 +324,7 @@
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
     <ClCompile Include="opTion.cpp">
-      <Filter>playGround\Stage&amp;Scene</Filter>
+      <Filter>playGround\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

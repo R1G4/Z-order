@@ -3,6 +3,11 @@
 
 HRESULT stage2::init()
 {
+	_opt = new opTion;
+	_opt->init();
+	_opt->setStageName(2);
+	_opt->setSlot(saveSlot);
+
 	stage2 = IMAGEMANAGER->findImage("Stage2");
 	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
 	_player = new kyoko;
@@ -27,12 +32,45 @@ HRESULT stage2::init()
 	return S_OK;
 }
 
+HRESULT stage2::init(int slot)
+{
+	saveSlot = slot;
+	_opt = new opTion;
+	_opt->init();
+	_opt->setStageName(2);
+	_opt->setSlot(saveSlot);
+	stage2 = IMAGEMANAGER->findImage("Stage2");
+	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
+	_player = new kyoko;
+	_player->init();
+	_em = new enemyManager;
+	_em->setKyokoMemory(_player);
+	_em->init(2);
+	Lobj.x = WINSIZEX / 2 - 230;
+	Lobj.y = 82;
+	Lobj.img = IMAGEMANAGER->findImage("ÁÂ±âµÕ");
+	Lobj.rc = RectMake(Lobj.x, Lobj.y, 100, Lobj.img->getHeight());
+
+	Robj.x = WINSIZEX / 2 + 1950;
+	Robj.y = 82;
+	Robj.img = IMAGEMANAGER->findImage("¿ì±âµÕ");
+	Robj.rc = RectMake(Robj.x, Robj.y, 100, Robj.img->getHeight());
+	UI = new UIManager;
+	UI->setKyokoMemory(_player);
+	UI->init();
+
+	alpha = 255;
+	return S_OK;
+
+}
+
 void stage2::release()
 {
 }
 
 void stage2::update()
 {
+	_opt->update();
 	UI->update();
 	EFFECTMANAGER->update();
 	KEYANIMANAGER->update();
@@ -83,6 +121,7 @@ void stage2::render()
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
 	Robj.img->alphaRender(getMemDC(), Robj.x, Robj.y, alpha, camera);
 	UI->render();
+	_opt->render();
 
 }
 
