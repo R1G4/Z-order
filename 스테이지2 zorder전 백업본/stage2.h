@@ -36,8 +36,9 @@ public:
 	void quickSort(int a,int b);
 	void zOrder();
 	// 픽셀 충돌
-	void pixelCollision();
+	virtual void pixelCollision();
+	virtual void ItemCollision();
 	// 렉트 충돌
-	void AttackCollision();
+	virtual void AttackCollision();
 };
 

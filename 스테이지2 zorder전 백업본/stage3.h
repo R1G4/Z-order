@@ -34,7 +34,10 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void ItemCollision();
 	
-	void pixelCollision();
+	virtual void pixelCollision();
+	virtual void AttackCollision();
 };
 

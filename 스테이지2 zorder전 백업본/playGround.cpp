@@ -15,6 +15,8 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	addScene();
 	addSound();
+	
+	//SCENEMANAGER->changeScene("로딩씬",3,3);
 	SCENEMANAGER->changeScene("세이브로드");
 
 	return S_OK;

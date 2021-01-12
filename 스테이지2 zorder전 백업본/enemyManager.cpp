@@ -103,11 +103,25 @@ void enemyManager::spawn()
 			break;
 		case enemyManager::STAGE_2:
 			//현재 존재하는 에너미 갯수가 6개 미만 일경우
+			if (_vEnemy.size() < 6)
+			{
+				//스폰 간격을 체크해서 하기
+				spawnInterval++;
+				if (spawnInterval > 800)
+				{
+					//에너미 추가
+					addEnemy();
+					spawnInterval = 0;
+				}
+			}
+			break;
+		case enemyManager::STAGE_3:
+			//현재 존재하는 에너미 갯수가 6개 미만 일경우
 			if (_vEnemy.size() < 7)
 			{
 				//스폰 간격을 체크해서 하기
 				spawnInterval++;
-				if (spawnInterval > 750)
+				if (spawnInterval > 650)
 				{
 					//에너미 추가
 					addEnemy();
@@ -134,7 +148,13 @@ void enemyManager::setEnemy()
 			_vEnemy.push_back(setSchoolBoy(1300, 500, enemy::TAUNT, enemy::LEFT));
 			_vEnemy.push_back(setMT(370, 400, enemy::TAUNT, enemy::RIGHT));
 			_vEnemy.push_back(setCheerLeader(2400, 500, enemy::IDLE));
-			_vEnemy.push_back(setCheerLeader(2800, 500, enemy::IDLE));
+			break;
+		case enemyManager::STAGE_3:
+			_vEnemy.push_back(setMT(400, 450, enemy::TAUNT, enemy::RIGHT));
+			_vEnemy.push_back(setSchoolGirl(1000, 500, enemy::TAUNT, enemy::LEFT));
+			_vEnemy.push_back(setCheerLeader(800, 550, enemy::IDLE));
+			_vEnemy.push_back(setSchoolBoy(1300, 500, enemy::IDLE));
+			_vEnemy.push_back(setCheerLeader(1700, 550, enemy::IDLE));
 			break;
 	}
 }
@@ -154,7 +174,7 @@ void enemyManager::addEnemy()
 					break;
 			}
 			break;
-		case enemyManager::STAGE_2:
+		case enemyManager::STAGE_2: case enemyManager::STAGE_3 :
 			switch ((ENEMY_KINDS)RND->getFromIntTo(ENEMY_GIRL, ENEMY_CHEERLEADER + 1))
 			{
 				case enemyManager::ENEMY_GIRL:

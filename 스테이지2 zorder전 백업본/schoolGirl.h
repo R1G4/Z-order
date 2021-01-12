@@ -5,7 +5,6 @@ class schoolGirl : public enemy
 {
 	enemy* _enemy;
 	float _speed;
-	int _hp;
 public:
 	schoolGirl();
 	~schoolGirl();

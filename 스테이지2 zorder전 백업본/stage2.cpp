@@ -12,9 +12,11 @@ HRESULT stage2::init()
 	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
 	_player = new kyoko;
 	_player->init();
+
 	_em = new enemyManager;
 	_em->setKyokoMemory(_player);
 	_em->init(2);
+
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
 	Lobj.img = IMAGEMANAGER->findImage("좌기둥");
@@ -74,6 +76,7 @@ void stage2::update()
 	UI->update();
 	EFFECTMANAGER->update();
 	KEYANIMANAGER->update();
+	ItemCollision();
 	pixelCollision();
 	AttackCollision();
 	_player->update();
@@ -200,8 +203,94 @@ void stage2::pixelCollision()
 		}
 
 	}
+
+	//에너미 충돌
+	for (int i = 0; i < _em->getVEnemy().size(); i++)
+	{
+		bool isCollision = false;
+		//아래에서 위로 박을때
+		for (int j = _em->getVEnemy()[i]->getShadowRc().top; j <= _em->getVEnemy()[i]->getShadowRc().top; j++)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage2Pic")->getMemDC(), _em->getVEnemy()[i]->getShadowRc().left, j);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
+			{
+				_em->getVEnemy()[i]->setEnemyPoint(_em->getVEnemy()[i]->getEnemyPoint().x, _em->getVEnemy()[i]->getEnemyPoint().y - 3);
+				isCollision = true;
+				break;
+			}
+		}
+
+		//위에서 아래로 박을떄
+		for (int j = _em->getVEnemy()[i]->getShadowRc().bottom; j >= _em->getVEnemy()[i]->getShadowRc().bottom; j--)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage2Pic")->getMemDC(), _em->getVEnemy()[i]->getShadowRc().left, j);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
+			{
+				_em->getVEnemy()[i]->setEnemyPoint(_em->getVEnemy()[i]->getEnemyPoint().x, _em->getVEnemy()[i]->getEnemyPoint().y + 3);
+				isCollision = true;
+				break;
+			}
+		}
+
+		//오른쪽에서 왼쪽으로 박을때
+		for (int j = _em->getVEnemy()[i]->getShadowRc().left; j <= _em->getVEnemy()[i]->getShadowRc().left; j++)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage2Pic")->getMemDC(), j, (_em->getVEnemy()[i]->getShadowRc().bottom + _em->getVEnemy()[i]->getShadowRc().top) / 2);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
+			{
+				_em->getVEnemy()[i]->setEnemyPoint(_em->getVEnemy()[i]->getEnemyPoint().x + 3, _em->getVEnemy()[i]->getEnemyPoint().y);
+				isCollision = true;
+				break;
+			}
+
+		}
+
+		//왼쪽에서 오른쪽
+		for (int j = _em->getVEnemy()[i]->getShadowRc().right; j >= _em->getVEnemy()[i]->getShadowRc().right; j--)
+		{
+			COLORREF color = GetPixel(IMAGEMANAGER->findImage("Stage2Pic")->getMemDC(), j, (_em->getVEnemy()[i]->getShadowRc().bottom + _em->getVEnemy()[i]->getShadowRc().top) / 2);
+			int r = GetRValue(color);
+			int g = GetGValue(color);
+			int b = GetBValue(color);
+
+			if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
+			{
+				_em->getVEnemy()[i]->setEnemyPoint(_em->getVEnemy()[i]->getEnemyPoint().x - 3, _em->getVEnemy()[i]->getEnemyPoint().y);
+				isCollision = true;
+				break;
+			}
+		}
+		_em->getVEnemy()[i]->setCollision(isCollision);
+	}
 }
 
+void stage2::ItemCollision()
+{
+	RECT _temp;
+	// 플레이어 충돌렉트랑 아이템 렉트랑 맞닿으면
+	for (int j = 0; j < _em->getVItem().size(); j++)
+	{
+		if (IntersectRect(&_temp, &_player->getRect(), &_em->getVItem()[j]->getRect()))
+		{
+			//아이템 제거
+			_em->getVItem()[j]->ItemRemove();
+			//아이템에 따라 체력 회복
+			STATUSMANAGER->heal(_em->getVItem()[j]->getHeal(), "HPBar");
+		}
+	}
+}
 
 void stage2::AttackCollision()
 {
@@ -233,17 +322,6 @@ void stage2::AttackCollision()
 					_player->setHitRight(true);
 				}
 
-			}
-			// 플레이어 충돌렉트랑 아이템 렉트랑 맞닿으면
-			for (int j = 0; j < _em->getVItem().size(); j++)
-			{
-				if (IntersectRect(&_temp, &_player->getRect(), &_em->getVItem()[j]->getRect()))
-				{
-					//아이템 제거
-					_em->getVItem()[j]->ItemRemove();
-					//아이템에 따라 체력 회복
-					STATUSMANAGER->heal(_em->getVItem()[j]->getHeal(), "HPBar");
-				}
 			}
 		}
 	}

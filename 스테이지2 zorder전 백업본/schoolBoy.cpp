@@ -22,7 +22,7 @@ HRESULT schoolBoy::init(float x, float y, STATE state, DIRECTION direction)
 	_speed = 2.0f;
 
 	//해당 에너미 체력
-	_hp = 6;
+	_hp = 5;
 
 	setAttackInfo();
 	return S_OK;

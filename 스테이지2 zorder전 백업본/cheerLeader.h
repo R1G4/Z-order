@@ -5,7 +5,6 @@ class cheerLeader :public enemy
 {
 	enemy* _enemy;
 	float _speed;
-	int _hp;
 public:
 	cheerLeader();
 	~cheerLeader();
