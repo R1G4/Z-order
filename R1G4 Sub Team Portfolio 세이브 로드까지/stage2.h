@@ -34,6 +34,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+	void DeleteProduct();
 	void quickSort(int a,int b);
 	void zOrder();
 	// ÇÈ¼¿ Ãæµ¹

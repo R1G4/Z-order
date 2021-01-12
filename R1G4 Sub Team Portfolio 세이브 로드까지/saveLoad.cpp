@@ -108,11 +108,12 @@ void saveLoad::render()
 		char str[256];
 		HBRUSH brush = CreateSolidBrush(RGB(0, 255, 255));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
-		HFONT myFont = CreateFont(60, 0, 60, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ");
+		HFONT myFont = CreateFont(50, 0, 60, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ");
 		HFONT oldFont = (HFONT)SelectObject(getMemDC(), myFont);
-		sprintf_s(str, "New Game");
+		if(tab[i].stageNum==NULL)sprintf_s(str, "New Game");
+		else sprintf_s(str, "¸®¹ö½ÃÆ¼ °íµîÇÐ±³");
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
-		TextOut(getMemDC(), tab[i].x + 155, tab[i].y + 60 + i * 200, str, strlen(str));
+		TextOut(getMemDC(), tab[i].x + 155, tab[i].y + 70 + i * 200, str, strlen(str));
 		SelectObject(getMemDC(), oldFont);
 		DeleteObject(myFont);
 		SelectObject(getMemDC(), oldBrush);
@@ -123,13 +124,37 @@ void saveLoad::render()
 		HBRUSH oldBrush1 = (HBRUSH)SelectObject(getMemDC(), brush1);
 		HFONT myFont1 = CreateFont(40, 0, 60, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "¹è´ÞÀÇ¹ÎÁ· ÁÖ¾Æ");
 		HFONT oldFont1 = (HFONT)SelectObject(getMemDC(), myFont1);
-		sprintf_s(str, "--");
-		SetTextColor(getMemDC(), RGB(255, 255, 255));
-		TextOut(getMemDC(), tab[i].x + 160, tab[i].y + 115 + i * 200, str, strlen(str));
+		switch (tab[i].stageNum)
+		{
+		case 1:
+			sprintf_s(str, "Stage1");
+			SetTextColor(getMemDC(), RGB(255, 255, 255));
+			TextOut(getMemDC(), tab[i].x + 160, tab[i].y + 115 + i * 200, str, strlen(str));
+			SelectObject(getMemDC(), oldFont1);
+			DeleteObject(myFont1);
+			SelectObject(getMemDC(), oldBrush1);
+			DeleteObject(brush1);
+			break;
+		case 2:
+			sprintf_s(str, "Stage2");
+			SetTextColor(getMemDC(), RGB(255, 255, 255));
+			TextOut(getMemDC(), tab[i].x + 160, tab[i].y + 115 + i * 200, str, strlen(str));
+			SelectObject(getMemDC(), oldFont1);
+			DeleteObject(myFont1);
+			SelectObject(getMemDC(), oldBrush1);
+			DeleteObject(brush1);
+			break;
+		case 3:
+			sprintf_s(str, "Stage3");
+			SetTextColor(getMemDC(), RGB(255, 255, 255));
+			TextOut(getMemDC(), tab[i].x + 160, tab[i].y + 115 + i * 200, str, strlen(str));
+			break;
+		}
 		SelectObject(getMemDC(), oldFont1);
 		DeleteObject(myFont1);
 		SelectObject(getMemDC(), oldBrush1);
 		DeleteObject(brush1);
+
 	}
 
 }
@@ -237,11 +262,13 @@ void saveLoad::key()
 			saveSlot = 1;
 			if (tab[0].stageNum == NULL)
 			{
+				EFFECTMANAGER->release();
 				STATUSMANAGER->setHp(24);
 				SCENEMANAGER->changeScene("·Îµù¾À", 1, saveSlot);
 			}
 			else 
 			{ 
+				EFFECTMANAGER->release();
 				STATUSMANAGER->setHp(tab[0].HP);
 				SCENEMANAGER->changeScene("·Îµù¾À", tab[0].stageNum, saveSlot);
 			}
@@ -251,11 +278,13 @@ void saveLoad::key()
 			saveSlot = 2;
 			if (tab[1].stageNum == NULL)
 			{
+				EFFECTMANAGER->release();
 				STATUSMANAGER->setHp(24);
 				SCENEMANAGER->changeScene("·Îµù¾À", 1, saveSlot);
 			}
 			else
 			{
+				EFFECTMANAGER->release();
 				STATUSMANAGER->setHp(tab[0].HP);
 				SCENEMANAGER->changeScene("·Îµù¾À", tab[1].stageNum, saveSlot);
 			}
@@ -265,11 +294,13 @@ void saveLoad::key()
 			saveSlot = 3;
 			if (tab[2].stageNum == NULL)
 			{
+				EFFECTMANAGER->release();
 				STATUSMANAGER->setHp(24);
 				SCENEMANAGER->changeScene("·Îµù¾À", 1, saveSlot);
 			}
 			else
 			{
+				EFFECTMANAGER->release();
 				STATUSMANAGER->setHp(tab[0].HP);
 				SCENEMANAGER->changeScene("·Îµù¾À", tab[2].stageNum, saveSlot);
 			}

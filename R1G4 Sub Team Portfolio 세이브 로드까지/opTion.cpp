@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "opTion.h"
-
+#include "tempStage.h"
 opTion::opTion()
 {
 }
@@ -70,25 +70,31 @@ void opTion::update()
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_F1))
 		{
-
+			
 			char temp[128];
 			vector<string> vStr;
 			switch (saveSlot)
 			{
 			case 1:
+				//EFFECTMANAGER->release();
+				//delete(em);
+				//delete(_kyoko);
 				vStr.push_back(itoa(STATUSMANAGER->getHp(), temp, 10));
 				vStr.push_back(itoa(stageNum, temp, 10));
-				TXTDATA->txtSave("A.txt", vStr);
+				TXTDATA->txtSave("A.txt", vStr);				
+				SCENEMANAGER->changeScene("·Îµù¾À", 0,1);
 				break;
 			case 2:
 				vStr.push_back(itoa(STATUSMANAGER->getHp(), temp, 10));
 				vStr.push_back(itoa(stageNum, temp, 10));
 				TXTDATA->txtSave("B.txt", vStr);
+				SCENEMANAGER->changeScene("·Îµù¾À", 0, 2);
 				break;
 			case 3:
 				vStr.push_back(itoa(STATUSMANAGER->getHp(), temp, 10));
 				vStr.push_back(itoa(stageNum, temp, 10));
 				TXTDATA->txtSave("C.txt", vStr);
+				SCENEMANAGER->changeScene("·Îµù¾À", 0, 3);
 				break;
 			}
 		}

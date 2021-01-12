@@ -216,6 +216,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("MT_Knockdown", "image/enemy/MT/MT_Knockdown.bmp", 0, 0, 8056, 440, 28, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("MT_Taunt", "image/enemy/MT/MT_Taunt.bmp", 0, 0, 558, 400, 4, 2, true, RGB(255, 0, 255));
 
+
 	IMAGEMANAGER->addImage("CheerLeader_Shadow", "image/enemy/CheerLeader/CheerLeader_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("CheerLeader_Idle", "image/enemy/CheerLeader/CheerLeader_Idle.bmp", 0, 0, 2133, 400, 12, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("CheerLeader_Walk", "image/enemy/CheerLeader/CheerLeader_Walk.bmp", 0, 0, 2499, 400, 12, 2, true, RGB(255, 0, 255));

@@ -107,6 +107,12 @@ void stage2::render()
 
 }
 
+void stage2::DeleteProduct()
+{
+	delete(_player);
+	delete(_em);
+}
+
 void stage2::pixelCollision()
 {
 	//아래에서 위로 박을때

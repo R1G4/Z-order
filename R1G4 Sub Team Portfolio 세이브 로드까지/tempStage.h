@@ -40,6 +40,7 @@ public:
 	void render();
 
 	// ∏ ¿Ãµø
+	void DeleteProduct();
 	void changeMap();
 	void pixelCollision();
 	void zOrder();

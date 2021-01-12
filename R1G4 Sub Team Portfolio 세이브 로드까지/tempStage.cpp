@@ -51,6 +51,7 @@ HRESULT tempStage::init(int slot)
 	_opt->init();
 	_opt->setStageName(1);
 	_opt->setSlot(saveSlot);
+	
 	SOUNDMANAGER->play("MainStage", _opt->getVolume());
 	stage1 = IMAGEMANAGER->findImage("Stage1");
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
@@ -59,7 +60,9 @@ HRESULT tempStage::init(int slot)
 	_em = new enemyManager;
 	_em->init(1);
 	_em->setKyokoMemory(_player);
-
+	
+	_opt->setKyokoAddressLink(_player);
+	_opt->setEnemyAddressLink(_em);
 	//의자 렉트
 	chair[0].rc = RectMake(WINSIZEX / 2 - 222, WINSIZEY / 2 + 135, 100, 170);
 	chair[1].rc = RectMake(WINSIZEX / 2 + 42, WINSIZEY / 2 + 135, 100, 170);
@@ -90,6 +93,7 @@ HRESULT tempStage::init(int slot)
 
 void tempStage::release()
 {
+
 
 }
 
@@ -167,11 +171,18 @@ void tempStage::render()
 
 }
 
+void tempStage::DeleteProduct()
+{
+	delete(_player);
+	delete(_em);
+}
+
 void tempStage::changeMap()
 {
 	RECT temp;
 	if (IntersectRect(&temp, &_door_rc, &_player->getShadow())&&KEYMANAGER->isOnceKeyDown(VK_RETURN))
 	{
+		//DeleteProduct();
 		delete(_player);
 		delete(_em);
 		SCENEMANAGER->changeScene("Stage2",saveSlot);
