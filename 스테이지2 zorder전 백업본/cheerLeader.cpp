@@ -34,8 +34,6 @@ void cheerLeader::release()
 void cheerLeader::setAttackInfo()
 {
 	attackInfo attackTemp;
-	attackTemp.damage = 1;
-	attackTemp.isTouch = false;
 
 	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
 
@@ -81,7 +79,6 @@ void cheerLeader::update()
 
 	//에너미 이동
 	move();
-
 	//에너미 및 그림자 렉트 수정
 	_rc = RectMakeCenter(_x, _y + 10, 40, 152);
 	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
@@ -189,30 +186,30 @@ void cheerLeader::addFrame()
 
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
-	aniRightDownup->setPlayFrame(0, imgDownup->getMaxFrameX(), false, false);
+	aniRightDownup->setPlayFrame(0, imgDownup->getMaxFrameX(), false, false, rightStun, this);
 	aniRightDownup->setFPS(10);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
-	aniLeftDownup->setPlayFrame(imgDownup->getMaxFrameX() * 2 + 1, imgDownup->getMaxFrameX() + 1, false, false);
+	aniLeftDownup->setPlayFrame(imgDownup->getMaxFrameX() * 2 + 1, imgDownup->getMaxFrameX() + 1, false, false, leftStun, this);
 	aniLeftDownup->setFPS(10);
 
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
-	aniRightKnockdown->setPlayFrame(0, imgKnockdown->getMaxFrameX(), false, false);
+	aniRightKnockdown->setPlayFrame(0, imgKnockdown->getMaxFrameX(), false, false, setDead, this);
 	aniRightKnockdown->setFPS(10);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
-	aniLeftKnockdown->setPlayFrame(imgKnockdown->getMaxFrameX() * 2 + 1, imgKnockdown->getMaxFrameX() + 1, false, false);
+	aniLeftKnockdown->setPlayFrame(imgKnockdown->getMaxFrameX() * 2 + 1, imgKnockdown->getMaxFrameX() + 1, false, false, setDead, this);
 	aniLeftKnockdown->setFPS(10);
 
 	aniRightDazed = new animation;
 	aniRightDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniRightDazed->setPlayFrame(0, imgDazed->getMaxFrameX(), false, false);
-	aniRightDazed->setFPS(10);
+	aniRightDazed->setFPS(5);
 	aniLeftDazed = new animation;
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(imgDazed->getMaxFrameX() * 2 + 1, imgDazed->getMaxFrameX() + 1, false, false);
-	aniLeftDazed->setFPS(10);
+	aniLeftDazed->setFPS(5);
 
 	aniRightJump = new animation;
 	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
@@ -225,11 +222,11 @@ void cheerLeader::addFrame()
 
 	aniRightTaunt = new animation;
 	aniRightTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
-	aniRightTaunt->setPlayFrame(0, imgTaunt->getMaxFrameX(), false, false, ActionCheck, this);
+	aniRightTaunt->setPlayFrame(0, imgTaunt->getMaxFrameX(), false, false, actionCheck, this);
 	aniRightTaunt->setFPS(10);
 	aniLeftTaunt = new animation;
 	aniLeftTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
-	aniLeftTaunt->setPlayFrame(imgTaunt->getMaxFrameX() * 2 + 1, imgTaunt->getMaxFrameX() + 1, false, false, ActionCheck, this);
+	aniLeftTaunt->setPlayFrame(imgTaunt->getMaxFrameX() * 2 + 1, imgTaunt->getMaxFrameX() + 1, false, false, actionCheck, this);
 	aniLeftTaunt->setFPS(10);
 }
 
@@ -239,7 +236,10 @@ void cheerLeader::render(POINT camera)
 
 	switch (_state)
 	{
-	case cheerLeader::DOWNUP: case cheerLeader::KNOCKDOWN:
+	case cheerLeader::DEAD:
+		_enemyImg->alphaAniRender(getMemDC(), _enemyRc.left, _enemyRc.top - 20, _motion, _alphaValue, camera);
+		break;
+	case cheerLeader::DOWNUP:  case cheerLeader::KNOCKDOWN:
 		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top, 150, camera);
 		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top - 20, _motion, camera);
 		break;
@@ -269,7 +269,12 @@ void cheerLeader::render(POINT camera)
 	{
 		Rectangle(getMemDC(), _shadowRc, camera);
 		Rectangle(getMemDC(), _rc, camera);
-		Rectangle(getMemDC(), _enemyRc, camera);
+
+		HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+		Rectangle(getMemDC(), _attackRc, camera);
+		SelectObject(getMemDC(), oldBrush);
+		DeleteObject(brush);
 	}
 }
 
@@ -309,8 +314,9 @@ void cheerLeader::setAttackRect(STATE state, DIRECTION direction)
 void cheerLeader::state()
 {
 	_motion->frameUpdate(TIMEMANAGER->getElapsedTime());
+
 	//애니메이션이 멈춘 경우 IDLE로 전환
-	if (!_motion->isPlay())
+	if (!_motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_direction)
 		{
@@ -333,7 +339,7 @@ void cheerLeader::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 550 && _isAction && _motion->isPlay())
+	if (distance < 550 && _isAction && _motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)
@@ -451,20 +457,8 @@ void cheerLeader::state()
 			}
 			//에너미는 이동 할 필요 없으니 아래 코드는 스킵
 			return;
-		}/*
-		else
-		{
-			switch (_state)
-			{
-			case enemy::BLOCK:
-			case enemy::ATTACK:
-			case enemy::COMBO_ATTACK_1:
-			case enemy::COMBO_ATTACK_2:
-			case enemy::COMBO_ATTACK_3:
-				_motion->stop();
-				break;
-			}
-		}*/
+		}
+
 		//플레이어의 위치가 에너미 보다 오른쪽에 있을 경우
 		if (_kyoko->getKyokoPoint().x > _x)
 		{
@@ -519,7 +513,7 @@ void cheerLeader::state()
 		}
 	}
 	//추적 거리가 닿지 않을 경우 패턴 구현
-	else
+	else if (_state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_state)
 		{
@@ -630,8 +624,44 @@ void cheerLeader::move()
 	}
 }
 
-void cheerLeader::ActionCheck(void* obj)
+void cheerLeader::actionCheck(void* obj)
 {
 	cheerLeader* k = (cheerLeader*)obj;
 	k->_isAction = true;
+}
+
+void cheerLeader::leftStun(void* obj)
+{
+	cheerLeader* k = (cheerLeader*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(LEFT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniLeftDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(LEFT);
+	}
+}
+
+void cheerLeader::rightStun(void* obj)
+{
+	cheerLeader* k = (cheerLeader*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(RIGHT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniRightDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(RIGHT);
+	}
+}
+
+void cheerLeader::setDead(void* obj)
+{
+	cheerLeader* k = (cheerLeader*)obj;
+	k->setState(DEAD);
 }

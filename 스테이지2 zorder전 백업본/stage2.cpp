@@ -179,4 +179,105 @@ void stage2::AttackCollision()
 			}
 		}
 	}
+	for (int i = 0; i < _em->getVEnemy().size(); i++)
+	{
+		//getEnemyRect를 충돌용 getRect로 바꿀까? 피격 범위를 에너미 이미지 렉트로 하니 반대방향에서도 맞는 현상 발생 추후 생각해서 수정해야함
+		if (IntersectRect(&_temp, &_player->getAttackRect(), &_em->getVEnemy()[i]->getEnemyRect()))
+		{
+			switch (_player->getKyokoDirection())
+			{
+				case	KYOKODIRECTION_RIGHT_ATTACK_1:
+				case	KYOKODIRECTION_RIGHT_ATTACK_2:
+				case	KYOKODIRECTION_RIGHT_ATTACK_DASH:
+				case	KYOKODIRECTION_RIGHT_ATTACK_JUMP:
+				case	KYOKODIRECTION_RIGHT_ATTACK_JUMP_WALK:
+				case	KYOKODIRECTION_RIGHT_ATTACK_JUMP_RUN:
+					//플레이어의 공격을 에너미가 막았는지 체크
+					if (!_em->getVEnemy()[i]->block(enemy::LEFT))
+						//공격을 막지 못했다면 피격 체크
+						_em->getVEnemy()[i]->hit(enemy::LEFT);
+					break;
+				case	KYOKODIRECTION_RIGHT_ATTACK_3:
+				case	KYOKODIRECTION_RIGHT_ATTACK_STRONG:
+				case	KYOKODIRECTION_RIGHT_MAHAKICK:
+					//플레이어의 공격을 에너미가 막았는지 체크
+					if (!_em->getVEnemy()[i]->block(enemy::LEFT))
+						//공격을 막지 못했다면 다운 체크
+						_em->getVEnemy()[i]->downup(enemy::LEFT);
+					break;
+				case	KYOKODIRECTION_LEFT_ATTACK_1:
+				case	KYOKODIRECTION_LEFT_ATTACK_2:
+				case	KYOKODIRECTION_LEFT_ATTACK_DASH:
+				case	KYOKODIRECTION_LEFT_ATTACK_JUMP:
+				case	KYOKODIRECTION_LEFT_ATTACK_JUMP_WALK:
+				case	KYOKODIRECTION_LEFT_ATTACK_JUMP_RUN:
+					//플레이어의 공격을 에너미가 막았는지 체크
+					if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
+						//공격을 막지 못했다면 피격 체크
+						_em->getVEnemy()[i]->hit(enemy::RIGHT);
+					break;
+				case	KYOKODIRECTION_LEFT_ATTACK_3:
+				case	KYOKODIRECTION_LEFT_ATTACK_STRONG:
+				case	KYOKODIRECTION_LEFT_MAHAKICK:
+					//플레이어의 공격을 에너미가 막았는지 체크
+					if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
+						//공격을 막지 못했다면 다운 체크
+						_em->getVEnemy()[i]->downup(enemy::RIGHT);
+					break;
+			}
+
+		}
+	}
 }
+#pragma region 위의 코드에 문제가 있을시 아래로 대처할 것
+//switch (_player->getKyokoDirection())
+//{
+//case	KYOKODIRECTION_RIGHT_ATTACK_1:
+//case	KYOKODIRECTION_RIGHT_ATTACK_2:
+//case	KYOKODIRECTION_RIGHT_ATTACK_DASH:
+//case	KYOKODIRECTION_RIGHT_ATTACK_JUMP:
+//case	KYOKODIRECTION_RIGHT_ATTACK_JUMP_WALK:
+//case	KYOKODIRECTION_RIGHT_ATTACK_JUMP_RUN:
+//case	KYOKODIRECTION_LEFT_ATTACK_1:
+//case	KYOKODIRECTION_LEFT_ATTACK_2:
+//case	KYOKODIRECTION_LEFT_ATTACK_DASH:
+//case	KYOKODIRECTION_LEFT_ATTACK_JUMP:
+//case	KYOKODIRECTION_LEFT_ATTACK_JUMP_WALK:
+//case	KYOKODIRECTION_LEFT_ATTACK_JUMP_RUN:
+//	if (_player->getKyokoPoint().x <= _em->getVEnemy()[i]->getEnemyPoint().x)
+//	{
+//		//플레이어의 공격을 에너미가 막았는지 체크
+//		if (!_em->getVEnemy()[i]->block(enemy::LEFT))
+//			//공격을 막지 못했다면 피격 체크
+//			_em->getVEnemy()[i]->hit(enemy::LEFT);
+//	}
+//	else
+//	{
+//		//플레이어의 공격을 에너미가 막았는지 체크
+//		if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
+//			//공격을 막지 못했다면 피격 체크
+//			_em->getVEnemy()[i]->hit(enemy::RIGHT);
+//	}
+//	break;
+//case	KYOKODIRECTION_RIGHT_ATTACK_3:
+//case	KYOKODIRECTION_RIGHT_ATTACK_STRONG:
+//case	KYOKODIRECTION_RIGHT_MAHAKICK:
+//case	KYOKODIRECTION_LEFT_ATTACK_3:
+//case	KYOKODIRECTION_LEFT_ATTACK_STRONG:
+//case	KYOKODIRECTION_LEFT_MAHAKICK:
+//	if (_player->getKyokoPoint().x <= _em->getVEnemy()[i]->getEnemyPoint().x)
+//	{
+//		//플레이어의 공격을 에너미가 막았는지 체크
+//		if (!_em->getVEnemy()[i]->block(enemy::LEFT))
+//			//공격을 막지 못했다면 다운 체크
+//			_em->getVEnemy()[i]->downup(enemy::LEFT);
+//	}
+//	else
+//	{
+//		//플레이어의 공격을 에너미가 막았는지 체크
+//		if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
+//			//공격을 막지 못했다면 다운 체크
+//			_em->getVEnemy()[i]->downup(enemy::RIGHT);
+//	}
+//	break;
+#pragma endregion

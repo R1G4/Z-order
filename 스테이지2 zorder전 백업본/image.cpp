@@ -793,3 +793,9 @@ void image::aniRender(HDC hdc, int destX, int destY, animation * ani, POINT came
 		ani->getFrameWidth(), ani->getFrameHeight());
 
 }
+
+void image::alphaAniRender(HDC hdc, int destX, int destY, animation * ani, BYTE alpha, POINT camera)
+{
+	alphaRender(hdc, destX - camera.x, destY - camera.y, ani->getFramePos().x, ani->getFramePos().y,
+				ani->getFrameWidth(), ani->getFrameHeight(), alpha);
+}

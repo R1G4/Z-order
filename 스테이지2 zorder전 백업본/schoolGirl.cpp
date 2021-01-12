@@ -34,8 +34,6 @@ void schoolGirl::release()
 void schoolGirl::setAttackInfo()
 {
 	attackInfo attackTemp;
-	attackTemp.damage = 1;
-	attackTemp.isTouch = false;
 
 	//프레임중 실제 공격하는 모션 인덱스만 렉트 적용
 
@@ -189,30 +187,30 @@ void schoolGirl::addFrame()
 
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
-	aniRightDownup->setPlayFrame(0, 26, false, false);
+	aniRightDownup->setPlayFrame(0, 26, false, false, rightStun, this);
 	aniRightDownup->setFPS(10);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
-	aniLeftDownup->setPlayFrame(53, 27, false, false);
+	aniLeftDownup->setPlayFrame(53, 27, false, false, leftStun, this);
 	aniLeftDownup->setFPS(10);
 
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
-	aniRightKnockdown->setPlayFrame(0, 16, false, false);
+	aniRightKnockdown->setPlayFrame(0, 16, false, false, setDead, this);
 	aniRightKnockdown->setFPS(10);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
-	aniLeftKnockdown->setPlayFrame(33, 17, false, false);
+	aniLeftKnockdown->setPlayFrame(33, 17, false, false, setDead, this);
 	aniLeftKnockdown->setFPS(10);
 
 	aniRightDazed = new animation;
 	aniRightDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniRightDazed->setPlayFrame(0, 3, false, false);
-	aniRightDazed->setFPS(10);
+	aniRightDazed->setFPS(5);
 	aniLeftDazed = new animation;
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(7, 4, false, false);
-	aniLeftDazed->setFPS(10);
+	aniLeftDazed->setFPS(5);
 
 	aniRightJump = new animation;
 	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
@@ -225,30 +223,23 @@ void schoolGirl::addFrame()
 
 	aniRightTaunt = new animation;
 	aniRightTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
-	aniRightTaunt->setPlayFrame(0, 25, false, false, ActionCheck, this);
+	aniRightTaunt->setPlayFrame(0, 25, false, false, actionCheck, this);
 	aniRightTaunt->setFPS(9);
 	aniLeftTaunt = new animation;
 	aniLeftTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
-	aniLeftTaunt->setPlayFrame(51, 26, false, false, ActionCheck, this);
+	aniLeftTaunt->setPlayFrame(51, 26, false, false, actionCheck, this);
 	aniLeftTaunt->setFPS(9);
 }
 
 void schoolGirl::render(POINT camera)
 {
-	//Rectangle(getMemDC(), _enemyRc, camera);
-
-	/*RECT temp = RectMakeCenter(_kyoko->getKyokoPoint().x, _kyoko->getKyokoPoint().y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2 - 40);
-	Rectangle(getMemDC(), , camera);*/
-	/*if (_kyoko)
-	{
-		RECT temp = RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100);
-		 Rectangle(getMemDC(), temp, camera);
-	}*/
-
 	enemy::render(camera);
 
 	switch (_state)
 	{
+	case schoolGirl::DEAD:
+		_enemyImg->alphaAniRender(getMemDC(), _enemyRc.left, _enemyRc.top, _motion, _alphaValue, camera);
+		break;
 	case schoolGirl::IDLE: case schoolGirl::ATTACK:  case schoolGirl::COMBO_ATTACK_1:
 		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top - 10, 150, camera);
 		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top - 10, _motion, camera);
@@ -267,7 +258,12 @@ void schoolGirl::render(POINT camera)
 	{
 		Rectangle(getMemDC(), _shadowRc, camera);
 		Rectangle(getMemDC(), _rc, camera);
-		//Rectangle(getMemDC(), _enemyRc, camera);
+
+		HBRUSH brush = CreateSolidBrush(RGB(250, 0, 0));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), brush);
+		Rectangle(getMemDC(), _attackRc, camera);
+		SelectObject(getMemDC(), oldBrush);
+		DeleteObject(brush);
 	}
 }
 
@@ -295,7 +291,7 @@ void schoolGirl::setAttackRect(STATE state, DIRECTION direction)
 				break;
 			}
 		}
-		else
+		else 
 			_attackRc = RectMake(_x, _y, 0, 0);
 		break;
 	default:
@@ -308,7 +304,7 @@ void schoolGirl::state()
 {
 	_motion->frameUpdate(TIMEMANAGER->getElapsedTime());
 	//애니메이션이 멈춘 경우 IDLE로 전환
-	if (!_motion->isPlay())
+	if (!_motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_direction)
 		{
@@ -331,7 +327,7 @@ void schoolGirl::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 550 && _isAction && _motion->isPlay())
+	if (distance < 550 && _isAction && _motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)
@@ -502,7 +498,7 @@ void schoolGirl::state()
 		}
 	}
 	//추적 거리가 닿지 않을 경우 패턴 구현
-	else
+	else if (_state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_state)
 		{
@@ -551,6 +547,10 @@ void schoolGirl::state()
 				}
 			}
 			break;
+		case schoolGirl::DAZED:
+
+			break;
+
 		}
 	}
 }
@@ -613,8 +613,44 @@ void schoolGirl::move()
 	}
 }
 
-void schoolGirl::ActionCheck(void* obj)
+void schoolGirl::actionCheck(void* obj)
 {
 	schoolGirl* k = (schoolGirl*)obj;
 	k->_isAction = true;
+}
+
+void schoolGirl::leftStun(void* obj)
+{
+	schoolGirl* k = (schoolGirl*)obj;
+	if (RND->getFromIntTo(0, 2)  >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(LEFT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniLeftDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(LEFT);
+	}
+}
+
+void schoolGirl::rightStun(void* obj)
+{
+	schoolGirl* k = (schoolGirl*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(RIGHT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniRightDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(RIGHT);
+	}
+}
+
+void schoolGirl::setDead(void* obj)
+{
+	schoolGirl* k = (schoolGirl*)obj;
+	k->setState(DEAD);
 }
