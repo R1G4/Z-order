@@ -16,7 +16,7 @@ HRESULT item::init(float x, float y)
 	_item = (ITEM_KINDS)RND->getFromIntTo(APPLE, SHRIMP + 1);
 	_x = x;
 	_y = _arriveY = y;
-	_gravity = 0.12f;
+	_gravity = 0.11f;
 	_jumpPower = 5.6f;
 	_y -= _jumpPower;
 	_jumpPower -= _gravity;

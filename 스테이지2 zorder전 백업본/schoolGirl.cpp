@@ -21,6 +21,9 @@ HRESULT schoolGirl::init(float x, float y, STATE state, DIRECTION direction)
 	//해당 에너미 스피드
 	_speed = 2.0f;
 
+	//해당 에너미 체력
+	_hp = 6;
+
 	//공격 위치 및 데미지 초기화
 	setAttackInfo();
 
@@ -611,46 +614,4 @@ void schoolGirl::move()
 		}
 		break;
 	}
-}
-
-void schoolGirl::actionCheck(void* obj)
-{
-	schoolGirl* k = (schoolGirl*)obj;
-	k->_isAction = true;
-}
-
-void schoolGirl::leftStun(void* obj)
-{
-	schoolGirl* k = (schoolGirl*)obj;
-	if (RND->getFromIntTo(0, 2)  >= 1)
-	{
-		k->getMotion()->stop();
-		k->setDirection(LEFT);
-		k->setState(DAZED);
-		k->setImage(k->getImgDazed());
-		k->setMotion(k->getAniLeftDazed());
-		k->getMotion()->start();
-		k->enemy::effectStun(LEFT);
-	}
-}
-
-void schoolGirl::rightStun(void* obj)
-{
-	schoolGirl* k = (schoolGirl*)obj;
-	if (RND->getFromIntTo(0, 2) >= 1)
-	{
-		k->getMotion()->stop();
-		k->setDirection(RIGHT);
-		k->setState(DAZED);
-		k->setImage(k->getImgDazed());
-		k->setMotion(k->getAniRightDazed());
-		k->getMotion()->start();
-		k->enemy::effectStun(RIGHT);
-	}
-}
-
-void schoolGirl::setDead(void* obj)
-{
-	schoolGirl* k = (schoolGirl*)obj;
-	k->setState(DEAD);
 }

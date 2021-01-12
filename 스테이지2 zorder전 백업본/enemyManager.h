@@ -12,7 +12,8 @@ class enemyManager : public gameNode
 	enum STAGE_ENEMY
 	{
 		STAGE_1 = 1,
-		STAGE_2
+		STAGE_2 = 2,
+		STAGE_3
 	};
 	enum ENEMY_KINDS
 	{

@@ -217,10 +217,21 @@ void stage2::AttackCollision()
 				cout << "아야" << endl;
 				_player->setHit(true);
 				// 적이 플레이어보다 왼쪽에 있으면 왼쪽 타격이 나오게 오른쪽에 있으면 오른쪽 타격이 나오게
+				// 플레이어 피격 시 에너미 공격 렉트에서 이펙트 발생
 				if (_em->getVEnemy()[i]->getRect().left <= _player->getRect().left)
+				{
+					EFFECTMANAGER->play("hit",
+										_em->getVEnemy()[i]->getDebugAttackRc().right,
+										(_em->getVEnemy()[i]->getDebugAttackRc().top + _em->getVEnemy()[i]->getDebugAttackRc().bottom) / 2);
 					_player->setHitRight(false);
-				else 
+				}
+				else
+				{
+					EFFECTMANAGER->play("hit",
+										_em->getVEnemy()[i]->getDebugAttackRc().left,
+										(_em->getVEnemy()[i]->getDebugAttackRc().top + _em->getVEnemy()[i]->getDebugAttackRc().bottom) / 2);
 					_player->setHitRight(true);
+				}
 
 			}
 			// 플레이어 충돌렉트랑 아이템 렉트랑 맞닿으면
@@ -249,6 +260,16 @@ void stage2::AttackCollision()
 				case	KYOKODIRECTION_RIGHT_ATTACK_JUMP:
 				case	KYOKODIRECTION_RIGHT_ATTACK_JUMP_WALK:
 				case	KYOKODIRECTION_RIGHT_ATTACK_JUMP_RUN:
+					//해당 상태가 아닐 시에만 피격 이펙트 발생
+					if (_em->getVEnemy()[i]->getDirection() != enemy::HIT
+						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
+						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
+					{
+						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
+						EFFECTMANAGER->play("hit",
+											_em->getVEnemy()[i]->getEnemyPoint().x + 10,
+											(_em->getVEnemy()[i]->getEnemyRect().top + _em->getVEnemy()[i]->getEnemyRect().bottom) / 2);
+					}
 					//플레이어의 공격을 에너미가 막았는지 체크
 					if (!_em->getVEnemy()[i]->block(enemy::LEFT))
 						//공격을 막지 못했다면 피격 체크
@@ -257,10 +278,20 @@ void stage2::AttackCollision()
 				case	KYOKODIRECTION_RIGHT_ATTACK_3:
 				case	KYOKODIRECTION_RIGHT_ATTACK_STRONG:
 				case	KYOKODIRECTION_RIGHT_MAHAKICK:
-					//플레이어의 공격을 에너미가 막았는지 체크
-					if (!_em->getVEnemy()[i]->block(enemy::LEFT))
-						//공격을 막지 못했다면 다운 체크
-						_em->getVEnemy()[i]->downup(enemy::LEFT);
+					//해당 상태가 아닐 시에만 피격 이펙트 발생
+					if (_em->getVEnemy()[i]->getDirection() != enemy::HIT
+						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
+						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
+					{
+						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
+						EFFECTMANAGER->play("hit",
+											_em->getVEnemy()[i]->getEnemyPoint().x + 10,
+											(_em->getVEnemy()[i]->getEnemyRect().top + _em->getVEnemy()[i]->getEnemyRect().bottom) / 2);
+						//플레이어의 공격을 에너미가 막았는지 체크
+						if (!_em->getVEnemy()[i]->block(enemy::LEFT))
+							//공격을 막지 못했다면 다운 체크
+							_em->getVEnemy()[i]->downup(enemy::LEFT);
+					}
 					break;
 				case	KYOKODIRECTION_LEFT_ATTACK_1:
 				case	KYOKODIRECTION_LEFT_ATTACK_2:
@@ -268,21 +299,40 @@ void stage2::AttackCollision()
 				case	KYOKODIRECTION_LEFT_ATTACK_JUMP:
 				case	KYOKODIRECTION_LEFT_ATTACK_JUMP_WALK:
 				case	KYOKODIRECTION_LEFT_ATTACK_JUMP_RUN:
-					//플레이어의 공격을 에너미가 막았는지 체크
-					if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
-						//공격을 막지 못했다면 피격 체크
-						_em->getVEnemy()[i]->hit(enemy::RIGHT);
+					//해당 상태가 아닐 시에만 피격 이펙트 발생
+					if (_em->getVEnemy()[i]->getDirection() != enemy::HIT
+						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
+						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
+					{
+						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
+						EFFECTMANAGER->play("hit",
+											_em->getVEnemy()[i]->getEnemyPoint().x - 10,
+											(_em->getVEnemy()[i]->getEnemyRect().top + _em->getVEnemy()[i]->getEnemyRect().bottom) / 2);
+						//플레이어의 공격을 에너미가 막았는지 체크
+						if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
+							//공격을 막지 못했다면 피격 체크
+							_em->getVEnemy()[i]->hit(enemy::RIGHT);
+					}
 					break;
 				case	KYOKODIRECTION_LEFT_ATTACK_3:
 				case	KYOKODIRECTION_LEFT_ATTACK_STRONG:
 				case	KYOKODIRECTION_LEFT_MAHAKICK:
-					//플레이어의 공격을 에너미가 막았는지 체크
-					if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
-						//공격을 막지 못했다면 다운 체크
-						_em->getVEnemy()[i]->downup(enemy::RIGHT);
+					//해당 상태가 아닐 시에만 피격 이펙트 발생
+					if (_em->getVEnemy()[i]->getDirection() != enemy::HIT
+						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
+						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
+					{
+						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
+						EFFECTMANAGER->play("hit",
+											_em->getVEnemy()[i]->getEnemyPoint().x - 10,
+											(_em->getVEnemy()[i]->getEnemyRect().top + _em->getVEnemy()[i]->getEnemyRect().bottom) / 2);
+						//플레이어의 공격을 에너미가 막았는지 체크
+						if (!_em->getVEnemy()[i]->block(enemy::RIGHT))
+							//공격을 막지 못했다면 다운 체크
+							_em->getVEnemy()[i]->downup(enemy::RIGHT);
+					}
 					break;
 			}
-
 		}
 	}
 }

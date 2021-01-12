@@ -21,6 +21,9 @@ HRESULT MT::init(float x, float y, STATE state, DIRECTION direction)
 	//해당 에너미 스피드
 	_speed = 2.3f;
 
+	//해당 에너미 체력
+	_hp = 7;
+
 	setAttackInfo();
 
 	return S_OK;
@@ -621,46 +624,4 @@ void MT::move()
 		}
 		break;
 	}
-}
-
-void MT::actionCheck(void* obj)
-{
-	MT* k = (MT*)obj;
-	k->_isAction = true;
-}
-
-void MT::leftStun(void* obj)
-{
-	MT* k = (MT*)obj;
-	if (RND->getFromIntTo(0, 2) >= 1)
-	{
-		k->getMotion()->stop();
-		k->setDirection(LEFT);
-		k->setState(DAZED);
-		k->setImage(k->getImgDazed());
-		k->setMotion(k->getAniLeftDazed());
-		k->getMotion()->start();
-		k->enemy::effectStun(LEFT);
-	}
-}
-
-void MT::rightStun(void* obj)
-{
-	MT* k = (MT*)obj;
-	if (RND->getFromIntTo(0, 2) >= 1)
-	{
-		k->getMotion()->stop();
-		k->setDirection(RIGHT);
-		k->setState(DAZED);
-		k->setImage(k->getImgDazed());
-		k->setMotion(k->getAniRightDazed());
-		k->getMotion()->start();
-		k->enemy::effectStun(RIGHT);
-	}
-}
-
-void MT::setDead(void* obj)
-{
-	MT* k = (MT*)obj;
-	k->setState(DEAD);
 }

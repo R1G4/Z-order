@@ -172,25 +172,30 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Mint", "image/item/mint.bmp", 58, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Shrimp", "image/item/shrimp.bmp", 57, 60, true, RGB(255, 0, 255));
 
-	//에너미 이미지 추가
-	EFFECTMANAGER->addEffect("Enemy_Point", "image/enemy/Effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
-	EFFECTMANAGER->addEffect("Enemy_Stun", "image/enemy/Effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
+	//이펙트 추가
+	EFFECTMANAGER->addEffect("Enemy_Point", "image/effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("Enemy_Stun", "image/effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
 
-	IMAGEMANAGER->addImage("Boy_Shadow", "image/enemy/SchoolBoy/Boy_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Idle", "image/enemy/SchoolBoy/Boy_Idle.bmp", 0, 0, 1200, 400, 8, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Walk", "image/enemy/SchoolBoy/Boy_Walk.bmp", 0, 0, 1460, 400, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Run", "image/enemy/SchoolBoy/Boy_Run.bmp", 0, 0, 1876, 400, 10, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Block", "image/enemy/SchoolBoy/Boy_Block.bmp", 0, 0, 420, 400, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Attack", "image/enemy/SchoolBoy/Boy_Attack.bmp", 0, 0, 1598, 400, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_ComboAttack1", "image/enemy/SchoolBoy/Boy_ComboAttack1.bmp", 0, 0, 1892, 540, 9, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_ComboAttack2", "image/enemy/SchoolBoy/Boy_ComboAttack2.bmp", 0, 0, 766, 460, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_ComboAttack3", "image/enemy/SchoolBoy/Boy_ComboAttack3.bmp", 0, 0, 1830, 400, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Hit", "image/enemy/SchoolBoy/Boy_Hit.bmp", 0, 0, 1536, 400, 9, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Downup", "image/enemy/SchoolBoy/Boy_Downup.bmp", 0, 0, 7027, 400, 27, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Dazed", "image/enemy/SchoolBoy/Boy_Dazed.bmp", 0, 0, 620, 400, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Jump", "image/enemy/SchoolBoy/Boy_Jump.bmp", 0, 0, 468, 480, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Knockdown", "image/enemy/SchoolBoy/Boy_Knockdown.bmp", 0, 0, 4945, 400, 19, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("Boy_Taunt", "image/enemy/SchoolBoy/Boy_Taunt.bmp", 0, 0, 1704, 420, 11, 2, true, RGB(255, 0, 255));
+	EFFECTMANAGER->addEffect("crack", "image/effect/crack.bmp", 5733, 256, 819, 256, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("dash", "image/effect/dash.bmp", 1600, 200, 100, 100, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("hit", "image/effect/hit.bmp", 808, 100, 101, 100, 14, 0.07f, 800);
+
+	//에너미 추가
+	IMAGEMANAGER->addImage("Boy_Shadow", "image/enemy/schoolBoy/Boy_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Idle", "image/enemy/schoolBoy/Boy_Idle.bmp", 0, 0, 1200, 400, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Walk", "image/enemy/schoolBoy/Boy_Walk.bmp", 0, 0, 1460, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Run", "image/enemy/schoolBoy/Boy_Run.bmp", 0, 0, 1876, 400, 10, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Block", "image/enemy/schoolBoy/Boy_Block.bmp", 0, 0, 420, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Attack", "image/enemy/schoolBoy/Boy_Attack.bmp", 0, 0, 1598, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_ComboAttack1", "image/enemy/schoolBoy/Boy_ComboAttack1.bmp", 0, 0, 1892, 540, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_ComboAttack2", "image/enemy/schoolBoy/Boy_ComboAttack2.bmp", 0, 0, 766, 460, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_ComboAttack3", "image/enemy/schoolBoy/Boy_ComboAttack3.bmp", 0, 0, 1830, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Hit", "image/enemy/schoolBoy/Boy_Hit.bmp", 0, 0, 1536, 400, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Downup", "image/enemy/schoolBoy/Boy_Downup.bmp", 0, 0, 7027, 400, 27, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Dazed", "image/enemy/schoolBoy/Boy_Dazed.bmp", 0, 0, 620, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Jump", "image/enemy/schoolBoy/Boy_Jump.bmp", 0, 0, 468, 480, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Knockdown", "image/enemy/schoolBoy/Boy_Knockdown.bmp", 0, 0, 4945, 400, 19, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Boy_Taunt", "image/enemy/schoolBoy/Boy_Taunt.bmp", 0, 0, 1704, 420, 11, 2, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("Girl_Shadow", "image/enemy/SchoolGirl/Girl_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Girl_Idle", "image/enemy/SchoolGirl/Girl_Idle.bmp", 0, 0, 1320, 400, 10, 2, true, RGB(255, 0, 255));
@@ -208,36 +213,36 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("Girl_Jump", "image/enemy/SchoolGirl/Girl_Jump.bmp", 0, 0, 432, 400, 3, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Girl_Taunt", "image/enemy/SchoolGirl/Girl_Taunt.bmp", 0, 0, 4015, 420, 26, 2, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("MT_Shadow", "image/enemy/MT/MT_Shadow.bmp", 112, 33, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Idle", "image/enemy/MT/MT_Idle.bmp", 0, 0, 1634, 400, 10, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Walk", "image/enemy/MT/MT_Walk.bmp", 0, 0, 1984, 400, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Run", "image/enemy/MT/MT_Run.bmp", 0, 0, 1933, 400, 8, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Block", "image/enemy/MT/MT_Block.bmp", 0, 0, 486, 400, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Attack", "image/enemy/MT/MT_Attack.bmp", 0, 0, 1992, 400, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_ComboAttack1", "image/enemy/MT/MT_ComboAttack1.bmp", 0, 0, 1992, 400, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_ComboAttack2", "image/enemy/MT/MT_ComboAttack2.bmp", 0, 0, 2216, 430, 8, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_ComboAttack3", "image/enemy/MT/MT_ComboAttack3.bmp", 0, 0, 4068, 450, 14, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Hit", "image/enemy/MT/MT_Hit.bmp", 0, 0, 523, 380, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Downup", "image/enemy/MT/MT_Downup.bmp", 0, 0, 8919, 440, 31, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Dazed", "image/enemy/MT/MT_Dazed.bmp", 0, 0, 618, 400, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Jump", "image/enemy/MT/MT_Jump.bmp", 0, 0, 612, 400, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Knockdown", "image/enemy/MT/MT_Knockdown.bmp", 0, 0, 8056, 440, 28, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("MT_Taunt", "image/enemy/MT/MT_Taunt.bmp", 0, 0, 558, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MT_Shadow", "image/enemy/mt/MT_Shadow.bmp", 112, 33, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Idle", "image/enemy/mt/MT_Idle.bmp", 0, 0, 1634, 400, 10, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Walk", "image/enemy/mt/MT_Walk.bmp", 0, 0, 1984, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Run", "image/enemy/mt/MT_Run.bmp", 0, 0, 1933, 400, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Block", "image/enemy/mt/MT_Block.bmp", 0, 0, 486, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Attack", "image/enemy/mt/MT_Attack.bmp", 0, 0, 1992, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_ComboAttack1", "image/enemy/mt/MT_ComboAttack1.bmp", 0, 0, 1992, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_ComboAttack2", "image/enemy/mt/MT_ComboAttack2.bmp", 0, 0, 2216, 430, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_ComboAttack3", "image/enemy/mt/MT_ComboAttack3.bmp", 0, 0, 4068, 450, 14, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Hit", "image/enemy/mt/MT_Hit.bmp", 0, 0, 523, 380, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Downup", "image/enemy/mt/MT_Downup.bmp", 0, 0, 8919, 440, 31, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Dazed", "image/enemy/mt/MT_Dazed.bmp", 0, 0, 618, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Jump", "image/enemy/mt/MT_Jump.bmp", 0, 0, 612, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Knockdown", "image/enemy/mt/MT_Knockdown.bmp", 0, 0, 8056, 440, 28, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("MT_Taunt", "image/enemy/mt/MT_Taunt.bmp", 0, 0, 558, 400, 4, 2, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("CheerLeader_Shadow", "image/enemy/CheerLeader/CheerLeader_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Idle", "image/enemy/CheerLeader/CheerLeader_Idle.bmp", 0, 0, 2133, 400, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Walk", "image/enemy/CheerLeader/CheerLeader_Walk.bmp", 0, 0, 2499, 400, 12, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Run", "image/enemy/CheerLeader/CheerLeader_Run.bmp", 0, 0, 1291, 300, 8, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Block", "image/enemy/CheerLeader/CheerLeader_Block.bmp", 0, 0, 457, 400, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Attack", "image/enemy/CheerLeader/CheerLeader_Attack.bmp", 0, 0, 1138, 400, 6, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack1", "image/enemy/CheerLeader/CheerLeader_ComboAttack1.bmp", 0, 0, 1138, 400, 6, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack2", "image/enemy/CheerLeader/CheerLeader_ComboAttack2.bmp", 0, 0, 1715, 400, 7, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack3", "image/enemy/CheerLeader/CheerLeader_ComboAttack3.bmp", 0, 0, 6577, 600, 22, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Hit", "image/enemy/CheerLeader/CheerLeader_Hit.bmp", 0, 0, 1445, 400, 9, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Downup", "image/enemy/CheerLeader/CheerLeader_Downup.bmp", 0, 0, 8265, 400, 28, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Dazed", "image/enemy/CheerLeader/CheerLeader_Dazed.bmp", 0, 0, 554, 400, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Jump", "image/enemy/CheerLeader/CheerLeader_Jump.bmp", 0, 0, 776, 500, 3, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("CheerLeader_Knockdown", "image/enemy/CheerLeader/CheerLeader_Knockdown.bmp", 0, 0, 6482, 400, 22, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CheerLeader_Shadow", "image/enemy/cheerLeader/CheerLeader_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Idle", "image/enemy/cheerLeader/CheerLeader_Idle.bmp", 0, 0, 2133, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Walk", "image/enemy/cheerLeader/CheerLeader_Walk.bmp", 0, 0, 2499, 400, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Run", "image/enemy/cheerLeader/CheerLeader_Run.bmp", 0, 0, 1291, 300, 8, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Block", "image/enemy/cheerLeader/CheerLeader_Block.bmp", 0, 0, 457, 400, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Attack", "image/enemy/cheerLeader/CheerLeader_Attack.bmp", 0, 0, 1138, 400, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack1", "image/enemy/cheerLeader/CheerLeader_ComboAttack1.bmp", 0, 0, 1138, 400, 6, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack2", "image/enemy/cheerLeader/CheerLeader_ComboAttack2.bmp", 0, 0, 1715, 400, 7, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_ComboAttack3", "image/enemy/cheerLeader/CheerLeader_ComboAttack3.bmp", 0, 0, 6577, 600, 22, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Hit", "image/enemy/cheerLeader/CheerLeader_Hit.bmp", 0, 0, 1445, 400, 9, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Downup", "image/enemy/cheerLeader/CheerLeader_Downup.bmp", 0, 0, 8265, 400, 28, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Dazed", "image/enemy/cheerLeader/CheerLeader_Dazed.bmp", 0, 0, 554, 400, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Jump", "image/enemy/cheerLeader/CheerLeader_Jump.bmp", 0, 0, 776, 500, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CheerLeader_Knockdown", "image/enemy/cheerLeader/CheerLeader_Knockdown.bmp", 0, 0, 6482, 400, 22, 2, true, RGB(255, 0, 255));
 
 	//오브젝트 이미지 추가
 	IMAGEMANAGER->addImage("chair", "image/object/chair.bmp", 179, 169, true, RGB(255, 0, 255));

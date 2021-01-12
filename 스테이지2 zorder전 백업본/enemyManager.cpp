@@ -10,8 +10,13 @@ enemyManager::~enemyManager()
 
 HRESULT enemyManager::init(int stageNum)
 {
+	//에너미 생성 간격
 	spawnInterval = 0;
+
+	//해당 스테이지
 	_nowStage = (STAGE_ENEMY)stageNum;
+
+	//스테이지에 따른 에너미 생성
 	setEnemy();
 	return S_OK;
 }
@@ -73,6 +78,7 @@ void enemyManager::update()
 			_vItem[i]->update();
 	}
 
+	//에너미 생성 함수
 	spawn();
 }
 

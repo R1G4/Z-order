@@ -25,16 +25,4 @@ public:
 
 	//에너미 초기 이미지 및 애니메이션 셋팅
 	virtual void addFrame();
-
-	//특정 에너미 도발 후 정상 패턴으로 복귀 체크
-	static void actionCheck(void * obj);
-
-	//왼쪽 스턴 상태 결정
-	static void leftStun(void * obj);
-
-	//오른쪽 스턴 상태 결정
-	static void rightStun(void * obj);
-
-	//에너미 죽은 상태
-	static void  setDead(void * obj);
 };

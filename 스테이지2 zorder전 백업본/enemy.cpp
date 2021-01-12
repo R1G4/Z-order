@@ -21,7 +21,6 @@ HRESULT enemy::init(float x, float y, STATE state, DIRECTION direction)
 	_angle = 0;
 	_alphaInterval = 0;
 	_alphaValue = 0;
-	_hp = 8;
 	//이미지 및 애니메이션 적용
 	switch (_state)
 	{
@@ -248,4 +247,46 @@ void enemy::setAlpha()
 		_alphaValue = 55;
 	if (_alphaInterval / 18 == 5)
 		_state = REMOVE;
+}
+
+void enemy::actionCheck(void* obj)
+{
+	enemy* k = (enemy*)obj;
+	k->_isAction = true;
+}
+
+void enemy::leftStun(void* obj)
+{
+	enemy* k = (enemy*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(LEFT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniLeftDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(LEFT);
+	}
+}
+
+void enemy::rightStun(void* obj)
+{
+	enemy* k = (enemy*)obj;
+	if (RND->getFromIntTo(0, 2) >= 1)
+	{
+		k->getMotion()->stop();
+		k->setDirection(RIGHT);
+		k->setState(DAZED);
+		k->setImage(k->getImgDazed());
+		k->setMotion(k->getAniRightDazed());
+		k->getMotion()->start();
+		k->enemy::effectStun(RIGHT);
+	}
+}
+
+void enemy::setDead(void* obj)
+{
+	enemy* k = (enemy*)obj;
+	k->setState(DEAD);
 }
