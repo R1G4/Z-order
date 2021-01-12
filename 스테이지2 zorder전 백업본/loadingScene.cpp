@@ -143,6 +143,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Stage1Pic", "image/map/0Pic.bmp", 2154, 884, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage2", "image/map/1.bmp", 3494, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage2Pic", "image/map/1Pic.bmp", 3494, 884, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Stage3", "image/map/2.bmp", 1980, 884, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Stage3Pic", "image/map/2Pic.bmp", 1980, 884, false, RGB(255, 0, 255));
 
 	//보스 스테이지 맵추가
 	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 1830, 884, true, RGB(255, 0, 255));

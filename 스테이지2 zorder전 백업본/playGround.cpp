@@ -52,6 +52,7 @@ void playGround::addScene()
 	SCENEMANAGER->addScene("·Îµù¾À", new loadingScene);
 	SCENEMANAGER->addScene("Stage1", new tempStage);
 	SCENEMANAGER->addScene("Stage2", new stage2);
+	SCENEMANAGER->addScene("Stage3", new stage3);
 	SCENEMANAGER->addScene("BossStage", new BossStage);
 }
 

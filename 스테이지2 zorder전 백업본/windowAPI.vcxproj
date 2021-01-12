@@ -181,6 +181,7 @@
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="soundManager.h" />
     <ClInclude Include="stage2.h" />
+    <ClInclude Include="stage3.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="StatusManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -226,6 +227,7 @@
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage2+zOrder.cpp" />
     <ClCompile Include="stage2.cpp" />
+    <ClCompile Include="stage3.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="StatusManager.cpp" />
     <ClCompile Include="stdafx.cpp">

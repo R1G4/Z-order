@@ -4,6 +4,7 @@
 #include "saveLoad.h"
 #include "tempStage.h"
 #include "stage2.h"
+#include "stage3.h"
 #include "BossStage.h"
 #include "loadingScene.h"
 #include "opTion.h"
