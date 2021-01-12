@@ -14,7 +14,7 @@ enemyAttack::~enemyAttack()
 HRESULT enemyAttack::init()
 {
 	//공격 딜레이 초기화
-	_attackDelay = RND->getFromIntTo(80, 120);
+	_attackDelay = RND->getFromIntTo(70, 100);
 	//콤보공격 가능 타이머 초기화
 	_comboTimer = 200;
 	//공격상태 저장
@@ -51,19 +51,19 @@ int enemyAttack::selectedAttack(int attack)
 			//0에서 부터 1까지는 ATTACK 3은 콤보공격
 			_attackState = random <= 1 ? ATTACK : COMBO_ATTACK_1;
 			if(_attackState == ATTACK)
-				_attackDelay = RND->getFromIntTo(100, 140);
-			else 
 				_attackDelay = RND->getFromIntTo(70, 100);
+			else 
+				_attackDelay = RND->getFromIntTo(40, 90);
 		}
 		else if (_attackState == COMBO_ATTACK_1 && _comboTimer > 0)
 		{
 			_attackState = COMBO_ATTACK_2;
-			_attackDelay = RND->getFromIntTo(70, 100);
+			_attackDelay = RND->getFromIntTo(40, 90);
 		}
 		else if (_attackState == COMBO_ATTACK_2 && _comboTimer > 0)
 		{
 			_attackState = COMBO_ATTACK_3;
-			_attackDelay = RND->getFromIntTo(70, 100);
+			_attackDelay = RND->getFromIntTo(40, 90);
 		}
 		else return NONE;
 

@@ -5,6 +5,7 @@
 #include "cheerLeader.h"
 #include "MT.h"
 #include "kyoko.h"
+#include "item.h"
 
 class enemyManager : public gameNode
 {
@@ -21,17 +22,19 @@ class enemyManager : public gameNode
 		ENEMY_CHEERLEADER
 	};
 
-private:
+	private:
 	typedef vector<enemy*> vEnemy;
 	typedef vector<enemy*>::iterator viEnemy;
-
+	typedef vector<item*> vItem;
+	//item
 	vEnemy _vEnemy;
 	viEnemy _viEnemy;
+	vItem _vItem;
 	kyoko* _kyoko;
 	STAGE_ENEMY _nowStage;
 	ENEMY_KINDS _enemyKinds;
 	int spawnInterval;
-public:
+	public:
 	enemyManager();
 	~enemyManager();
 
@@ -39,9 +42,10 @@ public:
 
 	virtual void release();
 	void removeEnemy(int i);
+	void removeItem(int i);
 	virtual void update();
 
-;	void spawn();
+	;	void spawn();
 	void setEnemy();
 	void addEnemy();
 
@@ -55,6 +59,7 @@ public:
 	virtual void render(POINT camera);
 	void setKyokoMemory(kyoko* kyoko) { _kyoko = kyoko; }
 
+	vector<item*> getVItem() { return _vItem; };
 	vector<enemy*> getVEnemy() { return _vEnemy; }
 	vector<enemy*>::iterator getViEnemy() { return _viEnemy; }
 };

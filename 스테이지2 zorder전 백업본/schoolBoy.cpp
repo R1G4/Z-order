@@ -565,7 +565,7 @@ void schoolBoy::state()
 
 void schoolBoy::move()
 {
-	//충동했다면 이동을 제한한다.
+	//충돌했다면 이동을 제한한다.
 	if (_isCollision)
 		return;
 	//플레이어와 에너미의 각도 계산

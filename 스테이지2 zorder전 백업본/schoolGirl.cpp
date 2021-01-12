@@ -557,7 +557,7 @@ void schoolGirl::state()
 
 void schoolGirl::move()
 {
-	//충동했다면 이동을 제한한다.
+	//충돌했다면 이동을 제한한다.
 	if (_isCollision)
 		return;
 

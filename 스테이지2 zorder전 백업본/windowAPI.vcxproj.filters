@@ -198,6 +198,9 @@
     <ClInclude Include="opTion.h">
       <Filter>playGround\UI</Filter>
     </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>playGround\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -325,6 +328,9 @@
     </ClCompile>
     <ClCompile Include="opTion.cpp">
       <Filter>playGround\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>playGround\enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -165,6 +165,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("쿄코_죽음", "image/kyoko/dead_3.bmp", 0, 0, 7700, 400, 22, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("그림자", "image/kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
 
+	//아이템
+	IMAGEMANAGER->addImage("Apple", "image/item/apple.bmp", 58, 60, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Boonger", "image/item/boonger.bmp", 67, 60, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Burger", "image/item/burger.bmp", 72, 60, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Mint", "image/item/mint.bmp", 58, 60, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Shrimp", "image/item/shrimp.bmp", 57, 60, true, RGB(255, 0, 255));
+
 	//에너미 이미지 추가
 	EFFECTMANAGER->addEffect("Enemy_Point", "image/enemy/Effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
 	EFFECTMANAGER->addEffect("Enemy_Stun", "image/enemy/Effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);

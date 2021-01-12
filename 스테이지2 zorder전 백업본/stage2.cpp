@@ -95,6 +95,13 @@ void stage2::render()
 {
 	stage2->render(getMemDC(), 0, 0, camera);
 
+	//아이템 랜더~
+	for (int i = 0; i < _em->getVItem().size(); i++)
+	{
+		item* _item = _em->getVItem()[i];
+		_item->render(camera);
+	}
+
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage2Pic->render(getMemDC(), 0, 0, camera);
@@ -215,6 +222,17 @@ void stage2::AttackCollision()
 				else 
 					_player->setHitRight(true);
 
+			}
+			// 플레이어 충돌렉트랑 아이템 렉트랑 맞닿으면
+			for (int j = 0; j < _em->getVItem().size(); j++)
+			{
+				if (IntersectRect(&_temp, &_player->getRect(), &_em->getVItem()[j]->getRect()))
+				{
+					//아이템 제거
+					_em->getVItem()[j]->ItemRemove();
+					//아이템에 따라 체력 회복
+					STATUSMANAGER->heal(_em->getVItem()[j]->getHeal(), "HPBar");
+				}
 			}
 		}
 	}
