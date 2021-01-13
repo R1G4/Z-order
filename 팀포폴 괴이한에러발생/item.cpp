@@ -56,6 +56,7 @@ void item::release()
 
 void item::update()
 {
+	//아이템이 기존의 y축으로 돌아올때 까지 붕 뜨거나 붕 내려앉기
 	if (_arriveY > _y)
 	{
 		_y -= _jumpPower;

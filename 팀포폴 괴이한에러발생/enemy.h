@@ -7,6 +7,7 @@ class kyoko;
 class enemy : public gameNode
 {
 public:
+	//에너미 상태
 	enum STATE
 	{
 		IDLE,
@@ -27,21 +28,25 @@ public:
 		REMOVE
 	};
 
+	//에너미가 바라보는 방향
 	enum DIRECTION
 	{
 		LEFT,
 		RIGHT
 	};
 protected:
+
+	//공격용 렉트 관련 구조체
 	struct attackInfo
 	{
-		int index;
-		float plusY;
-		float width;
-		float height;
+		int index;		//공격 렉트가 생성 될 애니메이션 인덱스
+		float plusY;	//이미지 크기가 달리지는 경우를 대비해 y축 보정 값
+		float width;	//공격용 렉트 넓이
+		float height;	//공격용 렉트 높이
 	};
-	map<STATE, attackInfo> _mAttackInfo;
-	kyoko* _kyoko;
+
+	map<STATE, attackInfo> _mAttackInfo;	//공격용 렉트 관련 정보를 담아둔 맵
+	kyoko* _kyoko;			//플레이어
 	image* _enemyImg;		//에너미 이미지
 	image* _shadowImg;		//그림자 이미지
 	RECT _rc;				//충돌용 렉트
@@ -57,15 +62,15 @@ protected:
 	bool _isAttack;			//공격 구분
 	bool _isRunning;		//달리기 구분
 	bool _isFollow;			//추적 구분
-	bool _isCollision;
+	bool _isCollision;		//충돌 구분
 	int _questTimer;		//탐색 및 휴식 난수
 	int _questMin;			//최소 탐색 간격 난수
-	int _hp;
+	int _hp;				//에너미 체력
 	int _alphaInterval;		//투명도 간격
 	int _alphaValue;		//투명도
 	enemyAttack* _enemyAttack;	//에너미 공격 패턴 클래스
 
-		//에너미 이미지
+	//에너미 이미지
 	image* imgIdle;
 	image* imgWalk;
 	image* imgRun;
@@ -82,6 +87,7 @@ protected:
 	image* imgTaunt;
 
 	//에너미 애니메이션
+	//LEFT
 	animation* aniLeftIdle;
 	animation* aniLeftWalk;
 	animation* aniLeftRun;
@@ -97,6 +103,7 @@ protected:
 	animation* aniLeftJump;
 	animation* aniLeftTaunt;
 
+	//Right
 	animation* aniRightIdle;
 	animation* aniRightWalk;
 	animation* aniRightRun;
@@ -119,14 +126,15 @@ public:
 	~enemy();
 
 	virtual HRESULT init(float x, float y, STATE state = IDLE, DIRECTION direction = (DIRECTION)RND->getFromIntTo(0, 2));
-
-	//virtual HRESULT init(float x, float y);
-	void setKyokoAddressLink(kyoko* kyoko) { _kyoko = kyoko; }
 	virtual void release();
 	virtual void update();
 	virtual void render();
 	virtual void render(POINT camera);
 
+	//플레이어의 주소를 받아온다.
+	void setKyokoAddressLink(kyoko* kyoko) { _kyoko = kyoko; }
+
+	//에너미 방어
 	bool block(DIRECTION _direction);
 
 	//에너미 머리 위에 느낌표 보여주기
@@ -140,7 +148,7 @@ public:
 
 	//에너미 피격으로 다운 상태일때
 	void downup(DIRECTION _direction);
-	
+
 	//에너미 넉다운 상태일때
 	void knockdown(DIRECTION _direction);
 
@@ -181,7 +189,7 @@ public:
 	DIRECTION getDirection() { return _direction; }
 	void setDirection(DIRECTION direction) { _direction = direction; }
 
-	//상태
+	//현재 상태
 	STATE getState() { return _state; }
 	void setState(STATE state) { _state = state; }
 
@@ -193,9 +201,11 @@ public:
 	bool getCollision() { return _isCollision; }
 	void setCollision(bool isCollision) { _isCollision = isCollision; }
 
+	//스턴 이미지와 애니메이션
 	image* getImgDazed() { return imgDazed; }
 	animation* getAniLeftDazed() { return aniLeftDazed; }
 	animation* getAniRightDazed() { return aniRightDazed; }
+
 	//좌표
 	POINT getEnemyPoint()
 	{
