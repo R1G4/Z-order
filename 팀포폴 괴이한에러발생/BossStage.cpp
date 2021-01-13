@@ -22,6 +22,7 @@ HRESULT BossStage::init()
 	_geForce = IMAGEMANAGER->findImage("지포스");
 	_radeon = IMAGEMANAGER->findImage("라데온");
 	_kyoko_i = IMAGEMANAGER->findImage("쿄코1");
+	_kyoko_si = IMAGEMANAGER->findImage("쿄코1그림자");
 	_boss_i = IMAGEMANAGER->findImage("미스즈1");
 
 	_player->init();
@@ -69,7 +70,7 @@ void BossStage::update()
 		SOUNDMANAGER->stop("BossIntroSound");
 		SOUNDMANAGER->play("BossSound", _opt->getVolume());
 	}
-	
+
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
 	{
 		// 보스전 시작전 다이어로그
@@ -93,6 +94,18 @@ void BossStage::update()
 
 			if (_string_count == 3)
 				_kyoko_i = IMAGEMANAGER->findImage("쿄코4");
+
+			if (_string_count == 0 || _string_count == 7)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코1그림자");
+
+			if (_string_count == 5)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코2그림자");
+
+			if (_string_count == 10 || _string_count == 11 || _string_count == 12)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코3그림자");
+
+			if (_string_count == 3)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코4그림자");
 
 			if (_string_count == 1 || _string_count == 2 || _string_count == 4)
 				_boss_i = IMAGEMANAGER->findImage("미스즈1");
@@ -123,6 +136,18 @@ void BossStage::update()
 			if (_string_count_2 == 1)
 				_kyoko_i = IMAGEMANAGER->findImage("쿄코4");
 
+			if (_string_count_2 == 3)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코1그림자");
+
+			if (_string_count_2 == 8)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코2그림자");
+
+			if (_string_count_2 == 0)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코3그림자");
+
+			if (_string_count_2 == 1)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코4그림자");
+
 			if (_string_count_2 == 2 || _string_count_2 == 6)
 				_boss_i = IMAGEMANAGER->findImage("미스즈1");
 
@@ -136,7 +161,7 @@ void BossStage::update()
 
 	if (_bossPhase == VS_MESUZU)
 	{
-		cout << "싸움시작" << endl;	
+		cout << "싸움시작" << endl;
 		// 보스를 잡았다고 가정
 		if (KEYMANAGER->isOnceKeyDown('O'))
 		{
@@ -190,7 +215,9 @@ void BossStage::render()
 		else
 			_radeon->render(getMemDC(), 60, WINSIZEY - 75);
 
+		_kyoko_si->alphaRender(getMemDC(), -10, WINSIZEY - 452, 200, camera);
 		_kyoko_i->render(getMemDC(), 0, WINSIZEY - 542);
+
 		_boss_i->render(getMemDC(), WINSIZEX - 384, WINSIZEY - 542);
 	}
 

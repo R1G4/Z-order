@@ -32,6 +32,7 @@ private:
 	image* _radeon;
 	image* _geForce;
 	image* _kyoko_i;
+	image* _kyoko_si;
 	image* _boss_i;
 
 	enemyManager* _em;

@@ -1,0 +1,344 @@
+﻿  stdafx.cpp
+  animation.cpp
+  boss.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(50): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(51): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(53): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(81): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(84): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(92): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(95): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(102): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(105): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(113): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(116): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(120): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(176): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(187): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(195): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(216): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(220): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(221): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(225): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(226): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(252): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(289): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(214): warning C4101: '_temp' :참조되지 않은 지역 변수입니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.cpp(359): warning C4101: '_temp' :참조되지 않은 지역 변수입니다.
+  bossHPBar.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(6): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(7): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(12): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(24): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BossStage.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bossstage.cpp(200): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\bossstage.cpp(237): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  button.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\button.cpp(19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CameraManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(136): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(137): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(141): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(140): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(133): warning C4101: 'mapImg' :참조되지 않은 지역 변수입니다.
+  cheerLeader.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(321): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(324): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(329): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(332): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(364): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(384): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(599): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(629): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(630): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(638): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(641): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(600): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  effect.cpp
+  effectManager.cpp
+  enemy.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.cpp(66): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.cpp(68): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.cpp(101): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.cpp(104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.cpp(114): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.cpp(117): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  enemyAttack.cpp
+  enemyManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemymanager.cpp(104): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameNode.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\gamenode.cpp(112): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\gamenode.cpp(113): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\gamenode.cpp(106): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\gamenode.cpp(105): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
+  image.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(76): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(131): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(184): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(422): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(428): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(434): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(697): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(703): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\image.cpp(709): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  imageManager.cpp
+  iniDataManager.cpp
+  item.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\item.cpp(48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\item.cpp(63): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  jump.cpp
+  keyAniManager.cpp
+  keyManager.cpp
+  코드를 생성하고 있습니다...
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(123): warning C4715: 'CameraManager::CameraMake': 모든 제어 경로에서 값을 반환하지는 않습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(92): warning C4715: 'CameraManager::CameraMake': 모든 제어 경로에서 값을 반환하지는 않습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(44): warning C4715: 'CameraManager::CameraMake': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  컴파일하고 있습니다...
+  kyoko.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(27): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(74): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(75): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(76): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(79): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(86): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(92): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(684): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(691): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(730): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(737): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(776): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(783): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(822): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.cpp(829): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+  loadingScene.cpp
+  MT.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(322): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(325): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(330): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(333): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(365): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(385): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(597): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(628): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\mt.cpp(629): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  npc.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\npc.cpp(57): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\npc.cpp(71): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  npcBoy.cpp
+  npcGirl.cpp
+  npcManager.cpp
+  npcTeacher.cpp
+  opTion.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(78): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(116): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(121): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\option.cpp(133): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  playGround.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+  progressBar.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(6): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(7): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(15): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\progressbar.cpp(40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  saveLoad.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(75): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(119): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(119): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(135): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(135): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(144): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(144): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(153): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\saveload.cpp(153): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  sceneManager.cpp
+  schoolBoy.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(321): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(324): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(329): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(332): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(364): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(384): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(596): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(627): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(628): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(636): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(639): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  schoolGirl.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(90): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(310): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(313): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(318): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(321): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(352): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(372): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(588): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(589): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  soundManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\soundmanager.cpp(170): warning C4244: '인수': 'float'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage2+zOrder.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2+zorder.cpp(13): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage2.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(29): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(68): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(73): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(152): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(153): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(182): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(199): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(215): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(232): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(253): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(269): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(285): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage2.cpp(302): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage3+zOrder.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3+zorder.cpp(13): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage3.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(135): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(147): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(151): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(152): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(371): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(388): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(404): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(421): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(442): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(458): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(474): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\stage3.cpp(491): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  StartScene.cpp
+  StatusManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\statusmanager.cpp(40): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  tempStage+zOrder.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage+zorder.cpp(17): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  tempStage.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(9): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(217): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(226): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(249): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(255): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(262): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(268): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(285): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(321): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(338): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(354): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\tempstage.cpp(371): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timeManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\timemanager.cpp(46): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\timemanager.cpp(49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\timemanager.cpp(52): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timer.cpp
+  txtData.cpp
+  UIManager.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\uimanager.cpp(20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  utils.cpp
+  videoManager.cpp
+  winMain.cpp
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(133): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\kyoko.h(134): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(214): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\enemy.h(215): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\winmain.cpp(89): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+c:\users\clxlz\onedrive\바탕 화면\팀 포트 폴리오\z-order\팀포폴 괴이한에러발생\txtdata.cpp(47): warning C4172: 지역 변수 또는 임시: str의 주소를 반환하고 있습니다.
+  windowAPI.vcxproj -> C:\Users\clxlz\OneDrive\바탕 화면\팀 포트 폴리오\Z-order\팀포폴 괴이한에러발생\x64\Debug\windowAPI.exe
