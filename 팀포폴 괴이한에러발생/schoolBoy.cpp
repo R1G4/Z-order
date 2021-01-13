@@ -189,20 +189,20 @@ void schoolBoy::addFrame()
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniRightDownup->setPlayFrame(0, 26, false, false, leftStun, this);
-	aniRightDownup->setFPS(10);
+	aniRightDownup->setFPS(8);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniLeftDownup->setPlayFrame(53, 27, false, false, leftStun, this);
-	aniLeftDownup->setFPS(10);
+	aniLeftDownup->setFPS(8);
 
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniRightKnockdown->setPlayFrame(0, 18, false, false, setDead, this);
-	aniRightKnockdown->setFPS(10);
+	aniRightKnockdown->setFPS(8);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniLeftKnockdown->setPlayFrame(37, 19, false, false, setDead, this);
-	aniLeftKnockdown->setFPS(10);
+	aniLeftKnockdown->setFPS(8);
 
 	aniRightDazed = new animation;
 	aniRightDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
@@ -514,7 +514,7 @@ void schoolBoy::state()
 		}
 	}
 	//추적 거리가 닿지 않을 경우 패턴 구현
-	else if (_state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	else if (_state != DOWNUP && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_state)
 		{
