@@ -144,7 +144,13 @@ public:
 	virtual void setAttackRect(BOSSDIRECTION direction);
 	float getBossPointX() { return _x; }
 	float getBossPointY() { return _y; }
+	POINT getMainPoint() { return PointMake(_x, _y); }
+	POINT getShadowPoint() { return PointMake(_x2, _y2); }
+	void setMainPoint(POINT pt) { _x = pt.x, _y = pt.y; }
+	void setShadowPoint(POINT pt) { _x2 = pt.x, _y2 = pt.y; }
+
 	inline RECT getBossRect() { return _rcBoss; }
+	inline RECT getBossShadow() { return _rcBossShadow; }
 	inline RECT getBossAttackRect() { return _rcBossAttack; }
 };
 

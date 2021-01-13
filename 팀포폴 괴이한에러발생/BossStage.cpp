@@ -26,7 +26,7 @@ HRESULT BossStage::init()
 	_boss_i = IMAGEMANAGER->findImage("¹Ì½ºÁî1");
 
 	_player->init();
-
+	_player->setKyokoPoint(WINSIZEX / 2, 1000);
 	_door_rc = RectMake(100, 450, 180, 200);
 	UI = new UIManager;
 	UI->setKyokoMemory(_player);
@@ -62,6 +62,7 @@ void BossStage::update()
 		UI->update();
 		_opt->update();
 		changeMap();
+		picCollision();
 	}
 	VIDEOMANAGER->endVideo();
 	if (!VIDEOMANAGER->checkPlay() && _bossPhase == INTRO_SCENE)
@@ -179,8 +180,7 @@ void BossStage::render()
 		stage1Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
-	_player->render(camera);
-	_boss->render(camera);
+	zOrder();
 	_opt->render();
 
 	UI->render();
@@ -304,3 +304,145 @@ void BossStage::attackCollision()
 		}
 	}
 }
+
+void BossStage::picCollision()
+{
+	//ÇÈ¼¿ ÄÝ¸®Àò »ó ÇÏ
+	for (int i = _player->getShadow().left; i <= _player->getShadow().right; i++)
+	{
+		//»ó
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().top);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//ÇÏ
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().bottom);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 3);
+			_player->setNoSpeed(true);
+
+			break;
+		}
+
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 3);
+			_player->setNoSpeed(true);
+			break;
+		}
+
+	}
+
+	//ÇÈ¼¿ ÄÝ¸®Àò ÁÂ ¿ì
+	for (int i = _player->getShadow().top; i <= _player->getShadow().bottom; i++)
+	{
+		//ÁÂ
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().left, i);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//¿ì
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().right, i);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+		if ((r1 == 0 && g1 == 255 && b1 == 0) && !_player->getIsJump())
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+		if ((r2 == 0 && g2 == 255 && b2 == 0) && !_player->getIsJump())
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+	}
+
+
+	//º¸½º°ü·Ã
+	//¾Æ·¡¿¡¼­ À§·Î ¹ÚÀ»¶§
+	//ÇÈ¼¿ ÄÝ¸®Àò »ó ÇÏ
+	for (int i = _boss->getBossShadow().left; i <= _boss->getBossShadow().right; i++)
+	{
+		//»ó
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().top);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//ÇÏ
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().bottom);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x, _boss->getMainPoint().y + 3));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x, _boss->getShadowPoint().y + 3));
+			break;
+		}
+
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x, _boss->getMainPoint().y - 3));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x, _boss->getShadowPoint().y - 3));
+			break;
+		}
+
+	}
+
+	//ÇÈ¼¿ ÄÝ¸®Àò ÁÂ ¿ì
+	for (int i = _boss->getBossShadow().top; i <= _boss->getBossShadow().bottom; i++)
+	{
+		//ÁÂ
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().left, i);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//¿ì
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().right, i);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x + 3, _boss->getMainPoint().y));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x + 3, _boss->getShadowPoint().y));
+			break;
+		}
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x - 3, _boss->getMainPoint().y));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x - 3, _boss->getShadowPoint().y));
+			break;
+		}
+
+	}
+
+}
+

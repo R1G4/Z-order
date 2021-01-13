@@ -48,7 +48,9 @@ private:
 	int _string_count_2;
 	vector<string> _vScriptStart;
 	vector<string> _vScriptEnd;
+	vector<int> _vZorderB;
 public:
+	
 	HRESULT init();
 	void release();
 	void update();
@@ -57,6 +59,9 @@ public:
 	// 맵이동
 	void changeMap();
 	void attackCollision();
+	void picCollision();
+	void zOrder();
+	void quickSort(int a,int b);
 	//플레이어 에너미 주소 받기
 	//보스가 일단 없어서 추후에 에너미를 보스로 변경하셈
 	void setObjMemory(kyoko* kyoko, enemyManager* em)

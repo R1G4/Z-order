@@ -147,8 +147,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Stage3Pic", "image/map/2Pic.bmp", 1980, 884, false, RGB(255, 0, 255));
 
 	//보스 스테이지 맵추가
-	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 1830, 884, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("StageBossPic", "image/map/bossPic.bmp", 1830, 884, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 3000, 1500, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("StageBossPic", "image/map/bossPic.bmp", 3000, 1500, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("StageBossAlpha", "image/map/bossAlpha.bmp", 1830, 884, false, RGB(255, 0, 255));
 
 	//쿄코 이미지 추가
@@ -304,6 +304,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("rightChain", "image/chainLock/rightChain.bmp", 697, 720, 15, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("topChain", "image/chainLock/topChain.bmp", 1280, 687, 1, 15, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addFrameImage("Heart", "image/menu/deathHeart.bmp", 10240, 720, 8, 1, true, RGB(255, 0, 255));
 
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{

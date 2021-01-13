@@ -36,10 +36,10 @@ HRESULT boss::init()
 	_speed = 1.5;
 	_angle = PI / 2;
 	_angle2 = PI / 2;
-	_x = WINSIZEX / 2 + 400;
-	_y = WINSIZEY / 2 + 100;
-	_x2 = WINSIZEX / 2 + 400;
-	_y2 = WINSIZEY / 2 + 100;
+	_x = 2000;
+	_y = 1000;
+	_x2 = 2000;
+	_y2 = 1000;
 
 
 	_boss->setX(_x);

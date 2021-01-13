@@ -389,6 +389,9 @@
     <ClCompile Include="bossHPBar.cpp">
       <Filter>playGround\boss</Filter>
     </ClCompile>
+    <ClCompile Include="BossStage+zOrder.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc">

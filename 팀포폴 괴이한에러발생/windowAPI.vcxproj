@@ -206,6 +206,7 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="boss.cpp" />
     <ClCompile Include="bossHPBar.cpp" />
+    <ClCompile Include="BossStage+zOrder.cpp" />
     <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
