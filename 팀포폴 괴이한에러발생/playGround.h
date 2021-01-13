@@ -16,7 +16,6 @@ private:
 	POINT camera;
 	image* backGround;
 
-
 public:
 	playGround();
 	~playGround();

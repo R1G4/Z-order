@@ -11,18 +11,19 @@ opTion::~opTion()
 
 HRESULT opTion::init()
 {
-	IMAGEMANAGER->addImage("메뉴", "image/menu/phone.bmp", 287, 500, true, RGB(255, 0, 255));
-	menu.img = IMAGEMANAGER->findImage("메뉴");
 
+	menu.img = IMAGEMANAGER->findImage("메뉴");
+	check.img = IMAGEMANAGER->findImage("체크");
 
 	menu.x = WINSIZEX / 5;
 	menu.y = WINSIZEY + 100;
 	movepower = 50;
 
 
+
 	volume = 0.5f;
-	
-	
+
+
 	return S_OK;
 }
 
@@ -33,6 +34,15 @@ void opTion::release()
 void opTion::update()
 {
 	volumeCon();
+
+	mute.x = WINSIZEX / 5 + 144.f;
+	mute.y = menu.y + 250;
+	mute.rc = RectMakeCenter(mute.x, mute.y, 210, 60);
+
+	check.x = WINSIZEX / 5 + 144.f;
+	check.y = menu.y + 250;
+	check.rc = RectMakeCenter(check.x, check.y, 65, 60);
+
 	volumebar.x = WINSIZEX / 5 + 143.5f;
 	volumebar.y = menu.y + 140;
 	volumebar.rc = RectMakeCenter(volumebar.x, volumebar.y, 200, 10);
@@ -70,16 +80,19 @@ void opTion::update()
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_F1))
 		{
+			SOUNDMANAGER->stop("MainStage");
 			char temp[128];
 			vector<string> vStr;
 			switch (saveSlot)
 			{
 			case 1:
 				//EFFECTMANAGER->release();
+				//delete(em);
+				//delete(_kyoko);
 				vStr.push_back(itoa(STATUSMANAGER->getHp(), temp, 10));
 				vStr.push_back(itoa(stageNum, temp, 10));
-				TXTDATA->txtSave("A.txt", vStr);				
-				SCENEMANAGER->changeScene("로딩씬", 0,1);
+				TXTDATA->txtSave("A.txt", vStr);
+				SCENEMANAGER->changeScene("로딩씬", 0, 1);
 				break;
 			case 2:
 				vStr.push_back(itoa(STATUSMANAGER->getHp(), temp, 10));
@@ -103,6 +116,16 @@ void opTion::render()
 	menu.img->render(getMemDC(), menu.x, menu.y);
 	Rectangle(getMemDC(), volumebar.rc);
 	Ellipse(getMemDC(), conball.rc);
+	if (soundOff)
+	{
+		check.img->render(getMemDC(), check.x - 58, check.y - 55);
+	}
+	else
+
+		if (KEYMANAGER->isToggleKey(VK_TAB))
+		{
+			Rectangle(getMemDC(), mute.rc);
+		}
 }
 
 void opTion::volumeCon()
@@ -113,9 +136,21 @@ void opTion::volumeCon()
 	if (KEYMANAGER->isStayKeyDown(VK_LBUTTON))
 	{
 		if (PtInRect(&volumebar.rc, _ptMouse))
+
 		{
+			soundOff = false;
 			volume = ((float)_ptMouse.x - 299.5f) / 200.f;
 			SOUNDMANAGER->setVolume(volume);
+		}
+		if (PtInRect(&mute.rc, _ptMouse))
+		{
+			soundOff = true;
+			volume = 0.0f;
+			SOUNDMANAGER->setVolume(volume);
+		}
+		if (volume < 0.003f)
+		{
+			soundOff = true;
 		}
 	}
 }

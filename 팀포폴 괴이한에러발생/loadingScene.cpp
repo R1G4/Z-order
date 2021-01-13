@@ -39,7 +39,6 @@ HRESULT loadingScene::init()
 	_loading->setFPS(1);
 
 	_loading->start();
-
 	return S_OK;
 }
 HRESULT loadingScene::init(int SceneNum, int slot)
@@ -84,16 +83,15 @@ void loadingScene::update()
 	_loading->frameUpdate(TIMEMANAGER->getElapsedTime() * 10);
 
 
-	//_loadingBar->update();
-	//_loadingBar->setGauge(_currentCount, LOADINGMAX);
 
 	//로딩이 다 되면
 	if (_currentCount == LOADINGMAX)
 	{
 		if (_currentCount == LOADINGMAX)
 		{
-			cout << nextScene;
+			
 			STATUSMANAGER->setHpBar("HPBar");
+			//changeScene에서 sceneNum를 받아와서 해당 스테이지로 이동시킨다.
 			switch (nextScene)
 			{
 			case 0:
@@ -175,12 +173,12 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Shrimp", "image/item/shrimp.bmp", 57, 60, true, RGB(255, 0, 255));
 
 	//이펙트 추가
-	EFFECTMANAGER->addEffect("Enemy_Point", "image/effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 1000);
-	EFFECTMANAGER->addEffect("Enemy_Stun", "image/effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 1000);
+	EFFECTMANAGER->addEffect("Enemy_Point", "image/effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 10);
+	EFFECTMANAGER->addEffect("Enemy_Stun", "image/effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 10);
 
-	EFFECTMANAGER->addEffect("crack", "image/effect/crack.bmp", 5733, 256, 819, 256, 1, 0.4f, 1000);
-	EFFECTMANAGER->addEffect("dash", "image/effect/dash.bmp", 1600, 200, 100, 100, 1, 0.4f, 1000);
-	EFFECTMANAGER->addEffect("hit", "image/effect/hit.bmp", 808, 100, 101, 100, 14, 0.07f, 800);
+	EFFECTMANAGER->addEffect("crack", "image/effect/crack.bmp", 5733, 256, 819, 256, 1, 0.4f, 10);
+	EFFECTMANAGER->addEffect("dash", "image/effect/dash.bmp", 1600, 200, 100, 100, 1, 0.4f, 10);
+	EFFECTMANAGER->addEffect("hit", "image/effect/hit.bmp", 808, 100, 101, 100, 14, 0.07f, 10);
 
 	//에너미 추가
 	IMAGEMANAGER->addImage("Boy_Shadow", "image/enemy/schoolBoy/Boy_Shadow.bmp", 110, 32, true, RGB(255, 0, 255));
@@ -256,8 +254,13 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("HPUI", "image/kyoko/UI/hp_ui.bmp", 600, 200, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("HPBar", "image/kyoko/UI/hpbar.bmp", 26, 24, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("MahaGauge", "image/kyoko/UI/mahagauge_1.bmp", 362, 18, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("메뉴", "image/menu/phone.bmp", 287, 500, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("체크", "image/menu/check.bmp", 65, 60, true, RGB(255, 0, 255));
 
-
+	IMAGEMANAGER->addImage("bottomChain","image/chainLock/bottomChain.bmp",52,1882,true,RGB(255,0,255));
+	IMAGEMANAGER->addImage("leftChain","image/chainLock/leftChain.bmp",1882,52,true,RGB(255,0,255));
+	IMAGEMANAGER->addImage("rightChain","image/chainLock/rightChain.bmp",1882,52,true,RGB(255,0,255));
+	IMAGEMANAGER->addImage("topChain","image/chainLock/topChain.bmp",52,1882,true,RGB(255,0,255));
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{
 		//여기에 와일문 돌리지말고 이미지랑 사운드 등 리소스 파일 추가해라

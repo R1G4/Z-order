@@ -145,17 +145,19 @@ RECT CameraManager::miniMapMake(image* img,image* CharacterImg,RECT rc)
 void CameraManager::shaking(POINT* camera, int power)
 {
 	POINT Ptemp;
+	POINT Ptemp2;
 	Ptemp = *camera;
+	Ptemp2 = *camera;
 	interval++;
 	if (_isShaking)
 	{
-		if (interval > 1)
+		if (interval <2)
 		{
 			Ptemp.x += power;
 			Ptemp.y += power;
 			*camera = Ptemp;
 		}
-		if (interval > 2)
+		if (interval >= 2)
 		{
 			Ptemp.x -= power;
 			Ptemp.y -= power;
@@ -164,7 +166,11 @@ void CameraManager::shaking(POINT* camera, int power)
 		}
 	}
 	_time--;
-	if (_time < 0)_isShaking = false;
+	if (_time < 0)
+	{
+		_isShaking = false;
+		*camera = Ptemp2;
+	}
 }
 //시간 설정. 특정 조건에서만 실행되도록 해야합니다 안그러면 무한히 흔들립니다
 void CameraManager::setTime(int time)

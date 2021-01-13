@@ -49,6 +49,8 @@ HRESULT stage2::init(int slot)
 	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
 	_player = new kyoko;
 	_player->init();
+	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage2);
+
 	_em = new enemyManager;
 	_em->setKyokoMemory(_player);
 	_em->init(2);
@@ -79,8 +81,6 @@ void stage2::update()
 	SOUNDMANAGER->setVolume(_opt->getVolume());
 	_opt->update();
 	UI->update();
-	EFFECTMANAGER->update();
-	KEYANIMANAGER->update();
 	ItemCollision();
 	pixelCollision();
 	AttackCollision();
@@ -148,8 +148,8 @@ void stage2::changeScene()
 	{
 		delete(_player);
 		delete(_em);
-		SCENEMANAGER->changeScene("Stage3", saveSlot);
 		SOUNDMANAGER->stop("MainStage");
+		SCENEMANAGER->changeScene("Stage3", saveSlot);
 	}
 
 }
@@ -322,7 +322,7 @@ void stage2::AttackCollision()
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
 			if (IntersectRect(&_temp, &_player->getRect(), &_em->getVEnemy()[i]->getDebugAttackRc()))
 			{
-				cout << "아야" << endl;
+				//cout << "아야" << endl;
 				_player->setHit(true);
 				// 적이 플레이어보다 왼쪽에 있으면 왼쪽 타격이 나오게 오른쪽에 있으면 오른쪽 타격이 나오게
 				// 플레이어 피격 시 에너미 공격 렉트에서 이펙트 발생

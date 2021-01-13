@@ -227,6 +227,7 @@
     <ClCompile Include="soundManager.cpp" />
     <ClCompile Include="stage2+zOrder.cpp" />
     <ClCompile Include="stage2.cpp" />
+    <ClCompile Include="stage3+zOrder.cpp" />
     <ClCompile Include="stage3.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="StatusManager.cpp" />

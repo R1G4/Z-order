@@ -1,0 +1,16 @@
+﻿  stage3.cpp
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\kyoko.h(130): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\kyoko.h(131): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\enemy.h(203): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\enemy.h(204): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(28): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(110): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(283): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(300): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(316): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(333): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(354): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(370): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(386): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\huny0\onedrive\바탕 화면\팀포폴 괴이한에러발생\stage3.cpp(403): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  windowAPI.vcxproj -> C:\Users\huny0\OneDrive\바탕 화면\팀포폴 괴이한에러발생\x64\Debug\windowAPI.exe

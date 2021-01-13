@@ -24,7 +24,6 @@ void BossStage::release()
 
 void BossStage::update()
 {
-	KEYANIMANAGER->update();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 	UI->update();

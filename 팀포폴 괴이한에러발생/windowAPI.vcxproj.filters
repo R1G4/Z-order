@@ -338,6 +338,9 @@
     <ClCompile Include="stage3.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClCompile>
+    <ClCompile Include="stage3+zOrder.cpp">
+      <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windowAPI.rc">

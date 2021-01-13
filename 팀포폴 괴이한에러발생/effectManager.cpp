@@ -125,6 +125,33 @@ void effectManager::addEffect(string effectName, const char* imageName, int imag
 
 }
 
+void effectManager::addEffect(string effectName, const char * fileName, const char * imageName, int imageWidth, int imageHeight, int effectWidth, int effectHeight, int fps, float elapsedTime, int buffer)
+{
+	image* img;
+	arrEffects vEffectBuffer;
+	arrEffect mArrEffect;
+
+	if (IMAGEMANAGER->findImage(imageName))
+	{
+		img = IMAGEMANAGER->findImage(imageName);
+	}
+	else
+	{
+		img = IMAGEMANAGER->addImage(imageName, fileName, imageWidth, imageHeight, true, RGB(255, 0, 255));
+	}
+
+	for (int i = 0; i < buffer; i++)
+	{
+		vEffectBuffer.push_back(new effect);
+		vEffectBuffer[i]->init(img, effectWidth, effectHeight, fps, elapsedTime);
+	}
+
+	mArrEffect.insert(pair<string, arrEffects>(effectName, vEffectBuffer));
+
+	_vTotalEffects.push_back(mArrEffect);
+
+}
+
 
 void effectManager::play(string effectName, int x, int y)
 {

@@ -11,6 +11,9 @@ saveLoad::~saveLoad()
 
 HRESULT saveLoad::init()
 {
+	SOUNDMANAGER->addSound("saveLoad", "sound/BGM/River City Girls OST - File Select Theme.mp3", true, true);
+	SOUNDMANAGER->play("saveLoad", 0.5f);
+
 	addimage();
 	selecttab();
 	for (int i = 0; i < 3; i++)
@@ -264,14 +267,14 @@ void saveLoad::key()
 			{
 				STATUSMANAGER->release();
 				STATUSMANAGER->setHp(24);
-				EFFECTMANAGER->release();
+				//EFFECTMANAGER->release();
 				SCENEMANAGER->changeScene("·Îµù¾À", 1, saveSlot);
 			}
 			else 
 			{ 
 				STATUSMANAGER->release();
 				STATUSMANAGER->setHp(tab[0].HP);
-				EFFECTMANAGER->release();
+				//EFFECTMANAGER->release();
 				SCENEMANAGER->changeScene("·Îµù¾À", tab[0].stageNum, saveSlot);
 			}
 		}
@@ -282,14 +285,14 @@ void saveLoad::key()
 			{
 				STATUSMANAGER->release();
 				STATUSMANAGER->setHp(24);
-				EFFECTMANAGER->release();
+				//EFFECTMANAGER->release();
 				SCENEMANAGER->changeScene("·Îµù¾À", 1, saveSlot);
 			}
 			else
 			{
 				STATUSMANAGER->release();
 				STATUSMANAGER->setHp(tab[0].HP);
-				EFFECTMANAGER->release();
+				//EFFECTMANAGER->release();
 				SCENEMANAGER->changeScene("·Îµù¾À", tab[1].stageNum, saveSlot);
 			}
 		}
@@ -300,14 +303,14 @@ void saveLoad::key()
 			{
 				STATUSMANAGER->release();
 				STATUSMANAGER->setHp(24);
-				EFFECTMANAGER->release();
+				//EFFECTMANAGER->release();
 				SCENEMANAGER->changeScene("·Îµù¾À", 1, saveSlot);
 			}
 			else
 			{
 				STATUSMANAGER->release();
 				STATUSMANAGER->setHp(tab[0].HP);
-				EFFECTMANAGER->release();
+				//EFFECTMANAGER->release();
 				SCENEMANAGER->changeScene("·Îµù¾À", tab[2].stageNum, saveSlot);
 			}
 		}

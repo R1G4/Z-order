@@ -6,7 +6,6 @@
 HRESULT stage3::init(int slot)
 {
 	saveSlot = slot;
-	delete(_player);
 	
 	_opt = new opTion;
 	_opt->init();
@@ -15,11 +14,10 @@ HRESULT stage3::init(int slot)
 	SOUNDMANAGER->play("MainStage",_opt->getVolume());
 	stage3 = IMAGEMANAGER->findImage("Stage3");
 	stage3Pic = IMAGEMANAGER->findImage("Stage3Pic");
-	STATUSMANAGER->setHp(24);
-	STATUSMANAGER->setHpBar("HPBar");
+
 	_player = new kyoko;
 	_player->init();
-
+	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
 	_em = new enemyManager;
 	_em->setKyokoMemory(_player);
 	_em->init(3);
@@ -36,12 +34,13 @@ HRESULT stage3::init(int slot)
 	alpha = 255;
 	_opt->setEnemyAddressLink(_em);
 	_opt->setKyokoAddressLink(_player);
-
+	lockCheckRc = RectMake(800, 200, 10, 600);
 	return S_OK;
 }
 
 void stage3::release()
 {
+	
 }
 
 void stage3::update()
@@ -59,8 +58,6 @@ void stage3::update()
 	}
 	else alpha = 255;
 
-	KEYANIMANAGER->update();
-	EFFECTMANAGER->update();
 	_player->update();
 	_em->update();
 	cout << _player->getKyokoPoint().x << endl;
@@ -106,12 +103,17 @@ void stage3::render()
 			SelectObject(getMemDC(), oldBrush);
 			DeleteObject(brush);
 		}
+		Rectangle(getMemDC(), lockCheckRc, camera);
 	}
 	
 	_player->render(camera);
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
 	UI->render();
 	_opt->render();
+}
+
+void stage3::chainLock()
+{
 }
 
 void stage3::changeScene()
@@ -121,8 +123,8 @@ void stage3::changeScene()
 	{
 		delete(_player);
 		delete(_em);
-		SCENEMANAGER->changeScene("BossStage");
 		SOUNDMANAGER->stop("MainStage");
+		SCENEMANAGER->changeScene("BossStage");
 	}
 
 }
@@ -141,6 +143,10 @@ void stage3::ItemCollision()
 			STATUSMANAGER->heal(_em->getVItem()[j]->getHeal(), "HPBar");
 		}
 	}
+}
+
+void stage3::zOrder()
+{
 }
 
 void stage3::AttackCollision()

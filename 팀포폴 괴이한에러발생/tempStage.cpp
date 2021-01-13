@@ -10,6 +10,8 @@ HRESULT tempStage::init()
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
 	_player = new kyoko;
 	_player->init();
+	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
+
 	_em = new enemyManager;
 	_em->init(1);
 	_em->setKyokoMemory(_player);
@@ -55,6 +57,7 @@ HRESULT tempStage::init(int slot)
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
 	_player = new kyoko;
 	_player->init();
+
 	_em = new enemyManager;
 	_em->init(1);
 	_em->setKyokoMemory(_player);
@@ -103,8 +106,6 @@ void tempStage::update()
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 	_em->update();
-	KEYANIMANAGER->update();
-	EFFECTMANAGER->update();
 	changeMap();
 
 }
@@ -174,8 +175,9 @@ void tempStage::changeMap()
 	{
 		delete(_player);
 		delete(_em);
-		SCENEMANAGER->changeScene("Stage2",saveSlot);
 		SOUNDMANAGER->stop("MainStage");
+		SCENEMANAGER->changeScene("Stage2",saveSlot);
+		
 	}
 }
 

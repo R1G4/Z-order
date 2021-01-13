@@ -15,7 +15,7 @@ HRESULT playGround::init()
 	gameNode::init(true);
 	addScene();
 	addSound();
-	
+
 	//SCENEMANAGER->changeScene("로딩씬",3,3);
 	SCENEMANAGER->changeScene("세이브로드");
 
@@ -33,6 +33,9 @@ void playGround::update()
 {
 	gameNode::update();
 	SCENEMANAGER->update();
+	EFFECTMANAGER->update();
+	KEYANIMANAGER->update();
+	SOUNDMANAGER->update();
 }
 
 void playGround::render()
@@ -61,6 +64,5 @@ void playGround::addScene()
 void playGround::addSound()
 {
 	SOUNDMANAGER->addSound("introToStart", "sound/BGM/River City Girls OST - WereThe River City Girls ( With Lyrics).mp3", true, true);
-	SOUNDMANAGER->addSound("saveLoad", "sound/BGM/River City Girls OST - File Select Theme.mp3", true, true);
 }
 

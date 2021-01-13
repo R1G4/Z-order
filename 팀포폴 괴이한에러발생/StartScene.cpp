@@ -37,7 +37,6 @@ void StartScene::update()
 			VIDEOMANAGER->endVideo(true);
 			SOUNDMANAGER->stop("introToStart");
 			SCENEMANAGER->changeScene("세이브로드");
-			SOUNDMANAGER->play("saveLoad", 0.8f);
 		}
 		if (KEYMANAGER->isOnceKeyDown('X'))
 		{
