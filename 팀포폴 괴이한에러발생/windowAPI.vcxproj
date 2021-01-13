@@ -148,6 +148,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="animation.h" />
+    <ClInclude Include="boss.h" />
+    <ClInclude Include="bossHPBar.h" />
     <ClInclude Include="BossStage.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="CameraManager.h" />
@@ -202,6 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
+    <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bossHPBar.cpp" />
     <ClCompile Include="BossStage.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="CameraManager.cpp" />

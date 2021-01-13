@@ -8,6 +8,10 @@ HRESULT BossStage::init()
 	_opt = new opTion;
 	_opt->init();
 	_opt->setStageName(4);
+	_boss = new boss;
+	_boss->init();
+	_boss->setKyokoAddressLink(_player);
+
 
 	bossVideo = "video/bossani wmv.wmv";
 	VIDEOMANAGER->startVideo(bossVideo);
@@ -52,6 +56,8 @@ void BossStage::update()
 	if (_bossPhase == VS_MESUZU)
 	{
 		_player->update();
+		_boss->update();
+		attackCollision();
 		UI->update();
 		_opt->update();
 		changeMap();
@@ -149,7 +155,7 @@ void BossStage::render()
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
 	_player->render(camera);
-
+	_boss->render(camera);
 	_opt->render();
 
 	UI->render();
@@ -228,5 +234,46 @@ void BossStage::changeMap()
 		delete(_player);
 		SCENEMANAGER->changeScene("스테이지1");
 		SOUNDMANAGER->stop("BossSound");
+	}
+}
+
+void BossStage::attackCollision()
+{
+	RECT temp;
+	//플레이어가 오른쪽에서 보스 공격할때
+	if (_player->getKyokoPoint().x > _boss->getBossPointX())
+	{
+		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
+		{
+			_boss->hitDamage(10);
+			_boss->rightAttackedMotion();
+		}
+	}
+	//플레이어가 왼쪽에서 보스 공격할때
+	if (_player->getKyokoPoint().x < _boss->getBossPointX())
+	{
+		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
+		{
+			_boss->hitDamage(10);
+			_boss->leftAttackedMotion();
+		}
+	}
+	//보스가 오른쪽에서 공격할때
+	if (_player->getKyokoPoint().x > _boss->getBossPointX())
+	{
+		if (IntersectRect(&temp, &_player->getRect(), &_boss->getBossAttackRect()))
+		{
+			_player->setHit(true);
+			_player->setHitRight(false);
+		}
+	}
+	//보스가 왼쪽에서 공격할때
+	if (_player->getKyokoPoint().x < _boss->getBossPointX())
+	{
+		if (IntersectRect(&temp, &_player->getRect(), &_boss->getBossAttackRect()))
+		{
+			_player->setHit(true);
+			_player->setHitRight(true);
+		}
 	}
 }

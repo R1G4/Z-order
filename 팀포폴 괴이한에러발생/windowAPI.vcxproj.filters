@@ -64,6 +64,9 @@
     <Filter Include="playGround\npc">
       <UniqueIdentifier>{f727f278-06b5-4c17-aadd-b11de6f23e4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\boss">
+      <UniqueIdentifier>{d908c3e3-90f8-438d-892b-1f0c147778e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -222,6 +225,12 @@
     <ClInclude Include="npcManager.h">
       <Filter>playGround\npc</Filter>
     </ClInclude>
+    <ClInclude Include="boss.h">
+      <Filter>playGround\boss</Filter>
+    </ClInclude>
+    <ClInclude Include="bossHPBar.h">
+      <Filter>playGround\boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -373,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="npcManager.cpp">
       <Filter>playGround\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="boss.cpp">
+      <Filter>playGround\boss</Filter>
+    </ClCompile>
+    <ClCompile Include="bossHPBar.cpp">
+      <Filter>playGround\boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
