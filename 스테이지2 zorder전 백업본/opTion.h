@@ -17,9 +17,12 @@ private:
 	tagMenu menu;
 	tagMenu conball;
 	tagMenu volumebar;
+	tagMenu mute;
+	tagMenu check;
 	float movepower;
 	float volume;
 	bool up, down;
+	bool soundOff;
 	int stageNum;
 	int currentHP;
 	int saveSlot;
