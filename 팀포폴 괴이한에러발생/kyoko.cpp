@@ -43,6 +43,9 @@ HRESULT kyoko::init()
 	_isAttacked = false;
 	_isDead = false;				
 	_isStartMotionDead = false;
+	_attack_sound = "";
+
+	_attacked_count = 0;
 
 	return S_OK;
 }
@@ -94,6 +97,9 @@ void kyoko::update()
 
 		if (KEYMANAGER->isOnceKeyDown(VK_F2))
 			STATUSMANAGER->heal(10,"HPBar");
+
+		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE || _kyokoDirection == KYOKODIRECTION_RIGHT_IDLE)
+			SOUNDMANAGER->stop("달리기_소리");
 
 		// 체력이 다 닳으면 사망
 		if (STATUSMANAGER->getHp() <= 0)
@@ -888,6 +894,7 @@ void kyoko::attackMotion()
 	// 평타
 	if (KEYMANAGER->isOnceKeyDown('Z'))
 	{
+		SOUNDMANAGER->stop("달리기_소리");
 		_isAttack = true;
 		if (_z_count == 0)
 		{
@@ -900,6 +907,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack1");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "기본공격1_타격";
 
 				_z_count = 1;
 			}
@@ -911,6 +919,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack1");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "기본공격1_타격";
 
 				_z_count = 1;
 			}
@@ -924,6 +933,7 @@ void kyoko::attackMotion()
 				_kyokoMotion->start();
 				SOUNDMANAGER->stop("달리기_소리");
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "대쉬공격_타격";
 
 				// 타격 범위
 				_attack_rc.right = _rc.right + 100;
@@ -939,6 +949,7 @@ void kyoko::attackMotion()
 				_kyokoMotion->start();
 				SOUNDMANAGER->stop("달리기_소리");
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "대쉬공격_타격";
 
 				// 타격 범위
 				_attack_rc.left = _rc.left - 100;
@@ -958,6 +969,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttackJump");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "점프공격";
 
 				// 타격 범위
 				_attack_rc.right = _rc.right + 100;
@@ -976,6 +988,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttackJump");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "점프공격";
 
 				// 타격 범위
 				_attack_rc.right = _rc.right + 100;
@@ -994,6 +1007,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttackJump");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "점프공격";
 
 				// 타격 범위
 				_attack_rc.right = _rc.right + 100;
@@ -1012,6 +1026,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttackJump");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "점프공격";
 
 				// 타격 범위
 				_attack_rc.left = _rc.left - 100;
@@ -1031,6 +1046,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttackJump");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "점프공격";
 
 				// 타격 범위
 				_attack_rc.left = _rc.left - 100;
@@ -1050,6 +1066,7 @@ void kyoko::attackMotion()
 				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttackJump");
 				_kyokoMotion->start();
 				SOUNDMANAGER->play("기본공격_소리", 0.1f);
+				_attack_sound = "점프공격";
 
 				// 타격 범위
 				_attack_rc.left = _rc.left - 100;
@@ -1092,6 +1109,7 @@ void kyoko::attackMotion()
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack_s");
 			_kyokoMotion->start();
 			SOUNDMANAGER->play("기본공격3_소리", 0.1f);
+			_attack_sound = "강공격_타격";
 		}
 		if (_kyokoDirection == KYOKODIRECTION_LEFT_IDLE ||
 			_kyokoDirection == KYOKODIRECTION_LEFT_WALK ||
@@ -1102,6 +1120,7 @@ void kyoko::attackMotion()
 			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack_s");
 			_kyokoMotion->start();
 			SOUNDMANAGER->play("기본공격3_소리", 0.1f);
+			_attack_sound = "강공격_타격";
 		}
 	}
 
@@ -1119,6 +1138,7 @@ void kyoko::attackMotion()
 			_kyokoMotion->start();
 
 			SOUNDMANAGER->play("마하킥_소리", 0.1f);
+			_attack_sound = "마하킥 타격";
 
 			_maha_count = _maha_count - 150;
 			_isMahaKick = true;
@@ -1133,6 +1153,7 @@ void kyoko::attackMotion()
 			_kyokoMotion->start();
 
 			SOUNDMANAGER->play("마하킥_소리", 0.1f);
+			_attack_sound = "마하킥 타격";
 
 			_maha_count = _maha_count - 150;
 			_isMahaKick = true;
@@ -1285,6 +1306,7 @@ void kyoko::attackMotion()
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack2");
 		_kyokoMotion->start();
 		SOUNDMANAGER->play("기본공격_소리", 0.1f);
+		_attack_sound = "기본공격2_타격";
 		_z_count = 2;
 		_isNextAttack = false;
 	}
@@ -1296,6 +1318,7 @@ void kyoko::attackMotion()
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack2");
 		_kyokoMotion->start();
 		SOUNDMANAGER->play("기본공격_소리", 0.1f);
+		_attack_sound = "기본공격2_타격";
 		_z_count = 2;
 		_isNextAttack = false;
 	}
@@ -1308,6 +1331,7 @@ void kyoko::attackMotion()
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttack3");
 		_kyokoMotion->start();
 		SOUNDMANAGER->play("기본공격3_소리", 0.1f);
+		_attack_sound = "기본공격3_타격";
 		_z_count = 3;
 		_isNextAttack = false;
 	}
@@ -1319,6 +1343,7 @@ void kyoko::attackMotion()
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttack3");
 		_kyokoMotion->start();
 		SOUNDMANAGER->play("기본공격3_소리", 0.1f);
+		_attack_sound = "기본공격3_타격";
 		_z_count = 3;
 		_isNextAttack = false;
 	}
@@ -1804,7 +1829,7 @@ void kyoko::attackedMotion()
 	// 피격시 행동제한을 걸고 피격모션 재생
 	if (_isAttacked && !_isStartMotionAttaced)
 	{
-		STATUSMANAGER->damaged(10);
+		STATUSMANAGER->damaged(1);
 
 		SOUNDMANAGER->stop("달리기_소리");
 
@@ -1817,14 +1842,25 @@ void kyoko::attackedMotion()
 			_isRunning = false;
 			_isJump = false;
 			_isMoving = false;
-
 			_isStartMotionAttaced = true;
-			_image = IMAGEMANAGER->findImage("쿄코_피격1");
-			_kyokoDirection = KYOKODIRECTION_LEFT_ATTACKED_1;
-			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttacked1");
+
+			if (_attacked_count == 0)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_피격1");
+				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACKED_1;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttacked1");
+			}
+			if (_attacked_count == 1)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_피격2");
+				_kyokoDirection = KYOKODIRECTION_LEFT_ATTACKED_2;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftAttacked2");
+			}
+
 			CAMERAMANAGER->setTime(10);
 			_kyokoMotion->start();
-			SOUNDMANAGER->play("피격", 0.1f);
+			SOUNDMANAGER->play("피격", 0.1f); 
+			_attacked_count++;
 		}
 		if (_isRight && STATUSMANAGER->getHp() > 0)
 		{
@@ -1834,19 +1870,33 @@ void kyoko::attackedMotion()
 			_isRunning = false;
 			_isJump = false;
 			_isMoving = false;
-
 			_isStartMotionAttaced = true;
-			_image = IMAGEMANAGER->findImage("쿄코_피격1");
-			_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACKED_1;
-			_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttacked1");
+
+			if (_attacked_count == 0)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_피격1");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACKED_1;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttacked1");
+			}			
+			if (_attacked_count == 1)
+			{
+				_image = IMAGEMANAGER->findImage("쿄코_피격2");
+				_kyokoDirection = KYOKODIRECTION_RIGHT_ATTACKED_2;
+				_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightAttacked2");
+			}
+
 			CAMERAMANAGER->setTime(10);
 			_kyokoMotion->start();
-			SOUNDMANAGER->play("피격", 0.1f);
+			SOUNDMANAGER->play("피격", 0.1f); 
+			_attacked_count++;
 		}
 	}
 
 	// 피격모션이 끝까지 가면 일반상태로 리셋
-	if (_kyokoMotion->getNowPlayIndex() >= 3 && (_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE))
+	if (_kyokoMotion->getNowPlayIndex() >= 3 && 
+		(	_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_1 ||
+			_kyokoDirection == KYOKODIRECTION_LEFT_ATTACKED_2 ||
+			_kyokoDirection == KYOKODIRECTION_LEFT_IDLE))
 	{
 		_isStartMotionAttaced = false;
 		_isAttacked = false;
@@ -1857,7 +1907,10 @@ void kyoko::attackedMotion()
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoLeftIdle");
 		_kyokoMotion->start();
 	}
-	if (_kyokoMotion->getNowPlayIndex() >= 3 && (_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1 || _kyokoDirection == KYOKODIRECTION_LEFT_IDLE))
+	if (_kyokoMotion->getNowPlayIndex() >= 3 &&
+		(	_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_1 ||
+			_kyokoDirection == KYOKODIRECTION_RIGHT_ATTACKED_2 ||
+			_kyokoDirection == KYOKODIRECTION_LEFT_IDLE))
 	{
 		_isStartMotionAttaced = false;
 		_isAttacked = false;
@@ -1868,6 +1921,10 @@ void kyoko::attackedMotion()
 		_kyokoMotion = KEYANIMANAGER->findAnimation("kyokoRightIdle");
 		_kyokoMotion->start();
 	}
+
+	// 피격모션 상태 리셋
+	if (_attacked_count >= 2)
+		_attacked_count = 0;
 }
 
 // 사망 모션

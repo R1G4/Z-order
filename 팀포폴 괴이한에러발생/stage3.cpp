@@ -201,6 +201,7 @@ void stage3::AttackCollision()
 						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
 						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
 					{
+						SOUNDMANAGER->play(_player->getAttackSound(), 0.1f);
 						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
 						EFFECTMANAGER->play("hit",
 											_em->getVEnemy()[i]->getEnemyPoint().x + 10,
@@ -219,6 +220,7 @@ void stage3::AttackCollision()
 						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
 						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
 					{
+						SOUNDMANAGER->play(_player->getAttackSound(), 0.1f);
 						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
 						EFFECTMANAGER->play("hit",
 											_em->getVEnemy()[i]->getEnemyPoint().x + 10,
@@ -240,6 +242,7 @@ void stage3::AttackCollision()
 						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
 						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
 					{
+						SOUNDMANAGER->play(_player->getAttackSound(), 0.1f);
 						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
 						EFFECTMANAGER->play("hit",
 											_em->getVEnemy()[i]->getEnemyPoint().x - 10,
@@ -258,6 +261,7 @@ void stage3::AttackCollision()
 						&& _em->getVEnemy()[i]->getDirection() != enemy::DEAD
 						&& _em->getVEnemy()[i]->getDirection() != enemy::REMOVE)
 					{
+						SOUNDMANAGER->play(_player->getAttackSound(), 0.1f);
 						// 에너미 피격시 에너미 (좌표x + 보정 값) 와 캐릭터 중간y좌표에 이펙트 발생
 						EFFECTMANAGER->play("hit",
 											_em->getVEnemy()[i]->getEnemyPoint().x - 10,

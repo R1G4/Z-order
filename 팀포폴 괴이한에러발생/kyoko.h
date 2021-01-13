@@ -56,6 +56,9 @@ private:
 	int _r_count;				// 달리기용 카운트
 	int _maha_count;			// 마하킥 게이지카운트
 	int _frame_count;			// 계산용
+	int _attacked_count;		// 피격 카운트
+
+	string _attack_sound;		// 공격 성공시 타격음을 위한 변수
 
 	float _x, _y;				// 그림자 위치
 	float _i_x, _i_y;			// 이미지 위치
@@ -151,5 +154,7 @@ public:
 	void setHit(bool isAttacked) { _isAttacked = isAttacked; }
 	BOOL getHit() { return _isAttacked; }
 	void setHitRight(bool isRight) { _isRight = isRight; }
+
+	string getAttackSound() { return _attack_sound; }
 };
 
