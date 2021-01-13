@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "stage2.h"
+#include "kyoko.h"
+#include "enemyManager.h"
 
 HRESULT stage2::init()
 {
-	delete(_player);
-
 	_opt = new opTion;
 	_opt->init();
 	_opt->setStageName(2);
@@ -12,12 +12,13 @@ HRESULT stage2::init()
 
 	stage2 = IMAGEMANAGER->findImage("Stage2");
 	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
-	_player = new kyoko;
+	
+	//플레이어 위치 초기화
 	_player->init();
-
-	_em = new enemyManager;
+	//스테이지에 따른 에너미 생성
+	_em->setEnemy(2);
+	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
-	_em->init(2);
 
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
@@ -46,14 +47,16 @@ HRESULT stage2::init(int slot)
 	_opt->setSlot(saveSlot);
 	SOUNDMANAGER->play("MainStage", _opt->getVolume());
 	stage2 = IMAGEMANAGER->findImage("Stage2");
-	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");
-	_player = new kyoko;
+	stage2Pic = IMAGEMANAGER->findImage("Stage2Pic");	
+
+	//플레이어 위치 초기화
 	_player->init();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage2);
-
-	_em = new enemyManager;
+	//스테이지에 따른 에너미 생성
+	_em->setEnemy(2);
+	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
-	_em->init(2);
+
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
 	Lobj.img = IMAGEMANAGER->findImage("좌기둥");
@@ -146,8 +149,6 @@ void stage2::changeScene()
 	RECT temp;
 	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()) && KEYMANAGER->isStayKeyDown('Z'))
 	{
-		delete(_player);
-		delete(_em);
 		SOUNDMANAGER->stop("MainStage");
 		SCENEMANAGER->changeScene("Stage3", saveSlot);
 	}

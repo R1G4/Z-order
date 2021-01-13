@@ -1,9 +1,11 @@
 #pragma once
 #include "gameNode.h"
-#include "kyoko.h"
 #include "UIManager.h"
-#include "enemyManager.h"
 #include "opTion.h"
+
+class kyoko;
+class enemyManager;
+
 enum LockState {
 	NOTYET,
 	CHECK,
@@ -46,5 +48,12 @@ public:
 	void zOrder();
 	virtual void pixelCollision();
 	virtual void AttackCollision();
+
+	//플레이어 에너미 주소 받기
+	void setObjMemory(kyoko* kyoko, enemyManager* em)
+	{
+		_player = kyoko;
+		_em = em;
+	}
 };
 

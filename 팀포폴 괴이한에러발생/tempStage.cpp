@@ -1,20 +1,22 @@
 #include "stdafx.h"
 #include "tempStage.h"
+#include "kyoko.h"
+#include "enemyManager.h"
 
 HRESULT tempStage::init()
 {
-	delete(_player);
-
 	SOUNDMANAGER->play("MainStage", 0.1);
 	stage1 = IMAGEMANAGER->findImage("Stage1");
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
-	_player = new kyoko;
+	
+	//플레이어 위치 초기화
 	_player->init();
-	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
-
-	_em = new enemyManager;
-	_em->init(1);
+	//스테이지에 따른 에너미 생성
+	_em->setEnemy(1);
+	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
+
+	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 
 	//의자 렉트
 	chair[0].rc = RectMake(WINSIZEX / 2 - 222, WINSIZEY / 2 + 135, 100, 170);
@@ -55,11 +57,12 @@ HRESULT tempStage::init(int slot)
 	SOUNDMANAGER->play("MainStage", _opt->getVolume());
 	stage1 = IMAGEMANAGER->findImage("Stage1");
 	stage1Pic = IMAGEMANAGER->findImage("Stage1Pic");
-	_player = new kyoko;
+	
+	//플레이어 위치 초기화
 	_player->init();
-
-	_em = new enemyManager;
-	_em->init(1);
+	//스테이지에 따른 에너미 생성
+	_em->setEnemy(1);
+	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
 
 	_opt->setKyokoAddressLink(_player);
@@ -173,11 +176,8 @@ void tempStage::changeMap()
 	RECT temp;
 	if (IntersectRect(&temp, &_door_rc, &_player->getShadow())&&KEYMANAGER->isStayKeyDown('Z'))
 	{
-		delete(_player);
-		delete(_em);
 		SOUNDMANAGER->stop("MainStage");
 		SCENEMANAGER->changeScene("Stage2",saveSlot);
-		
 	}
 }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "stage3.h"
-
+#include "kyoko.h"
+#include "enemyManager.h"
 
 
 HRESULT stage3::init(int slot)
@@ -14,14 +15,15 @@ HRESULT stage3::init(int slot)
 	SOUNDMANAGER->play("MainStage",_opt->getVolume());
 	stage3 = IMAGEMANAGER->findImage("Stage3");
 	stage3Pic = IMAGEMANAGER->findImage("Stage3Pic");
-
-	_player = new kyoko;
+	
+	//플레이어 위치 초기화
 	_player->init();
-	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
-	_em = new enemyManager;
+	//스테이지에 따른 에너미 생성
+	_em->setEnemy(3);
+	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
-	_em->init(3);
 
+	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
 	Lobj.img = IMAGEMANAGER->findImage("좌기둥");
@@ -122,8 +124,6 @@ void stage3::changeScene()
 	RECT temp;
 	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()) && KEYMANAGER->isStayKeyDown('Z'))
 	{
-		delete(_player);
-		delete(_em);
 		SOUNDMANAGER->stop("MainStage");
 		SCENEMANAGER->changeScene("BossStage");
 	}

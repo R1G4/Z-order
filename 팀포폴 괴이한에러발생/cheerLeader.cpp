@@ -22,7 +22,7 @@ HRESULT cheerLeader::init(float x, float y, STATE state, DIRECTION direction)
 	_speed = 2.2f;
 
 	//해당 에너미 체력
-	_hp = 6;
+	_hp = 8;
 
 	//공격 위치 및 데미지 초기화
 	setAttackInfo();

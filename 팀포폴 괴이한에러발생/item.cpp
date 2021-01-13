@@ -15,7 +15,8 @@ HRESULT item::init(float x, float y)
 	//아이템 랜덤으로 초기화
 	_item = (ITEM_KINDS)RND->getFromIntTo(APPLE, SHRIMP + 1);
 	_x = x;
-	_y = _arriveY = y;
+	_y = y;
+	_arriveY = y - 10; //그림자 위치에서 보정
 	_gravity = 0.11f;
 	_jumpPower = 5.6f;
 	_y -= _jumpPower;

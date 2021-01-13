@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "BossStage.h"
+#include "kyoko.h"
+#include "enemyManager.h"
 
 HRESULT BossStage::init()
 {
@@ -7,7 +9,7 @@ HRESULT BossStage::init()
 	SOUNDMANAGER->play("BossSound", 0.1f);
 	stage1 = IMAGEMANAGER->findImage("StageBoss");
 	stage1Pic = IMAGEMANAGER->findImage("StageBossPic");
-	_player = new kyoko;
+
 	_player->init();
 
 	_door_rc = RectMake(100, 450, 180, 200);

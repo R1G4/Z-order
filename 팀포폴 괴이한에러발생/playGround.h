@@ -8,6 +8,8 @@
 #include "BossStage.h"
 #include "loadingScene.h"
 #include "opTion.h"
+#include "kyoko.h"
+#include "enemyManager.h"
 
 class playGround : public gameNode
 {
@@ -15,6 +17,12 @@ private:
 	RECT rc;
 	POINT camera;
 	image* backGround;
+	tempStage* _tempStage;
+	stage2* _stage2;
+	stage3* _stage3;
+	BossStage* _BossStage;
+	kyoko* _player;
+	enemyManager* _em;
 
 public:
 	playGround();

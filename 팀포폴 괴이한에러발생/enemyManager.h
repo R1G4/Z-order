@@ -23,7 +23,7 @@ class enemyManager : public gameNode
 		ENEMY_CHEERLEADER
 	};
 
-	private:
+private:
 	typedef vector<enemy*> vEnemy;
 	typedef vector<enemy*>::iterator viEnemy;
 	typedef vector<item*> vItem;
@@ -35,19 +35,20 @@ class enemyManager : public gameNode
 	STAGE_ENEMY _nowStage;
 	ENEMY_KINDS _enemyKinds;
 	int spawnInterval;
-	public:
+public:
 	enemyManager();
 	~enemyManager();
 
-	virtual HRESULT init(int stageNum);
+	virtual HRESULT init();
 
 	virtual void release();
 	void removeEnemy(int i);
 	void removeItem(int i);
 	virtual void update();
 
-	;	void spawn();
-	void setEnemy();
+	void spawn();
+	void setEnemy(int stageNum);
+	//	void setEnemy();
 	void addEnemy();
 
 	enemy* setSchoolGirl(float x, float y, enemy::STATE state = enemy::IDLE, enemy::DIRECTION direction = (enemy::DIRECTION)RND->getFromIntTo(0, 2));

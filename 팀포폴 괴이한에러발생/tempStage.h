@@ -1,9 +1,11 @@
 #pragma once
 #include "gameNode.h"
-#include "kyoko.h"
-#include "enemyManager.h"
 #include "UIManager.h"
 #include "opTion.h"
+
+class kyoko;
+class enemyManager;
+
 struct tagChair
 {
 	RECT rc;
@@ -42,5 +44,11 @@ public:
 	void pixelCollision();
 	void zOrder();
 	void quickSort(int a, int b);
+
+	void setObjMemory(kyoko* kyoko, enemyManager* em)
+	{
+		_player = kyoko;
+		_em = em;
+	}
 };
 

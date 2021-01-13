@@ -22,7 +22,7 @@ HRESULT MT::init(float x, float y, STATE state, DIRECTION direction)
 	_speed = 2.3f;
 
 	//해당 에너미 체력
-	_hp = 7;
+	_hp = 9;
 
 	setAttackInfo();
 
