@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 #include "UIManager.h"
-
+#include "opTion.h"
 //보스가 일단 없어서 추후에 에너미를 보스로 변경하셈
 class kyoko;
 class enemyManager;
@@ -18,9 +18,9 @@ private:
 	image* stage1Pic;
 	image* stage1Alpha;
 	enemyManager* _em;
-
+	opTion* _opt;
 	int _alpha;		// 알파랜더용
-
+	LPCSTR bossVideo;
 	// 다이얼로그용
 	bool _isStartScript;
 	bool _isEndScript;

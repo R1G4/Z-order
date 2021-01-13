@@ -5,8 +5,13 @@
 
 HRESULT BossStage::init()
 {
+	_opt = new opTion;
+	_opt->init();
+	_opt->setStageName(4);
 
-	SOUNDMANAGER->play("BossSound", 0.1f);
+	bossVideo = "video/bossani wmv.wmv";
+	VIDEOMANAGER->startVideo(bossVideo);
+	SOUNDMANAGER->play("BossSound", _opt->getVolume());
 	stage1 = IMAGEMANAGER->findImage("StageBoss");
 	stage1Pic = IMAGEMANAGER->findImage("StageBossPic");
 	stage1Alpha = IMAGEMANAGER->findImage("StageBossAlpha");
@@ -28,10 +33,9 @@ HRESULT BossStage::init()
 	if (TXTDATA->canLoadFile("dialog/DialogEnd.txt", ';'))
 		_vScriptEnd = TXTDATA->txtLoad("dialog/DialogEnd.txt", ";");
 
-	if (!_isStartScript)
+	
 		_alpha = 200;
-	else
-		_alpha = 255;
+
 
 	return S_OK;
 }
@@ -43,24 +47,27 @@ void BossStage::release()
 void BossStage::update()
 {
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
-	if (_isStartScript)
+	if (_isEndScript)
 	{
 		_player->update();
 		UI->update();
-
+		_opt->update();
 		changeMap();
 	}
-
-
-	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _string_count < _vScriptStart.size() - 1 && !_isStartScript)
+	VIDEOMANAGER->endVideo();
+	if (!VIDEOMANAGER->checkPlay())_isStartScript = true;
+	if (KEYMANAGER->isOnceKeyDown(VK_RETURN) && _string_count < _vScriptStart.size() - 1 && _isStartScript)
 	{
 		cout << _string_count << endl;
 		cout << _vScriptStart.size() << endl;
 		_string_count++;
 		if (_string_count >= 14)
-			_isStartScript = true;
+		{
+			_isEndScript = true;
+			_isStartScript = false;
+		}
 	}
-	if (_isStartScript)
+	if (_isEndScript)
 		cout << "½Î¿ò½ÃÀÛ" << endl;
 }
 
@@ -74,10 +81,11 @@ void BossStage::render()
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
 	_player->render(camera);
+
+	_opt->render();
+
 	UI->render();
-
-
-	if (!_isStartScript)
+	if (!_isEndScript)
 	{
 		stage1Alpha->alphaRender(getMemDC(), _alpha);
 		char str[256];
@@ -88,12 +96,13 @@ void BossStage::render()
 
 		strcpy_s(str, _vScriptStart[_string_count].c_str());
 		SetTextColor(getMemDC(), RGB(0, 0, 0));
-		TextOut(getMemDC(), 50, WINSIZEY - 70, str, strlen(str));
+		TextOut(getMemDC(), 50, WINSIZEY -70, str, strlen(str));
 		SelectObject(getMemDC(), oldFont);
 		DeleteObject(myFont);
 		SelectObject(getMemDC(), oldBrush);
 		DeleteObject(brush);
 	}
+
 }
 
 void BossStage::changeMap()

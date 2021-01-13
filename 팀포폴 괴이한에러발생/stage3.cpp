@@ -148,6 +148,8 @@ void stage3::chainLock()
 	}
 	if (Ls == CHECK)
 	{
+		if (_player->getShadow().right > WINSIZEX-62) { _player->setKyokoPoint(WINSIZEX -62- (_player->getShadow().right - _player->getShadow().left) / 2, _player->getKyokoPoint().y); }
+		if (_player->getShadow().bottom > WINSIZEY) { _player->setKyokoPoint(_player->getKyokoPoint().x, WINSIZEY - (_player->getShadow().bottom - _player->getShadow().top) / 2); }
 		if (_em->getVEnemy().size() < lockCount)lockCount--;
 		count++;
 		if (count % 10 == 0 && lockCount > 0)
@@ -437,7 +439,7 @@ void stage3::pixelCollision()
 
 			if ((r == 255 && g == 0 && b == 0) || (r == 0 && g == 255 && b == 0) || (r == 0 && g == 0 && b == 255))
 			{
-				_em->getVEnemy()[i]->setEnemyPoint(_em->getVEnemy()[i]->getEnemyPoint().x, _em->getVEnemy()[i]->getEnemyPoint().y - 3);
+				_em->getVEnemy()[i]->setEnemyPoint(_em->getVEnemy()[i]->getEnemyPoint().x, _em->getVEnemy()[i]->getEnemyPoint().y +3);
 				isCollision = true;
 				break;
 			}
