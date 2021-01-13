@@ -202,21 +202,21 @@ void cheerLeader::addFrame()
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniRightDownup->setPlayFrame(0, imgDownup->getMaxFrameX(), false, false, rightStun, this);
-	aniRightDownup->setFPS(7);
+	aniRightDownup->setFPS(6);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniLeftDownup->setPlayFrame(imgDownup->getMaxFrameX() * 2 + 1, imgDownup->getMaxFrameX() + 1, false, false, leftStun, this);
-	aniLeftDownup->setFPS(7);
+	aniLeftDownup->setFPS(6);
 
 	//Knockdown 상태
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniRightKnockdown->setPlayFrame(0, imgKnockdown->getMaxFrameX(), false, false, setDead, this);
-	aniRightKnockdown->setFPS(7);
+	aniRightKnockdown->setFPS(6);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniLeftKnockdown->setPlayFrame(imgKnockdown->getMaxFrameX() * 2 + 1, imgKnockdown->getMaxFrameX() + 1, false, false, setDead, this);
-	aniLeftKnockdown->setFPS(7);
+	aniLeftKnockdown->setFPS(6);
 
 	//Dazed 상태
 	aniRightDazed = new animation;

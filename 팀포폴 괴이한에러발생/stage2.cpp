@@ -304,6 +304,11 @@ void stage2::pixelCollision()
 				break;
 			}
 		}
+		//충돌 시 튕기는 작용 추가
+		if (isCollision)
+		{
+			_em->getVEnemy()[i]->setBounce();
+		}
 		_em->getVEnemy()[i]->setCollision(isCollision);
 	}
 }
