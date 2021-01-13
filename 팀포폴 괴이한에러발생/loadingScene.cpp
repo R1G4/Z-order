@@ -147,6 +147,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	//보스 스테이지 맵추가
 	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 1830, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("StageBossPic", "image/map/bossPic.bmp", 1830, 884, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("StageBossAlpha", "image/map/bossAlpha.bmp", 1830, 884, false, RGB(255, 0, 255));
 
 	//쿄코 이미지 추가
 	IMAGEMANAGER->addFrameImage("쿄코_일반", "image/kyoko/idle_1.bmp", 0, 0, 3600, 400, 12, 2, true, RGB(255, 0, 255));

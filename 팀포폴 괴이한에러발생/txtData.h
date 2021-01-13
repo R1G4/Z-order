@@ -15,6 +15,10 @@ public:
 	char* vectorArrayCombine(vector<string> vArray);
 
 	vector<string> txtLoad(const char* loadFileName);
+	vector<string> txtLoad(const char * loadFileName, const char * c);
 	vector<string> charArraySeparation(char charArray[]);
+	vector<string> charArraySeparation(char charArray[], const char * c);
+	bool canLoadFile(const char * loadFileName);
+	bool canLoadFile(const char * loadFileName, char c);
 };
 

@@ -16,7 +16,17 @@ private:
 	kyoko* _player;
 	image* stage1;
 	image* stage1Pic;
+	image* stage1Alpha;
 	enemyManager* _em;
+
+	int _alpha;		// 알파랜더용
+
+	// 다이얼로그용
+	bool _isStartScript;
+	bool _isEndScript;
+	int _string_count;
+	vector<string> _vScriptStart;
+	vector<string> _vScriptEnd;
 public:
 	HRESULT init();
 	void release();
