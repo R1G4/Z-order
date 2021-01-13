@@ -22,5 +22,7 @@ public:
 	void release();
 	void update();
 	void render();
+	RECT getBlack1() { return _black_rc[0]; }
+	RECT getBlack2() { return _black_rc[1]; }
 };
 

@@ -37,6 +37,14 @@ HRESULT stage3::init(int slot)
 	_opt->setEnemyAddressLink(_em);
 	_opt->setKyokoAddressLink(_player);
 	lockCheckRc = RectMake(800, 200, 10, 600);
+	Ls = NOTYET;
+	chain[0] = IMAGEMANAGER->findImage("bottomChain");
+	chain[1] = IMAGEMANAGER->findImage("topChain");
+	chain[2] = IMAGEMANAGER->findImage("leftChain");
+	chain[3] = IMAGEMANAGER->findImage("rightChain");
+	currentIndex = 0;
+	lockCount = 0;
+	CAMERAMANAGER->isChainLock(false);
 	return S_OK;
 }
 
@@ -65,8 +73,9 @@ void stage3::update()
 	cout << _player->getKyokoPoint().x << endl;
 	cout << _player->getKyokoPoint().y << endl;
 	changeScene();
-	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
+	if (!CAMERAMANAGER->getIsChainLock())camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
 	CAMERAMANAGER->shaking(&camera, 5);
+	chainLock();
 }
 
 void stage3::render()
@@ -108,7 +117,15 @@ void stage3::render()
 		}
 		Rectangle(getMemDC(), lockCheckRc, camera);
 	}
-	
+	if (Ls == CHECK)
+	{
+		cout << currentIndex << endl;
+		chain[0]->frameRender(getMemDC(), 0, UI->getBlack2().top - chain[0]->getFrameHeight());
+		chain[1]->frameRender(getMemDC(), 0, UI->getBlack1().bottom - 10);
+		chain[2]->frameRender(getMemDC(), 0, UI->getBlack1().bottom);
+		chain[3]->frameRender(getMemDC(), WINSIZEX - chain[3]->getFrameWidth(), UI->getBlack1().bottom);
+	}
+
 	_player->render(camera);
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
 	UI->render();
@@ -117,6 +134,48 @@ void stage3::render()
 
 void stage3::chainLock()
 {
+	RECT temp;
+	if (IntersectRect(&temp, &_player->getRect(), &lockCheckRc) && Ls == NOTYET)
+	{
+		Ls = CHECK;
+		CAMERAMANAGER->isChainLock(true);
+		lockCount = _em->getVEnemy().size();
+	}
+	if (Ls == CHECK)
+	{
+		if (_em->getVEnemy().size() < lockCount)lockCount--;
+		count++;
+		if (count % 10 == 0 && lockCount > 0)
+		{
+			chain[0]->setFrameY(currentIndex);
+			chain[1]->setFrameY(currentIndex);
+			chain[2]->setFrameX(currentIndex);
+			chain[3]->setFrameX(currentIndex);
+			currentIndex++;
+			if (currentIndex > 10 && currentIndex < 15)CAMERAMANAGER->setTime(10);
+			if (currentIndex >= 15)
+			{
+
+				currentIndex = 15;
+			}
+		}
+		if (count % 10 == 0 && lockCount <= 0)
+		{
+			chain[0]->setFrameY(currentIndex);
+			chain[1]->setFrameY(currentIndex);
+			chain[2]->setFrameX(currentIndex);
+			chain[3]->setFrameX(currentIndex);
+			currentIndex--;
+			if (currentIndex <= 0)
+			{
+				currentIndex = 0;
+				Ls = LOCKED;
+			}
+		}
+
+	}
+	if (Ls == LOCKED)CAMERAMANAGER->isChainLock(false);
+
 }
 
 void stage3::changeScene()

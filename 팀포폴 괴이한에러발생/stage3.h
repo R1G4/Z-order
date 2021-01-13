@@ -37,6 +37,9 @@ private:
 	int saveSlot;
 	POINT camera;
 	RECT _door_rc;
+	LockState Ls;
+	int currentIndex;
+	int count;
 public:
 	virtual HRESULT init(int slot);
 	virtual void release();

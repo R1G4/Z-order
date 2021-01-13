@@ -165,7 +165,7 @@ void enemyManager::spawn()
 		break;
 	case enemyManager::STAGE_3:
 		//현재 존재하는 에너미 갯수가 6개 미만 일경우
-		if (_vEnemy.size() < 7)
+		if (_vEnemy.size() < 7&&!CAMERAMANAGER->getIsChainLock())
 		{
 			//스폰 간격을 체크해서 하기
 			spawnInterval++;

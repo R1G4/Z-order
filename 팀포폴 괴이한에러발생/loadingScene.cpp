@@ -274,10 +274,12 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("메뉴", "image/menu/phone.bmp", 287, 500, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("체크", "image/menu/check.bmp", 65, 60, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("bottomChain","image/chainLock/bottomChain.bmp",52,1882,true,RGB(255,0,255));
-	IMAGEMANAGER->addImage("leftChain","image/chainLock/leftChain.bmp",1882,52,true,RGB(255,0,255));
-	IMAGEMANAGER->addImage("rightChain","image/chainLock/rightChain.bmp",1882,52,true,RGB(255,0,255));
-	IMAGEMANAGER->addImage("topChain","image/chainLock/topChain.bmp",52,1882,true,RGB(255,0,255));
+	IMAGEMANAGER->addFrameImage("bottomChain", "image/chainLock/bottomChain.bmp", 1280, 818, 1, 15, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("leftChain", "image/chainLock/leftChain.bmp", 794, 720, 15, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("rightChain", "image/chainLock/rightChain.bmp", 697, 720, 15, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("topChain", "image/chainLock/topChain.bmp", 1280, 687, 1, 15, true, RGB(255, 0, 255));
+
+
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{
 		//여기에 와일문 돌리지말고 이미지랑 사운드 등 리소스 파일 추가해라
