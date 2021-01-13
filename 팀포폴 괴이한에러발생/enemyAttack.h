@@ -3,7 +3,6 @@
 
 class enemyAttack : public gameNode
 {
-	//공격 상태
 	enum ATTACK_STATE
 	{
 		NONE = 0,
@@ -14,8 +13,8 @@ class enemyAttack : public gameNode
 	};
 
 	ATTACK_STATE _attackState;
-	int _comboTimer;	//콤보공격 타이머(타이머 0이상 일 때만 콤보공격을 이어간다.)
-	int _attackDelay;	//공격 딜레이(바로 공격하면 사실상 난이도 급상승)
+	int _comboTimer;
+	int _attackDelay;
 public:
 	enemyAttack();
 	~enemyAttack();
@@ -24,6 +23,7 @@ public:
 	void release();
 	void update();
 	void render();
-	int selectedAttack(int attack);	//선택된 공격 체크
+	int selectedAttack(int attack);
+	//int setAttack();
 };
 

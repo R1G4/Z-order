@@ -71,10 +71,8 @@ void schoolBoy::update()
 {
 	enemy::update();
 
-	//에너미 렉트 초기화
 	setAttackRect(_state, _direction);
 
-	//에너미 패턴 관련 객체
 	_enemyAttack->update();
 
 	//에너미 상태 설정
@@ -107,7 +105,6 @@ void schoolBoy::addFrame()
 	imgTaunt = IMAGEMANAGER->findImage("Boy_Taunt");
 	_shadowImg = IMAGEMANAGER->findImage("Boy_Shadow");
 
-	//IDLE 상태
 	aniRightIdle = new animation;
 	aniRightIdle->init(imgIdle->getWidth(), imgIdle->getHeight(), imgIdle->getFrameWidth(), imgIdle->getFrameHeight());
 	aniRightIdle->setPlayFrame(0, 7, false, true);
@@ -117,7 +114,6 @@ void schoolBoy::addFrame()
 	aniLeftIdle->setPlayFrame(15, 8, false, true);
 	aniLeftIdle->setFPS(10);
 
-	//Walk 상태
 	aniRightWalk = new animation;
 	aniRightWalk->init(imgWalk->getWidth(), imgWalk->getHeight(), imgWalk->getFrameWidth(), imgWalk->getFrameHeight());
 	aniRightWalk->setPlayFrame(0, 11, false, true);
@@ -127,7 +123,6 @@ void schoolBoy::addFrame()
 	aniLeftWalk->setPlayFrame(23, 12, false, true);
 	aniLeftWalk->setFPS(10);
 
-	//Run 상태
 	aniRightRun = new animation;
 	aniRightRun->init(imgRun->getWidth(), imgRun->getHeight(), imgRun->getFrameWidth(), imgRun->getFrameHeight());
 	aniRightRun->setPlayFrame(0, 9, false, true);
@@ -137,7 +132,6 @@ void schoolBoy::addFrame()
 	aniLeftRun->setPlayFrame(19, 10, false, true);
 	aniLeftRun->setFPS(10);
 
-	//Block 상태
 	aniRightBlock = new animation;
 	aniRightBlock->init(imgBlock->getWidth(), imgBlock->getHeight(), imgBlock->getFrameWidth(), imgBlock->getFrameHeight());
 	aniRightBlock->setPlayFrame(0, 2, false, false);
@@ -147,7 +141,6 @@ void schoolBoy::addFrame()
 	aniLeftBlock->setPlayFrame(5, 3, false, false);
 	aniLeftBlock->setFPS(10);
 
-	//Attack 상태
 	aniRightAttack = new animation;
 	aniRightAttack->init(imgAttack->getWidth(), imgAttack->getHeight(), imgAttack->getFrameWidth(), imgAttack->getFrameHeight());
 	aniRightAttack->setPlayFrame(0, 6, false, false);
@@ -157,7 +150,6 @@ void schoolBoy::addFrame()
 	aniLeftAttack->setPlayFrame(13, 7, false, false);
 	aniLeftAttack->setFPS(10);
 
-	//ComboAttack 1 상태
 	aniRightCombo_attack_1 = new animation;
 	aniRightCombo_attack_1->init(imgCombo_attack_1->getWidth(), imgCombo_attack_1->getHeight(), imgCombo_attack_1->getFrameWidth(), imgCombo_attack_1->getFrameHeight());
 	aniRightCombo_attack_1->setPlayFrame(0, 8, false, false);
@@ -167,7 +159,6 @@ void schoolBoy::addFrame()
 	aniLeftCombo_attack_1->setPlayFrame(17, 9, false, false);
 	aniLeftCombo_attack_1->setFPS(10);
 
-	//ComboAttack 2 상태
 	aniRightCombo_attack_2 = new animation;
 	aniRightCombo_attack_2->init(imgCombo_attack_2->getWidth(), imgCombo_attack_2->getHeight(), imgCombo_attack_2->getFrameWidth(), imgCombo_attack_2->getFrameHeight());
 	aniRightCombo_attack_2->setPlayFrame(0, 3, false, false);
@@ -177,7 +168,6 @@ void schoolBoy::addFrame()
 	aniLeftCombo_attack_2->setPlayFrame(7, 4, false, false);
 	aniLeftCombo_attack_2->setFPS(10);
 
-	//ComboAttack 3 상태
 	aniRightCombo_attack_3 = new animation;
 	aniRightCombo_attack_3->init(imgCombo_attack_3->getWidth(), imgCombo_attack_3->getHeight(), imgCombo_attack_3->getFrameWidth(), imgCombo_attack_3->getFrameHeight());
 	aniRightCombo_attack_3->setPlayFrame(0, 6, false, false);
@@ -187,7 +177,6 @@ void schoolBoy::addFrame()
 	aniLeftCombo_attack_3->setPlayFrame(13, 7, false, false);
 	aniLeftCombo_attack_3->setFPS(10);
 
-	//Hit 상태
 	aniRightHit = new animation;
 	aniRightHit->init(imgHit->getWidth(), imgHit->getHeight(), imgHit->getFrameWidth(), imgHit->getFrameHeight());
 	aniRightHit->setPlayFrame(0, 8, false, false);
@@ -197,27 +186,24 @@ void schoolBoy::addFrame()
 	aniLeftHit->setPlayFrame(17, 9, false, false);
 	aniLeftHit->setFPS(10);
 
-	//Downup 상태
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniRightDownup->setPlayFrame(0, 26, false, false, leftStun, this);
-	aniRightDownup->setFPS(7);
+	aniRightDownup->setFPS(8);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniLeftDownup->setPlayFrame(53, 27, false, false, leftStun, this);
-	aniLeftDownup->setFPS(7);
+	aniLeftDownup->setFPS(8);
 
-	//Knockdown 상태
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniRightKnockdown->setPlayFrame(0, 18, false, false, setDead, this);
-	aniRightKnockdown->setFPS(7);
+	aniRightKnockdown->setFPS(8);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniLeftKnockdown->setPlayFrame(37, 19, false, false, setDead, this);
-	aniLeftKnockdown->setFPS(7);
+	aniLeftKnockdown->setFPS(8);
 
-	//Dazed 상태
 	aniRightDazed = new animation;
 	aniRightDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniRightDazed->setPlayFrame(0, 3, false, false);
@@ -227,7 +213,6 @@ void schoolBoy::addFrame()
 	aniLeftDazed->setPlayFrame(7, 4, false, false);
 	aniLeftDazed->setFPS(5);
 
-	//Jump 상태
 	aniRightJump = new animation;
 	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
 	aniRightJump->setPlayFrame(0, 2, false, false);
@@ -237,7 +222,6 @@ void schoolBoy::addFrame()
 	aniLeftJump->setPlayFrame(5, 3, false, false);
 	aniLeftJump->setFPS(10);
 
-	//Taunt 상태
 	aniRightTaunt = new animation;
 	aniRightTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
 	aniRightTaunt->setPlayFrame(0, 10, false, false, actionCheck, this);
@@ -250,10 +234,7 @@ void schoolBoy::addFrame()
 
 void schoolBoy::render(POINT camera)
 {
-	//이펙트 랜더
 	enemy::render(camera);
-
-	//이미지 크기가 변하는 모션은 보정값을 더하거나 빼주어 랜더한다.
 	switch (_state)
 	{
 	case schoolBoy::DEAD:
@@ -308,16 +289,14 @@ void schoolBoy::setAttackRect(STATE state, DIRECTION direction)
 	case enemy::COMBO_ATTACK_1:
 	case enemy::COMBO_ATTACK_2:
 	case enemy::COMBO_ATTACK_3:
-		//미리 생성해둔 공격용 렉트관련 맵에서 조회를 한다.
 		attackInfo attackinfo = _mAttackInfo.find(state)->second;
 		index = (int)_motion->getIndex();
-		//애니메이션에서 해당 인덱스를 받아온 후 공격 인덱스랑 일치 할 경우
 		if (attackinfo.index == index)
 		{
-			//방향에 따른 공격용 렉트를 생성한다.
 			switch (direction)
 			{
 			case LEFT:
+
 				_attackRc = RectMake(_rc.left - attackinfo.width, _rc.top + attackinfo.plusY, attackinfo.width, attackinfo.height);
 				break;
 			case RIGHT:
@@ -325,10 +304,10 @@ void schoolBoy::setAttackRect(STATE state, DIRECTION direction)
 				break;
 			}
 		}
-		else	//공격용 렉트를 숨긴다.
+		else
 			_attackRc = RectMake(_x, _y, 0, 0);
 		break;
-	default:	//공격용 렉트를 숨긴다.
+	default:
 		_attackRc = RectMake(_x, _y, 0, 0);
 		break;
 	}

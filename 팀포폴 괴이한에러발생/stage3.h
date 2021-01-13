@@ -40,6 +40,7 @@ private:
 	LockState Ls;
 	int currentIndex;
 	int count;
+	vector<int> _vZorder3;
 public:
 	virtual HRESULT init(int slot);
 	virtual void release();
@@ -49,6 +50,7 @@ public:
 	void changeScene();
 	virtual void ItemCollision();
 	void zOrder();
+	void quickSort(int a, int b);
 	virtual void pixelCollision();
 	virtual void AttackCollision();
 

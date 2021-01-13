@@ -205,9 +205,6 @@ void stage3::ItemCollision()
 	}
 }
 
-void stage3::zOrder()
-{
-}
 
 void stage3::AttackCollision()
 {
@@ -218,7 +215,8 @@ void stage3::AttackCollision()
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
-			if (IntersectRect(&_temp, &_player->getRect(), &_em->getVEnemy()[i]->getDebugAttackRc()))
+			if (IntersectRect(&_temp, &_player->getRect(), &_em->getVEnemy()[i]->getDebugAttackRc())
+				&&((_player->getShadow().top>_em->getVEnemy()[i]->getShadowRc().top-30)&& (_player->getShadow().bottom < _em->getVEnemy()[i]->getShadowRc().bottom + 30)))
 			{
 				cout << "아야" << endl;
 				_player->setHit(true);
@@ -245,7 +243,8 @@ void stage3::AttackCollision()
 	for (int i = 0; i < _em->getVEnemy().size(); i++)
 	{
 		//getEnemyRect를 충돌용 getRect로 바꿀까? 피격 범위를 에너미 이미지 렉트로 하니 반대방향에서도 맞는 현상 발생 추후 생각해서 수정해야함
-		if (IntersectRect(&_temp, &_player->getAttackRect(), &_em->getVEnemy()[i]->getEnemyRect()))
+		if (IntersectRect(&_temp, &_player->getAttackRect(), &_em->getVEnemy()[i]->getEnemyRect())
+			&& ((_player->getShadow().top > _em->getVEnemy()[i]->getShadowRc().top - 30) && (_player->getShadow().bottom < _em->getVEnemy()[i]->getShadowRc().bottom + 30)))
 		{
 			switch (_player->getKyokoDirection())
 			{
