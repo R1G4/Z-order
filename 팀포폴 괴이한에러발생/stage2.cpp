@@ -2,6 +2,7 @@
 #include "stage2.h"
 #include "kyoko.h"
 #include "enemyManager.h"
+#include "npcManager.h"
 
 HRESULT stage2::init()
 {
@@ -19,6 +20,8 @@ HRESULT stage2::init()
 	_em->setEnemy(2);
 	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
+	//스테이지에 따른 NPC 생성
+	_nm->setNpc(2);
 
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
@@ -56,6 +59,8 @@ HRESULT stage2::init(int slot)
 	_em->setEnemy(2);
 	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
+	//스테이지에 따른 NPC 생성
+	_nm->setNpc(2);
 
 	Lobj.x = WINSIZEX / 2 - 230;
 	Lobj.y = 82;
@@ -89,6 +94,7 @@ void stage2::update()
 	AttackCollision();
 	_player->update();
 	_em->update();
+	_nm->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage2);
 	RECT temp;
 	if (IntersectRect(&temp, &_player->getRect(), &Lobj.rc))
@@ -106,6 +112,7 @@ void stage2::update()
 void stage2::render()
 {
 	stage2->render(getMemDC(), 0, 0, camera);
+	_nm->render(camera);
 
 	//아이템 랜더~
 	for (int i = 0; i < _em->getVItem().size(); i++)
@@ -133,7 +140,12 @@ void stage2::render()
 			Rectangle(getMemDC(), enemy->getDebugAttackRc(), camera);
 			SelectObject(getMemDC(), oldBrush);
 			DeleteObject(brush);
-
+		}
+		for (int i = 0; i < _nm->getVNpc().size(); i++)
+		{
+			npc* npc = _nm->getVNpc()[i];
+			Rectangle(getMemDC(), npc->getDebugRect(), camera);
+			Rectangle(getMemDC(), npc->getDebugShadowRc(), camera);
 		}
 	}
 	zOrder();
@@ -317,7 +329,21 @@ void stage2::AttackCollision()
 	RECT _temp;
 
 	if (!_player->getHit())
-	{
+	{	
+		//플레이어와 Npc 상호작용
+		for (int i = 0; i < _nm->getVNpc().size(); i++)
+		{
+			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
+			if (IntersectRect(&_temp, &_player->getAttackRect(), &_nm->getVNpc()[i]->getNpcRc()))
+			{
+				//플레이어 위치에 따라 반응하는 방향도 다르다.
+				if (_nm->getVNpc()[i]->getNpcRc().left <= _player->getRect().left)
+					_nm->getVNpc()[i]->setReact(npc::RIGHT);
+				else
+					_nm->getVNpc()[i]->setReact(npc::LEFT);
+
+			}
+		}
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면

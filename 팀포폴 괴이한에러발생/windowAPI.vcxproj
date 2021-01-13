@@ -169,6 +169,11 @@
     <ClInclude Include="kyoko.h" />
     <ClInclude Include="loadingScene.h" />
     <ClInclude Include="MT.h" />
+    <ClInclude Include="npc.h" />
+    <ClInclude Include="npcBoy.h" />
+    <ClInclude Include="npcGirl.h" />
+    <ClInclude Include="npcManager.h" />
+    <ClInclude Include="npcTeacher.h" />
     <ClInclude Include="opTion.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="progressBar.h" />
@@ -217,6 +222,11 @@
     <ClCompile Include="kyoko.cpp" />
     <ClCompile Include="loadingScene.cpp" />
     <ClCompile Include="MT.cpp" />
+    <ClCompile Include="npc.cpp" />
+    <ClCompile Include="npcBoy.cpp" />
+    <ClCompile Include="npcGirl.cpp" />
+    <ClCompile Include="npcManager.cpp" />
+    <ClCompile Include="npcTeacher.cpp" />
     <ClCompile Include="opTion.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="progressBar.cpp" />

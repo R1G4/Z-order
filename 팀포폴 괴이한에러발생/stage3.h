@@ -5,6 +5,7 @@
 
 class kyoko;
 class enemyManager;
+class npcManager;
 
 enum LockState {
 	NOTYET,
@@ -28,6 +29,7 @@ private:
 	int lockCount;
 	kyoko* _player;
 	enemyManager* _em;
+	npcManager* _nm;
 	opTion* _opt;
 	UIManager*UI;
 	RECT lockCheckRc;
@@ -54,11 +56,12 @@ public:
 	virtual void pixelCollision();
 	virtual void AttackCollision();
 
-	//플레이어 에너미 주소 받기
-	void setObjMemory(kyoko* kyoko, enemyManager* em)
+	//플레이어, 에너미, Npc주소 받기
+	void setObjMemory(kyoko* kyoko, enemyManager* em, npcManager* nm)
 	{
 		_player = kyoko;
 		_em = em;
+		_nm = nm;
 	}
 };
 

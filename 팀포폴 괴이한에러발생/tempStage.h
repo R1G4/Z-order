@@ -5,6 +5,7 @@
 
 class kyoko;
 class enemyManager;
+class npcManager;
 
 struct tagChair
 {
@@ -27,6 +28,7 @@ private:
 	image* stage1;
 	image* stage1Pic;
 	enemyManager* _em;
+	npcManager* _nm;
 	vector<int> _vZorder;
 	char _str[128];
 	bool _isDesk;
@@ -42,13 +44,16 @@ public:
 	// 맵이동
 	void changeMap();
 	void pixelCollision();
+	void AttackCollision();
 	void zOrder();
 	void quickSort(int a, int b);
 
-	void setObjMemory(kyoko* kyoko, enemyManager* em)
+	//플레이어, 에너미, Npc주소 받기
+	void setObjMemory(kyoko* kyoko, enemyManager* em, npcManager* nm)
 	{
 		_player = kyoko;
 		_em = em;
+		_nm = nm;
 	}
 };
 

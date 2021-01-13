@@ -5,6 +5,7 @@
 
 class kyoko;
 class enemyManager;
+class npcManager;
 
 struct tagObj
 {
@@ -25,6 +26,7 @@ private:
 	image* stage2Pic;
 	kyoko* _player;
 	enemyManager* _em;
+	npcManager* _nm;
 	int alpha;
 	vector<int> _vZorder2;
 	opTion* _opt;
@@ -45,11 +47,12 @@ public:
 	// 렉트 충돌
 	virtual void AttackCollision();
 
-	//플레이어 에너미 주소 받기
-	void setObjMemory(kyoko* kyoko, enemyManager* em)
+	//플레이어, 에너미, Npc주소 받기
+	void setObjMemory(kyoko* kyoko, enemyManager* em, npcManager* nm)
 	{
 		_player = kyoko;
 		_em = em;
+		_nm = nm;
 	}
 };
 

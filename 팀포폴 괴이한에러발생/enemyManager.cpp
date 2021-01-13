@@ -22,14 +22,8 @@ void enemyManager::setEnemy(int stageNum)
 	_nowStage = (STAGE_ENEMY)stageNum;
 
 	//스테이지가 변경되면 기존의 에너미 아이템은 제거한다.
-	for (int i = 0; i < _vEnemy.size(); ++i)
-	{
-		removeEnemy(i);
-	}
-	for (int i = 0; i < _vItem.size(); ++i)
-	{
-		removeItem(i);
-	}
+	_vEnemy.clear();
+	_vItem.clear();
 
 	//각 스테이지에 따른 에너미 생성
 	switch (_nowStage)

@@ -2,6 +2,7 @@
 #include "tempStage.h"
 #include "kyoko.h"
 #include "enemyManager.h"
+#include "npcManager.h"
 
 HRESULT tempStage::init()
 {
@@ -15,6 +16,8 @@ HRESULT tempStage::init()
 	_em->setEnemy(1);
 	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
+	//스테이지에 따른 NPC 생성
+	_nm->setNpc(1);
 
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 
@@ -64,6 +67,8 @@ HRESULT tempStage::init(int slot)
 	_em->setEnemy(1);
 	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
+	//스테이지에 따른 NPC 생성
+	_nm->setNpc(1);
 
 	_opt->setKyokoAddressLink(_player);
 	_opt->setEnemyAddressLink(_em);
@@ -106,9 +111,11 @@ void tempStage::update()
 	UI->update();
 	_opt->update();
 	pixelCollision();
+	AttackCollision();
 	_player->update();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage1);
 	_em->update();
+	_nm->update();
 	changeMap();
 
 }
@@ -116,6 +123,7 @@ void tempStage::update()
 void tempStage::render()
 {
 	stage1->render(getMemDC(), 0, 0, camera);
+	_nm->render(camera);
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -140,6 +148,13 @@ void tempStage::render()
 		Rectangle(getMemDC(), tempRcD.rc, camera);		
 		Rectangle(getMemDC(), _player->getDebugRect(), camera);
 		Rectangle(getMemDC(), _player->getDebugShadow(), camera);
+
+		for (int i = 0; i < _nm->getVNpc().size(); i++)
+		{
+			npc* npc = _nm->getVNpc()[i];
+			Rectangle(getMemDC(), npc->getDebugRect(), camera);
+			Rectangle(getMemDC(), npc->getDebugShadowRc(), camera);
+		}
 
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
@@ -359,5 +374,27 @@ void tempStage::pixelCollision()
 			}
 		}
 		_em->getVEnemy()[i]->setCollision(isCollision);
+	}
+}
+
+void tempStage::AttackCollision()
+{
+	RECT _temp;
+	//플레이어와 Npc 상호작용
+	if (!_player->getHit())
+	{
+		for (int i = 0; i < _nm->getVNpc().size(); i++)
+		{
+			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
+			if (IntersectRect(&_temp, &_player->getAttackRect(), &_nm->getVNpc()[i]->getNpcRc()))
+			{
+				//플레이어 위치에 따라 반응하는 방향도 다르다.
+				if (_nm->getVNpc()[i]->getNpcRc().left <= _player->getRect().left)
+					_nm->getVNpc()[i]->setReact(npc::RIGHT);
+				else
+					_nm->getVNpc()[i]->setReact(npc::LEFT);
+
+			}
+		}
 	}
 }

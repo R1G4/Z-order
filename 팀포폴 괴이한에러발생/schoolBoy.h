@@ -4,7 +4,6 @@
 class schoolBoy : public enemy
 {
 	enemy* _enemy;
-	float _speed;
 public:
 	schoolBoy();
 	~schoolBoy();

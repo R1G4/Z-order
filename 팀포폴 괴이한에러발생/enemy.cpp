@@ -2,10 +2,15 @@
 #include "enemy.h"
 
 enemy::enemy()
+	  : _angle(0),
+	    _alphaInterval(0),
+		_alphaValue(0),
+		_isAttack(false),
+		_isFollow(false),
+		_isRunning(false),
+		_isCollision(false)
 {
 }
-
-
 enemy::~enemy()
 {
 }
@@ -18,9 +23,7 @@ HRESULT enemy::init(float x, float y, STATE state, DIRECTION direction)
 	//좌표 초기화
 	_x = x;
 	_y = y;
-	_angle = 0;
-	_alphaInterval = 0;
-	_alphaValue = 0;
+
 	//이미지 및 애니메이션 적용
 	switch (_state)
 	{
@@ -65,11 +68,6 @@ HRESULT enemy::init(float x, float y, STATE state, DIRECTION direction)
 	_enemyRc = RectMakeCenter(_x, _y, _enemyImg->getFrameWidth(), _enemyImg->getFrameHeight());
 	//그림자 렉트 초기화
 	_shadowRc = RectMakeCenter((_enemyRc.left + _enemyRc.right) / 2, _enemyRc.bottom, _shadowImg->getWidth(), _shadowImg->getHeight());
-
-	_isAttack = false;
-	_isFollow = false;
-	_isRunning = true;
-	_isCollision = false;
 
 	//추적 관련 초기화
 	_questTimer = RND->getFromIntTo(170, 230);
@@ -129,11 +127,11 @@ void enemy::render(POINT camera)
 bool enemy::block(DIRECTION _direction)
 {
 	//해당 상태일 시 제외
-	if (_state == DAZED  || _state == DOWNUP || _state == KNOCKDOWN || _state == DOWN || _state == BLOCK || _state == DEAD || _state == REMOVE)
+	if (_state == DAZED || _state == DOWNUP || _state == KNOCKDOWN || _state == DOWN || _state == BLOCK || _state == DEAD || _state == REMOVE)
 		return false;
 
 	//0부터 3까지의 난수를 받아서(4가지 경우의 수 중 1개) 0이 아닐 경우 제외
-	if(RND->getFromIntTo(0, 4) != 0)
+	if (RND->getFromIntTo(0, 4) != 0)
 		return false;
 
 	_motion->stop();
@@ -156,7 +154,7 @@ bool enemy::block(DIRECTION _direction)
 void enemy::hit(DIRECTION direction)
 {
 	//해당 상태일 시 제외
-	if (_state == BLOCK || _state == DOWNUP || _state == KNOCKDOWN  || _state == DOWN || _state == BLOCK || _state == DEAD || _state == REMOVE)
+	if (_state == BLOCK || _state == DOWNUP || _state == KNOCKDOWN || _state == DOWN || _state == BLOCK || _state == DEAD || _state == REMOVE)
 		return;
 
 	//체력 설정

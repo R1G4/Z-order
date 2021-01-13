@@ -23,6 +23,7 @@ HRESULT playGround::init()
 	//플레이어 및 에너미 미리 생성
 	_player = new kyoko;
 	_em = new enemyManager;
+	_nm = new npcManager;
 
 	return S_OK;
 }
@@ -38,10 +39,10 @@ void playGround::update()
 {
 	gameNode::update();
 
-	//해당 씬에 플레이어와 에너미 주소를 넘겨준다.
-	_tempStage->setObjMemory(_player, _em);
-	_stage2->setObjMemory(_player, _em);
-	_stage3->setObjMemory(_player, _em);
+	//해당 씬에 플레이어, 에너미, NPC 주소를 넘겨준다.
+	_tempStage->setObjMemory(_player, _em, _nm);
+	_stage2->setObjMemory(_player, _em, _nm);
+	_stage3->setObjMemory(_player, _em, _nm);
 	_BossStage->setObjMemory(_player, _em);
 
 	SCENEMANAGER->update();

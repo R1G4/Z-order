@@ -190,6 +190,14 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Mint", "image/item/mint.bmp", 58, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Shrimp", "image/item/shrimp.bmp", 57, 60, true, RGB(255, 0, 255));
 
+	//NPC 추가
+	IMAGEMANAGER->addFrameImage("NpcBoyIdle", "image/npc/npc_boy.bmp", 0, 0, 396, 480, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("NpcBoyReact", "image/npc/npc_boy_react.bmp", 0, 0, 306, 480, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("NpcGirlIdle", "image/npc/npc_girl.bmp", 0, 0, 312, 396, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("NpcGirlReact", "image/npc/npc_girl_react.bmp", 0, 0, 297, 384, 3, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("NpcTeacherIdle", "image/npc/npc_teacher.bmp", 0, 0, 324, 522, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("NpcTeacherReact", "image/npc/npc_teacher_react.bmp", 0, 0, 360, 504, 3, 2, true, RGB(255, 0, 255));
+
 	//이펙트 추가
 	EFFECTMANAGER->addEffect("Enemy_Point", "image/effect/point.bmp", 560, 70, 70, 70, 1, 0.4f, 10);
 	EFFECTMANAGER->addEffect("Enemy_Stun", "image/effect/stun.bmp", 420, 54, 70, 54, 1, 0.4f, 10);

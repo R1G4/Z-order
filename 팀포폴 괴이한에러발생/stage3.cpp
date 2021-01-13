@@ -2,6 +2,7 @@
 #include "stage3.h"
 #include "kyoko.h"
 #include "enemyManager.h"
+#include "npcManager.h"
 
 
 HRESULT stage3::init(int slot)
@@ -22,6 +23,8 @@ HRESULT stage3::init(int slot)
 	_em->setEnemy(3);
 	//플레이어 주소 받아오기
 	_em->setKyokoMemory(_player);
+	//스테이지에 따른 NPC 생성
+	_nm->setNpc(3);
 
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
 	Lobj.x = WINSIZEX / 2 - 230;
@@ -70,6 +73,7 @@ void stage3::update()
 
 	_player->update();
 	_em->update();
+	_nm->update();
 	cout << _player->getKyokoPoint().x << endl;
 	cout << _player->getKyokoPoint().y << endl;
 	changeScene();
@@ -81,6 +85,7 @@ void stage3::update()
 void stage3::render()
 {
 	stage3->render(getMemDC(), 0, 0, camera);
+	_nm->render(camera);
 
 	//아이템 랜더~
 	for (int i = 0; i < _em->getVItem().size(); i++)
@@ -212,6 +217,20 @@ void stage3::AttackCollision()
 
 	if (!_player->getHit())
 	{
+		//플레이어와 Npc 상호작용
+		for (int i = 0; i < _nm->getVNpc().size(); i++)
+		{
+			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
+			if (IntersectRect(&_temp, &_player->getAttackRect(), &_nm->getVNpc()[i]->getNpcRc()))
+			{
+				//플레이어 위치에 따라 반응하는 방향도 다르다.
+				if (_nm->getVNpc()[i]->getNpcRc().left <= _player->getRect().left)
+					_nm->getVNpc()[i]->setReact(npc::RIGHT);
+				else
+					_nm->getVNpc()[i]->setReact(npc::LEFT);
+
+			}
+		}
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면

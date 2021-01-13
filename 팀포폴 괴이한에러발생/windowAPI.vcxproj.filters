@@ -61,6 +61,9 @@
     <Filter Include="playGround\UI">
       <UniqueIdentifier>{d8515e58-4150-47f5-bb0a-ad74a5918c11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\npc">
+      <UniqueIdentifier>{f727f278-06b5-4c17-aadd-b11de6f23e4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -204,6 +207,21 @@
     <ClInclude Include="stage3.h">
       <Filter>playGround\Stage&amp;Scene</Filter>
     </ClInclude>
+    <ClInclude Include="npcTeacher.h">
+      <Filter>playGround\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="npc.h">
+      <Filter>playGround\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="npcBoy.h">
+      <Filter>playGround\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="npcGirl.h">
+      <Filter>playGround\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="npcManager.h">
+      <Filter>playGround\npc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -340,6 +358,21 @@
     </ClCompile>
     <ClCompile Include="stage3+zOrder.cpp">
       <Filter>playGround\Stage&amp;Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="npcTeacher.cpp">
+      <Filter>playGround\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="npc.cpp">
+      <Filter>playGround\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="npcBoy.cpp">
+      <Filter>playGround\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="npcGirl.cpp">
+      <Filter>playGround\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="npcManager.cpp">
+      <Filter>playGround\npc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

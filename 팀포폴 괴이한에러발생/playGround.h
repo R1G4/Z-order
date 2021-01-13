@@ -10,6 +10,7 @@
 #include "opTion.h"
 #include "kyoko.h"
 #include "enemyManager.h"
+#include "npcManager.h"
 
 class playGround : public gameNode
 {
@@ -23,7 +24,7 @@ private:
 	BossStage* _BossStage;
 	kyoko* _player;
 	enemyManager* _em;
-
+	npcManager* _nm;
 public:
 	playGround();
 	~playGround();

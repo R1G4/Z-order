@@ -4,7 +4,6 @@
 class MT : public enemy
 {
 	enemy* _enemy;
-	float _speed;
 public:
 	MT();
 	~MT();
