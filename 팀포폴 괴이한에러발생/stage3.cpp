@@ -74,12 +74,12 @@ void stage3::update()
 	_player->update();
 	_em->update();
 	_nm->update();
-	cout << _player->getKyokoPoint().x << endl;
-	cout << _player->getKyokoPoint().y << endl;
+	//cout << _player->getKyokoPoint().x << endl;
+	//cout << _player->getKyokoPoint().y << endl;
 	changeScene();
 	if (!CAMERAMANAGER->getIsChainLock())camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
 	CAMERAMANAGER->shaking(&camera, 5);
-	chainLock();
+	//chainLock();
 }
 
 void stage3::render()

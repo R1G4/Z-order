@@ -136,6 +136,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	//메인 스테이지 BGM추가
 	SOUNDMANAGER->addSound("MainStage", "sound/BGM/River City Girls OST - Detention.mp3", true, true);
 	SOUNDMANAGER->addSound("BossSound", "sound/BGM/River City Girls OST - Boss Misuzu.mp3", true, true);
+	SOUNDMANAGER->addSound("BossIntroSound", "sound/BGM/River City Girls OST - Misuzu Intro Theme.mp3", true, true);
+	
 	//메인 스테이지 맵추가
 	IMAGEMANAGER->addImage("Stage1", "image/map/0.bmp", 2154, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1Pic", "image/map/0Pic.bmp", 2154, 884, false, RGB(255, 0, 255));
@@ -274,6 +276,15 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("chair", "image/object/chair.bmp", 179, 169, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("좌기둥", "image/object/Lgidoong.bmp", 153, 720, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("우기둥", "image/object/Rgidoong.bmp", 153, 720, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("지포스", "image/object/geForce.bmp", 100, 33, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("라데온", "image/object/radeon.bmp", 80, 67, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코1", "image/object/kyoko_1.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코2", "image/object/kyoko_2.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코3", "image/object/kyoko_3.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코4", "image/object/kyoko_4.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("미스즈1", "image/object/misuzu_1.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("미스즈2", "image/object/misuzu_2.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("미스즈3", "image/object/misuzu_3.bmp", 386, 460, true, RGB(255, 0, 255));
 
 
 	//UI IMAGE

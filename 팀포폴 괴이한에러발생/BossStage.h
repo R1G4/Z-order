@@ -6,6 +6,15 @@
 class kyoko;
 class enemyManager;
 
+enum BossPhase
+{
+	INTRO_SCENE,
+	BEFORE_FIGHT_DIALOG,
+	VS_MESUZU,
+	AFTER_FIGHT_DIALOG,
+	END
+};
+
 class BossStage : public gameNode
 {
 
@@ -17,14 +26,23 @@ private:
 	image* stage1;
 	image* stage1Pic;
 	image* stage1Alpha;
+
+	image* _radeon;
+	image* _geForce;
+	image* _kyoko_i;
+	image* _boss_i;
+
 	enemyManager* _em;
 	opTion* _opt;
+
+	BossPhase _bossPhase;
+
 	int _alpha;		// 알파랜더용
+
 	LPCSTR bossVideo;
 	// 다이얼로그용
-	bool _isStartScript;
-	bool _isEndScript;
 	int _string_count;
+	int _string_count_2;
 	vector<string> _vScriptStart;
 	vector<string> _vScriptEnd;
 public:
