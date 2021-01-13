@@ -165,6 +165,23 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("쿄코_죽음", "image/kyoko/dead_3.bmp", 0, 0, 7700, 400, 22, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("그림자", "image/kyoko/shadow.bmp", 100, 30, true, RGB(255, 0, 255));
 
+	// 쿄코 사운드 추가
+	SOUNDMANAGER->addSound("강공격_타격", "sound/effect/character/kyoko/강공격 타격.wav", false, false);
+	SOUNDMANAGER->addSound("기본공격1_타격", "sound/effect/character/kyoko/기본공격1 타격.wav", false, false);
+	SOUNDMANAGER->addSound("기본공격2_타격", "sound/effect/character/kyoko/기본공격2 타격.wav", false, false);
+	SOUNDMANAGER->addSound("기본공격3_타격", "sound/effect/character/kyoko/기본공격3 타격.wav", false, false);
+	SOUNDMANAGER->addSound("기본공격_소리", "sound/effect/character/kyoko/기본공격1, 2.mp3", false, false);
+	SOUNDMANAGER->addSound("기본공격3_소리", "sound/effect/character/kyoko/기본공격3.mp3", false, false);
+	SOUNDMANAGER->addSound("달리기_소리", "sound/effect/character/kyoko/달리기.wav", false, true);
+	SOUNDMANAGER->addSound("대쉬공격_타격", "sound/effect/character/kyoko/대쉬 약공격 타격.wav", false, false);
+	SOUNDMANAGER->addSound("마하킥 타격", "sound/effect/character/kyoko/마하킥 타격.wav", false, false);
+	SOUNDMANAGER->addSound("마하킥_소리", "sound/effect/character/kyoko/마하킥.wav", false, false);
+	SOUNDMANAGER->addSound("점프_소리", "sound/effect/character/kyoko/점프.wav", false, false);
+	SOUNDMANAGER->addSound("점프공격", "sound/effect/character/kyoko/점프공격.wav", false, false);
+	SOUNDMANAGER->addSound("죽음", "sound/effect/character/kyoko/죽음.wav", false, false);
+	SOUNDMANAGER->addSound("착지", "sound/effect/character/kyoko/착지.wav", false, false);
+	SOUNDMANAGER->addSound("피격", "sound/effect/character/kyoko/피격.wav", false, false);
+
 	//아이템
 	IMAGEMANAGER->addImage("Apple", "image/item/apple.bmp", 58, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Boonger", "image/item/boonger.bmp", 67, 60, true, RGB(255, 0, 255));

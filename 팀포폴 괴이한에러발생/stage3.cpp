@@ -64,6 +64,7 @@ void stage3::update()
 	cout << _player->getKyokoPoint().y << endl;
 	changeScene();
 	camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
+	CAMERAMANAGER->shaking(&camera, 5);
 }
 
 void stage3::render()
