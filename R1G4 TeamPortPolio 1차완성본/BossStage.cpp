@@ -132,8 +132,11 @@ void BossStage::update()
 		{
 			_string_count_2++;
 			if (_string_count_2 >= _vScriptEnd.size() - 1)
+			{
 				_bossPhase = END;
-
+				SOUNDMANAGER->stop("BossSound");
+				SCENEMANAGER->changeScene("¿£µù");
+			}
 			if (_string_count_2 == 3)
 				_kyoko_i = IMAGEMANAGER->findImage("ÄìÄÚ1");
 
