@@ -107,6 +107,10 @@ void stage2::update()
 	}
 	else alpha = 255;
 	changeScene();
+
+	// 여기다가 세이브로드창으로 돌아가게 해주심됨다
+	if (_player->getDeadLastFrame())
+		cout << "데스" << endl;
 }
 
 void stage2::render()
@@ -152,6 +156,7 @@ void stage2::render()
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
 	Robj.img->alphaRender(getMemDC(), Robj.x, Robj.y, alpha, camera);
 	UI->render();
+	_player->deadRender();
 	_opt->render();
 
 }

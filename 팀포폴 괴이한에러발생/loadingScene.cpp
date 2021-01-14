@@ -304,7 +304,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("rightChain", "image/chainLock/rightChain.bmp", 697, 720, 15, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("topChain", "image/chainLock/topChain.bmp", 1280, 687, 1, 15, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addFrameImage("Heart", "image/menu/deathHeart.bmp", 10240, 720, 8, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Heart", "image/menu/deathHeart.bmp", 19200, 720, 15, 1, true, RGB(255, 0, 255));
 
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{

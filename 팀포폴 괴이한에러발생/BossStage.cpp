@@ -169,6 +169,10 @@ void BossStage::update()
 			_bossPhase = AFTER_FIGHT_DIALOG;
 		}
 	}
+
+	// 여기다가 세이브로드창으로 돌아가게 해주심됨다
+	if (_player->getDeadLastFrame())
+		cout << "데스" << endl;
 }
 
 void BossStage::render()
@@ -181,9 +185,11 @@ void BossStage::render()
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
 	zOrder();
-	_opt->render();
 
 	UI->render();
+	_player->deadRender();
+	_opt->render();
+
 
 	if (_bossPhase == BEFORE_FIGHT_DIALOG)
 	{
