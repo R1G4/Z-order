@@ -58,11 +58,8 @@ private:
 	kyoko* _player;
 	RECT _rcBoss;
 	RECT _rcBossShadow;
-	RECT _rcNear;
-	RECT _rcFar;
-	RECT _rcMiddle;
 	RECT _rcBossAttack;
-
+	RECT _rcSkill;
 
 	animation* _bossMotion;
 	BOSSDIRECTION _bossDirection;
@@ -122,8 +119,8 @@ public:
 	void leftDizzy();
 	void rightDizzy();
 
-
-
+	void hpRender();
+	void effect(BOSSDIRECTION direction);;
 
 
 	static void setRightIdle(void* obj);
@@ -137,20 +134,23 @@ public:
 	static void setRightDieEnd(void * obj);
 
 
-
-
-	//공격 상태 및 공격 프레임에 따른 정보 초기화
 	virtual void setAttackInfo();
 	virtual void setAttackRect(BOSSDIRECTION direction);
+	void setBossPoint(float x, float y)
+	{
+		_x = x;
+		_y = y;
+	}
 	float getBossPointX() { return _x; }
 	float getBossPointY() { return _y; }
 	POINT getMainPoint() { return PointMake(_x, _y); }
 	POINT getShadowPoint() { return PointMake(_x2, _y2); }
 	void setMainPoint(POINT pt) { _x = pt.x, _y = pt.y; }
 	void setShadowPoint(POINT pt) { _x2 = pt.x, _y2 = pt.y; }
-
+	BOSSDIRECTION getBossDirection() { return _bossDirection; }
 	inline RECT getBossRect() { return _rcBoss; }
 	inline RECT getBossShadow() { return _rcBossShadow; }
 	inline RECT getBossAttackRect() { return _rcBossAttack; }
+
 };
 

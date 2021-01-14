@@ -26,7 +26,9 @@ HRESULT BossStage::init()
 	_boss_i = IMAGEMANAGER->findImage("미스즈1");
 
 	_player->init();
-	_player->setKyokoPoint(WINSIZEX / 2, 1000);
+	_player->setKyokoPoint(WINSIZEX / 2 + 500, WINSIZEY / 2 + 700);
+	_boss->setBossPoint(WINSIZEX / 2 + 1300, WINSIZEY / 2 + 500);
+
 	_door_rc = RectMake(100, 450, 180, 200);
 	UI = new UIManager;
 	UI->setKyokoMemory(_player);
@@ -63,6 +65,13 @@ void BossStage::update()
 		_opt->update();
 		changeMap();
 		picCollision();
+		//보스 점프,태클시 카메라 흔들림
+		//CAMERAMANAGER->shaking(&camera, 3);
+		if (_boss->getBossDirection() == BOSS_LEFT_JUMPDOWN_END || _boss->getBossDirection() == BOSS_RIGHT_JUMPDOWN_END
+			|| _boss->getBossDirection() == BOSS_LEFT_TACKLE || _boss->getBossDirection() == BOSS_RIGHT_TACKLE)
+		{
+			CAMERAMANAGER->shaking(&camera, 3);
+		}
 	}
 	VIDEOMANAGER->endVideo();
 	if (!VIDEOMANAGER->checkPlay() && _bossPhase == INTRO_SCENE)
@@ -123,13 +132,7 @@ void BossStage::update()
 		{
 			_string_count_2++;
 			if (_string_count_2 >= _vScriptEnd.size() - 1)
-			{
 				_bossPhase = END;
-				cout << "ㅇㅇㅇㅇㅇㅇ";
-				SOUNDMANAGER->stop("BossSound");
-				SCENEMANAGER->changeScene("엔딩");
-
-			}
 
 			if (_string_count_2 == 3)
 				_kyoko_i = IMAGEMANAGER->findImage("쿄코1");
@@ -170,7 +173,6 @@ void BossStage::update()
 	{
 		cout << "싸움시작" << endl;
 		// 보스를 잡았다고 가정
-		// 보스를 잡았다는 정보 필요 보스가 울고 끝나면 어떤 bool값반환.
 		if (KEYMANAGER->isOnceKeyDown('O'))
 		{
 			_bossPhase = AFTER_FIGHT_DIALOG;
@@ -194,13 +196,13 @@ void BossStage::render()
 		stage1Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
-	UI->render();
-	zOrder();
 
-	
 	_player->deadRender();
+	_boss->hpRender();
+	UI->render();
+	_boss->hpRender();
+	zOrder();
 	_opt->render();
-
 
 	if (_bossPhase == BEFORE_FIGHT_DIALOG)
 	{
@@ -214,7 +216,7 @@ void BossStage::render()
 		strcpy_s(str, _vScriptStart[_string_count].c_str());
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
 		SetBkMode(getMemDC(), TRANSPARENT);
-		TextOut(getMemDC(), 150, WINSIZEY - 65, str, strlen(str));
+		TextOut(getMemDC(), 50, WINSIZEY - 65, str, strlen(str));
 		SelectObject(getMemDC(), oldFont);
 		DeleteObject(myFont);
 		SelectObject(getMemDC(), oldBrush);
@@ -251,7 +253,7 @@ void BossStage::render()
 		strcpy_s(str, _vScriptEnd[_string_count_2].c_str());
 		SetTextColor(getMemDC(), RGB(255, 255, 255));
 		SetBkMode(getMemDC(), TRANSPARENT);
-		TextOut(getMemDC(), 150, WINSIZEY - 65, str, strlen(str));
+		TextOut(getMemDC(), 50, WINSIZEY - 65, str, strlen(str));
 		SelectObject(getMemDC(), oldFont);
 		DeleteObject(myFont);
 		SelectObject(getMemDC(), oldBrush);
@@ -289,7 +291,7 @@ void BossStage::attackCollision()
 	{
 		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
 		{
-			_boss->hitDamage(10);
+			_boss->hitDamage(6);
 			_boss->rightAttackedMotion();
 		}
 	}
@@ -298,7 +300,7 @@ void BossStage::attackCollision()
 	{
 		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
 		{
-			_boss->hitDamage(10);
+			_boss->hitDamage(6);
 			_boss->leftAttackedMotion();
 		}
 	}
@@ -342,12 +344,14 @@ void BossStage::picCollision()
 		{
 			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 3);
 			_player->setNoSpeed(true);
+
 			break;
 		}
 
 
 		if (r2 == 255 && g2 == 0 && b2 == 0)
 		{
+
 			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 3);
 			_player->setNoSpeed(true);
 			break;

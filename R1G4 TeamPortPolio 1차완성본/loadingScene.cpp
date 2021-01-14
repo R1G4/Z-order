@@ -155,6 +155,19 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	SOUNDMANAGER->addSound("착지", "sound/effect/character/kyoko/착지.wav", false, false);
 	SOUNDMANAGER->addSound("피격", "sound/effect/character/kyoko/피격.wav", false, false);
 
+	// 보스 사운드 추가
+	SOUNDMANAGER->addSound("jump_down", "sound/effect/character/boss/boss_misuzu_meteor_drop_impact.wav", false, false);
+	SOUNDMANAGER->addSound("jump_up", "sound/effect/character/boss/boss_misuzu_meteor_drop_jump2.wav", false, false);
+	SOUNDMANAGER->addSound("tackle", "sound/effect/character/boss/boss_misuzu_shoulder_tackle_footstep.wav", false, false);
+	SOUNDMANAGER->addSound("slap", "sound/effect/character/boss/boss_misuzu_slap.wav", false, false);
+	SOUNDMANAGER->addSound("taunt", "sound/effect/character/boss/vo_misuzu_laugh_05.wav", false, false);
+	SOUNDMANAGER->addSound("gethit1", "sound/effect/character/boss/vo_misuzu_gethit_01.wav", false, false);
+	SOUNDMANAGER->addSound("gethit2", "sound/effect/character/boss/vo_misuzu_gethit_03.wav", false, false);
+	SOUNDMANAGER->addSound("gethit3", "sound/effect/character/boss/vo_misuzu_gethit_heavy_01.wav", false, false);
+	SOUNDMANAGER->addSound("groundhit", "sound/effect/character/boss/vo_misuzu_gethit_09.wav", false, false);
+	SOUNDMANAGER->addSound("die", "sound/effect/character/boss/vo_misuzu_die_08.wav", false, false);
+	SOUNDMANAGER->addSound("roar", "sound/effect/character/boss/vo_misuzu_big_effort_01.wav", false, false);
+
 	//아이템
 	IMAGEMANAGER->addImage("Apple", "image/item/apple.bmp", 58, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Boonger", "image/item/boonger.bmp", 67, 60, true, RGB(255, 0, 255));
