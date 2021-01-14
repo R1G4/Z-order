@@ -91,11 +91,20 @@ void enemyManager::update()
 		//객체의 상태가 REMOVE라면 제거
 		if (_vEnemy[i]->getState() == enemy::REMOVE)
 		{
-			//유닛 제거되기 직전에 좌표 얻어서 아이템 생성
-			item* _item;
-			_item = new item;
-			_item->init(_vEnemy[i]->getEnemyPoint().x, (_vEnemy[i]->getShadowRc().top + _vEnemy[i]->getShadowRc().bottom) / 2);
-			_vItem.push_back(_item);
+			//에너미 존재하는지 이중 체크
+			if (!_vEnemy[i]) continue;
+
+			//0부터 1까지의 난수를 받아온다
+			//0일 경우 false 1일 경우 true
+			if (RND->getFromIntTo(0, 2))
+			{
+				item* _item;
+				_item = new item;
+				//에너미 제거되기 직전에 좌표 얻어서 아이템 생성
+				_item->init(_vEnemy[i]->getEnemyPoint().x, (_vEnemy[i]->getShadowRc().top + _vEnemy[i]->getShadowRc().bottom) / 2);
+				_vItem.push_back(_item);
+			}
+			//해당 에너미 제거
 			removeEnemy(i);
 			break;
 		}
@@ -112,7 +121,11 @@ void enemyManager::update()
 	{
 		//객체의 상태가 REMOVE람녀제거
 		if (_vItem[i]->getItemState() == item::REMOVE)
-		{
+		{	
+			//아이템 존재하는지 이중 체크
+			if (!_vItem[i]) continue;
+
+			//해당 아아이템 제거
 			removeItem(i);
 			break;
 		}

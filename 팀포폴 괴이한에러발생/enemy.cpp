@@ -2,13 +2,16 @@
 #include "enemy.h"
 
 enemy::enemy()
-	  : _angle(0),
-	    _alphaInterval(0),
-		_alphaValue(0),
-		_isAttack(false),
-		_isFollow(false),
-		_isRunning(false),
-		_isCollision(false)
+	: _angle(0),
+	_alphaInterval(0),
+	_alphaValue(0),
+	_pushPower(5.7f),
+	_pushDecrease(0.06f),
+	_isAttack(false),
+	_isFollow(false),
+	_isRunning(false),
+	_isCollision(false),
+	_isBounce(false)
 {
 }
 enemy::~enemy()
@@ -23,7 +26,6 @@ HRESULT enemy::init(float x, float y, STATE state, DIRECTION direction)
 	//좌표 초기화
 	_x = x;
 	_y = y;
-
 	//이미지 및 애니메이션 적용
 	switch (_state)
 	{
@@ -87,6 +89,44 @@ void enemy::update()
 {
 	if (_state == DEAD)
 		setAlpha();
+
+	//밀린 상태라면
+	if (_isPush)
+	{
+		//밀린 힘이 0 이하로 떨어진다면 초기화
+		if (_pushPower <= 0)
+		{
+			_pushPower = 5.7f;
+			_pushDecrease = 0.05f;
+			_isPush = false;
+			return;
+		}
+
+		switch (_direction)
+		{
+		case enemy::LEFT:
+			//벽에 튕길 시 반대로 미는힘이 작용한다.
+			if (_isBounce)
+				_x -= _pushPower;
+			//그렇지 않을 경우 정상적으로 미는힘이 작용 한다.
+			else
+				_x += _pushPower;
+			_pushPower -= _pushDecrease;
+			break;
+		case enemy::RIGHT:
+			//벽에 튕길 시 반대로 미는힘이 작용한다.
+			if (_isBounce)
+				_x += _pushPower;
+			//그렇지 않을 경우 정상적으로 미는힘이 작용 한다.
+			else
+				_x -= _pushPower;
+			_pushPower -= _pushDecrease;
+			break;
+		}
+	}
+	//밀린 상태가 아니라면 튕기는 상태도 아니므로 초기화한다.
+	else
+		_isBounce = false;
 }
 
 void enemy::render()
@@ -189,6 +229,8 @@ void enemy::downup(DIRECTION direction)
 
 	//체력 설정
 	_hp -= 2;
+
+	_isPush = true;
 	if (_hp <= 0)
 	{
 		//체력이 0 이하라면 knockdown 상태 설정
@@ -287,4 +329,14 @@ void enemy::setDead(void* obj)
 {
 	enemy* k = (enemy*)obj;
 	k->setState(DEAD);
+}
+
+void enemy::setBounce()
+{
+	//처음 튕길 경우 미는 힘에 튕기는 힘을 더해준다.
+	if (!_isBounce)
+		_pushPower += 0.2f;
+
+	//튕기는 상태로 전환한다.
+	_isBounce = true;
 }

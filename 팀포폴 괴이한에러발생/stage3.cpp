@@ -79,7 +79,14 @@ void stage3::update()
 	changeScene();
 	if (!CAMERAMANAGER->getIsChainLock())camera = CAMERAMANAGER->CameraMake(_player->getShadow().left, _player->getShadow().top, BOTH, stage3);
 	CAMERAMANAGER->shaking(&camera, 5);
-	//chainLock();
+	chainLock();
+
+	// 여기다가 세이브로드창으로 돌아가게 해주심됨다
+	if (_player->getDeadLastFrame())
+	{
+		SOUNDMANAGER->stop("MainStage");
+		SCENEMANAGER->changeScene("세이브로드");
+	}
 }
 
 void stage3::render()
@@ -92,13 +99,6 @@ void stage3::render()
 	{
 		item* _item = _em->getVItem()[i];
 		_item->render(camera);
-	}
-
-	//임시 에너미 랜더~
-	for (int i = 0; i < _em->getVEnemy().size(); i++)
-	{
-		enemy* _enemy = _em->getVEnemy()[i];
-		_enemy->render(camera);
 	}
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
@@ -131,9 +131,11 @@ void stage3::render()
 		chain[3]->frameRender(getMemDC(), WINSIZEX - chain[3]->getFrameWidth(), UI->getBlack1().bottom);
 	}
 
-	_player->render(camera);
+	zOrder();
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
+
 	UI->render();
+	_player->deadRender();
 	_opt->render();
 }
 
@@ -492,6 +494,11 @@ void stage3::pixelCollision()
 				isCollision = true;
 				break;
 			}
+		}
+		//충돌 시 튕기는 작용 추가
+		if (isCollision)
+		{
+			_em->getVEnemy()[i]->setBounce();
 		}
 		_em->getVEnemy()[i]->setCollision(isCollision);
 	}

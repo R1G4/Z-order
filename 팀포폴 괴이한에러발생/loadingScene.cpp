@@ -89,7 +89,7 @@ void loadingScene::update()
 	{
 		if (_currentCount == LOADINGMAX)
 		{
-			
+
 			STATUSMANAGER->setHpBar("HPBar");
 			//changeScene에서 sceneNum를 받아와서 해당 스테이지로 이동시킨다.
 			switch (nextScene)
@@ -137,7 +137,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	SOUNDMANAGER->addSound("MainStage", "sound/BGM/River City Girls OST - Detention.mp3", true, true);
 	SOUNDMANAGER->addSound("BossSound", "sound/BGM/River City Girls OST - Boss Misuzu.mp3", true, true);
 	SOUNDMANAGER->addSound("BossIntroSound", "sound/BGM/River City Girls OST - Misuzu Intro Theme.mp3", true, true);
-	
+
 	//메인 스테이지 맵추가
 	IMAGEMANAGER->addImage("Stage1", "image/map/0.bmp", 2154, 884, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Stage1Pic", "image/map/0Pic.bmp", 2154, 884, false, RGB(255, 0, 255));
@@ -147,8 +147,8 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Stage3Pic", "image/map/2Pic.bmp", 1980, 884, false, RGB(255, 0, 255));
 
 	//보스 스테이지 맵추가
-	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 1830, 884, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("StageBossPic", "image/map/bossPic.bmp", 1830, 884, false, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("StageBoss", "image/map/boss.bmp", 3000, 1500, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("StageBossPic", "image/map/bossPic.bmp", 3000, 1500, false, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("StageBossAlpha", "image/map/bossAlpha.bmp", 1830, 884, false, RGB(255, 0, 255));
 
 	//쿄코 이미지 추가
@@ -282,6 +282,11 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("쿄코2", "image/object/kyoko_2.bmp", 386, 460, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("쿄코3", "image/object/kyoko_3.bmp", 386, 460, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("쿄코4", "image/object/kyoko_4.bmp", 386, 460, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("쿄코1그림자", "image/object/kyoko_1_shadow.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코2그림자", "image/object/kyoko_2_shadow.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코3그림자", "image/object/kyoko_3_shadow.bmp", 386, 460, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("쿄코4그림자", "image/object/kyoko_4_shadow.bmp", 386, 460, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("미스즈1", "image/object/misuzu_1.bmp", 386, 460, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("미스즈2", "image/object/misuzu_2.bmp", 386, 460, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("미스즈3", "image/object/misuzu_3.bmp", 386, 460, true, RGB(255, 0, 255));
@@ -299,6 +304,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addFrameImage("rightChain", "image/chainLock/rightChain.bmp", 697, 720, 15, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("topChain", "image/chainLock/topChain.bmp", 1280, 687, 1, 15, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addFrameImage("Heart", "image/menu/deathHeart.bmp", 19200, 720, 15, 1, true, RGB(255, 0, 255));
 
 	while (loadingHelper->_currentCount != LOADINGMAX)
 	{

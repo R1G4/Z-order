@@ -102,7 +102,6 @@ void schoolBoy::addFrame()
 	imgHit = IMAGEMANAGER->findImage("Boy_Hit");
 	imgDownup = IMAGEMANAGER->findImage("Boy_Downup");
 	imgDazed = IMAGEMANAGER->findImage("Boy_Dazed");
-	imgJump = IMAGEMANAGER->findImage("Boy_Jump");
 	imgKnockdown = IMAGEMANAGER->findImage("Boy_Knockdown");
 	imgTaunt = IMAGEMANAGER->findImage("Boy_Taunt");
 	_shadowImg = IMAGEMANAGER->findImage("Boy_Shadow");
@@ -201,21 +200,21 @@ void schoolBoy::addFrame()
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniRightDownup->setPlayFrame(0, 26, false, false, leftStun, this);
-	aniRightDownup->setFPS(7);
+	aniRightDownup->setFPS(6);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniLeftDownup->setPlayFrame(53, 27, false, false, leftStun, this);
-	aniLeftDownup->setFPS(7);
+	aniLeftDownup->setFPS(6);
 
 	//Knockdown 상태
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniRightKnockdown->setPlayFrame(0, 18, false, false, setDead, this);
-	aniRightKnockdown->setFPS(7);
+	aniRightKnockdown->setFPS(6);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniLeftKnockdown->setPlayFrame(37, 19, false, false, setDead, this);
-	aniLeftKnockdown->setFPS(7);
+	aniLeftKnockdown->setFPS(6);
 
 	//Dazed 상태
 	aniRightDazed = new animation;
@@ -226,16 +225,6 @@ void schoolBoy::addFrame()
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(7, 4, false, false);
 	aniLeftDazed->setFPS(5);
-
-	//Jump 상태
-	aniRightJump = new animation;
-	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniRightJump->setPlayFrame(0, 2, false, false);
-	aniRightJump->setFPS(10);
-	aniLeftJump = new animation;
-	aniLeftJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniLeftJump->setPlayFrame(5, 3, false, false);
-	aniLeftJump->setFPS(10);
 
 	//Taunt 상태
 	aniRightTaunt = new animation;
@@ -275,10 +264,6 @@ void schoolBoy::render(POINT camera)
 			_enemyImg->aniRender(getMemDC(), _enemyRc.left - 2, _enemyRc.top - 17, _motion, camera);
 			break;
 		}
-		break;
-	case schoolBoy::JUMP:
-		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top - 40, 150, camera);
-		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top - 40, _motion, camera);
 		break;
 	default:
 		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top, 150, camera);
@@ -362,7 +347,7 @@ void schoolBoy::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 550 && _isAction && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	if (distance < 550 && _isAction && _state != DOWNUP &&  _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)

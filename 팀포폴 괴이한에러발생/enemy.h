@@ -22,7 +22,6 @@ public:
 		DOWNUP,
 		KNOCKDOWN,
 		DAZED,
-		JUMP,
 		TAUNT,
 		DEAD,
 		REMOVE
@@ -59,6 +58,8 @@ protected:
 	float _x, _y;			//에너미 좌표
 	float _angle;			//에너미 이동 각도
 	float _speed;			//에너미 이동 속도
+	float _pushPower;		//밀린 힘
+	float _pushDecrease;	//밀린 힘의 감소
 	int _questTimer;		//탐색 및 휴식 난수
 	int _questMin;			//최소 탐색 간격 난수
 	int _hp;				//에너미 체력
@@ -69,6 +70,8 @@ protected:
 	bool _isRunning;		//달리기 구분
 	bool _isFollow;			//추적 구분
 	bool _isCollision;		//충돌 구분
+	bool _isPush;
+	bool _isBounce;
 	enemyAttack* _enemyAttack;	//에너미 공격 패턴 클래스
 
 	//에너미 이미지
@@ -168,11 +171,9 @@ public:
 	//에너미 죽은 상태
 	static void  setDead(void * obj);
 
-
 	//그 외 일단 추가한 겟터 셋터
 
 	//이미지
-	image* getImage() { return _enemyImg; }
 	void setImage(image* img) { _enemyImg = img; }
 
 	//렉트
@@ -206,6 +207,9 @@ public:
 	image* getImgDazed() { return imgDazed; }
 	animation* getAniLeftDazed() { return aniLeftDazed; }
 	animation* getAniRightDazed() { return aniRightDazed; }
+
+	bool getPushCheck() { return _isPush; }
+	void setBounce();
 
 	//좌표
 	POINT getEnemyPoint()

@@ -22,10 +22,11 @@ HRESULT BossStage::init()
 	_geForce = IMAGEMANAGER->findImage("지포스");
 	_radeon = IMAGEMANAGER->findImage("라데온");
 	_kyoko_i = IMAGEMANAGER->findImage("쿄코1");
+	_kyoko_si = IMAGEMANAGER->findImage("쿄코1그림자");
 	_boss_i = IMAGEMANAGER->findImage("미스즈1");
 
 	_player->init();
-
+	_player->setKyokoPoint(WINSIZEX / 2, 1000);
 	_door_rc = RectMake(100, 450, 180, 200);
 	UI = new UIManager;
 	UI->setKyokoMemory(_player);
@@ -61,6 +62,7 @@ void BossStage::update()
 		UI->update();
 		_opt->update();
 		changeMap();
+		picCollision();
 	}
 	VIDEOMANAGER->endVideo();
 	if (!VIDEOMANAGER->checkPlay() && _bossPhase == INTRO_SCENE)
@@ -69,7 +71,7 @@ void BossStage::update()
 		SOUNDMANAGER->stop("BossIntroSound");
 		SOUNDMANAGER->play("BossSound", _opt->getVolume());
 	}
-	
+
 	if (KEYMANAGER->isOnceKeyDown(VK_RETURN))
 	{
 		// 보스전 시작전 다이어로그
@@ -93,6 +95,18 @@ void BossStage::update()
 
 			if (_string_count == 3)
 				_kyoko_i = IMAGEMANAGER->findImage("쿄코4");
+
+			if (_string_count == 0 || _string_count == 7)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코1그림자");
+
+			if (_string_count == 5)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코2그림자");
+
+			if (_string_count == 10 || _string_count == 11 || _string_count == 12)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코3그림자");
+
+			if (_string_count == 3)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코4그림자");
 
 			if (_string_count == 1 || _string_count == 2 || _string_count == 4)
 				_boss_i = IMAGEMANAGER->findImage("미스즈1");
@@ -123,6 +137,18 @@ void BossStage::update()
 			if (_string_count_2 == 1)
 				_kyoko_i = IMAGEMANAGER->findImage("쿄코4");
 
+			if (_string_count_2 == 3)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코1그림자");
+
+			if (_string_count_2 == 8)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코2그림자");
+
+			if (_string_count_2 == 0)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코3그림자");
+
+			if (_string_count_2 == 1)
+				_kyoko_si = IMAGEMANAGER->findImage("쿄코4그림자");
+
 			if (_string_count_2 == 2 || _string_count_2 == 6)
 				_boss_i = IMAGEMANAGER->findImage("미스즈1");
 
@@ -136,12 +162,19 @@ void BossStage::update()
 
 	if (_bossPhase == VS_MESUZU)
 	{
-		cout << "싸움시작" << endl;	
+		cout << "싸움시작" << endl;
 		// 보스를 잡았다고 가정
 		if (KEYMANAGER->isOnceKeyDown('O'))
 		{
 			_bossPhase = AFTER_FIGHT_DIALOG;
 		}
+	}
+
+	// 여기다가 세이브로드창으로 돌아가게 해주심됨다
+	if (_player->getDeadLastFrame())
+	{
+		SOUNDMANAGER->stop("BossSound");
+		SCENEMANAGER->changeScene("세이브로드");
 	}
 }
 
@@ -154,11 +187,12 @@ void BossStage::render()
 		stage1Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
-	_player->render(camera);
-	_boss->render(camera);
-	_opt->render();
+	zOrder();
 
 	UI->render();
+	_player->deadRender();
+	_opt->render();
+
 
 	if (_bossPhase == BEFORE_FIGHT_DIALOG)
 	{
@@ -190,7 +224,9 @@ void BossStage::render()
 		else
 			_radeon->render(getMemDC(), 60, WINSIZEY - 75);
 
+		_kyoko_si->alphaRender(getMemDC(), -10, WINSIZEY - 452, 200, camera);
 		_kyoko_i->render(getMemDC(), 0, WINSIZEY - 542);
+
 		_boss_i->render(getMemDC(), WINSIZEX - 384, WINSIZEY - 542);
 	}
 
@@ -277,3 +313,145 @@ void BossStage::attackCollision()
 		}
 	}
 }
+
+void BossStage::picCollision()
+{
+	//픽셀 콜리쟌 상 하
+	for (int i = _player->getShadow().left; i <= _player->getShadow().right; i++)
+	{
+		//상
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().top);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//하
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().bottom);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y + 3);
+			_player->setNoSpeed(true);
+
+			break;
+		}
+
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+
+			_player->setKyokoPoint(_player->getKyokoPoint().x, _player->getKyokoPoint().y - 3);
+			_player->setNoSpeed(true);
+			break;
+		}
+
+	}
+
+	//픽셀 콜리쟌 좌 우
+	for (int i = _player->getShadow().top; i <= _player->getShadow().bottom; i++)
+	{
+		//좌
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().left, i);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//우
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().right, i);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+		if ((r1 == 0 && g1 == 255 && b1 == 0) && !_player->getIsJump())
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x + 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+		if ((r2 == 0 && g2 == 255 && b2 == 0) && !_player->getIsJump())
+		{
+			_player->setKyokoPoint(_player->getKyokoPoint().x - 1, _player->getKyokoPoint().y);
+			_player->setNoSpeed(true);
+			break;
+		}
+	}
+
+
+	//보스관련
+	//아래에서 위로 박을때
+	//픽셀 콜리쟌 상 하
+	for (int i = _boss->getBossShadow().left; i <= _boss->getBossShadow().right; i++)
+	{
+		//상
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().top);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//하
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), i, _player->getShadow().bottom);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x, _boss->getMainPoint().y + 3));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x, _boss->getShadowPoint().y + 3));
+			break;
+		}
+
+
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x, _boss->getMainPoint().y - 3));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x, _boss->getShadowPoint().y - 3));
+			break;
+		}
+
+	}
+
+	//픽셀 콜리쟌 좌 우
+	for (int i = _boss->getBossShadow().top; i <= _boss->getBossShadow().bottom; i++)
+	{
+		//좌
+		COLORREF color1 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().left, i);
+		int r1 = GetRValue(color1);
+		int g1 = GetGValue(color1);
+		int b1 = GetBValue(color1);
+		//우
+		COLORREF color2 = GetPixel(IMAGEMANAGER->findImage("StageBossPic")->getMemDC(), _player->getShadow().right, i);
+		int r2 = GetRValue(color2);
+		int g2 = GetGValue(color2);
+		int b2 = GetBValue(color2);
+
+		if (r1 == 255 && g1 == 0 && b1 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x + 3, _boss->getMainPoint().y));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x + 3, _boss->getShadowPoint().y));
+			break;
+		}
+		if (r2 == 255 && g2 == 0 && b2 == 0)
+		{
+			_boss->setMainPoint(PointMake(_boss->getMainPoint().x - 3, _boss->getMainPoint().y));
+			_boss->setShadowPoint(PointMake(_boss->getShadowPoint().x - 3, _boss->getShadowPoint().y));
+			break;
+		}
+
+	}
+
+}
+

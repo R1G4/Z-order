@@ -103,7 +103,6 @@ void cheerLeader::addFrame()
 	imgHit = IMAGEMANAGER->findImage("CheerLeader_Hit");
 	imgDownup = IMAGEMANAGER->findImage("CheerLeader_Downup");
 	imgDazed = IMAGEMANAGER->findImage("CheerLeader_Dazed");
-	imgJump = IMAGEMANAGER->findImage("CheerLeader_Jump");
 	imgKnockdown = IMAGEMANAGER->findImage("CheerLeader_Knockdown");
 	imgTaunt = IMAGEMANAGER->findImage("CheerLeader_Idle");
 	_shadowImg = IMAGEMANAGER->findImage("CheerLeader_Shadow");
@@ -202,21 +201,21 @@ void cheerLeader::addFrame()
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniRightDownup->setPlayFrame(0, imgDownup->getMaxFrameX(), false, false, rightStun, this);
-	aniRightDownup->setFPS(7);
+	aniRightDownup->setFPS(6);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniLeftDownup->setPlayFrame(imgDownup->getMaxFrameX() * 2 + 1, imgDownup->getMaxFrameX() + 1, false, false, leftStun, this);
-	aniLeftDownup->setFPS(7);
+	aniLeftDownup->setFPS(6);
 
 	//Knockdown 상태
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniRightKnockdown->setPlayFrame(0, imgKnockdown->getMaxFrameX(), false, false, setDead, this);
-	aniRightKnockdown->setFPS(7);
+	aniRightKnockdown->setFPS(6);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniLeftKnockdown->setPlayFrame(imgKnockdown->getMaxFrameX() * 2 + 1, imgKnockdown->getMaxFrameX() + 1, false, false, setDead, this);
-	aniLeftKnockdown->setFPS(7);
+	aniLeftKnockdown->setFPS(6);
 
 	//Dazed 상태
 	aniRightDazed = new animation;
@@ -227,16 +226,6 @@ void cheerLeader::addFrame()
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(imgDazed->getMaxFrameX() * 2 + 1, imgDazed->getMaxFrameX() + 1, false, false);
 	aniLeftDazed->setFPS(5);
-
-	//Jump 상태
-	aniRightJump = new animation;
-	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniRightJump->setPlayFrame(0, imgJump->getMaxFrameX(), false, false);
-	aniRightJump->setFPS(10);
-	aniLeftJump = new animation;
-	aniLeftJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniLeftJump->setPlayFrame(imgJump->getMaxFrameX() * 2 + 1, imgJump->getMaxFrameX() + 1, false, false);
-	aniLeftJump->setFPS(10);
 
 	//Taunt 상태
 	aniRightTaunt = new animation;
@@ -339,7 +328,7 @@ void cheerLeader::state()
 	_motion->frameUpdate(TIMEMANAGER->getElapsedTime());
 
 	//애니메이션이 멈춘 경우 IDLE로 전환
-	if (!_motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	if (!_motion->isPlay() && _state != DOWNUP && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_direction)
 		{
@@ -362,7 +351,7 @@ void cheerLeader::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 550 && _isAction && _motion->isPlay() && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	if (distance < 550 && _isAction && _motion->isPlay() && _state != DOWNUP && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)

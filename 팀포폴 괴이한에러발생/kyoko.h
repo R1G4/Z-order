@@ -48,6 +48,7 @@ private:
 	image* _shadow;
 	image* _hpUI;
 	image* _mahaGauge;
+	image* _deadCamera;
 
 	vector<HPBAR*> _hp;
 	vector<HPBAR*>::iterator _ihp;
@@ -57,6 +58,8 @@ private:
 	int _maha_count;			// 마하킥 게이지카운트
 	int _frame_count;			// 계산용
 	int _attacked_count;		// 피격 카운트
+	int	_currentFrameX;			// 프레임 번호 X
+	int _count_dead;
 
 	string _attack_sound;		// 공격 성공시 타격음을 위한 변수
 
@@ -89,6 +92,7 @@ private:
 	bool _isRight;				// 피격구분용 bool3
 	bool _isDead;				// 사망구분용 bool
 	bool _isStartMotionDead;	// 사망구분용 bool2
+	bool _getDead;				// 사망리턴용 bool
 public:
 	kyoko() {};
 	~kyoko() {};
@@ -98,6 +102,7 @@ public:
 	void update();
 	void render();
 	void render(POINT camera);
+	void deadRender();
 
 	static void rightFire(void* obj);
 	static void leftFire(void* obj);
@@ -156,5 +161,7 @@ public:
 	void setHitRight(bool isRight) { _isRight = isRight; }
 
 	string getAttackSound() { return _attack_sound; }
+
+	BOOL getDeadLastFrame() { return _getDead; }
 };
 
