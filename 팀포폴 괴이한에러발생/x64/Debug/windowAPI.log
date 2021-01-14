@@ -1,0 +1,391 @@
+﻿  stdafx.cpp
+  animation.cpp
+  boss.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\팀포폴\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(146): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(147): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(148): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(149): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(49): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(50): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(77): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(80): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(90): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(98): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(101): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(108): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(111): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(118): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(121): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(128): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(131): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(135): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(179): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(190): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(199): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(220): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(224): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(225): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(230): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(231): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(257): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(294): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(337): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(218): warning C4101: '_temp' :참조되지 않은 지역 변수입니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(363): warning C4101: '_temp' :참조되지 않은 지역 변수입니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(464): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(482): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(506): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(527): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(674): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(733): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(967): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(972): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(978): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(984): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.cpp(989): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  bossHPBar.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(6): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(7): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(12): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(24): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bosshpbar.cpp(37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BossStage+zOrder.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\팀포폴\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(146): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(147): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(148): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(149): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage+zorder.cpp(7): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BossStage.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\팀포폴\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(146): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(147): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(148): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(149): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(221): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(258): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(347): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(357): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(380): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(386): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(393): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\bossstage.cpp(399): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  button.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\button.cpp(19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CameraManager.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(136): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(137): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(141): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(140): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(133): warning C4101: 'mapImg' :참조되지 않은 지역 변수입니다.
+  cheerLeader.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(310): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(313): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(318): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(321): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(353): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(373): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(588): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(618): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(619): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(627): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(630): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cheerleader.cpp(589): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  effect.cpp
+  effectManager.cpp
+  enemy.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.cpp(68): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.cpp(70): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.cpp(141): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.cpp(144): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.cpp(154): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.cpp(157): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  enemyAttack.cpp
+  enemyManager.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemymanager.cpp(104): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  gameNode.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\gamenode.cpp(112): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\gamenode.cpp(113): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\gamenode.cpp(106): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\gamenode.cpp(105): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
+  image.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(76): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(131): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(184): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(422): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(428): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(434): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(697): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(703): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\image.cpp(709): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  imageManager.cpp
+  iniDataManager.cpp
+  item.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\item.cpp(57): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\item.cpp(75): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  jump.cpp
+  keyAniManager.cpp
+  코드를 생성하고 있습니다...
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(44): warning C4715: 'CameraManager::CameraMake': 모든 제어 경로에서 값을 반환하지는 않습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(92): warning C4715: 'CameraManager::CameraMake': 모든 제어 경로에서 값을 반환하지는 않습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\cameramanager.cpp(123): warning C4715: 'CameraManager::CameraMake': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  컴파일하고 있습니다...
+  keyManager.cpp
+  kyoko.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(27): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(28): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(76): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(77): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(78): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(81): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(86): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(87): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(91): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(94): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(701): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(708): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(747): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(754): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(793): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(800): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(839): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.cpp(846): warning C4553: '==': 식의 결과가 사용되지 않습니다. '='을(를) 의도했습니까?
+  loadingScene.cpp
+  MT.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(311): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(314): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(319): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(322): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(354): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(374): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(586): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(617): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\mt.cpp(618): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  npc.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\npc.cpp(57): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\npc.cpp(71): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  npcBoy.cpp
+  npcGirl.cpp
+  npcManager.cpp
+  npcTeacher.cpp
+  opTion.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(78): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(116): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(121): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\option.cpp(133): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  playGround.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\팀포폴\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(146): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(147): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(148): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(149): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  progressBar.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(6): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(7): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(15): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\progressbar.cpp(40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  saveLoad.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(119): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(163): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(163): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(179): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(179): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(188): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(188): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(197): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\saveload.cpp(197): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  sceneManager.cpp
+  schoolBoy.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(87): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(88): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(306): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(309): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(314): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(317): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(349): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(369): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(581): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(612): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(613): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(621): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolboy.cpp(624): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  schoolGirl.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(89): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(90): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(299): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(302): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(307): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(310): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(341): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(361): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(577): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\schoolgirl.cpp(578): warning C4101: 'temp' :참조되지 않은 지역 변수입니다.
+  soundManager.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\soundmanager.cpp(170): warning C4244: '인수': 'float'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage2+zOrder.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2+zorder.cpp(13): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage2.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(29): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(68): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(73): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(159): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(160): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(190): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(207): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(223): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(240): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(261): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(277): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(293): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage2.cpp(310): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  stage3+zOrder.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3+zorder.cpp(13): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  stage3.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(135): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(149): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(153): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(154): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(373): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(390): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(406): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(423): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(444): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(460): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(476): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\stage3.cpp(493): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  StartScene.cpp
+  StatusManager.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\statusmanager.cpp(40): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  tempStage+zOrder.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage+zorder.cpp(17): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  tempStage.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(9): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(224): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(233): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(256): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(262): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(269): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(275): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(292): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(328): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(345): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(361): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\tempstage.cpp(378): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timeManager.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\timemanager.cpp(46): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\timemanager.cpp(49): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\timemanager.cpp(52): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  timer.cpp
+  txtData.cpp
+  UIManager.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\uimanager.cpp(20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  utils.cpp
+  videoManager.cpp
+  winMain.cpp
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(138): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\kyoko.h(139): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(218): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\enemy.h(219): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(5): warning C4005: 'PI': 매크로 재정의
+  c:\팀포폴\z-order\팀포폴 괴이한에러발생\utils.h(3): note: 'PI'의 이전 정의를 참조하십시오.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(146): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(147): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(148): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\boss.h(149): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\winmain.cpp(89): warning C4244: 'return': 'WPARAM'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+c:\팀포폴\z-order\팀포폴 괴이한에러발생\txtdata.cpp(47): warning C4172: 지역 변수 또는 임시: str의 주소를 반환하고 있습니다.
+  windowAPI.vcxproj -> C:\팀포폴\Z-order\팀포폴 괴이한에러발생\x64\Debug\windowAPI.exe

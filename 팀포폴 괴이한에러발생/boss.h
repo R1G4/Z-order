@@ -8,26 +8,26 @@ class kyoko;	//전방선언. cpp에 헤더 걸어주기
 
 enum BOSSDIRECTION
 {
-	BOSS_LEFT_IDLE, BOSS_LEFT_DOWN,
-	BOSS_RIGHT_IDLE, BOSS_RIGHT_DOWN,
-	BOSS_LEFT_WALK, BOSS_LEFT_GETHIT,
-	BOSS_RIGHT_WALK, BOSS_RIGHT_GETHIT,
-	BOSS_LEFT_SLAP, BOSS_LEFT_GETUP,
-	BOSS_RIGHT_SLAP, BOSS_RIGHT_GETUP,
-	BOSS_LEFT_DIE, BOSS_LEFT_JUMPUP,
-	BOSS_RIGHT_DIE, BOSS_RIGHT_JUMPUP,
-	BOSS_LEFT_JUMPDOWN, BOSS_LEFT_JUMPDOWN_END,
+	BOSS_LEFT_IDLE,		 BOSS_LEFT_DOWN,
+	BOSS_RIGHT_IDLE,	 BOSS_RIGHT_DOWN,
+	BOSS_LEFT_WALK,	     BOSS_LEFT_GETHIT,
+	BOSS_RIGHT_WALK,	 BOSS_RIGHT_GETHIT,
+	BOSS_LEFT_SLAP,		 BOSS_LEFT_GETUP,
+	BOSS_RIGHT_SLAP,	 BOSS_RIGHT_GETUP,
+	BOSS_LEFT_DIE,		 BOSS_LEFT_JUMPUP,
+	BOSS_RIGHT_DIE,		 BOSS_RIGHT_JUMPUP,
+	BOSS_LEFT_JUMPDOWN,	 BOSS_LEFT_JUMPDOWN_END,
 	BOSS_RIGHT_JUMPDOWN, BOSS_RIGHT_JUMPDOWN_END,
-	BOSS_LEFT_PUNCH, BOSS_LEFT_ROAR,
-	BOSS_RIGHT_PUNCH, BOSS_RIGHT_ROAR,
-	BOSS_LEFT_TACKLE, BOSS_LEFT_TAUNT,
-	BOSS_RIGHT_TACKLE, BOSS_RIGHT_TAUNT,
-	BOSS_LEFT_GETHIT_1, BOSS_LEFT_GETHIT_2,
+	BOSS_LEFT_PUNCH,	 BOSS_LEFT_ROAR,
+	BOSS_RIGHT_PUNCH,	 BOSS_RIGHT_ROAR,
+	BOSS_LEFT_TACKLE,	 BOSS_LEFT_TAUNT,
+	BOSS_RIGHT_TACKLE,	 BOSS_RIGHT_TAUNT,
+	BOSS_LEFT_GETHIT_1,	 BOSS_LEFT_GETHIT_2,
 	BOSS_RIGHT_GETHIT_1, BOSS_RIGHT_GETHIT_2,
-	BOSS_LEFT_GETHIT_3, BOSS_LEFT_ELBOW,
+	BOSS_LEFT_GETHIT_3,  BOSS_LEFT_ELBOW,
 	BOSS_RIGHT_GETHIT_3, BOSS_RIGHT_ELBOW,
-	BOSS_LEFT_DIE_END, BOSS_LEFT_DIZZY,
-	BOSS_RIGHT_DIE_END, BOSS_RIGHT_DIZZY,
+	BOSS_LEFT_DIE_END,	 BOSS_LEFT_DIZZY,
+	BOSS_RIGHT_DIE_END,	 BOSS_RIGHT_DIZZY,
 	BOSS_LEFT_GROUNDHIT,
 	BOSS_RIGHT_GROUNDHIT
 };
@@ -106,9 +106,9 @@ public:
 	void render(POINT camera);
 	void move();
 	void pahse();
-
-
-
+	
+	
+	
 
 	void setKyokoAddressLink(kyoko* kyoko) { _player = kyoko; }
 	void hitDamage(float damage);
@@ -121,9 +121,9 @@ public:
 	void rightAttackedMotion();
 	void leftDizzy();
 	void rightDizzy();
-
-
-
+	
+	void hpRender();
+	void effect(BOSSDIRECTION direction);;
 
 
 	static void setRightIdle(void* obj);
@@ -136,10 +136,9 @@ public:
 	static void setLeftDieEnd(void * obj);
 	static void setRightDieEnd(void * obj);
 
+	
+	
 
-
-
-	//공격 상태 및 공격 프레임에 따른 정보 초기화
 	virtual void setAttackInfo();
 	virtual void setAttackRect(BOSSDIRECTION direction);
 	float getBossPointX() { return _x; }
@@ -148,9 +147,25 @@ public:
 	POINT getShadowPoint() { return PointMake(_x2, _y2); }
 	void setMainPoint(POINT pt) { _x = pt.x, _y = pt.y; }
 	void setShadowPoint(POINT pt) { _x2 = pt.x, _y2 = pt.y; }
-
+	BOSSDIRECTION getBossDirection() { return _bossDirection; }
 	inline RECT getBossRect() { return _rcBoss; }
 	inline RECT getBossShadow() { return _rcBossShadow; }
 	inline RECT getBossAttackRect() { return _rcBossAttack; }
+
+
+
+
+	/*virtual void setAttackInfo();
+	virtual void setAttackRect(BOSSDIRECTION direction);
+	float getBossPointX() { return _x; }
+	float getBossPointY() { return _y; }
+	POINT getMainPoint() { return PointMake(_x, _y); }
+	POINT getShadowPoint() { return PointMake(_x2, _y2); }
+	void setMainPoint(POINT pt) { _x = pt.x, _y = pt.y; }
+	void setShadowPoint(POINT pt) { _x2 = pt.x, _y2 = pt.y; }
+	BOSSDIRECTION getBossDirection() { return _bossDirection; }
+	inline RECT getBossRect() { return _rcBoss; }
+	inline RECT getBossShadow() { return _rcBossShadow; }
+	inline RECT getBossAttackRect() { return _rcBossAttack; }*/
 };
 
