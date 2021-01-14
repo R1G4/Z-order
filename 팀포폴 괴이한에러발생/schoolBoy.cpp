@@ -347,7 +347,7 @@ void schoolBoy::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 550 && _isAction && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	if (distance < 550 && _isAction && _state != DOWNUP &&  _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)

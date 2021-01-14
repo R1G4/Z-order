@@ -335,7 +335,7 @@ void enemy::setBounce()
 {
 	//처음 튕길 경우 미는 힘에 튕기는 힘을 더해준다.
 	if (!_isBounce)
-		_pushPower += 0.5f;
+		_pushPower += 0.2f;
 
 	//튕기는 상태로 전환한다.
 	_isBounce = true;

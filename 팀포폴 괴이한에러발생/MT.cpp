@@ -352,7 +352,7 @@ void MT::state()
 
 	//특정 거리안에 플레이어가 존재 할 시
 	float distance = getDistance(_x, _y, (_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2);
-	if (distance < 600 && _isAction && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	if (distance < 600 && _isAction && _state != DOWNUP &&  _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		//거리안에 존재 할 시 느낌표를 보여준다.
 		if (!_isFollow)
@@ -525,7 +525,7 @@ void MT::state()
 		}
 	}
 	//추적 거리가 닿지 않을 경우 패턴 구현
-	else if (_state != DOWNUP && _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
+	else if (_state != DOWNUP &&  _state != KNOCKDOWN && _state != DEAD && _state != REMOVE)
 	{
 		switch (_state)
 		{
