@@ -3,7 +3,7 @@
 #include "gameNode.h"
 class item : public gameNode
 {
-	public:
+public:
 
 	//아이템 종류 혹은 상태
 	enum ITEM_KINDS
@@ -33,7 +33,7 @@ class item : public gameNode
 	float _gravity;		//중력
 	float _jumpPower;	//점프파워
 
-	public:
+public:
 	item();
 	~item();
 
@@ -50,6 +50,6 @@ class item : public gameNode
 
 	//아이템 상태 혹은 종류
 	ITEM_KINDS getItemState() { return _item; }
-	void ItemRemove() { _item = REMOVE; }
+	bool ItemAcheive();
 };
 

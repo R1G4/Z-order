@@ -206,10 +206,12 @@ void stage3::ItemCollision()
 	{
 		if (IntersectRect(&_temp, &_player->getRect(), &_em->getVItem()[j]->getRect()))
 		{
-			//아이템 제거
-			_em->getVItem()[j]->ItemRemove();
-			//아이템에 따라 체력 회복
-			STATUSMANAGER->heal(_em->getVItem()[j]->getHeal(), "HPBar");
+			//아이템 획득 체크
+			if (_em->getVItem()[j]->ItemAcheive())
+			{
+				//아이템에 따라 체력 회복
+				STATUSMANAGER->heal(_em->getVItem()[j]->getHeal(), "HPBar");
+			}
 		}
 	}
 }

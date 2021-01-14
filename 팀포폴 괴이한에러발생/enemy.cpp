@@ -5,8 +5,8 @@ enemy::enemy()
 	: _angle(0),
 	_alphaInterval(0),
 	_alphaValue(0),
-	_pushPower(6.1f),
-	_pushDecrease(0.063f),
+	_pushPower(5.7f),
+	_pushDecrease(0.064f),
 	_isAttack(false),
 	_isFollow(false),
 	_isRunning(false),
@@ -96,8 +96,8 @@ void enemy::update()
 		//밀린 힘이 0 이하로 떨어진다면 초기화
 		if (_pushPower <= 0)
 		{
-			_pushPower = 6.1f;
-			_pushDecrease = 0.063f;
+			_pushPower = 5.7f;
+			_pushDecrease = 0.064f;
 			_isPush = false;
 			return;
 		}

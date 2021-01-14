@@ -17,10 +17,7 @@ HRESULT item::init(float x, float y)
 
 	//좌표 초기화
 	_x = x;
-	_y = _y - 10;
-
-	//기존 좌표 _y는 변하므로 처음에 초기화된 y좌표가 필요하다
-	_arriveY = 100;
+	_y = _arriveY = y - 10;
 
 	//아이템 점프? 관련
 	_gravity = 0.11f;
@@ -31,26 +28,26 @@ HRESULT item::init(float x, float y)
 	//아이템 정보를 초기화 한다.
 	switch (_item)
 	{
-		case item::APPLE:
-			_itemImg = IMAGEMANAGER->findImage("Apple");
-			_heal = 1;
-			break;
-		case item::BOONGER:
-			_itemImg = IMAGEMANAGER->findImage("Boonger");
-			_heal = 2;
-			break;
-		case item::BURGER:
-			_itemImg = IMAGEMANAGER->findImage("Burger");
-			_heal = 3;
-			break;
-		case item::MINT:
-			_itemImg = IMAGEMANAGER->findImage("Mint");
-			_heal = 5;
-			break;
-		case item::SHRIMP:
-			_itemImg = IMAGEMANAGER->findImage("Shrimp");
-			_heal = 4;
-			break;
+	case item::APPLE:
+		_itemImg = IMAGEMANAGER->findImage("Apple");
+		_heal = 1;
+		break;
+	case item::BOONGER:
+		_itemImg = IMAGEMANAGER->findImage("Boonger");
+		_heal = 2;
+		break;
+	case item::BURGER:
+		_itemImg = IMAGEMANAGER->findImage("Burger");
+		_heal = 3;
+		break;
+	case item::MINT:
+		_itemImg = IMAGEMANAGER->findImage("Mint");
+		_heal = 5;
+		break;
+	case item::SHRIMP:
+		_itemImg = IMAGEMANAGER->findImage("Shrimp");
+		_heal = 4;
+		break;
 	}
 
 	//아이템 렉트를 생성한다.
@@ -78,4 +75,15 @@ void item::update()
 void item::render(POINT camera)
 {
 	_itemImg->render(getMemDC(), _itemRc.left, _itemRc.top, camera);
+}
+
+bool item::ItemAcheive()
+{
+	//아이템이 땅에 안착하지 못했다면 반환
+	if (_arriveY > _y) return false;
+
+	//아이템이 땅에 안착했다면
+	_item = REMOVE;
+
+	return true;
 }
