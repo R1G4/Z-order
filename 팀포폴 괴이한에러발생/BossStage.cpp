@@ -26,7 +26,9 @@ HRESULT BossStage::init()
 	_boss_i = IMAGEMANAGER->findImage("미스즈1");
 
 	_player->init();
-	_player->setKyokoPoint(WINSIZEX / 2, 1000);
+	_player->setKyokoPoint(WINSIZEX / 2 + 500, WINSIZEY / 2 + 700);
+	_boss->setBossPoint(WINSIZEX / 2 + 1300, WINSIZEY / 2 + 500);
+
 	_door_rc = RectMake(100, 450, 180, 200);
 	UI = new UIManager;
 	UI->setKyokoMemory(_player);
@@ -63,6 +65,13 @@ void BossStage::update()
 		_opt->update();
 		changeMap();
 		picCollision();
+		//보스 점프,태클시 카메라 흔들림
+		//CAMERAMANAGER->shaking(&camera, 3);
+		if (_boss->getBossDirection() == BOSS_LEFT_JUMPDOWN_END || _boss->getBossDirection() == BOSS_RIGHT_JUMPDOWN_END
+			|| _boss->getBossDirection() == BOSS_LEFT_TACKLE || _boss->getBossDirection() == BOSS_RIGHT_TACKLE)
+		{
+			CAMERAMANAGER->shaking(&camera, 3);
+		}
 	}
 	VIDEOMANAGER->endVideo();
 	if (!VIDEOMANAGER->checkPlay() && _bossPhase == INTRO_SCENE)
@@ -118,15 +127,6 @@ void BossStage::update()
 				_boss_i = IMAGEMANAGER->findImage("미스즈3");
 
 		}
-
-		//보스 점프,태클시 카메라 흔들림
-		//CAMERAMANAGER->shaking(&camera, 3);
-		if (_boss->getBossDirection() == BOSS_LEFT_JUMPDOWN_END || _boss->getBossDirection() == BOSS_RIGHT_JUMPDOWN_END
-			|| _boss->getBossDirection() == BOSS_LEFT_TACKLE || _boss->getBossDirection() == BOSS_RIGHT_TACKLE)
-		{
-			CAMERAMANAGER->shaking(&camera, 3);
-		}
-
 		// 보스 잡고난다음 다이어로그
 		if (_string_count_2 < _vScriptEnd.size() - 1 && _bossPhase == AFTER_FIGHT_DIALOG)
 		{
@@ -196,15 +196,13 @@ void BossStage::render()
 		stage1Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
-	UI->render();
-	zOrder();
 
-	
 	_player->deadRender();
-
 	_boss->hpRender();
+	UI->render();
+	_boss->hpRender();
+	zOrder();
 	_opt->render();
-
 
 	if (_bossPhase == BEFORE_FIGHT_DIALOG)
 	{
@@ -293,7 +291,7 @@ void BossStage::attackCollision()
 	{
 		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
 		{
-			_boss->hitDamage(10);
+			_boss->hitDamage(6);
 			_boss->rightAttackedMotion();
 		}
 	}
@@ -302,7 +300,7 @@ void BossStage::attackCollision()
 	{
 		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
 		{
-			_boss->hitDamage(10);
+			_boss->hitDamage(6);
 			_boss->leftAttackedMotion();
 		}
 	}
