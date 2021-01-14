@@ -84,6 +84,7 @@ bool item::ItemAcheive()
 
 	//아이템이 땅에 안착했다면
 	_item = REMOVE;
+	SOUNDMANAGER->play("ItemAcheive", 0.1f);
 
 	return true;
 }
