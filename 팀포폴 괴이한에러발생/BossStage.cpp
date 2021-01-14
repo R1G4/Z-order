@@ -187,9 +187,10 @@ void BossStage::render()
 		stage1Pic->render(getMemDC(), 0, 0, camera);
 		Rectangle(getMemDC(), _door_rc, camera);
 	}
+	UI->render();
 	zOrder();
 
-	UI->render();
+	
 	_player->deadRender();
 	_opt->render();
 

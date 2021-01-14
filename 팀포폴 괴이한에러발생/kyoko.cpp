@@ -1839,7 +1839,7 @@ void kyoko::attackedMotion()
 	// 피격시 행동제한을 걸고 피격모션 재생
 	if (_isAttacked && !_isStartMotionAttaced)
 	{
-		STATUSMANAGER->damaged(10);
+		STATUSMANAGER->damaged(5);
 
 
 		// 왼쪽에서 맞으면
