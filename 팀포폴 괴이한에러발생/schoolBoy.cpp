@@ -200,21 +200,21 @@ void schoolBoy::addFrame()
 	aniRightDownup = new animation;
 	aniRightDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniRightDownup->setPlayFrame(0, 26, false, false, leftStun, this);
-	aniRightDownup->setFPS(6);
+	aniRightDownup->setFPS(10);
 	aniLeftDownup = new animation;
 	aniLeftDownup->init(imgDownup->getWidth(), imgDownup->getHeight(), imgDownup->getFrameWidth(), imgDownup->getFrameHeight());
 	aniLeftDownup->setPlayFrame(53, 27, false, false, leftStun, this);
-	aniLeftDownup->setFPS(6);
+	aniLeftDownup->setFPS(10);
 
 	//Knockdown 상태
 	aniRightKnockdown = new animation;
 	aniRightKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniRightKnockdown->setPlayFrame(0, 18, false, false, setDead, this);
-	aniRightKnockdown->setFPS(6);
+	aniRightKnockdown->setFPS(10);
 	aniLeftKnockdown = new animation;
 	aniLeftKnockdown->init(imgKnockdown->getWidth(), imgKnockdown->getHeight(), imgKnockdown->getFrameWidth(), imgKnockdown->getFrameHeight());
 	aniLeftKnockdown->setPlayFrame(37, 19, false, false, setDead, this);
-	aniLeftKnockdown->setFPS(6);
+	aniLeftKnockdown->setFPS(10);
 
 	//Dazed 상태
 	aniRightDazed = new animation;
