@@ -5,6 +5,8 @@ struct tagTab
 {
 	RECT rc;
 	image* img;
+	image* minimap;
+	image* miniMapOn;
 	float x, y;
 	bool select;
 	bool move;

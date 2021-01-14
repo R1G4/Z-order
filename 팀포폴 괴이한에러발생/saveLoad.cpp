@@ -13,7 +13,6 @@ HRESULT saveLoad::init()
 {
 	SOUNDMANAGER->addSound("saveLoad", "sound/BGM/River City Girls OST - File Select Theme.mp3", true, true);
 	SOUNDMANAGER->play("saveLoad", 0.5f);
-
 	addimage();
 	selecttab();
 	for (int i = 0; i < 3; i++)
@@ -39,16 +38,61 @@ HRESULT saveLoad::init()
 	{
 		tab[0].stageNum = (atoi(vSaveA[1].c_str()));
 		tab[0].HP= (atoi(vSaveA[0].c_str()));
+		switch (tab[0].stageNum)
+		{
+		case 1:
+			tab[0].minimap = IMAGEMANAGER->findImage("MStage1");
+			tab[0].miniMapOn = IMAGEMANAGER->findImage("MStage1On");
+			break;
+		case 2:
+			tab[0].minimap = IMAGEMANAGER->findImage("MStage2");
+			tab[0].miniMapOn = IMAGEMANAGER->findImage("MStage2On");
+			break;
+		case 3:
+			tab[0].minimap = IMAGEMANAGER->findImage("MStage3");
+			tab[0].miniMapOn = IMAGEMANAGER->findImage("MStage3On");
+			break;
+		}
 	}
 	if (vSaveB.size() != 1)
 	{
 		tab[1].HP = (atoi(vSaveA[0].c_str()));
 		tab[1].stageNum = (atoi(vSaveB[1].c_str()));
+		switch (tab[1].stageNum)
+		{
+		case 1:
+			tab[1].minimap = IMAGEMANAGER->findImage("MStage1");
+			tab[1].miniMapOn = IMAGEMANAGER->findImage("MStage1On");
+			break;
+		case 2:
+			tab[1].minimap = IMAGEMANAGER->findImage("MStage2");
+			tab[1].miniMapOn = IMAGEMANAGER->findImage("MStage2On");
+			break;
+		case 3:
+			tab[1].minimap = IMAGEMANAGER->findImage("MStage3");
+			tab[1].miniMapOn = IMAGEMANAGER->findImage("MStage3On");
+			break;
+		}
 	}
 	if (vSaveC.size() != 1) 
 	{ 
 		tab[2].HP = (atoi(vSaveA[0].c_str()));
 		tab[2].stageNum = (atoi(vSaveC[1].c_str())); 
+		switch (tab[2].stageNum)
+		{
+		case 1:
+			tab[2].minimap = IMAGEMANAGER->findImage("MStage1");
+			tab[2].miniMapOn = IMAGEMANAGER->findImage("MStage1On");
+			break;
+		case 2:
+			tab[2].minimap = IMAGEMANAGER->findImage("MStage2");
+			tab[2].miniMapOn = IMAGEMANAGER->findImage("MStage2On");
+			break;
+		case 3:
+			tab[2].minimap = IMAGEMANAGER->findImage("MStage3");
+			tab[2].miniMapOn = IMAGEMANAGER->findImage("MStage3On");
+			break;
+		}
 	}
 	return S_OK;
 }
@@ -159,7 +203,12 @@ void saveLoad::render()
 		DeleteObject(brush1);
 
 	}
-
+	if(tab[0].select)tab[0].miniMapOn->render(getMemDC(), tab[0].rc.left + 7, tab[0].rc.top + 50);
+	else tab[0].minimap->render(getMemDC(), tab[0].rc.left+7, tab[0].rc.top+50);
+	if(tab[1].select)tab[1].miniMapOn->render(getMemDC(), tab[1].rc.left + 7, tab[1].rc.top + 50);
+	else tab[1].minimap->render(getMemDC(), tab[1].rc.left+7, tab[1].rc.top+50);
+	if(tab[2].select)tab[2].miniMapOn->render(getMemDC(), tab[2].rc.left + 7, tab[2].rc.top + 50);
+	else tab[2].minimap->render(getMemDC(), tab[2].rc.left+7, tab[2].rc.top+50);
 }
 
 void saveLoad::addimage()
@@ -186,6 +235,15 @@ void saveLoad::addimage()
 	IMAGEMANAGER->addImage("1_on", "image/savescene/¸Ê/stage1_on.bmp", 114, 130, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("2_on", "image/savescene/¸Ê/stage2_on.bmp", 114, 130, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("3_on", "image/savescene/¸Ê/stage3_on.bmp", 114, 130, true, RGB(255, 0, 255));
+
+	//Á¶±×¸¶ÇÑ ¸Ê ÀÌ¹ÌÁö
+	IMAGEMANAGER->addImage("MStage1", "image/savescene/map/stage1_off.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MStage1On", "image/savescene/map/stage1_on.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MStage2", "image/savescene/map/stage2_off.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MStage2On", "image/savescene/map/stage2_on.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MStage3", "image/savescene/map/stage3_off.bmp", 114, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MStage3On", "image/savescene/map/stage3_on.bmp", 114, 130, true, RGB(255, 0, 255));
+
 }
 
 void saveLoad::selecttab()

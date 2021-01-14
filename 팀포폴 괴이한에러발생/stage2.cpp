@@ -110,7 +110,10 @@ void stage2::update()
 
 	// 여기다가 세이브로드창으로 돌아가게 해주심됨다
 	if (_player->getDeadLastFrame())
-		cout << "데스" << endl;
+	{
+		SOUNDMANAGER->stop("MainStage");
+		SCENEMANAGER->changeScene("세이브로드");
+	}
 }
 
 void stage2::render()
