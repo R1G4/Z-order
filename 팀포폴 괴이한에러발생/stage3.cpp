@@ -94,13 +94,6 @@ void stage3::render()
 		_item->render(camera);
 	}
 
-	//임시 에너미 랜더~
-	for (int i = 0; i < _em->getVEnemy().size(); i++)
-	{
-		enemy* _enemy = _em->getVEnemy()[i];
-		_enemy->render(camera);
-	}
-
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
 		stage3Pic->render(getMemDC(), 0, 0, camera);
@@ -131,7 +124,7 @@ void stage3::render()
 		chain[3]->frameRender(getMemDC(), WINSIZEX - chain[3]->getFrameWidth(), UI->getBlack1().bottom);
 	}
 
-	_player->render(camera);
+	zOrder();
 	Lobj.img->alphaRender(getMemDC(), Lobj.x, Lobj.y, alpha, camera);
 	UI->render();
 	_opt->render();

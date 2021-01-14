@@ -16,10 +16,8 @@ void BossStage::zOrder()
 		{
 			_boss->render(camera);
 		}
-
-
 	}
-
+	_vZorderB.clear();
 }
 
 void BossStage::quickSort(int a, int b)
