@@ -199,6 +199,10 @@ void enemy::hit(DIRECTION direction)
 
 	//체력 설정
 	_hp--;
+
+	//방향 초기화
+	_direction = direction;
+
 	if (_hp <= 0)
 	{
 		//체력이 0 이하라면 knockdown 상태 설정
@@ -230,7 +234,12 @@ void enemy::downup(DIRECTION direction)
 	//체력 설정
 	_hp -= 2;
 
+	//방향 초기화
+	_direction = direction;
+
+	//밀린 상태로 전환
 	_isPush = true;
+
 	if (_hp <= 0)
 	{
 		//체력이 0 이하라면 knockdown 상태 설정

@@ -161,6 +161,7 @@ DWORD CALLBACK threadFunction(LPVOID lpParameter)
 	IMAGEMANAGER->addImage("Burger", "image/item/burger.bmp", 72, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Mint", "image/item/mint.bmp", 58, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Shrimp", "image/item/shrimp.bmp", 57, 60, true, RGB(255, 0, 255));
+	SOUNDMANAGER->addSound("ItemAcheive", "sound/effect/character/pickup_food.wav", false, false);
 
 	//NPC Ãß°¡
 	IMAGEMANAGER->addFrameImage("NpcBoyIdle", "image/npc/npc_boy.bmp", 0, 0, 396, 480, 4, 2, true, RGB(255, 0, 255));
