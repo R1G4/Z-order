@@ -9,7 +9,7 @@ HRESULT boss::init()
 	setKeyAnimation();
 
 	_bossHPBar = new bossHPBar;
-	_bossHPBar->init(WINSIZEX / 2, WINSIZEY / 2 + 100, 437, 35);
+	_bossHPBar->init(WINSIZEX / 2, WINSIZEY / 2 + 300, 437, 35);
 	_bossHPBar->setGauge(_bossHP, _maxHP);
 
 	_bossDirection = BOSS_LEFT_IDLE;
@@ -28,26 +28,30 @@ HRESULT boss::init()
 	_isAttacked = false;
 	_isGetUp = false;
 	_isDizzy = false;
-
+	_isRoar = false;
+	_isAlive = true;
 	_leftAttackedCount = 0;
 	_rightAttackedCount = 0;
 
 	_speed = 1.5;
 	_angle = PI / 2;
 	_angle2 = PI / 2;
-	_x = WINSIZEX / 2 + 380;
+	_x = WINSIZEX / 2 + 400;
 	_y = WINSIZEY / 2 + 100;
 	_x2 = WINSIZEX / 2 + 400;
-	_y2 = WINSIZEY / 2 + 70;
+	_y2 = WINSIZEY / 2 + 100;
 
 
 	_boss->setX(_x);
 	_boss->setY(_y);
 	_bossShadow->setX(_x2);
-	_bossShadow->setY(_y2 + 175);
+	_bossShadow->setY(_y2 + 180);
 
 	_rcBoss = RectMakeCenter(_x, _y, _boss->getFrameWidth(), _boss->getFrameHeight() - 100);
-	_rcBossShadow = RectMakeCenter(_x2, _y2 + 175, _bossShadow->getWidth(), _bossShadow->getHeight());
+	_rcBossShadow = RectMakeCenter(_x2, _y2 + 150, _bossShadow->getWidth(), _bossShadow->getHeight());
+	_rcNear = RectMakeCenter(_boss->getX(), _boss->getY(), 600, 400);
+	_rcMiddle = RectMakeCenter(_boss->getX(), _boss->getY(), 800, 500);
+	_rcFar = RectMakeCenter(_x, _y, 1000, 600);
 	_rcBossAttack = RectMake(0, 0, 0, 0);
 
 	setAttackInfo();
@@ -79,16 +83,6 @@ void boss::setAttackRect(BOSSDIRECTION direction)
 		else
 			_rcBossAttack = RectMake(_x, _y, 0, 0);
 		break;
-	case BOSS_LEFT_ELBOW: case BOSS_LEFT_SLAP:
-		attackinfo = _mAttackInfo.find(direction)->second;
-		index = (int)_bossMotion->getIndex();
-		if (attackinfo.index == index)
-		{
-			_rcBossAttack = RectMake(_rcBoss.left - 50, _rcBoss.top + 100, attackinfo.width, attackinfo.height);
-		}
-		else
-			_rcBossAttack = RectMake(_x, _y, 0, 0);
-		break;
 
 	case BOSS_RIGHT_GETUP:
 		attackinfo = _mAttackInfo.find(direction)->second;
@@ -110,22 +104,13 @@ void boss::setAttackRect(BOSSDIRECTION direction)
 		else
 			_rcBossAttack = RectMake(_x, _y, 0, 0);
 		break;
-	case BOSS_RIGHT_ROAR:
+
+	case BOSS_LEFT_ELBOW: case BOSS_LEFT_SLAP:
 		attackinfo = _mAttackInfo.find(direction)->second;
 		index = (int)_bossMotion->getIndex();
 		if (attackinfo.index == index)
 		{
-			_rcBossAttack = RectMake(_rcBoss.right - 300, _rcBoss.bottom - 250, attackinfo.width, attackinfo.height);
-		}
-		else
-			_rcBossAttack = RectMake(_x, _y, 0, 0);
-		break;
-	case BOSS_LEFT_ROAR:
-		attackinfo = _mAttackInfo.find(direction)->second;
-		index = (int)_bossMotion->getIndex();
-		if (attackinfo.index == index)
-		{
-			_rcBossAttack = RectMake(_rcBoss.left - 100, _rcBoss.bottom - 250, attackinfo.width, attackinfo.height);
+			_rcBossAttack = RectMake(_rcBoss.left - 50, _rcBoss.top + 100, attackinfo.width, attackinfo.height);
 		}
 		else
 			_rcBossAttack = RectMake(_x, _y, 0, 0);
@@ -149,6 +134,11 @@ void boss::setAttackInfo()
 	_mAttackInfo.insert(make_pair(BOSS_RIGHT_ELBOW, attackTemp));
 	_mAttackInfo.insert(make_pair(BOSS_LEFT_ELBOW, attackTemp));
 
+	////콤보 1
+	/*attackTemp.index = 6;
+	attackTemp.plusY = 0;
+	attackTemp.width = 300;
+	attackTemp.height = 300;*/
 	attackTemp.index = 8;
 	attackTemp.plusY = 150;
 	attackTemp.width = 150;
@@ -163,12 +153,19 @@ void boss::setAttackInfo()
 	_mAttackInfo.insert(make_pair(BOSS_LEFT_GETUP, attackTemp));
 	_mAttackInfo.insert(make_pair(BOSS_RIGHT_GETUP, attackTemp));
 
-	attackTemp.index = 5;
-	attackTemp.plusY = 200;
-	attackTemp.width = 300;
-	attackTemp.height = 300;
-	_mAttackInfo.insert(make_pair(BOSS_LEFT_ROAR, attackTemp));
-	_mAttackInfo.insert(make_pair(BOSS_RIGHT_ROAR, attackTemp));
+	////콤보2
+	//attackTemp.index = 2;
+	//attackTemp.plusY = 10;
+	//attackTemp.width = 70;
+	//attackTemp.height = 70;
+	//_mAttackInfo.insert(make_pair(COMBO_ATTACK_2, attackTemp));
+
+	////콤보3
+	//attackTemp.index = 2;
+	//attackTemp.plusY = 40;
+	//attackTemp.width = 80;
+	//attackTemp.height = 40;
+	//_mAttackInfo.insert(make_pair(COMBO_ATTACK_3, attackTemp));
 }
 
 
@@ -190,13 +187,12 @@ void boss::move()
 		_angle = getAngle(_x2, _y2, (_player->getShadow().left + _player->getShadow().right) / 2, (_player->getShadow().top + _player->getShadow().bottom) / 2);
 		_x += cosf(_angle) * BOSSSPEED;
 		_y += -sinf(_angle) * BOSSSPEED;
-		_x2 += cosf(_angle) * BOSSSPEED * 3;
-		_y2 += -sinf(_angle) * BOSSSPEED * 3;
+		_x2 += cosf(_angle) * BOSSSPEED;
+		_y2 += -sinf(_angle) * BOSSSPEED;
 	}
-
 	if (_bossDirection == BOSS_LEFT_TACKLE || _bossDirection == BOSS_RIGHT_TACKLE)
 	{
-		_angle = getAngle(_x2, _y2, _player->getKyokoPoint().x, _player->getKyokoPoint().y); /*(_player->getShadow().left + _player->getShadow().right) / 2, (_player->getShadow().top + _player->getShadow().bottom) / 2);*/
+		_angle = getAngle(_x2, _y2, (_player->getShadow().left + _player->getShadow().right) / 2, (_player->getShadow().top + _player->getShadow().bottom) / 2);
 		_x += cosf(_angle) * BOSSSPEED * 3;
 		_y += -sinf(_angle) * BOSSSPEED * 3;
 		_x2 += cosf(_angle) * BOSSSPEED * 3;
@@ -218,17 +214,16 @@ void boss::update()
 	RECT _temp;
 
 	_distance = getDistance(_x, _y, (_player->getRect().left + _player->getRect().right) / 2, (_player->getRect().top + _player->getRect().bottom) / 2);
-	//평상시 걷거나 할때 상태
+
 	if (!_isJump)
 	{
-		_rcBoss = RectMakeCenter(_x, _y, _boss->getFrameWidth(), _boss->getFrameHeight());		//보스렉트
-		_rcBossShadow = RectMakeCenter(_x, _rcBoss.bottom, _bossShadow->getWidth(), _bossShadow->getHeight());	//보스 그림자 렉트
+		_rcBoss = RectMakeCenter(_x2, _y, _boss->getFrameWidth(), _boss->getFrameHeight());
+		_rcBossShadow = RectMakeCenter(_x2, _y2 + 180, _bossShadow->getWidth(), _bossShadow->getHeight());
 	}
-	//점프뛰었을때
 	else
 	{
 		_rcBoss = RectMakeCenter(_x2, _y, _boss->getFrameWidth(), _boss->getFrameHeight());
-		_rcBossShadow = RectMakeCenter(_x2, _y2, _bossShadow->getWidth(), _bossShadow->getHeight());
+		_rcBossShadow = RectMakeCenter(_x2, _y2 + 180, _bossShadow->getWidth(), _bossShadow->getHeight());
 	}
 
 
@@ -248,13 +243,13 @@ void boss::update()
 
 
 		//근거리
-		if (_distance < 500 && !_isAttack && _bossHP > 0)
+		if (_distance < 500 && !_isAttack)
 		{
 			//플레이어가 우측에 있을때
 			if (_player->getKyokoPoint().x > _x && !_isJump)
 			{
 				RECT _temp;
-				if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+				if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 400, _boss->getFrameHeight() - 100)))
 				{
 					int rnd = RND->getFromIntTo(0, 2);
 					BOSSDIRECTION tempDirection = rnd == 0 ? BOSS_RIGHT_ELBOW : BOSS_RIGHT_SLAP;
@@ -291,7 +286,7 @@ void boss::update()
 			else
 			{
 				RECT _temp;
-				if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+				if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 400, _boss->getFrameHeight() - 100)))
 				{
 					int rnd = RND->getFromIntTo(0, 2);
 					BOSSDIRECTION tempDirection = rnd == 0 ? BOSS_LEFT_ELBOW : BOSS_LEFT_SLAP;
@@ -327,15 +322,13 @@ void boss::update()
 		}
 
 		//원거리
-		if (_distance > 500 && !_isAttack && _pahse != PAHSE_1 && _bossHP > 0)	// _isAttack 한번만 돌게
+		if (_distance > 500 && !_isAttack && _pahse != PAHSE_1)	// _isAttack 한번만 돌게
 		{
 			int rnd = RND->getInt(2);
 
 			switch (rnd)
 			{
 			case 0:
-				_y2 = _rcBoss.bottom;
-
 				if (_player->getKyokoPoint().x > _x)
 				{
 					_bossMotion->stop();
@@ -345,6 +338,8 @@ void boss::update()
 					_bossMotion->start();
 					_isAttack = true;
 					_isJump = true;
+					cout << "반복";
+
 				}
 				else
 				{
@@ -355,6 +350,7 @@ void boss::update()
 					_bossMotion->start();
 					_isAttack = true;
 					_isJump = true;
+					cout << "반복";
 				}
 				break;
 			case 1:
@@ -406,9 +402,9 @@ void boss::update()
 	rightDizzy();
 	pahse();
 	setAttackRect(_bossDirection);
-	effect(_bossDirection);
+
 	_bossHPBar->setX(WINSIZEX / 2 - 250);
-	_bossHPBar->setY(WINSIZEY / 2 + 245);
+	_bossHPBar->setY(WINSIZEY / 2 + 300);
 	_bossHPBar->setGauge(_bossHP, _maxHP);
 	_bossHPBar->update();
 
@@ -419,6 +415,7 @@ void boss::jumpUp()
 	RECT _temp;
 	_jumpPower -= _gravity;
 	_y -= _jumpPower;
+
 
 	if (_rcBoss.top <= -1000 && _bossDirection == BOSS_RIGHT_JUMPUP)
 	{
@@ -446,8 +443,8 @@ void boss::jumpUp()
 
 	if (_bossMotion->getBossIndex() >= 6 && _isJump && !_isJumping)
 	{
-		_jumpPower = 45;
-		_gravity = 0.6f;
+		_jumpPower = 15;
+		_gravity = 0.4f;
 	}
 	if (_rcBoss.bottom >= _rcBossShadow.top && _isJumping && _bossDirection == BOSS_RIGHT_JUMPDOWN)
 	{
@@ -460,8 +457,7 @@ void boss::jumpUp()
 		_bossDirection = BOSS_RIGHT_JUMPDOWN_END;
 		_boss = IMAGEMANAGER->findImage("boss_jumpDownEnd");
 		_bossMotion = KEYANIMANAGER->findAnimation("boss_rightJumpDownEnd");
-		_x = _x2;
-		if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
 		{
 			_player->setHit(true);
 		}
@@ -478,8 +474,7 @@ void boss::jumpUp()
 		_bossDirection = BOSS_LEFT_JUMPDOWN_END;
 		_boss = IMAGEMANAGER->findImage("boss_jumpDownEnd");
 		_bossMotion = KEYANIMANAGER->findAnimation("boss_leftJumpDownEnd");
-		_x = _x2;
-		if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
 		{
 			_player->setHit(true);
 		}
@@ -503,7 +498,7 @@ void boss::tackle()
 		_bossMotion->start();
 		_isAttack = true;
 		_isTackle = true;
-		if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
 		{
 			_bossMotion->stop();
 			_bossDirection = BOSS_RIGHT_TAUNT;
@@ -524,7 +519,7 @@ void boss::tackle()
 		_bossMotion->start();
 		_isAttack = true;
 		_isTackle = true;
-		if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
 		{
 			_bossMotion->stop();
 			_bossDirection = BOSS_LEFT_TAUNT;
@@ -671,7 +666,7 @@ void boss::leftDizzy()
 			_count++;
 			if (_count < 200)
 			{
-				if (IntersectRect(&_temp, &_player->getAttackRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+				if (IntersectRect(&_temp, &_player->getAttackRect(), &_rcBoss))
 				{
 					cout << "aaaa" << endl;
 					_bossMotion->stop();
@@ -730,7 +725,7 @@ void boss::rightDizzy()
 			_count++;
 			if (_count < 200)
 			{
-				if (IntersectRect(&_temp, &_player->getAttackRect(), &RectMakeCenter(_x, _y, 300, _boss->getFrameHeight() - 100)))
+				if (IntersectRect(&_temp, &_player->getAttackRect(), &_rcBoss))
 				{
 					_bossMotion->stop();
 					_bossDirection = BOSS_RIGHT_GROUNDHIT;
@@ -799,6 +794,7 @@ void boss::rightAttackted(void * obj)
 	}
 	else if (k->_bossHP == 70 || k->_bossHP == 30)
 	{
+		cout << "wwwwwwwwwwwww" << endl;
 		k->_bossDirection = BOSS_RIGHT_ROAR;
 		k->_boss = IMAGEMANAGER->findImage("boss_roar");
 		k->_bossMotion = KEYANIMANAGER->findAnimation("boss_rightRoar");
@@ -957,41 +953,7 @@ void boss::setLeftDieEnd(void * obj)
 	k->_bossMotion->start();
 }
 
-void boss::effect(BOSSDIRECTION direction)
-{
-	RECT _temp;
-	switch (direction)
-	{
-	case BOSS_LEFT_JUMPDOWN_END: case BOSS_RIGHT_JUMPDOWN_END:
-		CAMERAMANAGER->setTime(3);
-		EFFECTMANAGER->play("crack", _x, _rcBoss.bottom - 30);
-		break;
-	case BOSS_LEFT_SLAP: case BOSS_LEFT_ELBOW: case BOSS_LEFT_GETUP: case BOSS_LEFT_ROAR:
-		if (IntersectRect(&_temp, &_player->getRect(), &_rcBossAttack))
-		{
-			EFFECTMANAGER->play("hit", _x - 150, _y);
-		}
-		break;
-	case BOSS_RIGHT_SLAP: case BOSS_RIGHT_ELBOW: case BOSS_RIGHT_GETUP: case BOSS_RIGHT_ROAR:
-		if (IntersectRect(&_temp, &_player->getRect(), &_rcBossAttack))
-		{
-			EFFECTMANAGER->play("hit", _x + 150, _y);
-		}
-		break;
-	case BOSS_LEFT_TACKLE:
-		if (_bossMotion->getBossIndex() >= 6)
-		{
-			EFFECTMANAGER->play("dash", _rcBoss.right + 10, _y + 50);
-			CAMERAMANAGER->setTime(2);
-		}
-		break;
-	case BOSS_RIGHT_TACKLE:
-		EFFECTMANAGER->play("dash", _rcBoss.left - 10, _y + 50);
-		CAMERAMANAGER->setTime(2);
-		break;
 
-	}
-}
 void boss::setRightDieEnd(void * obj)
 {
 	boss* k = (boss*)obj;
@@ -1005,20 +967,20 @@ void boss::setRightDieEnd(void * obj)
 
 void boss::render()
 {
-	//_bossHPImage->render(getMemDC(), WINSIZEX / 2 - 265, WINSIZEY / 2 + 285);
+	_bossHPImage->render(getMemDC(), WINSIZEX / 2 - 265, WINSIZEY / 2 + 285);
 	//Rectangle(getMemDC(), _rcBoss);
-	//Rectangle(getMemDC(), _rcBossAttack);
+	Rectangle(getMemDC(), _rcBossAttack);
 
 	_boss->aniRender(getMemDC(), _rcBoss.left, _rcBoss.top, _bossMotion);
 	_bossShadow->render(getMemDC(), _rcBossShadow.left, _rcBossShadow.top);
 
-	//_bossHPBar->render();
+	_bossHPBar->render();
 
 }
 
 void boss::render(POINT camera)
 {
-	//_bossHPImage->render(getMemDC(), WINSIZEX / 2 - 265, WINSIZEY / 2 + 285);
+	_bossHPImage->render(getMemDC(), WINSIZEX / 2 - 265, WINSIZEY / 2 + 285);
 
 	if (KEYMANAGER->isToggleKey(VK_TAB))
 	{
@@ -1026,18 +988,17 @@ void boss::render(POINT camera)
 		Rectangle(getMemDC(), _rcBossAttack, camera);
 
 	}
-	EFFECTMANAGER->render(camera);
+	Rectangle(getMemDC(), _rcBossAttack, camera);
+
+
 	_bossShadow->render(getMemDC(), _rcBossShadow.left, _rcBossShadow.top, camera);
 	_boss->aniRender(getMemDC(), _rcBoss.left, _rcBoss.top, _bossMotion, camera);
 
-	//_bossHPBar->render();
-
-}
-
-void boss::hpRender()
-{
-	_bossHPImage->render(getMemDC(), WINSIZEX / 2 - 265, WINSIZEY / 2 + 230);
 	_bossHPBar->render();
+
+
+
+
 }
 
 void boss::hitDamage(float damage)
@@ -1048,29 +1009,32 @@ void boss::hitDamage(float damage)
 void boss::setImage()
 {
 	_boss = IMAGEMANAGER->addFrameImage("boss_idle", "image/boss/boss_idle.bmp", 0, 0, 3180, 634, 12, 2, true, RGB(255, 0, 255));
-	_bossShadow = IMAGEMANAGER->addImage("boss_shadow", "image/boss/boss_shadow3.bmp", 250, 70, true, RGB(255, 0, 255));
+	_bossShadow = IMAGEMANAGER->addImage("boss_shadow", "image/boss/boss_shadow.bmp", 200, 70, true, RGB(255, 0, 255));
 	_bossMap = IMAGEMANAGER->addImage("boss_map", "image/boss/boss_map.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	_bossHPImage = IMAGEMANAGER->addImage("boss_HP", "image/boss/boss_HP.bmp", 560, 84, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("boss_tackle", "image/boss/boss_tackle.bmp", 0, 0, 2882, 576, 11, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("boss_tackle", "image/boss/boss_tackle3.bmp", 0, 0, 2882, 576, 11, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_die", "image/boss/boss_die.bmp", 0, 0, 4576, 576, 13, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_taunt", "image/boss/boss_taunt.bmp", 0, 0, 6900, 600, 23, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_slap", "image/boss/boss_slap.bmp", 0, 0, 5278, 582, 14, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_elbow", "image/boss/boss_elbow.bmp", 0, 0, 2915, 652, 11, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_punch", "image/boss/boss_punch.bmp", 0, 0, 8100, 600, 27, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_wupunch", "image/boss/boss_wupunch.bmp", 0, 0, 11880, 594, 27, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("boss_roar", "image/boss/boss_roar.bmp", 0, 0, 2916, 576, 12, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("boss_roar", "image/boss/boss_roar.bmp", 0, 0, 3600, 600, 12, 2, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("boss_tackle", "image/boss/boss_tackle.bmp", 0, 0, 2882, 576, 11, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_walk", "image/boss/boss_walk.bmp", 0, 0, 2110, 588, 10, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_down", "image/boss/boss_down.bmp", 0, 0, 6600, 450, 22, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_jumpUp", "image/boss/boss_jumpUp.bmp", 0, 0, 1888, 672, 8, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_jumpDown", "image/boss/boss_jumpDown.bmp", 0, 0, 480, 460, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_jumpDownEnd", "image/boss/boss_jumpDownEnd.bmp", 0, 0, 1224, 422, 6, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("boss_getUp", "image/boss/boss_getUp.bmp", 0, 0, 3735, 580, 15, 2, true, RGB(255, 0, 255));
+	//IMAGEMANAGER->addFrameImage("boss_getUp", "image/boss/boss_getUp.bmp", 0, 0, 4500, 600, 15, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("boss_getUp", "image/boss/boss_getUp4.bmp", 0, 0, 4500, 600, 15, 2, true, RGB(255, 0, 255));
 	//IMAGEMANAGER->addFrameImage("boss_getHit", "image/boss/boss_getHit.bmp", 0, 0, 2700, 600, 9, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_getHit_1", "image/boss/boss_getHit_1.bmp", 0, 0, 540, 540, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_getHit_2", "image/boss/boss_getHit_2.bmp", 0, 0, 560, 560, 2, 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("boss_getHit_3", "image/boss/boss_getHit_3.bmp", 0, 0, 2700, 540, 10, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("boss_dizzy", "image/boss/boss_dizzy96.bmp", 0, 0, 1024, 634, 4, 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("boss_groundHit", "image/boss/boss_groundHit99.bmp", 0, 0, 1036, 660, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("boss_dizzy", "image/boss/boss_dizzy.bmp", 0, 0, 1024, 434, 4, 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("boss_groundHit", "image/boss/boss_groundHit.bmp", 0, 0, 1036, 460, 4, 2, true, RGB(255, 0, 255));
+
 }
 
 void boss::setKeyAnimation()
@@ -1079,19 +1043,19 @@ void boss::setKeyAnimation()
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightIdle", "boss_idle", 0, 11, 10, true, 10);	//0프레임부터 10까지. 프레임 루프 true or false, 버퍼 10은 뭔지모름
 	KEYANIMANAGER->addArrayFrameAnimation("boss_leftWalk", "boss_walk", 19, 10, 10, true, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightWalk", "boss_walk", 0, 9, 10, true, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_leftSlap", "boss_slap", 27, 14, 10, false, leftAttackted, this, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_rightSlap", "boss_slap", 0, 13, 10, false, rightAttackted, this, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_leftElbow", "boss_elbow", 21, 11, 10, false, leftAttackted, this, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_rightElbow", "boss_elbow", 0, 10, 10, false, rightAttackted, this, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_leftSlap", "boss_slap", 27, 14, 10, false, setLeftIdle, this, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_rightSlap", "boss_slap", 0, 13, 10, false, setRightIdle, this, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_leftElbow", "boss_elbow", 21, 11, 10, false, setLeftIdle, this, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_rightElbow", "boss_elbow", 0, 10, 10, false, setRightIdle, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_leftDie", "boss_die", 25, 13, 8, false, setLeftDieEnd, this, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_leftDieEND", "boss_die", 13, 17, 10, true, this, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_leftDieEND", "boss_die", 13, 17, 5, true, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightDie", "boss_die", 0, 12, 8, false, setRightDieEnd, this, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_rightDieEND", "boss_die", 8, 12, 10, true, this, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_rightDieEND", "boss_die", 8, 12, 5, true, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_leftPunch", "boss_punch", 53, 27, 10, false, setLeftIdle, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightPunch", "boss_punch", 0, 26, 10, false, setRightIdle, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_leftTackle", "boss_tackle", 21, 11, 10, false, setLeftIdle, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightTackle", "boss_tackle", 0, 10, 10, false, setRightIdle, this, 10);
-	KEYANIMANAGER->addArrayFrameAnimation("boss_leftTackleLoop", "boss_tackle", 18, 11, 10, true, 10);
+	KEYANIMANAGER->addArrayFrameAnimation("boss_leftTackleLoop", "boss_tackle", 15, 8, 10, true, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightTackleLoop", "boss_tackle", 0, 7, 10, true, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_leftDown", "boss_down", 43, 22, 8, false, setLeftIdle, this, 10);
 	KEYANIMANAGER->addArrayFrameAnimation("boss_rightDown", "boss_down", 0, 21, 8, false, setRightIdle, this, 10);

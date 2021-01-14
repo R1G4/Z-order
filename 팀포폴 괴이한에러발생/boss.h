@@ -122,8 +122,8 @@ public:
 	void leftDizzy();
 	void rightDizzy();
 
-	void hpRender();
-	void effect(BOSSDIRECTION direction);;
+
+
 
 
 	static void setRightIdle(void* obj);
@@ -139,11 +139,11 @@ public:
 
 
 
+	//공격 상태 및 공격 프레임에 따른 정보 초기화
 	virtual void setAttackInfo();
 	virtual void setAttackRect(BOSSDIRECTION direction);
 	float getBossPointX() { return _x; }
 	float getBossPointY() { return _y; }
-	BOSSDIRECTION getBossDirection() { return _bossDirection; }
 	inline RECT getBossRect() { return _rcBoss; }
 	inline RECT getBossAttackRect() { return _rcBossAttack; }
 };

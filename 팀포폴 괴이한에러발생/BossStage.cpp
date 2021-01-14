@@ -104,12 +104,6 @@ void BossStage::update()
 				_boss_i = IMAGEMANAGER->findImage("미스즈3");
 
 		}
-		//보스 점프,태클 상태일때 카메라 흔들림
-		if (_boss->getBossDirection() == BOSS_LEFT_JUMPDOWN_END || _boss->getBossDirection() == BOSS_RIGHT_JUMPDOWN_END
-			|| _boss->getBossDirection() == BOSS_LEFT_TACKLE || _boss->getBossDirection() == BOSS_RIGHT_TACKLE)
-		{
-			CAMERAMANAGER->shaking(&camera, 3);
-		}
 		// 보스 잡고난다음 다이어로그
 		if (_string_count_2 < _vScriptEnd.size() - 1 && _bossPhase == AFTER_FIGHT_DIALOG)
 		{
@@ -165,7 +159,7 @@ void BossStage::render()
 	_opt->render();
 
 	UI->render();
-	_boss->hpRender();
+
 	if (_bossPhase == BEFORE_FIGHT_DIALOG)
 	{
 		stage1Alpha->alphaRender(getMemDC(), _alpha);
