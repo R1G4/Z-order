@@ -28,6 +28,7 @@ void enemyAttack::release()
 
 void enemyAttack::update()
 {
+	//타이머와 딜레이는 상시적으로 줄어든다.
 	_attackDelay--;
 	_comboTimer--;	
 
@@ -42,6 +43,7 @@ void enemyAttack::render()
 
 int enemyAttack::selectedAttack(int attack)
 {
+	//공격 패턴
 	if ((ATTACK_STATE)attack == NONE && _attackDelay <= 0)
 	{
 		if (_attackState == ATTACK || _attackState == NONE || _attackState == COMBO_ATTACK_3)
@@ -50,6 +52,8 @@ int enemyAttack::selectedAttack(int attack)
 			int random = RND->getFromIntTo(0,3);
 			//0에서 부터 1까지는 ATTACK 3은 콤보공격
 			_attackState = random <= 1 ? ATTACK : COMBO_ATTACK_1;
+			
+			//공격 종류에 따른 공격 딜레이를 난수로 획득
 			if(_attackState == ATTACK)
 				_attackDelay = RND->getFromIntTo(70, 100);
 			else 
@@ -69,7 +73,9 @@ int enemyAttack::selectedAttack(int attack)
 
 		_comboTimer = 200;
 	}
+	//공격이 해당되지 않으므로 NONE으로 반환(enemy에서는 Idle상태다)
 	else return NONE;
 
+	//선택된 공격을 반환한다.
 	return _attackState;
 }

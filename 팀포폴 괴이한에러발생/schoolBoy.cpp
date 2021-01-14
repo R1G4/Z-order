@@ -102,7 +102,6 @@ void schoolBoy::addFrame()
 	imgHit = IMAGEMANAGER->findImage("Boy_Hit");
 	imgDownup = IMAGEMANAGER->findImage("Boy_Downup");
 	imgDazed = IMAGEMANAGER->findImage("Boy_Dazed");
-	imgJump = IMAGEMANAGER->findImage("Boy_Jump");
 	imgKnockdown = IMAGEMANAGER->findImage("Boy_Knockdown");
 	imgTaunt = IMAGEMANAGER->findImage("Boy_Taunt");
 	_shadowImg = IMAGEMANAGER->findImage("Boy_Shadow");
@@ -227,16 +226,6 @@ void schoolBoy::addFrame()
 	aniLeftDazed->setPlayFrame(7, 4, false, false);
 	aniLeftDazed->setFPS(5);
 
-	//Jump 상태
-	aniRightJump = new animation;
-	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniRightJump->setPlayFrame(0, 2, false, false);
-	aniRightJump->setFPS(10);
-	aniLeftJump = new animation;
-	aniLeftJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniLeftJump->setPlayFrame(5, 3, false, false);
-	aniLeftJump->setFPS(10);
-
 	//Taunt 상태
 	aniRightTaunt = new animation;
 	aniRightTaunt->init(imgTaunt->getWidth(), imgTaunt->getHeight(), imgTaunt->getFrameWidth(), imgTaunt->getFrameHeight());
@@ -275,10 +264,6 @@ void schoolBoy::render(POINT camera)
 			_enemyImg->aniRender(getMemDC(), _enemyRc.left - 2, _enemyRc.top - 17, _motion, camera);
 			break;
 		}
-		break;
-	case schoolBoy::JUMP:
-		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top - 40, 150, camera);
-		_enemyImg->aniRender(getMemDC(), _enemyRc.left, _enemyRc.top - 40, _motion, camera);
 		break;
 	default:
 		_shadowImg->alphaRender(getMemDC(), _shadowRc.left, _shadowRc.top, 150, camera);

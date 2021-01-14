@@ -22,7 +22,6 @@ public:
 		DOWNUP,
 		KNOCKDOWN,
 		DAZED,
-		JUMP,
 		TAUNT,
 		DEAD,
 		REMOVE
@@ -172,11 +171,9 @@ public:
 	//에너미 죽은 상태
 	static void  setDead(void * obj);
 
-
 	//그 외 일단 추가한 겟터 셋터
 
 	//이미지
-	image* getImage() { return _enemyImg; }
 	void setImage(image* img) { _enemyImg = img; }
 
 	//렉트

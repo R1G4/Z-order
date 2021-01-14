@@ -26,11 +26,13 @@ class item : public gameNode
 	image* _itemImg;
 
 	//좌표
-	float _x, _y, _arriveY;
+	float _x, _y;
+	float _arriveY;	//처음에 초기화된 y좌표
 
 	//점프 효과 관련
-	float _gravity;
-	float _jumpPower;
+	float _gravity;		//중력
+	float _jumpPower;	//점프파워
+
 	public:
 	item();
 	~item();
@@ -38,7 +40,6 @@ class item : public gameNode
 	virtual HRESULT init(float x, float y);
 	virtual void release();
 	virtual void update();
-	virtual void removeEnemy(int i);
 	virtual void render(POINT camera);
 
 	//렉트

@@ -105,7 +105,6 @@ void schoolGirl::addFrame()
 	imgDownup = IMAGEMANAGER->findImage("Girl_Downup");
 	imgKnockdown = IMAGEMANAGER->findImage("Girl_Knockdown");
 	imgDazed = IMAGEMANAGER->findImage("Girl_Dazed");
-	imgJump = IMAGEMANAGER->findImage("Girl_Jump");
 	imgTaunt = IMAGEMANAGER->findImage("Girl_Taunt");
 	_shadowImg = IMAGEMANAGER->findImage("Girl_Shadow");
 
@@ -228,16 +227,6 @@ void schoolGirl::addFrame()
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(7, 4, false, false);
 	aniLeftDazed->setFPS(5);
-
-	//Jump 상태
-	aniRightJump = new animation;
-	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniRightJump->setPlayFrame(0, 2, false, false);
-	aniRightJump->setFPS(10);
-	aniLeftJump = new animation;
-	aniLeftJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniLeftJump->setPlayFrame(5, 3, false, false);
-	aniLeftJump->setFPS(10);
 
 	//Taunt 상태
 	aniRightTaunt = new animation;

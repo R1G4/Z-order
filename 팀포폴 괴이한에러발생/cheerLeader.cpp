@@ -103,7 +103,6 @@ void cheerLeader::addFrame()
 	imgHit = IMAGEMANAGER->findImage("CheerLeader_Hit");
 	imgDownup = IMAGEMANAGER->findImage("CheerLeader_Downup");
 	imgDazed = IMAGEMANAGER->findImage("CheerLeader_Dazed");
-	imgJump = IMAGEMANAGER->findImage("CheerLeader_Jump");
 	imgKnockdown = IMAGEMANAGER->findImage("CheerLeader_Knockdown");
 	imgTaunt = IMAGEMANAGER->findImage("CheerLeader_Idle");
 	_shadowImg = IMAGEMANAGER->findImage("CheerLeader_Shadow");
@@ -227,16 +226,6 @@ void cheerLeader::addFrame()
 	aniLeftDazed->init(imgDazed->getWidth(), imgDazed->getHeight(), imgDazed->getFrameWidth(), imgDazed->getFrameHeight());
 	aniLeftDazed->setPlayFrame(imgDazed->getMaxFrameX() * 2 + 1, imgDazed->getMaxFrameX() + 1, false, false);
 	aniLeftDazed->setFPS(5);
-
-	//Jump 상태
-	aniRightJump = new animation;
-	aniRightJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniRightJump->setPlayFrame(0, imgJump->getMaxFrameX(), false, false);
-	aniRightJump->setFPS(10);
-	aniLeftJump = new animation;
-	aniLeftJump->init(imgJump->getWidth(), imgJump->getHeight(), imgJump->getFrameWidth(), imgJump->getFrameHeight());
-	aniLeftJump->setPlayFrame(imgJump->getMaxFrameX() * 2 + 1, imgJump->getMaxFrameX() + 1, false, false);
-	aniLeftJump->setFPS(10);
 
 	//Taunt 상태
 	aniRightTaunt = new animation;
