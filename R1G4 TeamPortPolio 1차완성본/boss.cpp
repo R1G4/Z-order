@@ -239,9 +239,6 @@ void boss::update()
 
 	if (!_isAttacked)	//맞은상태가 아닐때 공격모션 실행
 	{
-
-
-
 		//근거리
 		if (_distance < 500 && !_isAttack)
 		{
@@ -249,7 +246,9 @@ void boss::update()
 			if (_player->getKyokoPoint().x > _x && !_isJump)
 			{
 				RECT _temp;
-				if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 400, _boss->getFrameHeight() - 100)))
+				RECT p_rc = _player->getRect();
+				RECT rmc_rc = RectMakeCenter(_x, _y, 400, _boss->getFrameHeight() - 100);
+				if (IntersectRect(&_temp, &p_rc, &rmc_rc))
 				{
 					int rnd = RND->getFromIntTo(0, 2);
 					BOSSDIRECTION tempDirection = rnd == 0 ? BOSS_RIGHT_ELBOW : BOSS_RIGHT_SLAP;
@@ -286,7 +285,9 @@ void boss::update()
 			else
 			{
 				RECT _temp;
-				if (IntersectRect(&_temp, &_player->getRect(), &RectMakeCenter(_x, _y, 400, _boss->getFrameHeight() - 100)))
+				RECT p_rc = _player->getRect();
+				RECT rmc_rc = RectMakeCenter(_x, _y, 400, _boss->getFrameHeight() - 100);
+				if (IntersectRect(&_temp, &p_rc, &rmc_rc))
 				{
 					int rnd = RND->getFromIntTo(0, 2);
 					BOSSDIRECTION tempDirection = rnd == 0 ? BOSS_LEFT_ELBOW : BOSS_LEFT_SLAP;
@@ -413,6 +414,8 @@ void boss::update()
 void boss::jumpUp()
 {
 	RECT _temp;
+	RECT p_rc = _player->getRect();
+
 	_jumpPower -= _gravity;
 	_y -= _jumpPower;
 
@@ -457,7 +460,7 @@ void boss::jumpUp()
 		_bossDirection = BOSS_RIGHT_JUMPDOWN_END;
 		_boss = IMAGEMANAGER->findImage("boss_jumpDownEnd");
 		_bossMotion = KEYANIMANAGER->findAnimation("boss_rightJumpDownEnd");
-		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
+		if (IntersectRect(&_temp, &p_rc, &_rcBoss))
 		{
 			_player->setHit(true);
 		}
@@ -474,7 +477,7 @@ void boss::jumpUp()
 		_bossDirection = BOSS_LEFT_JUMPDOWN_END;
 		_boss = IMAGEMANAGER->findImage("boss_jumpDownEnd");
 		_bossMotion = KEYANIMANAGER->findAnimation("boss_leftJumpDownEnd");
-		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
+		if (IntersectRect(&_temp, &p_rc, &_rcBoss))
 		{
 			_player->setHit(true);
 		}
@@ -486,6 +489,7 @@ void boss::jumpUp()
 void boss::tackle()
 {
 	RECT _temp;
+	RECT p_rc = _player->getRect();
 
 	if (_isTackle && (_bossMotion->getBossIndex() >= 3) && _player->getKyokoPoint().x > _x)
 	{
@@ -498,7 +502,7 @@ void boss::tackle()
 		_bossMotion->start();
 		_isAttack = true;
 		_isTackle = true;
-		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
+		if (IntersectRect(&_temp, &p_rc, &_rcBoss))
 		{
 			_bossMotion->stop();
 			_bossDirection = BOSS_RIGHT_TAUNT;
@@ -519,7 +523,7 @@ void boss::tackle()
 		_bossMotion->start();
 		_isAttack = true;
 		_isTackle = true;
-		if (IntersectRect(&_temp, &_player->getRect(), &_rcBoss))
+		if (IntersectRect(&_temp, &p_rc, &_rcBoss))
 		{
 			_bossMotion->stop();
 			_bossDirection = BOSS_LEFT_TAUNT;
@@ -638,11 +642,10 @@ void boss::rightAttackedMotion()
 void boss::leftDizzy()
 {
 	RECT _temp;
-	if (_bossHP <= 0)
-	{
-		return;
-	}
+	RECT p_arc = _player->getAttackRect();
 
+	if (_bossHP <= 0)
+		return;
 
 	if (_player->getKyokoPoint().x < _x && _bossDirection != BOSS_LEFT_ROAR && _bossDirection != BOSS_RIGHT_ROAR)
 	{
@@ -666,7 +669,7 @@ void boss::leftDizzy()
 			_count++;
 			if (_count < 200)
 			{
-				if (IntersectRect(&_temp, &_player->getAttackRect(), &_rcBoss))
+				if (IntersectRect(&_temp, &p_arc, &_rcBoss))
 				{
 					cout << "aaaa" << endl;
 					_bossMotion->stop();
@@ -697,11 +700,10 @@ void boss::leftDizzy()
 void boss::rightDizzy()
 {
 	RECT _temp;
-	if (_bossHP <= 0)
-	{
-		return;
-	}
+	RECT p_arc = _player->getAttackRect();
 
+	if (_bossHP <= 0)
+		return;
 
 	if (_player->getKyokoPoint().x > _x && _bossDirection != BOSS_LEFT_ROAR && _bossDirection != BOSS_RIGHT_ROAR)
 	{
@@ -725,7 +727,7 @@ void boss::rightDizzy()
 			_count++;
 			if (_count < 200)
 			{
-				if (IntersectRect(&_temp, &_player->getAttackRect(), &_rcBoss))
+				if (IntersectRect(&_temp, &p_arc, &_rcBoss))
 				{
 					_bossMotion->stop();
 					_bossDirection = BOSS_RIGHT_GROUNDHIT;

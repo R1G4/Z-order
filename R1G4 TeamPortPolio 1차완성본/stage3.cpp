@@ -63,7 +63,8 @@ void stage3::update()
 	UI->update();
 	SOUNDMANAGER->setVolume(_opt->getVolume());
 	RECT temp;
-	if (IntersectRect(&temp, &_player->getRect(), &Lobj.rc))
+	RECT p_rc = _player->getRect();
+	if (IntersectRect(&temp, &p_rc, &Lobj.rc))
 	{
 		alpha = 100;
 	}
@@ -138,7 +139,9 @@ void stage3::render()
 void stage3::chainLock()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_player->getRect(), &lockCheckRc) && Ls == NOTYET)
+	RECT p_rc = _player->getRect();
+
+	if (IntersectRect(&temp, &p_rc, &lockCheckRc) && Ls == NOTYET)
 	{
 		Ls = CHECK;
 		CAMERAMANAGER->isChainLock(true);
@@ -186,7 +189,8 @@ void stage3::chainLock()
 void stage3::changeScene()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()) && KEYMANAGER->isStayKeyDown('Z'))
+	RECT p_s = _player->getShadow();
+	if (IntersectRect(&temp, &_door_rc, &p_s) && KEYMANAGER->isStayKeyDown('Z'))
 	{
 		SOUNDMANAGER->stop("MainStage");
 		SCENEMANAGER->changeScene("BossStage");
@@ -197,10 +201,12 @@ void stage3::changeScene()
 void stage3::ItemCollision()
 {
 	RECT _temp;
+	RECT p_rc = _player->getRect();
 	// 플레이어 충돌렉트랑 아이템 렉트랑 맞닿으면
 	for (int j = 0; j < _em->getVItem().size(); j++)
 	{
-		if (IntersectRect(&_temp, &_player->getRect(), &_em->getVItem()[j]->getRect()))
+		RECT item_rc = _em->getVItem()[j]->getRect();
+		if (IntersectRect(&_temp, &p_rc, &item_rc))
 		{
 			//아이템 획득 체크
 			if (_em->getVItem()[j]->ItemAcheive())
@@ -216,14 +222,17 @@ void stage3::ItemCollision()
 void stage3::AttackCollision()
 {
 	RECT _temp;
+	RECT p_rc = _player->getRect();
+	RECT p_arc = _player->getAttackRect();
 
 	if (!_player->getHit())
 	{
 		//플레이어와 Npc 상호작용
 		for (int i = 0; i < _nm->getVNpc().size(); i++)
 		{
+			RECT npc_rc = _nm->getVNpc()[i]->getNpcRc();
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
-			if (IntersectRect(&_temp, &_player->getAttackRect(), &_nm->getVNpc()[i]->getNpcRc()))
+			if (IntersectRect(&_temp, &p_arc, &npc_rc))
 			{
 				//플레이어 위치에 따라 반응하는 방향도 다르다.
 				if (_nm->getVNpc()[i]->getNpcRc().left <= _player->getRect().left)
@@ -235,8 +244,9 @@ void stage3::AttackCollision()
 		}
 		for (int i = 0; i < _em->getVEnemy().size(); i++)
 		{
+			RECT e_arc = _em->getVEnemy()[i]->getDebugAttackRc();
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
-			if (IntersectRect(&_temp, &_player->getRect(), &_em->getVEnemy()[i]->getDebugAttackRc())
+			if (IntersectRect(&_temp, &p_rc, &e_arc)
 				&&((_player->getShadow().top>_em->getVEnemy()[i]->getShadowRc().top-30)&& (_player->getShadow().bottom < _em->getVEnemy()[i]->getShadowRc().bottom + 30)))
 			{
 				_player->setHit(true);
@@ -262,8 +272,9 @@ void stage3::AttackCollision()
 	}
 	for (int i = 0; i < _em->getVEnemy().size(); i++)
 	{
+		RECT e_rc = _em->getVEnemy()[i]->getEnemyRect();
 		//getEnemyRect를 충돌용 getRect로 바꿀까? 피격 범위를 에너미 이미지 렉트로 하니 반대방향에서도 맞는 현상 발생 추후 생각해서 수정해야함
-		if (IntersectRect(&_temp, &_player->getAttackRect(), &_em->getVEnemy()[i]->getEnemyRect())
+		if (IntersectRect(&_temp, &p_arc, &e_rc)
 			&& ((_player->getShadow().top > _em->getVEnemy()[i]->getShadowRc().top - 30) && (_player->getShadow().bottom < _em->getVEnemy()[i]->getShadowRc().bottom + 30)))
 		{
 			switch (_player->getKyokoDirection())

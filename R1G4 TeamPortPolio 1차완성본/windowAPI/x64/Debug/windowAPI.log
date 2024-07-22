@@ -1,0 +1,31 @@
+﻿  stage3.cpp
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\kyoko.h(132,14): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\kyoko.h(133,14): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\enemy.h(218,14): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\enemy.h(219,14): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(33,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(33,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(132,48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(132,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(148,36): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(152,174): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(152,86): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(153,109): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(153,96): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(381,114): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(381,51): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(398,114): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(398,51): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(414,122): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(414,92): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(431,122): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(431,92): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(452,119): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(452,76): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(468,119): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(468,76): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(484,120): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(484,79): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(501,120): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\stage3.cpp(501,79): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  windowAPI.vcxproj -> C:\Users\zzana\Desktop\포트폴리오 정리\Z-order\R1G4 TeamPortPolio 1차완성본\x64\Debug\windowAPI.exe

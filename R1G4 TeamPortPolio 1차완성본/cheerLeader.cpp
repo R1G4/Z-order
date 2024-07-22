@@ -367,10 +367,15 @@ void cheerLeader::state()
 		_isFollow = true;
 
 		RECT temp;
+		RECT kyokoRect = RectMakeCenter(
+			(_kyoko->getRect().left + _kyoko->getRect().right) / 2,
+			(_kyoko->getRect().top + _kyoko->getRect().bottom) / 2,
+			_kyoko->getRect().right - _kyoko->getRect().left,
+			_kyoko->getRect().bottom - _kyoko->getRect().top - 100
+		);
+		RECT enemyRect = RectMakeCenter(_x, _y, 200, _enemyImg->getFrameHeight());
 		//플레이어와 에너미 충돌 시
-		if (IntersectRect(&temp,
-			&RectMakeCenter((_kyoko->getRect().left + _kyoko->getRect().right) / 2, (_kyoko->getRect().top + _kyoko->getRect().bottom) / 2, _kyoko->getRect().right - _kyoko->getRect().left, _kyoko->getRect().bottom - _kyoko->getRect().top - 100),
-			&RectMakeCenter(_x, _y, 200, _enemyImg->getFrameHeight())))	//에너미 넓이 고정으로 생성
+		if (IntersectRect(&temp, &kyokoRect, &enemyRect))	//에너미 넓이 고정으로 생성
 		{
 			switch (_state)
 			{

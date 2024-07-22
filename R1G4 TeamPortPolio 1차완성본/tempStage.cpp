@@ -127,7 +127,8 @@ void tempStage::render()
 void tempStage::changeMap()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_door_rc, &_player->getShadow())&&KEYMANAGER->isStayKeyDown('Z'))
+	RECT p_s = _player->getShadow();
+	if (IntersectRect(&temp, &_door_rc, &p_s)&&KEYMANAGER->isStayKeyDown('Z'))
 	{
 		SOUNDMANAGER->stop("MainStage");
 		SCENEMANAGER->changeScene("Stage2",saveSlot);
@@ -244,13 +245,15 @@ void tempStage::pixelCollision()
 void tempStage::AttackCollision()
 {
 	RECT _temp;
+	RECT p_arc = _player->getAttackRect();
 	//플레이어와 Npc 상호작용
 	if (!_player->getHit())
 	{
 		for (int i = 0; i < _nm->getVNpc().size(); i++)
 		{
 			// 플레이어 충돌렉트랑 적 공격렉트랑 맞닿으면
-			if (IntersectRect(&_temp, &_player->getAttackRect(), &_nm->getVNpc()[i]->getNpcRc()))
+			RECT npc_rc = _nm->getVNpc()[i]->getNpcRc();
+			if (IntersectRect(&_temp, &p_arc, &npc_rc))
 			{
 				//플레이어 위치에 따라 반응하는 방향도 다르다.
 				if (_nm->getVNpc()[i]->getNpcRc().left <= _player->getRect().left)

@@ -273,7 +273,8 @@ void BossStage::render()
 void BossStage::changeMap()
 {
 	RECT temp;
-	if (IntersectRect(&temp, &_door_rc, &_player->getShadow()) && KEYMANAGER->isStayKeyDown('Z'))
+	RECT p_s = _player->getShadow();
+	if (IntersectRect(&temp, &_door_rc, &p_s) && KEYMANAGER->isStayKeyDown('Z'))
 	{
 		delete(_player);
 		SCENEMANAGER->changeScene("스테이지1");
@@ -284,10 +285,15 @@ void BossStage::changeMap()
 void BossStage::attackCollision()
 {
 	RECT temp;
+	RECT p_rc = _player->getRect();
+	RECT p_arc = _player->getAttackRect();
+	RECT b_br = _boss->getBossRect();
+	RECT b_bar = _boss->getBossAttackRect();
+
 	//플레이어가 오른쪽에서 보스 공격할때
 	if (_player->getKyokoPoint().x > _boss->getBossPointX())
 	{
-		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
+		if (IntersectRect(&temp, &p_arc, &b_br))
 		{
 			_boss->hitDamage(10);
 			_boss->rightAttackedMotion();
@@ -296,7 +302,7 @@ void BossStage::attackCollision()
 	//플레이어가 왼쪽에서 보스 공격할때
 	if (_player->getKyokoPoint().x < _boss->getBossPointX())
 	{
-		if (IntersectRect(&temp, &_player->getAttackRect(), &_boss->getBossRect()))
+		if (IntersectRect(&temp, &p_arc, &b_br))
 		{
 			_boss->hitDamage(10);
 			_boss->leftAttackedMotion();
@@ -305,7 +311,7 @@ void BossStage::attackCollision()
 	//보스가 오른쪽에서 공격할때
 	if (_player->getKyokoPoint().x > _boss->getBossPointX())
 	{
-		if (IntersectRect(&temp, &_player->getRect(), &_boss->getBossAttackRect()))
+		if (IntersectRect(&temp, &p_rc, &b_bar))
 		{
 			_player->setHit(true);
 			_player->setHitRight(false);
@@ -314,7 +320,7 @@ void BossStage::attackCollision()
 	//보스가 왼쪽에서 공격할때
 	if (_player->getKyokoPoint().x < _boss->getBossPointX())
 	{
-		if (IntersectRect(&temp, &_player->getRect(), &_boss->getBossAttackRect()))
+		if (IntersectRect(&temp, &p_rc, &b_bar))
 		{
 			_player->setHit(true);
 			_player->setHitRight(true);
